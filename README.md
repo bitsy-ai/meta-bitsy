@@ -15,7 +15,7 @@ Bitsy distros are designed for computer vision and machine learning applications
 
 ## Recipes
 
-### [recipes-multimedia/janus/README.md](meta-janus-gateway/recipes-multimedia/janus/README.md)
+### [recipes-multimedia/janus-gateway/README.md](meta-janus-gateway/recipes-multimedia/janus-gateway/README.md)
 
 Recipe to build [Janus WebRTC Gateway](https://github.com/meetecho/janus-gateway) 
 

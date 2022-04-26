@@ -34,16 +34,16 @@ PACKAGECONFIG[plugin_recordplay] = "--enable-plugin-recordplay,--disable-plugin-
 PACKAGECONFIG[plugin_textroom] = "--enable-plugin-textroom,--disable-plugin-textroom,"
 PACKAGECONFIG[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
 
-FILES_${PN}_append = " ${libdir}/janus/plugins/* ${libdir}/janus/transports/* ${libdir}/janus/events"
+FILES_${PN}:append = " ${libdir}/janus/plugins/* ${libdir}/janus/transports/* ${libdir}/janus/events"
 FILES_${PN}-demo = "${datadir}/janus/*"
 
-PACKAGES_append = " ${PN}-demo"
+PACKAGES:append = " ${PN}-demo"
 
 INSANE_SKIP_${PN} = "dev-so"
 
 SYSTEMD_SERVICE_${PN} = "janus-gateway.service"
 
-do_install_append() {
+do_install:append() {
 	# Install the systemd service so we can kick start on boot
 	install -d ${D}${systemd_unitdir}/system
 	install -m 644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/

@@ -2,25 +2,24 @@ DESCRIPTION = "Janus is an open source, general purpose, WebRTC server designed 
 HOMEPAGE = "https://janus.conf.meetecho.com/"
 SECTION = "libs/multimedia"
 LICENSE = "GPLv3"
-LIC_FILES_CHKSUM = "file://COPYING;sha256=91d04c97fa1da3fcd28205873276358aafc071c5b00a9ea8c49dd06d487a9dc6"
-
+LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
 SRC_URI = "https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
 	   file://janus-gateway.service \
 "
+SRC_URI[sha256sum] = "2b065c5feaec9e40b2310b97cf598bb53346b326bdad73f57b3de319eb0fc65f"
+SRC_REV = "0.11.8"
 
-SRC_URI[sha256sum] = "01ddaf204203a1219dd46a5ce70b548bab75bc494c9ba05429f8fb1e786b2995"
+inherit autotools pkgconfig systemd
 
-inherit pkgconfig systemd
-
-DEPENDS = "libsrtp jansson libconfig libnice openssl glib-2.0"
-
+DEPENDS += "libsrtp jansson libconfig libnice openssl glib-2.0 gengetopt-native"
 PACKAGECONFIG ?= "rest_api rest"
-PACKAGECONFIG[inet] = "--enable-inet,--disable-inet,"
-PACKAGECONFIG[inet6] = "--enable-inet6,--disable-inet6,"
+PACKAGECONFIG[datachannels] = "--enable-data-channels,--disable-data-channels,usrsctp"
 PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"
+PACKAGECONFIG[nanomsg] = "--enable-nanomsg,--disable-nanomsg,libnanomsg"
 PACKAGECONFIG[rabbitmq] = "--enable-rabbitmq,--disable-rabbitmq,rabbitmq-c"
 PACKAGECONFIG[rest_api] = "--enable-turn-rest-api,--disable-turn-rest-api,curl"
 PACKAGECONFIG[rest] = "--enable-rest,--disable-rest,libmicrohttpd"
+PACKAGECONFIG[systemd_sockets] = "--enable-systemd-sockets,--disable-systemd-sockets"
 PACKAGECONFIG[unix_sockets] = "--enable-unix-sockets,--disable-unix-sockets,"
 PACKAGECONFIG[post_processing] = "--enable-post-processing,--disable-post-processing,"
 PACKAGECONFIG[plugin_echo] = "--enable-plugin-echotest,--disable-plugin-echotest,"
@@ -32,17 +31,19 @@ PACKAGECONFIG[plugin_recordplay] = "--enable-plugin-recordplay,--disable-plugin-
 PACKAGECONFIG[plugin_textroom] = "--enable-plugin-textroom,--disable-plugin-textroom,"
 PACKAGECONFIG[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
 
-FILES_${PN}:append = " ${libdir}/janus/plugins/* ${libdir}/janus/transports/* ${libdir}/janus/events"
-FILES_${PN}-demo = "${datadir}/janus/*"
-
-PACKAGES:append = " ${PN}-demo"
-
-INSANE_SKIP_${PN} = "dev-so"
-
-SYSTEMD_SERVICE_${PN} = "janus-gateway.service"
-
 do_install:append() {
-	# Install the systemd service so we can kick start on boot
 	install -d ${D}${systemd_unitdir}/system
 	install -m 644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
 }
+
+FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus/transports ${libdir}/janus/events"
+FILES:${PN}-demo = "${datadir}/janus/demos ${datadir}/janus"
+FILES:${PN}-js = "${datadir}/janus/javascript"
+PACKAGES = "${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-demo ${PN}-js"
+
+# ignore QA Errors about symlinking unversioned .so
+# ideally this would be fixed in janus package
+INSANE_SKIP:${PN} = "dev-so"
+
+SYSTEMD_SERVICE_${PN} = "janus-gateway.service"
+SYSTEMD_AUTO_ENABLE = "enable"

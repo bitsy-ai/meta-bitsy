@@ -1,6 +1,8 @@
-# meta-janus-gateway
+# meta-bitsy
 
-The **meta-janus-gateway project** provides *recipes* for building [Janus WebRTC Gateway](https://github.com/meetecho/janus-gateway) for [Embedded Linux](https://elinux.org) built with [OpenEmbedded](https://www.openembedded.org) and [Yocto Project](https://www.yoctoproject.org/) build frameworks.
+The **meta-bitsy project** provides *recipes* for building [Embedded Linux](https://elinux.org) distributions with the [OpenEmbedded](https://www.openembedded.org) and [Yocto Project](https://www.yoctoproject.org/) frameworks.
+
+Bitsy distros are designed for computer vision and machine learning applications.
 
 ### Supported Yocto Project Releases
 
@@ -9,43 +11,20 @@ The **meta-janus-gateway project** provides *recipes* for building [Janus WebRTC
 <tr><td>honister 3.4.x</td><td>🚧</td></tr>
 </table>
 
-### Dependencies
-meta-janus-gateway layer defines a minimum dependency set to run the Janus WebRTC Gateway.
+### BSPs
 
-Base dependencies:
+## Recipes
 
-* core
-* openembedded-layer (meta-oe)
+### [recipes-multimedia/janus/README.md](meta-janus-gateway/recipes-multimedia/janus/README.md)
 
-Optional dependencies:
+Recipe to build [Janus WebRTC Gateway](https://github.com/meetecho/janus-gateway) 
 
-Besides the base dependencies, some optional features require additional dependencies. See `meta-janus-gateway/recipes-multimedia/janus-gateway/janus-gateway_${PV}` for description of optional dependencies.
 
-```
-PACKAGECONFIG ?= "rest_api rest"
-PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"
-PACKAGECONFIG[rabbitmq] = "--enable-rabbitmq,--disable-rabbitmq,rabbitmq-c"
-PACKAGECONFIG[rest_api] = "--enable-turn-rest-api,--disable-turn-rest-api,curl"
-PACKAGECONFIG[rest] = "--enable-rest,--disable-rest,libmicrohttpd"
-PACKAGECONFIG[unix_sockets] = "--enable-unix-sockets,--disable-unix-sockets,"
-PACKAGECONFIG[post_processing] = "--enable-post-processing,--disable-post-processing,"
-PACKAGECONFIG[plugin_echo] = "--enable-plugin-echotest,--disable-plugin-echotest,"
-PACKAGECONFIG[plugin_videocall] = "--enable-plugin-videocall,--disable-plugin-videocall,"
-PACKAGECONFIG[plugin_nosip] = "--enable-plugin-nosip,--disable-plugin-nosip,"
-PACKAGECONFIG[plugin_videoroom] = "--enable-plugin-videoroom,--disable-plugin-videoroom,"
-PACKAGECONFIG[plugin_voicemail] = "--enable-plugin-voicemail,--disable-plugin-voicemail,"
-PACKAGECONFIG[plugin_recordplay] = "--enable-plugin-recordplay,--disable-plugin-recordplay,"
-PACKAGECONFIG[plugin_textroom] = "--enable-plugin-textroom,--disable-plugin-textroom,"
-PACKAGECONFIG[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
-```
-
-See https://github.com/meetecho/janus-gateway/blob/master/configure.ac for more information about build configuration options.
-
-### Patches
+## Patches
 
 Please open a Github Issue to discuss a patch prior to submission.
 
 
-### Maintainers
+## Maintainers
 
 * Leigh Johnson, Bitsy AI Labs <leigh@bitsy.ai>

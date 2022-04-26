@@ -19,12 +19,10 @@ Base dependencies:
 
 Optional dependencies:
 
-Besides the base dependencies, some optional features require additional dependencies. See `meta-janus-gateway/recipes-multimedia/janus-gateway/janus_gateway_0.${VERSION}` for description of optional dependencies.
+Besides the base dependencies, some optional features require additional dependencies. See `meta-janus-gateway/recipes-multimedia/janus-gateway/janus-gateway_${PV}` for description of optional dependencies.
 
 ```
 PACKAGECONFIG ?= "rest_api rest"
-PACKAGECONFIG[inet] = "--enable-inet,--disable-inet,"
-PACKAGECONFIG[inet6] = "--enable-inet6,--disable-inet6,"
 PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"
 PACKAGECONFIG[rabbitmq] = "--enable-rabbitmq,--disable-rabbitmq,rabbitmq-c"
 PACKAGECONFIG[rest_api] = "--enable-turn-rest-api,--disable-turn-rest-api,curl"

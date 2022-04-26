@@ -15,7 +15,6 @@ inherit pkgconfig systemd
 DEPENDS = "libsrtp jansson libconfig libnice openssl glib-2.0"
 
 PACKAGECONFIG ?= "rest_api rest"
-#PACKAGECONFIG[disablewarnings] = "--disable-warnings-as-errors,,"
 PACKAGECONFIG[inet] = "--enable-inet,--disable-inet,"
 PACKAGECONFIG[inet6] = "--enable-inet6,--disable-inet6,"
 PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"

@@ -16,7 +16,6 @@ Base dependencies:
 
 * core
 * openembedded-layer (meta-oe)
-* networking-layer (meta-networking)
 
 Optional dependencies:
 

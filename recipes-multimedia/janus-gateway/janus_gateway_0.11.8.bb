@@ -2,14 +2,13 @@ DESCRIPTION = "Janus is an open source, general purpose, WebRTC server designed 
 HOMEPAGE = "https://janus.conf.meetecho.com/"
 SECTION = "libs/multimedia"
 LICENSE = "GPLv3"
-LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
+LIC_FILES_CHKSUM = "file://COPYING;sha256=91d04c97fa1da3fcd28205873276358aafc071c5b00a9ea8c49dd06d487a9dc6"
 
 SRC_URI = "https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
 	   file://janus-gateway.service \
 "
 
-# SRC_URI[md5sum] = "b068ac2b40ae800d83f471b8189bc87c"
-# SRC_URI[sha256sum] = "01ddaf204203a1219dd46a5ce70b548bab75bc494c9ba05429f8fb1e786b2995"
+SRC_URI[sha256sum] = "01ddaf204203a1219dd46a5ce70b548bab75bc494c9ba05429f8fb1e786b2995"
 
 inherit pkgconfig systemd
 

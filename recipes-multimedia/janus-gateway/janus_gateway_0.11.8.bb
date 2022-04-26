@@ -3,16 +3,19 @@ HOMEPAGE = "https://janus.conf.meetecho.com/"
 SECTION = "libs/multimedia"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;sha256=91d04c97fa1da3fcd28205873276358aafc071c5b00a9ea8c49dd06d487a9dc6"
-
+PACKAGES += "janus-gateway"
 SRC_URI = "https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
 	   file://janus-gateway.service \
 "
 
 SRC_URI[sha256sum] = "01ddaf204203a1219dd46a5ce70b548bab75bc494c9ba05429f8fb1e786b2995"
+SRC_REV = "0.11.8"
 
-inherit pkgconfig systemd
+S = "${WORKDIR}/git"
 
-DEPENDS = "libsrtp jansson libconfig libnice openssl glib-2.0"
+inherit autotools pkgconfig systemd
+
+DEPENDS += "libsrtp jansson libconfig libnice openssl glib-2.0"
 
 PACKAGECONFIG ?= "rest_api rest"
 PACKAGECONFIG[inet] = "--enable-inet,--disable-inet,"
@@ -40,6 +43,7 @@ PACKAGES:append = " ${PN}-demo"
 INSANE_SKIP_${PN} = "dev-so"
 
 SYSTEMD_SERVICE_${PN} = "janus-gateway.service"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 do_install:append() {
 	# Install the systemd service so we can kick start on boot

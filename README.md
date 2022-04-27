@@ -11,9 +11,21 @@ Bitsy distros are designed for computer vision and machine learning applications
 <tr><td>honister 3.4.x</td><td>🚧</td></tr>
 </table>
 
-### BSPs
+## Layer dependencies
+This layer depends on:
 
-## Recipes
+* URI: git://git.yoctoproject.org/poky
+    ** branch: honister-3.4.3
+* URI: git://git.yoctoproject.org/meta-yocto
+    ** branch: honister-3.4.3
+* URI: git://github.com/openembedded/meta-openembedded
+    ** branch: honister
+    ** layers: meta-oe, meta-python, meta-multimedia
+* URI: git://github.com/bitsyai/meta-neural-network
+    ** branch: honister
+    ** ORIG: git:://github.com/nnstreamer/meta-neural-network
+* URI: git://git.yoctoproject.org/meta-tensorflow
+
 
 ### [recipes-multimedia/janus-gateway/README.md](meta-bitsy/recipes-multimedia/janus-gateway/README.md)
 

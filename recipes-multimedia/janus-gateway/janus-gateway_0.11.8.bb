@@ -45,5 +45,5 @@ PACKAGES = "${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-de
 # ideally this would be fixed in janus package
 INSANE_SKIP:${PN} = "dev-so"
 
-SYSTEMD_SERVICE_${PN} = "janus-gateway.service"
+SYSTEMD_SERVICE:${PN} = "janus-gateway.service"
 SYSTEMD_AUTO_ENABLE = "enable"

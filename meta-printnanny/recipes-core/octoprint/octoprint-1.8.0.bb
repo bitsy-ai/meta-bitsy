@@ -3,7 +3,7 @@ inherit pypi setuptools3 systemd
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI += "file://config.yaml \
-    file://octoprint.service
+    file://octoprint.service \
 "
 
 PYPI_PACKAGE = "OctoPrint"

@@ -9,8 +9,8 @@ SRC_URI = "file://repart.d/ \
 inherit systemd
 
 do_install() {
-    install -m 0755 ${S}/repart.d/* ${WORKDIR}/etc/repart.d/*
-    install -m 0755 ${S}/sysupdate.d/* ${WORKDIR}/etc/sysupdate.d/*
+    install -m 0755 ${S}/repart.d/ ${WORKDIR}/etc/repart.d/
+    install -m 0755 ${S}/sysupdate.d/ ${WORKDIR}/etc/sysupdate.d/
 }
 
 FILES_${PN} = "/etc/repart.d/* /etc/sysupdate.d/*"

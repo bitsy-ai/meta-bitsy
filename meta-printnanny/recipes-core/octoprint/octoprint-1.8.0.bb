@@ -1,6 +1,6 @@
 LICENSE = "AGPLv3"
 inherit pypi setuptools3 systemd
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += "file://config.yaml \
     file://octoprint.service \

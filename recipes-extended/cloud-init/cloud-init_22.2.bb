@@ -16,10 +16,11 @@ S = "${WORKDIR}/git"
 DISTUTILS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', '--init-system=sysvinit_deb', '', d)}"
 DISTUTILS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '--init-system=systemd', '', d)}"
 
-# do_install:append() {
-#     ln -s ${libdir}/${BPN}/uncloud-init ${D}${sysconfdir}/cloud/uncloud-init
-#     ln -s ${libdir}/${BPN}/write-ssh-key-fingerprints ${D}${sysconfdir}/cloud/write-ssh-key-fingerprints
-# }
+do_install:append() {
+    install -d ${D}${sysconfdir}/cloud/cloud.cfg.d/
+    ln -s /boot/user-data ${D}${sysconfdir}/cloud/cloud.cfg.d/user-data.cfg
+    ln -s /boot/network-config ${D}${sysconfdir}/cloud/cloud.cfg.d/network-config.cfg
+}
 
 inherit pkgconfig
 inherit setuptools3_legacy

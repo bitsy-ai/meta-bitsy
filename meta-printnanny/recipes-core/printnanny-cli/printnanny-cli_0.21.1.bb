@@ -17,7 +17,7 @@ inherit systemd
 
 FILES_${PN} += "${systemd_unitdir}/system/printnanny-dash.service"
 
-do_install:append() {
+do_install() {
   install -d ${D}/${systemd_unitdir}/system
   install -m 0644 ${WORKDIR}/printnanny-dash.service ${D}/${systemd_unitdir}/system
 }

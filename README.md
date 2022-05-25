@@ -9,6 +9,8 @@ Bitsy distros are designed for computer vision and machine learning applications
 <table>
 <tr><th>Release branch <a href="https://wiki.yoctoproject.org/wiki/Releases" target="none" title="What is this?">(?)</a></th><th>Layer integrity check <a href="https://www.yoctoproject.org/docs/2.5/dev-manual/dev-manual.html#making-sure-your-layer-is-compatible-with-yocto-project" target="none" title="What is this?">(?)</a></th></tr>
 <tr><td>honister 3.4.x</td><td>🚧</td></tr>
+<tr><td>kirkland 4.0.x</td><td>🚧</td></tr>
+
 </table>
 
 ## Layer dependencies

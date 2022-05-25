@@ -18,8 +18,8 @@ DISTUTILS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'syste
 
 do_install:append() {
     install -d ${D}${sysconfdir}/cloud/cloud.cfg.d/
-    ln -s /boot/user-data ${D}${sysconfdir}/cloud/cloud.cfg.d/user-data.cfg
-    ln -s /boot/network-config ${D}${sysconfdir}/cloud/cloud.cfg.d/network-config.cfg
+    ln -s /boot/user-data ${D}${sysconfdir}/cloud/cloud.cfg.d/001_user-data.cfg
+    ln -s /boot/network-config ${D}${sysconfdir}/cloud/cloud.cfg.d/002_network-config.cfg
 }
 
 inherit pkgconfig

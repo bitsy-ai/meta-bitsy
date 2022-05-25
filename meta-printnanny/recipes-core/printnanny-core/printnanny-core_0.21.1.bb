@@ -24,3 +24,8 @@ do_install() {
 
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service"
 SYSTEMD_AUTO_ENABLE = "enable"
+
+inherit extrausers
+PRINTNANNY_USER ?= "printnanny"
+EXTRA_USERS_PARAMS = " useradd ${PRINTNANNY_USER}; \
+    usermod  -a -G sudo ${PRINTNANNY_USER};"

@@ -1,10 +1,17 @@
+include recipes-core/images/core-image-base.bb
+
+COMPATIBLE_MACHINE = "^rpi$"
+
+WKS_FILE = "sdimage-printnanny-rpi.wks"
+IMAGE_FEATURES += "ssh-server-openssh"
+
 #
 # Customizations: meta-raspberrypi
 # https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
 # v4l2 drivers
 VIDEO_CAMERA = "1"
-# DISABLE_RPI_BOOT_LOGO = "1"
 # RPI_USE_U_BOOT = "1"
+# DISABLE_RPI_BOOT_LOGO = "1"
 # INITRAMFS_IMAGE_BUNDLE = "1"
 # imx219 dt overlay
 RASPBERRYPI_CAMERA_V2 = "1"
@@ -21,8 +28,7 @@ SDIMG_ROOTFS_TYPE = "ext4"
 #
 # Raspberry Pi Imager writes cloud-init cloud-config file to /boot/user-data
 #
-DISTRO_FEATURES:append = " virtualization"
-IMAGE_INSTALL:append = " cloud-init-systemd"
+IMAGE_INSTALL:append = "cloud-init-systemd"
 
 # example fields written by Raspberry Pi Imager v1.7.2 
 #cloud-config
@@ -53,3 +59,37 @@ IMAGE_INSTALL:append = " cloud-init-systemd"
 # - rm -f /etc/xdg/autostart/piwiz.desktop
 # - localectl set-x11-keymap "us" pc105
 # - setupcon -k --force || true
+
+
+#
+# PrintNanny embedded tools
+#
+IMAGE_INSTALL:append = " printnanny-core"
+
+#
+# Janus Gateway
+#
+IMAGE_INSTALL:append = " janus-gateway"
+PACKAGECONFIG:janus-gateway = "rest rest_api websockets unix_sockets plugin_videoroom plugin_echo datachannels"
+
+#
+# Gstreamer
+#
+LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
+IMAGE_INSTALL:append = " gstreamer1.0"
+
+#
+# nnstreamer
+#
+IMAGE_INSTALL:append = " nnstreamer"
+
+#
+# tensorflow-lite
+#
+IMAGE_INSTALL:append = " tensorflow-lite"
+
+#
+# sysupdate + init
+#
+IMAGE_INSTALL:append = " bitsy-sysupdate"
+

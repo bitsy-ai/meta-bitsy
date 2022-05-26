@@ -1,3 +1,10 @@
+include recipes-core/images/core-image-base.bb
+
+COMPATIBLE_MACHINE = "^rpi$"
+
+WKS_FILE = "sdimage-printnanny-rpi.wks"
+IMAGE_FEATURES += "ssh-server-openssh"
+
 #
 # Customizations: meta-raspberrypi
 # https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
@@ -14,7 +21,7 @@ ENABLE_UART = "1"
 KERNEL_MODULE_AUTOLOAD:rpi += "i2c-dev i2c-bcm2708"
 
 # https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
-IMAGE_FSTYPES ?= "ext4 ext4.xz rpi-sdimg"
+IMAGE_FSTYPES = "ext4 ext4.xz rpi-sdimg"
 # IMAGE_FSTYPES = "ext4 ext4.xz"
 SDIMG_ROOTFS_TYPE = "ext4"
 
@@ -53,4 +60,36 @@ IMAGE_INSTALL:append = "cloud-init"
 # - localectl set-x11-keymap "us" pc105
 # - setupcon -k --force || true
 
-WKS_FILE = "sdimage-printnanny-rpi.wks"
+
+#
+# PrintNanny embedded tools
+#
+IMAGE_INSTALL:append = " printnanny-core"
+
+#
+# Janus Gateway
+#
+IMAGE_INSTALL:append = " janus-gateway"
+PACKAGECONFIG:janus-gateway = "rest rest_api websockets unix_sockets plugin_videoroom plugin_echo datachannels"
+
+#
+# Gstreamer
+#
+LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
+IMAGE_INSTALL:append = " gstreamer1.0"
+
+#
+# nnstreamer
+#
+IMAGE_INSTALL:append = " nnstreamer"
+
+#
+# tensorflow-lite
+#
+IMAGE_INSTALL:append = " tensorflow-lite"
+
+#
+# sysupdate + init
+#
+IMAGE_INSTALL:append = " bitsy-sysupdate"
+

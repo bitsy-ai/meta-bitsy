@@ -10,9 +10,6 @@ SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/p
 SRC_URI[license.sha256sum] = "c4a818ce2d5285465728ea933b6fa9ea6a1e3dd198cddcfb5c7c75d3c6258724"
 SRC_URI[cli.sha256sum] = "084f4cc0ff1f8d4b5961c8cb940e25fb108398c4ce1bf517edda4292559d9181"
 SRC_URI[wwwtemplates.sha256sum] = "084f4cc0ff1f8d4b5961c8cb940e25fb108398c4ce1bf517edda4292559d9181"
-
-# SRC_REV = "0.21.1"
-
 inherit systemd
 
 FILES_${PN} += "${systemd_unitdir}/system/printnanny-dash.service"

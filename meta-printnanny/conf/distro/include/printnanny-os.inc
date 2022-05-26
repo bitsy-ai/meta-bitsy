@@ -23,3 +23,5 @@ LOCALCONF_VERSION = "2"
 # https://docs.yoctoproject.org/4.0.1/ref-manual/variables.html?highlight=image_classes#term-IMAGE_CLASSES
 
 INIT_MANAGER ?= "systemd"
+
+DISTRO_EXTRA_RDEPENDS = "packagegroup-printnanny-core"

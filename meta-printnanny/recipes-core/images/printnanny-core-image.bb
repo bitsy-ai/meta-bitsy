@@ -1,6 +1,9 @@
-include recipes-core/images/printnanny-base.bb
+LICENSE = "AGPLv3"
+WKS_FILE = "sdimage-printnanny.wks"
+IMAGE_FEATURES += "splash ssh-server-openssh"
+IMAGE_FSTYPES = "ext4 ext4.xz wic.xz wic.bmap"
+SDIMG_ROOTFS_TYPE = "ext4.xz"
 
-COMPATIBLE_MACHINE = "^(rpi|raspberrypi)"
 #
 # Customizations: meta-raspberrypi
 # https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
@@ -15,3 +18,5 @@ ENABLE_SPI_BUS = "1"
 ENABLE_I2C = "1"
 ENABLE_UART = "1"
 KERNEL_MODULE_AUTOLOAD:rpi += "i2c-dev i2c-bcm2708"
+
+inherit core-image

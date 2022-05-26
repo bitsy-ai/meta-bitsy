@@ -1,34 +1,15 @@
-include recipes-core/images/core-image-base.bb
+LICENSE = "AGPLv3"
+WKS_FILE = "sdimage-printnanny.wks"
+IMAGE_FEATURES += "splash ssh-server-openssh"
+IMAGE_FSTYPES = "ext4 ext4.xz wic.xz wic.bmap"
+SDIMG_ROOTFS_TYPE = "ext4.xz"
 
-COMPATIBLE_MACHINE = "^rpi$"
-
-WKS_FILE = "sdimage-printnanny-rpi.wks"
-IMAGE_FEATURES += "ssh-server-openssh"
-
-#
-# Customizations: meta-raspberrypi
-# https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
-# v4l2 drivers
-VIDEO_CAMERA = "1"
-# RPI_USE_U_BOOT = "1"
-# DISABLE_RPI_BOOT_LOGO = "1"
-# INITRAMFS_IMAGE_BUNDLE = "1"
-# imx219 dt overlay
-RASPBERRYPI_CAMERA_V2 = "1"
-ENABLE_SPI_BUS = "1"
-ENABLE_I2C = "1"
-ENABLE_UART = "1"
-KERNEL_MODULE_AUTOLOAD:rpi += "i2c-dev i2c-bcm2708"
-
-# https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
-IMAGE_FSTYPES = "ext4 ext4.xz rpi-sdimg"
-# IMAGE_FSTYPES = "ext4 ext4.xz"
-SDIMG_ROOTFS_TYPE = "ext4"
+inherit core-image
 
 #
 # Raspberry Pi Imager writes cloud-init cloud-config file to /boot/user-data
 #
-IMAGE_INSTALL:append = "cloud-init-systemd"
+# IMAGE_INSTALL:append = "cloud-init-systemd"
 
 # example fields written by Raspberry Pi Imager v1.7.2 
 #cloud-config

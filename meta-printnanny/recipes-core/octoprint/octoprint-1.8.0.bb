@@ -13,6 +13,6 @@ do_install() {
     install -m 0755 ${S}/config.yaml ${WORKDIR}/data/octoprint/config.yaml
 }
 FILES_${PN} = "/data/octoprint/config.yaml "
-
 SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
+RPROVIDES:${PN} = "octoprint"

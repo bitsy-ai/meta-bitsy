@@ -16,7 +16,7 @@ FILES_${PN} += "${systemd_unitdir}/printnanny-dash.service"
 
 do_install() {
   install -d ${D}/${systemd_unitdir}/system
-  install -m 0644 ${WORKDIR}/printnanny-dash.service ${D}/${systemd_system_unitdir}/printnanny-dash.service
+  install -m 0644 ${WORKDIR}/printnanny-dash.service ${D}/${systemd_unitdir}/printnanny-dash.service
 }
 
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service"

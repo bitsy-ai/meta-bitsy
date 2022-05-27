@@ -7,18 +7,18 @@ SRC_URI += "file://config.yaml \
 "
 LIC_FILES_CHKSUM = "file://${S}/LICENSE.txt;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-SRC_URI[sha256sum] = "776c899572ebc757ac23bbfb77e638512763ec2f1ed4e3705effb47144eeacca"
+SRC_URI[sha256sum] = "d4109d854c6b1a4155af3360597b31aed28a1a20df146d77105060ed74d05f21"
 PYPI_PACKAGE = "OctoPrint"
 
 do_install() {
     install -d ${D}/${sysconfdir}/octoprint/config.yaml
-    install -d ${D}/${systemd_system_unitdir}
+    install -d ${D}/${systemd_unitdir}
     install -m 0755 ${WORKDIR}/config.yaml ${D}/${sysconfdir}/octoprint/config.yaml
-    install -m 0644 ${WORKDIR}/octoprint.service ${D}/${systemd_system_unitdir}/octoprint.service
+    install -m 0644 ${WORKDIR}/octoprint.service ${D}/${systemd_unitdir}/octoprint.service
 }
 FILES_${PN} = "\
     ${sysconfdir}/octoprint/config.yaml \
-    ${systemd_system_unitdir}/octoprint.service \
+    ${systemd_unitdir}/octoprint.service \
 "
 
 SYSTEMD_SERVICE:${PN} = "octoprint.service"

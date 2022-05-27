@@ -5,4 +5,7 @@ PR = "r0"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
-RDEPENDS:${PN} = "octoprint"
+RDEPENDS:${PN} = "\
+    octoprint \
+    octoprint-nanny-plugin \
+"

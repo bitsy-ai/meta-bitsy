@@ -10,3 +10,5 @@ ENABLE_UART = "1"
 CMDLINE:append = "console=serial0,115200"
 # send boot messaegs to tty1
 CMDLINE:append = "console=tty1"
+# install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
+IMAGE_FEATURES:append = " debug-tweaks bash-completion-pkgs"

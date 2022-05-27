@@ -6,7 +6,7 @@ VOLATILE_LOG_DIR = "no"
 IMAGE_FEATURES:remove = "splash"
 # enable serial
 ENABLE_UART = "1"
-# send boot messages over serial console
-CMDLINE:append = "console=serial0,115200"
 # send boot messaegs to tty1
 CMDLINE:append = "console=tty1"
+# install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
+EXTRA_IMAGE_FEATURES:append = " debug-tweaks bash-completion-pkgs tools-debug"

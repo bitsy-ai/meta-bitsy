@@ -1,4 +1,5 @@
 LICENSE = "AGPLv3"
+
 inherit pypi setuptools3 systemd
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
@@ -23,4 +24,9 @@ FILES_${PN} = "\
 
 SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
+
+RDEPENDS:${PN} = "\
+    python3 \
+    python3-pip \
+"
 RPROVIDES:${PN} = "octoprint"

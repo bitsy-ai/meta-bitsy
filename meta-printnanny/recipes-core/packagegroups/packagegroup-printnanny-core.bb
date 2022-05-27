@@ -7,10 +7,11 @@ inherit packagegroup
 
 LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
 RDEPENDS:${PN} = "\
-    printnanny-cli \
+    bitsy-sysupdate \
     cloud-init-systemd \
     janus-gateway \
+    nginx \
     nnstreamer \
+    printnanny-cli \
     tensorflow-lite \
-    bitsy-sysupdate \
 "

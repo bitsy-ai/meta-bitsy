@@ -10,7 +10,6 @@ RDEPENDS:${PN} = "\
     bitsy-sysupdate \
     cloud-init-systemd \
     janus-gateway \
-    nginx \
     nnstreamer \
     printnanny-cli \
     tensorflow-lite \

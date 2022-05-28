@@ -8,9 +8,11 @@ SRC_URI = "\
 "
 inherit systemd
 
+# default TTY behavior will clear the screen before spawning a login prompt
+# the following conf retains boot messages on tty1
 do_install() {
   install -d "${D}${systemd_system_unitdir}/getty@tty1.service.d/"
-  install -m 0644 "${WORKDIR}/getty@tty1.service.d/noclear" "${D}${systemd_system_unitdir}/getty@tty1.service.d/noclear"
+  install -m 0644 "${WORKDIR}/getty@tty1.service.d/50-noclear.conf" "${D}${systemd_system_unitdir}/getty@tty1.service.d/50-noclear.conf"
 }
 
 FILES:${PN} = "${systemd_system_unitdir}"

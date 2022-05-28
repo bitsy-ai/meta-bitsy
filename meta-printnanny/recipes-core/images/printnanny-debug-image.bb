@@ -7,4 +7,4 @@ IMAGE_FEATURES:remove = "splash"
 # send boot messaegs to tty1
 CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
-EXTRA_IMAGE_FEATURES:append = " debug-tweaks bash-completion-pkgs tools-debug"
+EXTRA_IMAGE_FEATURES = "debug-tweaks bash-completion-pkgs tools-debug"

@@ -12,5 +12,6 @@ RDEPENDS:${PN} = "\
     janus-gateway \
     nnstreamer \
     printnanny-cli \
+    printnanny-tweaks \
     tensorflow-lite \
 "

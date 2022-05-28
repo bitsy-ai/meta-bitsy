@@ -4,8 +4,6 @@ LICENSE = "AGPLv3"
 VOLATILE_LOG_DIR = "no"
 # disable splash
 IMAGE_FEATURES:remove = "splash"
-# enable serial
-ENABLE_UART = "1"
 # send boot messaegs to tty1
 CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging

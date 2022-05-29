@@ -1,4 +1,0 @@
-EXTRA_OEMESON:remove = "-Dpipelines=uvcvideo,simple,vimc"
-EXTRA_OEMESON:remove = "-Dipas=vimc"
-EXTRA_OEMESON:append = "-Dpipelines=uvcvideo,simple,vimc,raspberrypi"
-EXTRA_OEMESON:append = "-Dipas=vimc,raspberrypi"

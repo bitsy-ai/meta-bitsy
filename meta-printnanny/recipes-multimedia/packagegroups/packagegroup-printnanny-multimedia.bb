@@ -1,12 +1,12 @@
-SUMMARY = "PrintNanny Core Packages"
-DESCRIPTION = "Minimal set of packages required to run PrintNanny OS"
+SUMMARY = "PrintNanny Multimedia Packages"
+DESCRIPTION = "Minimal set of packages required to run PrintNanny Multimedia/Streaming stack"
 PR = "r0"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
-LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
 RDEPENDS:${PN} = "\
     libcamera \
     libcamera-apps \
+    janus-gateway \
 "

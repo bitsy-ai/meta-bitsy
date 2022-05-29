@@ -7,6 +7,7 @@ S = "${WORKDIR}/git"
 PV = "1.0+git${SRCPV}"
 
 COMPATIBLE_MACHINE = "^rpi$"
+DEPENDS = "libcamera opencv boost libjpeg-turbo libexif tiff"
 
 PACKAGECONFIG[x11] = '${@bb.utils.contains("DISTRO_FEATURES", "x11", "-DENABLE_X11=1", "-DENABLE_X11=0", d)}'
 

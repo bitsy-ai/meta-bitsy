@@ -10,6 +10,7 @@ SRC_URI = "\
     file://001-telemetry.cfg \
     file://002-ssh.cfg \
     file://003-runcmd.cfg \
+    file://printnanny-firstboot.sh
 "
 
 S = "${WORKDIR}"
@@ -27,7 +28,7 @@ do_install(){
     install -m 0644 ${S}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
     install -m 0644 ${S}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg
     install -m 0644 ${S}/003-runcmd.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/003-runcmd.cfg
-
+    install -m 0755 ${S}/printnanny-firstboot ${D}${bindir}/printnanny-firstboot
 }
 
 FILES:${PN} = "${sysconfdir}"

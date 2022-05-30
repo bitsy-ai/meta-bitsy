@@ -10,7 +10,7 @@ SRC_URI = "\
     file://001-telemetry.cfg \
     file://002-ssh.cfg \
     file://003-runcmd.cfg \
-    file://printnanny-firstboot.sh
+    file://printnanny-firstboot.sh \
 "
 
 S = "${WORKDIR}"

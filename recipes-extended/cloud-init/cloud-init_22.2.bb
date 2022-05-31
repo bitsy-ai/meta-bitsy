@@ -34,6 +34,8 @@ FILES:${PN} += "${sysconfdir}/* \
 FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 
+SYSTEMD_AUTO_ENABLE = "enable"
+
 DEPENDS += "python3-pyyaml-native \
             python3-requests-native \
             python3-jinja2-native \

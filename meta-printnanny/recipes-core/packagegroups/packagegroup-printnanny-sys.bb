@@ -6,9 +6,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
-    cloud-init \
     cloud-init-systemd \
-    cloud-init-cfgs \
     dhcpcd \
     printnanny-tweaks \
     openssh \

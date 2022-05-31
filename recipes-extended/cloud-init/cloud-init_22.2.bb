@@ -28,8 +28,7 @@ inherit python3native
 
 PACKAGES += "${PN}-systemd"
 
-FILES:${PN} += "${sysconfdir}/* \
-                ${datadir}/*"
+FILES:${PN} += "${datadir}/* ${sysconfdir}"
 
 FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"

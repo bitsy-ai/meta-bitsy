@@ -23,12 +23,13 @@ S = "${WORKDIR}"
 
 do_install(){
     install -d ${D}${sysconfdir}/cloud/cloud.cfg.d/
+    install -d ${D}${bindir}
     ln -s /boot/user-data ${D}${sysconfdir}/cloud/cloud.cfg.d/001_user-data.cfg
     ln -s /boot/network-config ${D}${sysconfdir}/cloud/cloud.cfg.d/002_network-config.cfg
     install -m 0644 ${S}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
     install -m 0644 ${S}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg
     install -m 0644 ${S}/003-runcmd.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/003-runcmd.cfg
-    install -m 0755 ${S}/printnanny-firstboot ${D}${bindir}/printnanny-firstboot
+    install -m 0755 ${S}/printnanny-firstboot.sh ${D}${bindir}/printnanny-firstboot
 }
 
-FILES:${PN} = "${sysconfdir}"
+FILES:${PN} = "${sysconfdir} ${bindir}"

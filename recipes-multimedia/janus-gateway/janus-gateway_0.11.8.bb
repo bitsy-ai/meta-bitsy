@@ -29,7 +29,7 @@ PACKAGECONFIG[plugin_videoroom] = "--enable-plugin-videoroom,--disable-plugin-vi
 PACKAGECONFIG[plugin_voicemail] = "--enable-plugin-voicemail,--disable-plugin-voicemail,"
 PACKAGECONFIG[plugin_recordplay] = "--enable-plugin-recordplay,--disable-plugin-recordplay,"
 PACKAGECONFIG[plugin_textroom] = "--enable-plugin-textroom,--disable-plugin-textroom,"
-PACKAGECONFIG[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
+PACKAGECONFIGF[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
 
 do_install:append() {
 	install -d ${D}${systemd_unitdir}/system

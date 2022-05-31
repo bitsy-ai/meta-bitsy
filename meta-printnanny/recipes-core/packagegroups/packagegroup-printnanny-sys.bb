@@ -10,5 +10,6 @@ RDEPENDS:${PN} = "\
     cloud-init-systemd \
     cloud-init-cfgs \
     dhcpcd \
-    printnanny-tweaks \    
+    printnanny-tweaks \
+    openssh \
 "

@@ -33,6 +33,8 @@ FILES:${PN} += "${datadir}/* ${sysconfdir}"
 FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 
+
+SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
 DEPENDS += "python3-pyyaml-native \

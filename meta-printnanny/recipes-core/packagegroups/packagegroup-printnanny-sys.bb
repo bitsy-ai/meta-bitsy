@@ -9,6 +9,6 @@ RDEPENDS:${PN} = "\
     cloud-init \
     cloud-init-systemd \
     cloud-init-cfgs \
-    dhcp \
+    dhcpcd \
     printnanny-tweaks \    
 "

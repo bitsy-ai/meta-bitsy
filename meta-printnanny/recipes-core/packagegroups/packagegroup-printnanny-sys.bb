@@ -9,6 +9,7 @@ RDEPENDS:${PN} = "\
     cloud-init-systemd \
     dhcpcd \
     ntp \
+    os-release \
     printnanny-tweaks \
     packagegroup-core-ssh-openssh \
 "

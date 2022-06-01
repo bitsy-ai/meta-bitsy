@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenSSH Secure Shell server
+After=sshdgenkeys.service network.target auditd.service
+Wants=sshdgenkeys.service
+Requires=sshd.socket
+
+[Service]
+Environment="SSHD_OPTS="
+EnvironmentFile=-/etc/default/ssh
+ExecStart=/usr/sbin/sshd -D $SSHD_OPTS
+StandardInput=socket
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

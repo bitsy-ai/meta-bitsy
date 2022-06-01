@@ -6,14 +6,15 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 
 CLOUDINIT_TELEMETRY_URL ??= "https://printnanny.ai/api/cloudinit"
 CLOUDINIT_TELETRY_RETRY ??= "10"
-SRC_URI = "\
+SRC_URI:append = "\
     file://001-telemetry.cfg \
     file://002-ssh.cfg \
     file://003-runcmd.cfg \
+    file://cloud.cfg \
     file://printnanny-firstboot.sh \
 "
 
-S = "${WORKDIR}"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 # TODO
 # how to parameterize this recipe? I think BB variable -> environment variable -> do_install() renders jinja2 template makes sense
 # but given this requires installing python3native + native jinja + packaging j2cli, do this whenever a 2nd 3rd etc config variation is needed
@@ -21,15 +22,14 @@ S = "${WORKDIR}"
 # inherit python3native
 # DEPENDS = "python3-jinja2-native"
 
-do_install(){
+do_install:append(){
     install -d ${D}${sysconfdir}/cloud/cloud.cfg.d/
     install -d ${D}${bindir}
     ln -s /boot/user-data ${D}${sysconfdir}/cloud/cloud.cfg.d/001_user-data.cfg
     ln -s /boot/network-config ${D}${sysconfdir}/cloud/cloud.cfg.d/002_network-config.cfg
-    install -m 0644 ${S}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
-    install -m 0644 ${S}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg
-    install -m 0644 ${S}/003-runcmd.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/003-runcmd.cfg
-    install -m 0755 ${S}/printnanny-firstboot.sh ${D}${bindir}/printnanny-firstboot
+    install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg
+    install -m 0644 ${WORKDIR}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
+    install -m 0644 ${WORKDIR}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg
+    install -m 0644 ${WORKDIR}/003-runcmd.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/003-runcmd.cfg
+    install -m 0755 ${WORKDIR}/printnanny-firstboot.sh ${D}${bindir}/printnanny-firstboot
 }
-
-FILES:${PN} = "${sysconfdir} ${bindir}"

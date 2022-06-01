@@ -4,8 +4,9 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "f371a8dbd7a35f032a0003b06d718d5d525eb1ef"
-SRC_URI = "git://github.com/canonical/cloud-init;branch=main;protocol=https \
+SRCREV = "debed8d722e697fb21b4c0dcbbff0dc0de90b9df"
+SRC_BRANCH = "bitsy-distro"
+SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
     file://cloud-init-source-local-lsb-functions.patch \
     file://0001-setup.py-check-for-install-anywhere-in-args.patch \
     file://0001-setup.py-respect-udevdir-variable.patch \
@@ -15,6 +16,8 @@ S = "${WORKDIR}/git"
 
 DISTUTILS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', '--init-system=sysvinit_deb', '', d)}"
 DISTUTILS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '--init-system=systemd', '', d)}"
+
+PV = "${@bb.parse.vars_from_file(d.getVar('FILE', False),d)[1] or '1.0'}-${SRC_BRANCH}+git${SRCPV}"
 
 inherit pkgconfig
 inherit setuptools3_legacy

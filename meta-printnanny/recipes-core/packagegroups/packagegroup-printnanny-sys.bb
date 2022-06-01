@@ -8,6 +8,7 @@ inherit packagegroup
 RDEPENDS:${PN} = "\
     cloud-init-systemd \
     dhcpcd \
+    ntp \
     printnanny-tweaks \
     packagegroup-core-ssh-openssh \
 "

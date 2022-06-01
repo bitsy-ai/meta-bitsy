@@ -14,15 +14,20 @@ SRC_URI:append = "\
     file://printnanny-firstboot.sh \
 "
 
+# The name of the deploy directory for raspberry pi boot files.
+# This variable is referred to by recipes fetching / generating the files.
+BOOTFILES_DIR_NAME ?= "bootfiles"
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 do_install:append(){
     install -d ${D}${sysconfdir}/cloud/cloud.cfg.d/
     install -d ${D}${sysconfdir}/cloud/cloud.cfg.d/
     install -d ${D}${bindir}
-    ln -s /boot/user-data ${D}${sysconfdir}/cloud/cloud.cfg.d/001_user-data.cfg
-    ln -s /boot/network-config ${D}${sysconfdir}/cloud/cloud.cfg.d/002_network-config.cfg
-    touch "${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/meta-data"
+    install -d ${D}/var/lib/cloud/seed/
+    ln -s /boot/user-data ${D}/var/lib/cloud/seed/user-data
+    ln -s /boot/network-config ${D}/var/lib/cloud/seed/network-config
+    touch ${D}/var/lib/cloud/seed/meta-data
     install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg
     install -m 0644 ${WORKDIR}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
     install -m 0644 ${WORKDIR}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg

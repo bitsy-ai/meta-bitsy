@@ -12,6 +12,7 @@ RDEPENDS:${PN} = "\
     cloud-init \
     cloud-init-systemd \
     dhcpcd \
+    netplan \
     ntp \
     os-release \
     bitsy-tweaks \

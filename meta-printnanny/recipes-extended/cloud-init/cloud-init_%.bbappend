@@ -18,6 +18,7 @@ do_install:append(){
     ln -s /boot/user-data ${D}/var/lib/cloud/seed/user-data
     ln -s /boot/network-config ${D}/var/lib/cloud/seed/network-config
     touch ${D}/var/lib/cloud/seed/meta-data
+    touch ${D}/var/lib/cloud/seed/vendor-data
     install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg
     install -m 0644 ${WORKDIR}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
     install -m 0644 ${WORKDIR}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg

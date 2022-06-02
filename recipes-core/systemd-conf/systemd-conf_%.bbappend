@@ -6,6 +6,8 @@ SRC_URI += " \
     file://wlan.network \
 "
 
+RDEPENDS:${PN}:append = " wpa-supplicant"
+
 FILES:${PN} += " \
     ${sysconfdir}/systemd/network/eth.network \
     ${sysconfdir}/systemd/network/en.network \

@@ -64,7 +64,7 @@ RDEPENDS:${PN} = "python3 \
                  "
 # overrides setuptools3_legacy bbclass to remove:
 # build --build-base=${B} install --skip-build ${SETUPTOOLS_INSTALL_ARGS}
-setuptools3_legacy_do_install:${PN}() {
+setuptools3_legacy_do_install() {
         cd ${SETUPTOOLS_SETUP_PATH}
         install -d ${D}${PYTHON_SITEPACKAGES_DIR}
         STAGING_INCDIR=${STAGING_INCDIR} \

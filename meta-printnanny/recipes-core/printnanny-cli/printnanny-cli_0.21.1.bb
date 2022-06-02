@@ -19,13 +19,14 @@ do_install() {
   install -d "${D}${bindir}"
   cp -R --no-dereference --preserve=mode,links -v "${WORKDIR}/www" "${D}${datadir}/printnanny"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
+  install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0755 "${WORKDIR}/printnanny-cli" "${D}${bindir}/printnanny-cli"
   install -m 0755 "${WORKDIR}/printnanny-dash" "${D}${bindir}/printnanny-dash"
 }
 
 FILES:${PN} = "/usr/bin /usr/share"
 
-SYSTEMD_SERVICE:${PN} = "printnanny-dash.service"
+SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
 inherit extrausers

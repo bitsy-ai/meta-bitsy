@@ -5,10 +5,6 @@ PR = "r0"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
-LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
-
 RDEPENDS:${PN} = "\
-    nnstreamer \
     printnanny-cli \
-    tensorflow-lite \
 "

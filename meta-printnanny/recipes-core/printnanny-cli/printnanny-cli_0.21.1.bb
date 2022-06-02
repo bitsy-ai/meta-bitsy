@@ -6,6 +6,7 @@ SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/p
     https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/printnanny-www-templates.tar.gz;name=wwwtemplates;subdir=www \
     https://raw.githubusercontent.com/bitsy-ai/printnanny-cli/main/LICENSE;name=license \
     file://printnanny-dash.service \
+    file://printnanny-mqtt.service \
 "
 
 SRC_URI[license.sha256sum] = "c4a818ce2d5285465728ea933b6fa9ea6a1e3dd198cddcfb5c7c75d3c6258724"

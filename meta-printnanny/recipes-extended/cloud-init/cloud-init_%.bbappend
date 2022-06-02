@@ -8,10 +8,6 @@ SRC_URI:append = "\
     file://printnanny-firstboot.sh \
 "
 
-# The name of the deploy directory for raspberry pi boot files.
-# This variable is referred to by recipes fetching / generating the files.
-BOOTFILES_DIR_NAME ?= "bootfiles"
-
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 do_install:append(){

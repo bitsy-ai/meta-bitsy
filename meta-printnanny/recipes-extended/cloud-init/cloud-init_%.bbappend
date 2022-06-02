@@ -1,9 +1,3 @@
-DESCRIPTION = "Customizable cfgs package to be used with cloud-init"
-HOMEPAGE = "https://github.com/canonical/cloud-init"
-SECTION = "devel/python"
-LICENSE = "AGPLv3+"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
-
 CLOUDINIT_TELEMETRY_URL ??= "https://printnanny.ai/api/cloudinit"
 CLOUDINIT_TELETRY_RETRY ??= "10"
 SRC_URI:append = "\

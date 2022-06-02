@@ -6,7 +6,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
-    avahi \
+    avahi-daemon \
+    avahi-autoipd \
+    avahi-utils \
     cloud-init \
     cloud-init-systemd \
     dhcpcd \

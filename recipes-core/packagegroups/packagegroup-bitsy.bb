@@ -19,7 +19,7 @@ RDEPENDS:${PN}-sys = "\
     ntp \
     os-release \
     dhcpcd \
-    wpa_supplicant \
+    wpa-supplicant \
 "
 RDEPENDS:${PN}-cloudinit = "\
     ${PN}-sys \

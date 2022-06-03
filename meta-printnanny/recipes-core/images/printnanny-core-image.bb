@@ -19,6 +19,9 @@ IMAGE_FEATURES = "\
 IMAGE_INSTALL = "\
     packagegroup-core-boot \
     packagegroup-core-full-cmdline \
+    packagegroup-printnanny-core \
+    packagegroup-bitsy \
+    packagegroup-bitsy-cloudinit \
     kernel-image \
     kernel-modules \
     kernel-devicetree \

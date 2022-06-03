@@ -1,16 +1,20 @@
-SUMMARY = "PrintNanny Linux System"
-DESCRIPTION = "Tweaks and system configurations for PrintNanny Linux"
+SUMMARY = "Bitsy Linux System Packages"
+DESCRIPTION = "Tweaks and system configurations for Bitsy Linux"
 
 PR = "r0"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
+    avahi-autoipd \
+    avahi-daemon \
+    avahi-utils \
+    bitsy-tweaks \
     cloud-init \
     cloud-init-systemd \
     dhcpcd \
+    netplan \
     ntp \
     os-release \
-    printnanny-tweaks \
     packagegroup-core-ssh-openssh \
 "

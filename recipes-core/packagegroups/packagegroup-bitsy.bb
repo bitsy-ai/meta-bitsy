@@ -16,9 +16,10 @@ RDEPENDS:${PN}-sys = "\
     avahi-autoipd \
     avahi-daemon \
     bitsy-tweaks \
+    dhcpcd \
     ntp \
     os-release \
-    dhcpcd \
+    tzdata \
     wpa-supplicant \
 "
 RDEPENDS:${PN}-cloudinit = "\

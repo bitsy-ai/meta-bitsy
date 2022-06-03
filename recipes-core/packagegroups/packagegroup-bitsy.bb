@@ -20,6 +20,7 @@ RDEPENDS:${PN}-sys = "\
     dhcpcd \
     ntp \
     os-release \
+    plymouth \
     tzdata \
     wpa-supplicant \
 "

@@ -8,6 +8,11 @@ WKS_FILE = "sdimage-printnanny.wks"
 OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
 EXTRA_IMAGE_FEATURES = "overlayfs-etc splash debug-tweaks bash-completion-pkgs tools-debug package-management ssh-server-openssh"
 
+IMAGE_INSTALL = "\
+    packagegroup-core-boot \
+    packagegroup-core-full-cmdline \
+    ${CORE_IMAGE_EXTRA_INSTALL} \
+"
 
 OVERLAYFS_ETC_MOUNT_POINT = "/data"
 OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p2"
@@ -18,6 +23,3 @@ VOLATILE_LOG_DIR = "no"
 # send boot messaegs to tty1
 CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
-
-
-inherit core-image

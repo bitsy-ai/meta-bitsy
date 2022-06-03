@@ -3,7 +3,7 @@
 # https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md
 # v4l2 drivers
 VIDEO_CAMERA = "1"
-# RPI_USE_U_BOOT = "1"
+RPI_USE_U_BOOT = "1"
 # DISABLE_RPI_BOOT_LOGO = "1"
 # INITRAMFS_IMAGE_BUNDLE = "1"
 # imx219 dt overlay

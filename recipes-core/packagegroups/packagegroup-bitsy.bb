@@ -16,6 +16,7 @@ RDEPENDS:${PN}-sys = "\
     avahi-autoipd \
     avahi-daemon \
     bitsy-tweaks \
+    e2fsprogs-resize2fs \
     dhcpcd \
     ntp \
     os-release \

@@ -6,15 +6,15 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
-    avahi-daemon \
     avahi-autoipd \
+    avahi-daemon \
     avahi-utils \
+    bitsy-tweaks \
     cloud-init \
     cloud-init-systemd \
     dhcpcd \
     netplan \
     ntp \
     os-release \
-    bitsy-tweaks \
     packagegroup-core-ssh-openssh \
 "

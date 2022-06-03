@@ -3,6 +3,11 @@ DESCRIPTION = "A console-only image with minimal Linux system functionality inst
 
 WKS_FILE = "sdimage-printnanny.wks"
 EXTRA_IMAGE_FEATURES = "overlayfs-etc splash"
+IMAGE_INSTALL = "\
+    packagegroup-core-boot \
+    packagegroup-core-full-cmdline \
+    ${CORE_IMAGE_EXTRA_INSTALL} \
+"
 
 OVERLAYFS_ETC_MOUNT_POINT = "/data"
 OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p2"

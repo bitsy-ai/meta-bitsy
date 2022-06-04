@@ -37,3 +37,4 @@ VOLATILE_LOG_DIR = "no"
 CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
+

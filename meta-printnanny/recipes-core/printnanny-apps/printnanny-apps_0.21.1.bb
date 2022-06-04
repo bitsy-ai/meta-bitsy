@@ -8,6 +8,7 @@ SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/p
     file://printnanny-dash.service \
     file://printnanny-mqtt.service \
     file://printnanny-generator.sh \
+    file://Rocket.toml \
 "
 
 SRC_URI[license.sha256sum] = "c4a818ce2d5285465728ea933b6fa9ea6a1e3dd198cddcfb5c7c75d3c6258724"
@@ -19,9 +20,13 @@ do_install() {
   install -d "${D}${systemd_system_unitdir}"
   install -d "${D}${datadir}/printnanny"
   install -d "${D}${bindir}"
+  install -d "${D}${sysconfdir}/printnanny/dash"
+  install -d "${D}${sysconfdir}/printnanny/printnanny.d"
   install -d "${D}${systemd_unitdir}/system-generators"
   cp -R --no-dereference --preserve=mode,links -v "${WORKDIR}/www" "${D}${datadir}/printnanny"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
+  install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
+
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0755 "${WORKDIR}/printnanny-cli" "${D}${bindir}/printnanny-cli"
   install -m 0755 "${WORKDIR}/printnanny-dash" "${D}${bindir}/printnanny-dash"
@@ -30,7 +35,7 @@ do_install() {
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
 }
 
-FILES:${PN} = "${datadir}/* ${bindir}/*"
+FILES:${PN} = "${datadir}/* ${bindir}/* ${sysconfdir}/*"
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 PACKAGES += "${PN}-systemd"

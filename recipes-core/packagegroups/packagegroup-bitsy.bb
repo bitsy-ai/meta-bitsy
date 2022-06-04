@@ -20,6 +20,7 @@ RDEPENDS:${PN}-sys = "\
     dhcpcd \
     ntp \
     os-release \
+    rsync \
     tzdata \
 "
 RDEPENDS:${PN}-cloudinit = "\

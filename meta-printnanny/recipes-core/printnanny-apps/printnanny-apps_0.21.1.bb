@@ -31,6 +31,9 @@ do_install() {
 }
 
 FILES:${PN} = "/usr/bin /usr/share"
+FILES:${PN}-systemd = "${D}${systemd_unitdir}"
+RDEPENDS:${PN}-systemd += " ${PN}"
+PACKAGES += "${PN}-systemd"
 
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"

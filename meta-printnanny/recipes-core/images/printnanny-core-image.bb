@@ -15,9 +15,12 @@ IMAGE_FEATURES = "\
     package-management \
     ssh-server-openssh \
 "
+# packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
+# https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 
 IMAGE_INSTALL = "\
     packagegroup-core-boot \
+    packagegroup-base-extended \
     packagegroup-core-full-cmdline \
     packagegroup-printnanny-core \
     packagegroup-bitsy \
@@ -37,3 +40,4 @@ VOLATILE_LOG_DIR = "no"
 CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
+

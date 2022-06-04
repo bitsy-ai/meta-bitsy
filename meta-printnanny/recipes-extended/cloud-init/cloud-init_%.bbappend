@@ -9,6 +9,7 @@ SRC_URI:append = "\
     file://cloud.cfg \
     file://cloud-init-local.service \
     file://cloud-init.service \
+    file://cloud-config.service \
 "
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
@@ -26,4 +27,5 @@ do_install:append(){
     install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg
     install -m 0644 ${WORKDIR}/cloud-init-local.service ${D}${systemd_system_unitdir}/cloud-init-local.service
     install -m 0644 ${WORKDIR}/cloud-init.service ${D}${systemd_system_unitdir}/cloud-init.service
+    install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
 }

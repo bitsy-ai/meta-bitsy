@@ -21,7 +21,8 @@ RDEPENDS:${PN}-sys = "\
     ntp \
     os-release \
     tzdata \
-    wpa-supplicant \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wifi', 'wireless-regdb', '', d)}
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wifi', 'wpa-supplicant', '', d)} \
 "
 RDEPENDS:${PN}-cloudinit = "\
     ${PN}-sys \

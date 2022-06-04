@@ -30,8 +30,8 @@ do_install() {
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
 }
 
-FILES:${PN} = "/usr/bin /usr/share"
-FILES:${PN}-systemd = "${D}${systemd_unitdir}"
+FILES:${PN} = "${datadir}/* ${bindir}/*"
+FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 PACKAGES += "${PN}-systemd"
 

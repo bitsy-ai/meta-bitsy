@@ -1,1 +1,1 @@
-PACKAGECONFIG += "openssl"
+PACKAGECONFIG:append = "openssl"

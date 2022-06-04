@@ -7,6 +7,7 @@ SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/p
     https://raw.githubusercontent.com/bitsy-ai/printnanny-cli/main/LICENSE;name=license \
     file://printnanny-dash.service \
     file://printnanny-mqtt.service \
+    file://printnanny-generator.sh \
 "
 
 SRC_URI[license.sha256sum] = "c4a818ce2d5285465728ea933b6fa9ea6a1e3dd198cddcfb5c7c75d3c6258724"
@@ -18,11 +19,15 @@ do_install() {
   install -d "${D}${systemd_system_unitdir}"
   install -d "${D}${datadir}/printnanny"
   install -d "${D}${bindir}"
+  install -d "${D}${systemd_unitdir}/system-generators"
   cp -R --no-dereference --preserve=mode,links -v "${WORKDIR}/www" "${D}${datadir}/printnanny"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0755 "${WORKDIR}/printnanny-cli" "${D}${bindir}/printnanny-cli"
   install -m 0755 "${WORKDIR}/printnanny-dash" "${D}${bindir}/printnanny-dash"
+  ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/printnanny
+  ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/pn
+  install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
 }
 
 FILES:${PN} = "/usr/bin /usr/share"

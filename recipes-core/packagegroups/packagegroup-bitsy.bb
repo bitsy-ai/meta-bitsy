@@ -21,7 +21,6 @@ RDEPENDS:${PN}-sys = "\
     ntp \
     os-release \
     tzdata \
-    wpa-supplicant \
 "
 RDEPENDS:${PN}-cloudinit = "\
     ${PN}-sys \

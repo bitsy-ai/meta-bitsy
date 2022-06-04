@@ -30,6 +30,10 @@ IMAGE_INSTALL = "\
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
+# COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
+# COMBINED_FEATURES referenced in packagegroup-base to install base system packages
+MACHINE_FEATURES += "bluetooth wifi keyboard"
+
 OVERLAYFS_ETC_MOUNT_POINT = "/data"
 OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p2"
 OVERLAYFS_ETC_FSTYPE = "ext4"

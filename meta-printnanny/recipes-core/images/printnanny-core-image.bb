@@ -6,11 +6,24 @@ WKS_FILE = "sdimage-printnanny.wks"
 # required to use both overlayfs-etc and package-management features
 # see note: https://git.yoctoproject.org/poky/plain/meta/classes/overlayfs-etc.bbclass
 OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
-EXTRA_IMAGE_FEATURES = "overlayfs-etc splash debug-tweaks bash-completion-pkgs tools-debug package-management ssh-server-openssh"
+
+IMAGE_FEATURES = "\
+    overlayfs-etc \
+    splash \
+    debug-tweaks \
+    bash-completion-pkgs \
+    package-management \
+    ssh-server-openssh \
+"
 
 IMAGE_INSTALL = "\
     packagegroup-core-boot \
     packagegroup-core-full-cmdline \
+    packagegroup-printnanny-core \
+    packagegroup-bitsy \
+    packagegroup-bitsy-cloudinit \
+    kernel-modules \
+    kernel-devicetree \
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
@@ -23,3 +36,4 @@ VOLATILE_LOG_DIR = "no"
 # send boot messaegs to tty1
 CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
+inherit core-image

@@ -8,11 +8,11 @@ WKS_FILE = "sdimage-printnanny.wks"
 OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
 
 IMAGE_FEATURES = "\
-    overlayfs-etc \
-    splash \
-    debug-tweaks \
     bash-completion-pkgs \
+    debug-tweaks \
+    overlayfs-etc \
     package-management \
+    splash \
     ssh-server-openssh \
 "
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS

@@ -22,7 +22,6 @@ IMAGE_INSTALL = "\
     packagegroup-printnanny-core \
     packagegroup-bitsy \
     packagegroup-bitsy-cloudinit \
-    kernel-image \
     kernel-modules \
     kernel-devicetree \
     ${CORE_IMAGE_EXTRA_INSTALL} \

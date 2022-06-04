@@ -1,4 +1,4 @@
-Unit]
+[Unit]
 Description=Initial cloud-init job (metadata service crawler)
 Wants=cloud-init-local.service
 Wants=sshdgenkeys.service

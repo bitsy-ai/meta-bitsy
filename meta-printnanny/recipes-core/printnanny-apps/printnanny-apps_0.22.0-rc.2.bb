@@ -9,6 +9,7 @@ SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/p
     file://printnanny-mqtt.service \
     file://printnanny-generator.sh \
     file://Rocket.toml \
+    file://dev.toml \
 "
 
 SRC_URI[license.sha256sum] = "c4a818ce2d5285465728ea933b6fa9ea6a1e3dd198cddcfb5c7c75d3c6258724"
@@ -33,6 +34,7 @@ do_install() {
   ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/printnanny
   ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/pn
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
+  install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
 }
 
 FILES:${PN} = "${datadir}/* ${bindir}/* ${sysconfdir}/*"

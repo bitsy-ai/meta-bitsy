@@ -27,6 +27,7 @@ IMAGE_INSTALL = "\
     packagegroup-base-extended \
     packagegroup-core-full-cmdline \
     packagegroup-printnanny-core \
+    packagegroup-core-base-utils \
     packagegroup-bitsy \
     packagegroup-bitsy-cloudinit \
     kernel-modules \

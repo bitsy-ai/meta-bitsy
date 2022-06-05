@@ -18,6 +18,7 @@ IMAGE_FEATURES = "\
     splash \
     ssh-server-openssh \
 "
+
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 
@@ -33,6 +34,11 @@ IMAGE_INSTALL = "\
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
+CMDLINE:pn-rpi-cmdline:append = "\
+    testing=var \
+    ${@bb.utils.contains('IMAGE_FEATURES', 'overlayfs-etc', 'init=/sbin/preinit', '', d)} \
+"
+
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"
@@ -40,7 +46,6 @@ MACHINE_FEATURES += "bluetooth wifi keyboard"
 VOLATILE_LOG_DIR = "no"
 # disable splash
 # send boot messaegs to tty1
-CMDLINE:append = "console=tty1"
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
 

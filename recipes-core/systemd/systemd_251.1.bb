@@ -94,7 +94,6 @@ PACKAGECONFIG ??= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', '', 'link-udev-shared', d)} \
     backlight \
     binfmt \
-    firstboot \
     gshadow \
     hibernate \
     hostnamed \

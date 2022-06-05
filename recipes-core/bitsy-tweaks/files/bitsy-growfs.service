@@ -3,11 +3,13 @@ Description=Resize last partition/fs to fill disk
 DefaultDependencies=no
 Conflicts=shutdown.target
 After=systemd-remount-fs.service
-ConditionFirstBoot=yes
+ConditionFileNotEmpty=!/etc/bitsy/growfs.done
+ConditionPathIsReadWrite=/etc
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 StandardOutput=journal+console
-ExecStart=LAST_PARTITION_NUM=$(lsblk -o NAME | tail -n1 | awk -F "p" '{print $2}') parted --script /dev/mmcblk0 resizepart $LAST_PARTITION_NUM 100%
-ExecStart=LAST_PARTITION_NAME=$(lsblk -o NAME | tail -n1 | awk -F "-" '{print $2}' ) resize2fs /dev/$LAST_PARTITION_NAME
+ExecStart=yes | parted ---pretend-input-tty /dev/mmcblk0 resizepart 3 100%
+ExecStart=resize2fs /dev/mmcblk0p3
+ExecStart=date +%s > /etc/bitsy/growfs.done

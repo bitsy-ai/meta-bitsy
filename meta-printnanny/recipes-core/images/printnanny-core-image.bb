@@ -6,6 +6,9 @@ WKS_FILE = "sdimage-printnanny.wks"
 # required to use both overlayfs-etc and package-management features
 # see note: https://git.yoctoproject.org/poky/plain/meta/classes/overlayfs-etc.bbclass
 OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
+OVERLAYFS_ETC_MOUNT_POINT = "/data"
+OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p2"
+OVERLAYFS_ETC_FSTYPE = "ext4"
 
 IMAGE_FEATURES = "\
     bash-completion-pkgs \
@@ -33,10 +36,6 @@ IMAGE_INSTALL = "\
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"
-
-OVERLAYFS_ETC_MOUNT_POINT = "/data"
-OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p2"
-OVERLAYFS_ETC_FSTYPE = "ext4"
 
 VOLATILE_LOG_DIR = "no"
 # disable splash

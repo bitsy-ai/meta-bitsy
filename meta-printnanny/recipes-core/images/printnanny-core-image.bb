@@ -6,8 +6,8 @@ WKS_FILE = "sdimage-printnanny.wks"
 # required to use both overlayfs-etc and package-management features
 # see note: https://git.yoctoproject.org/poky/plain/meta/classes/overlayfs-etc.bbclass
 OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
-OVERLAYFS_ETC_MOUNT_POINT = "/data"
-OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p2"
+OVERLAYFS_ETC_MOUNT_POINT = "/data/etc"
+OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p3"
 OVERLAYFS_ETC_FSTYPE = "ext4"
 
 IMAGE_FEATURES = "\

@@ -19,6 +19,5 @@ do_install() {
   install -m 0644 "${WORKDIR}/bitsy-growfs.service" "${D}${systemd_system_unitdir}/bitsy-growfs.service"
 }
 FILES:${PN} = "${systemd_system_unitdir}"
-PACKAGES += "${PN}-systemd"
 SYSTEMD_SERVICE:${PN} = "bitsy-growfs.service"
 SYSTEMD_AUTO_ENABLE = "enable"

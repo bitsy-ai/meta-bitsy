@@ -34,11 +34,6 @@ IMAGE_INSTALL = "\
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
-CMDLINE:pn-rpi-cmdline:append = "\
-    testing=var \
-    ${@bb.utils.contains('IMAGE_FEATURES', 'overlayfs-etc', 'init=/sbin/preinit', '', d)} \
-"
-
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"

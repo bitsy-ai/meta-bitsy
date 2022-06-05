@@ -14,6 +14,7 @@ PACKAGES = "\
 
 RDEPENDS:${PN}-sys = "\
     bitsy-tweaks \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'bitsy-tweaks-systemd', '', d)} \
     e2fsprogs-resize2fs \
     dhcpcd \
     ntp \

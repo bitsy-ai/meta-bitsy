@@ -44,6 +44,6 @@ server {
 
     location /printnanny-cloud/ {
         resolver 8.8.8.8;
-        proxy_pass $PRINTNANNY_API_URI/;
+        proxy_pass $PRINTNANNY_API_URL/;
     }
 }

@@ -4,12 +4,11 @@ DefaultDependencies=no
 Conflicts=shutdown.target
 After=systemd-remount-fs.service
 ConditionPathExists=!/etc/bitsy/growfs.done
-ConditionPathIsReadWrite=/etc
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 StandardOutput=journal+console
-ExecStart=yes | parted ---pretend-input-tty /dev/mmcblk0 resizepart 3 100%
-ExecStart=resize2fs /dev/mmcblk0p3
-ExecStart=date +%s > /etc/bitsy/growfs.done
+ExecStart=/bin/bash -c "yes | parted ---pretend-input-tty /dev/mmcblk0 resizepart 3 100%"
+ExecStart=/sbin/resize2fs /dev/mmcblk0p3
+ExecStart=/bin/bash -c "date +%s > /etc/bitsy/growfs.done"

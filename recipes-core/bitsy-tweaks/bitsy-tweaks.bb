@@ -5,15 +5,20 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 
 SRC_URI = "\
   file://getty@tty1.service.d/ \
+  file://bitsy-growfs.service \
 "
 
 PV = "r0"
 inherit systemd
 
-# default TTY behavior will clear the screen before spawning a login prompt
-# the following conf retains boot messages on tty1
-do_install() {
-  install -d "${D}${systemd_system_unitdir}/getty@tty1.service.d/"
-  install -m 0644 "${WORKDIR}/getty@tty1.service.d/50-noclear.conf" "${D}${systemd_system_unitdir}/getty@tty1.service.d/50-noclear.conf"
+do_install:append() {
+  install -d ${D}${sysconfdir}/bitsy
+  install -d ${D}${systemd_system_unitdir}/getty@tty1.service.d/
+  install -d ${D}${systemd_system_unitdir}/sysinit.target.wants/
+  install -m 0644 ${WORKDIR}/getty@tty1.service.d/50-noclear.conf ${D}${systemd_system_unitdir}/getty@tty1.service.d/50-noclear.conf
+  install -m 0644 ${WORKDIR}/bitsy-growfs.service ${D}${systemd_system_unitdir}/bitsy-growfs.service
+  ln -sf ${D}${systemd_system_unitdir}/bitsy-growfs.service ${D}${systemd_system_unitdir}/sysinit.target.wants/bitsy-growfs.service 
 }
-FILES:${PN} = "${systemd_system_unitdir}"
+FILES:${PN} = "${systemd_system_unitdir}/* ${sysconfdir}/*"
+SYSTEMD_SERVICE:${PN} = "bitsy-growfs.service"
+SYSTEMD_AUTO_ENABLE = "enable"

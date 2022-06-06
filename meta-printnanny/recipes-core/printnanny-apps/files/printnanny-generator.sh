@@ -24,7 +24,9 @@ echo "Created /etc/systemd/system/janus-gateway.d/${NOW}-janus-edge-api-token.co
 
 if [ "$SYSTEMD_FIRST_BOOT" == "1"]; then
     echo "Initializing printnanny config"
-    /usr/bin/printnanny config init
+    /usr/bin/printnanny config init --output=/etc/printnanny/default.toml
+    mkdir -p --output=/etc/printnanny/keys
+    /usr/bin/printnanny config generate-keys --output=/etc/printnanny/keys
 else
     echo "Skipping printnanny config init, SYSTEMD_FIRST_BOOT=$SYSTEMD_FIRST_BOOT"
 fi

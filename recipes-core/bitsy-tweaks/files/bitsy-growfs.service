@@ -3,7 +3,7 @@ Description=Resize last partition/fs to fill disk
 DefaultDependencies=no
 Conflicts=shutdown.target
 After=systemd-remount-fs.service
-ConditionFileNotEmpty=!/etc/bitsy/growfs.done
+ConditionPathExists=!/etc/bitsy/growfs.done
 ConditionPathIsReadWrite=/etc
 
 [Service]

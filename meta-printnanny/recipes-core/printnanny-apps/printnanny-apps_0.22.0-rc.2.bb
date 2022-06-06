@@ -40,7 +40,6 @@ do_install() {
 FILES:${PN} = "${datadir}/* ${bindir}/* ${sysconfdir}/*"
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
-PACKAGES += "${PN}-systemd"
 
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"
@@ -49,3 +48,7 @@ inherit extrausers
 PRINTNANNY_USER ?= "printnanny"
 EXTRA_USERS_PARAMS = " useradd ${PRINTNANNY_USER}; \
     usermod  -a -G sudo ${PRINTNANNY_USER};"
+
+RDEPENDS:${PN}-nginx = "${PN} nginx"
+
+PACKAGES += "${PN}-systemd"

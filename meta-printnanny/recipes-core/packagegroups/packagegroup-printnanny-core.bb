@@ -8,4 +8,5 @@ inherit packagegroup
 RDEPENDS:${PN} = "\
     printnanny-apps \
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'printnanny-apps-systemd', '', d)} \
+    nginx \
 "

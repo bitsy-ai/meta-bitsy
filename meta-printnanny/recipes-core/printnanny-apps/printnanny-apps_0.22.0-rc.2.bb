@@ -23,6 +23,7 @@ do_install() {
   install -d "${D}${bindir}"
   install -d "${D}${sysconfdir}/printnanny/dash"
   install -d "${D}${sysconfdir}/printnanny/printnanny.d"
+  install -d "${D}${sysconfdir}/nginx/conf.d/"
   install -d "${D}${systemd_unitdir}/system-generators"
   cp -R --no-dereference --preserve=mode,links -v "${WORKDIR}/www" "${D}${datadir}/printnanny"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
@@ -35,12 +36,13 @@ do_install() {
   ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/pn
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
+  install -m 0755 "${WORKDIR}/nginx/server.conf" "${D}${sysconfdir}/nginx/conf.d/server.conf"
 }
 
 FILES:${PN} = "${datadir}/* ${bindir}/* ${sysconfdir}/*"
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
-PACKAGES += "${PN}-systemd"
+PACKAGES += "${PN}-systemd ${PN}-nginx"
 
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"
@@ -49,3 +51,6 @@ inherit extrausers
 PRINTNANNY_USER ?= "printnanny"
 EXTRA_USERS_PARAMS = " useradd ${PRINTNANNY_USER}; \
     usermod  -a -G sudo ${PRINTNANNY_USER};"
+
+RDEPENDS:${PN}-nginx = "${PN} nginx"
+FILES:${PN}-nginx = "${sysconfdir}/nginx/*"

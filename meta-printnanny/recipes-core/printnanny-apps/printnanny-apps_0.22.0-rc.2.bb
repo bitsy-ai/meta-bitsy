@@ -10,6 +10,7 @@ SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/p
     file://printnanny-generator.sh \
     file://Rocket.toml \
     file://dev.toml \
+    file://nginx \
 "
 
 SRC_URI[license.sha256sum] = "c4a818ce2d5285465728ea933b6fa9ea6a1e3dd198cddcfb5c7c75d3c6258724"
@@ -23,7 +24,7 @@ do_install() {
   install -d "${D}${bindir}"
   install -d "${D}${sysconfdir}/printnanny/dash"
   install -d "${D}${sysconfdir}/printnanny/printnanny.d"
-  install -d "${D}${sysconfdir}/nginx/conf.d/"
+  install -d "${D}${sysconfdir}/nginx/templates"
   install -d "${D}${systemd_unitdir}/system-generators"
   cp -R --no-dereference --preserve=mode,links -v "${WORKDIR}/www" "${D}${datadir}/printnanny"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
@@ -36,13 +37,13 @@ do_install() {
   ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/pn
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
-  install -m 0755 "${WORKDIR}/nginx/server.conf" "${D}${sysconfdir}/nginx/conf.d/server.conf"
+  install -m 0644 "${WORKDIR}/nginx/server.conf.template" "${D}${sysconfdir}/nginx/templates/server.conf.template"
+  install -m 0755 "${WORKDIR}/nginx/nginx-envsubst-on-templates.sh" "${D}${bindir}/nginx-envsubst-on-templates"
 }
 
 FILES:${PN} = "${datadir}/* ${bindir}/* ${sysconfdir}/*"
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
-PACKAGES += "${PN}-systemd ${PN}-nginx"
 
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"
@@ -53,4 +54,6 @@ EXTRA_USERS_PARAMS = " useradd ${PRINTNANNY_USER}; \
     usermod  -a -G sudo ${PRINTNANNY_USER};"
 
 RDEPENDS:${PN}-nginx = "${PN} nginx"
-FILES:${PN}-nginx = "${sysconfdir}/nginx/*"
+FILES:${PN}-nginx = "${sysconfdir}/nginx/* ${bindir}/nginx*"
+
+PACKAGES = "${PN}-nginx ${PN}-systemd ${PN}-dbg ${PN}"

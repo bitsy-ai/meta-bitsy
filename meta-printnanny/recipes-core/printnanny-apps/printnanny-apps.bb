@@ -1,6 +1,8 @@
 DESCRIPTION = "PrintNanny OS embedded tools"
 HOMEPAGE = "https://printnanny.ai/"
 LICENSE = "AGPLv3+"
+
+PV = "0.22.0-rc.3"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 SRC_URI = "https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/printnanny-${TARGET_ARCH}-unknown-linux-gnu.tar.gz;name=cli \
     https://github.com/bitsy-ai/printnanny-cli/releases/download/v${PV}/printnanny-www-templates.tar.gz;name=wwwtemplates;subdir=www \

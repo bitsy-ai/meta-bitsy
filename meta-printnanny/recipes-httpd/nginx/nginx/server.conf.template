@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name $hostname;
+    server_name $hostname *.local;
     include /etc/nginx/conf.d/*.locations;
     proxy_busy_buffers_size 512k;
     proxy_buffers 2 512k;

@@ -7,7 +7,7 @@ COOKIE_SECRET_FILE="/etc/systemd/system/printnanny-dash.service.d/cookie-secret.
 
 # janus adin secret/token is required by printnanny-dash, janus-gateway, and octoprint
 JANUS_ADMIN_FILE="/etc/systemd/system/janus-gateway.service.d/janus-edge-admin-secret.conf"
-JANUS_ADMIN_DASH_LN="/etc/systemd/system/printnanny-dash.service./janus-edge-admin-secret.conf"
+JANUS_ADMIN_DASH_LN="/etc/systemd/system/printnanny-dash.service.d/janus-edge-admin-secret.conf"
 JANUS_TOKEN_FILE="/etc/systemd/system/janus-gateway.service.d/janus-edge-api-token.conf"
 JANUS_TOKEN_DASH_LN="/etc/systemd/system/printnanny-dash.service.d/janus-edge-api-token.conf"
 
@@ -29,6 +29,7 @@ if [ -f "$JANUS_ADMIN_FILE" ]; then
     echo "<6>printnanny-generator[$$]: $JANUS_ADMIN_FILE exists, skipping credential generation"
 else
     SECRET=$(openssl rand -base64 32)
+    mkdir -p /etc/systemd/system/janus-gateway.service.d/
     echo "[Service]" > "$JANUS_ADMIN_FILE"
     echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-admin-secret -p - - >> "$JANUS_ADMIN_FILE"
     echo "<4>printnanny-generator[$$]: Created $JANUS_ADMIN_FILE" > /dev/kmsg
@@ -40,6 +41,7 @@ if [ -f "$JANUS_TOKEN_FILE" ]; then
     echo "<6>printnanny-generator[$$]: $JANUS_TOKEN_FILE exists, skipping credential generation"
 else
     SECRET=$(openssl rand -base64 32)
+    mkdir -p /etc/systemd/system/janus-gateway.service.d/
     echo "[Service]" > "$JANUS_TOKEN_FILE"
     echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-api-token -p - - >> "$JANUS_TOKEN_FILE"
     echo "<4>printnanny-generator[$$]: Created $JANUS_TOKEN_FILE" > /dev/kmsg

@@ -27,6 +27,9 @@ do_install() {
   install -d "${D}${sysconfdir}/printnanny/dash"
   install -d "${D}${sysconfdir}/printnanny/printnanny.d"
   install -d "${D}${systemd_unitdir}/system-generators"
+  install -d "${D}${sysconfdir}/systemd/system/printnanny-dash.service.d"
+  install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
+
   cp -R --no-dereference --preserve=mode,links -v "${WORKDIR}/www" "${D}${datadir}/printnanny"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"

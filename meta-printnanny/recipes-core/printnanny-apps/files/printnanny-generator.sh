@@ -2,31 +2,65 @@
 
 set -euo pipefail
 
-COOKIE_SECRET=$(openssl rand -base64 32)
-JANUS_ADMIN=$(openssl rand -base64 32)
-JANUS_API_TOKEN=$(openssl rand -base64 32) 
-NOW=$(date '+%s')
+# cookie secret is used by printnanny-dash to encrypt cookie data
+COOKIE_SECRET_FILE="/etc/systemd/system/printnanny-dash.service.d/cookie-secret.conf"
 
-mkdir -p /etc/systemd/system/printnanny-dash.d/
-echo -n "$COOKIE_SECRET" | systemd-creds encrypt --name cookie-secret -p - - > "/etc/systemd/system/printnanny-dash.d/${NOW}-cookie-secret.conf"
-echo "Created /etc/systemd/system/printnanny-dash.d/${NOW}-cookie-secret.conf"
-echo -n "$JANUS_ADMIN" | systemd-creds encrypt --name janus-edge-admin-secret -p - - > "/etc/systemd/system/printnanny-dash.d/${NOW}-janus-edge-admin-secret.conf"
-echo "Created /etc/systemd/system/printnanny-dash.d/${NOW}-janus-edge-admin-secret.conf"
-echo -n "$JANUS_API_TOKEN" | systemd-creds encrypt --name janus-edge-api-token -p - - > "/etc/systemd/system/printnanny-dash/${NOW}-janus-edge-api-token.conf"
-echo "Created /etc/systemd/system/printnanny-dash/${NOW}-janus-edge-api-token.conf"
+# janus adin secret/token is required by printnanny-dash, janus-gateway, and octoprint
+JANUS_ADMIN_FILE="/etc/systemd/system/janus-gateway.service.d/janus-edge-admin-secret.conf"
+JANUS_ADMIN_DASH_LN="/etc/systemd/system/printnanny-dash.service.d/janus-edge-admin-secret.conf"
+JANUS_TOKEN_FILE="/etc/systemd/system/janus-gateway.service.d/janus-edge-api-token.conf"
+JANUS_TOKEN_DASH_LN="/etc/systemd/system/printnanny-dash.service.d/janus-edge-api-token.conf"
 
-mkdir -p /etc/systemd/system/janus-gateway.d/
-echo -n "$JANUS_ADMIN" | systemd-creds encrypt --name janus-edge-admin-secret -p - - > "/etc/systemd/system/janus-gateway.d/${NOW}-janus-edge-admin-secret.conf"
-echo "Created /etc/systemd/system/janus-gateway.d/${NOW}-janus-edge-admin-secret.conf"
-echo -n "$JANUS_API_TOKEN" | systemd-creds encrypt --name janus-edge-api-token -p - - > "/etc/systemd/system/janus-gateway.d/${NOW}-janus-edge-api-token.conf"
-echo "Created /etc/systemd/system/janus-gateway.d/${NOW}-janus-edge-api-token.conf"
+# default PrintNannyConfig file
+PRINTNANNY_CONF_FILE="/etc/printnanny/default.toml"
+PRINTNANNY_KEYS="/etc/printnanny/keys"
 
-
-if [ "$SYSTEMD_FIRST_BOOT" == "1"]; then
-    echo "Initializing printnanny config"
-    /usr/bin/printnanny config init --output=/etc/printnanny/default.toml
-    mkdir -p --output=/etc/printnanny/keys
-    /usr/bin/printnanny config generate-keys --output=/etc/printnanny/keys
+if [ -f "$COOKIE_SECRET_FILE" ]; then
+    echo "<6>printnanny-generator[$$]: $COOKIE_SECRET_FILE exists, skipping credential generation"
 else
-    echo "Skipping printnanny config init, SYSTEMD_FIRST_BOOT=$SYSTEMD_FIRST_BOOT"
+    SECRET=$(openssl rand -base64 32)
+    echo "[Service]" > /etc/systemd/system/printnanny-dash.service.d/cookie-secret.conf
+    echo -n "$SECRET" | systemd-creds encrypt --name cookie-secret -p - - >> "$COOKIE_SECRET_FILE"
+    echo "<4>printnanny-generator[$$]: Created $COOKIE_SECRET_FILE" > /dev/kmsg
+fi
+
+
+if [ -f "$JANUS_ADMIN_FILE" ]; then
+    echo "<6>printnanny-generator[$$]: $JANUS_ADMIN_FILE exists, skipping credential generation"
+else
+    SECRET=$(openssl rand -base64 32)
+    mkdir -p /etc/systemd/system/janus-gateway.service.d/
+    echo "[Service]" > "$JANUS_ADMIN_FILE"
+    echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-admin-secret -p - - >> "$JANUS_ADMIN_FILE"
+    echo "<4>printnanny-generator[$$]: Created $JANUS_ADMIN_FILE" > /dev/kmsg
+    ln -s "$JANUS_ADMIN_FILE" "$JANUS_ADMIN_DASH_LN"
+    echo "<4>printnanny-generator[$$]: Created link from $JANUS_ADMIN_FILE to $JANUS_ADMIN_DASH_LN"
+fi
+
+if [ -f "$JANUS_TOKEN_FILE" ]; then
+    echo "<6>printnanny-generator[$$]: $JANUS_TOKEN_FILE exists, skipping credential generation"
+else
+    SECRET=$(openssl rand -base64 32)
+    mkdir -p /etc/systemd/system/janus-gateway.service.d/
+    echo "[Service]" > "$JANUS_TOKEN_FILE"
+    echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-api-token -p - - >> "$JANUS_TOKEN_FILE"
+    echo "<4>printnanny-generator[$$]: Created $JANUS_TOKEN_FILE" > /dev/kmsg
+    ln -s "$JANUS_TOKEN_FILE" "$JANUS_TOKEN_DASH_LN"
+    echo "<4>printnanny-generator[$$]: Created link from $JANUS_TOKEN_FILE to $JANUS_TOKEN_DASH_LN"
+fi
+
+if [ -f "$PRINTNANNY_CONF_FILE" ]; then
+    echo "<6>printnanny-generator[$$]: $PRINTNANNY_CONF_FILE exists, skipping config generation"
+else
+    /usr/bin/printnanny config init --output="$PRINTNANNY_CONF_FILE"
+    echo "<4>printnanny-generator[$$]: Created config $PRINTNANNY_CONF_FILE"
+fi
+
+
+if [ -f "$PRINTNANNY_KEYS" ]; then
+    echo "<6>printnanny-generator[$$]: $PRINTNANNY_KEYS exists, skipping key generation"
+else
+    mkdir -p "$PRINTNANNY_KEYS"
+    /usr/bin/printnanny config generate-keys --output="$PRINTNANNY_KEYS"
+    echo "<4>printnanny-generator[$$]: Generated keys $PRINTNANNY_KEYS"
 fi

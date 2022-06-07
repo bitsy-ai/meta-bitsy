@@ -34,6 +34,7 @@ PACKAGECONFIGF[websockets] = "--enable-websockets,--disable-websockets,libwebsoc
 do_install:append() {
 	install -d ${D}${systemd_unitdir}/system
 	install -m 644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
+	install -d "${D}${sysconfdir}/systemd/system/janus-gateway.service.d"
 }
 
 FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus/transports ${libdir}/janus/events"

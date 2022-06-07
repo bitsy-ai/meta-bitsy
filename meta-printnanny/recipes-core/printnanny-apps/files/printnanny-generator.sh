@@ -57,7 +57,7 @@ else
 fi
 
 
-if [ -f "$PRINTNANNY_CONF_FILE" ]; then
+if [ -f "$PRINTNANNY_KEYS" ]; then
     echo "<6>printnanny-generator[$$]: $PRINTNANNY_KEYS exists, skipping key generation"
 else
     mkdir -p "$PRINTNANNY_KEYS"

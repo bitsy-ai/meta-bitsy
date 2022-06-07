@@ -9,10 +9,8 @@ ReloadPropagatedFrom=printnanny-online.target
 Type=simple
 SyslogIdentifier=printnanny-mqtt
 RuntimeDirectory=printnanny
-RuntimeDirectoryPreserve=yes
 ConfigurationDirectory=printnanny
 ExecStart=/usr/bin/printnanny -v event subscribe
-User=printnanny
 Restart=on-failure
 RestartSec=30
 

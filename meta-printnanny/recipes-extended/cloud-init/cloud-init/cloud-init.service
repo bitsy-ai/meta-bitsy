@@ -4,7 +4,6 @@ Wants=cloud-init-local.service
 Wants=sshdgenkeys.service
 Wants=sshd.socket
 After=cloud-init-local.service
-After=systemd-networkd-wait-online.service
 Before=network-online.target
 
 [Service]

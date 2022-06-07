@@ -19,7 +19,7 @@ if [ -f "$COOKIE_SECRET_FILE" ]; then
     echo "<6>printnanny-generator[$$]: $COOKIE_SECRET_FILE exists, skipping credential generation"
 else
     SECRET=$(openssl rand -base64 32)
-    echo "[Unit]" > /etc/systemd/system/printnanny-dash.service.d/cookie-secret.conf
+    echo "[Service]" > /etc/systemd/system/printnanny-dash.service.d/cookie-secret.conf
     echo -n "$SECRET" | systemd-creds encrypt --name cookie-secret -p - - >> "$COOKIE_SECRET_FILE"
     echo "<4>printnanny-generator[$$]: Created $COOKIE_SECRET_FILE" > /dev/kmsg
 fi
@@ -29,7 +29,7 @@ if [ -f "$JANUS_ADMIN_FILE" ]; then
     echo "<6>printnanny-generator[$$]: $JANUS_ADMIN_FILE exists, skipping credential generation"
 else
     SECRET=$(openssl rand -base64 32)
-    echo "[Unit]" > "$JANUS_ADMIN_FILE"
+    echo "[Service]" > "$JANUS_ADMIN_FILE"
     echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-admin-secret -p - - >> "$JANUS_ADMIN_FILE"
     echo "<4>printnanny-generator[$$]: Created $JANUS_ADMIN_FILE" > /dev/kmsg
     ln -s "$JANUS_ADMIN_FILE" "$JANUS_ADMIN_DASH_LN"
@@ -40,7 +40,7 @@ if [ -f "$JANUS_TOKEN_FILE" ]; then
     echo "<6>printnanny-generator[$$]: $JANUS_TOKEN_FILE exists, skipping credential generation"
 else
     SECRET=$(openssl rand -base64 32)
-    echo "[Unit]" > "$JANUS_TOKEN_FILE"
+    echo "[Service]" > "$JANUS_TOKEN_FILE"
     echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-api-token -p - - >> "$JANUS_TOKEN_FILE"
     echo "<4>printnanny-generator[$$]: Created $JANUS_TOKEN_FILE" > /dev/kmsg
     ln -s "$JANUS_TOKEN_FILE" "$JANUS_TOKEN_DASH_LN"

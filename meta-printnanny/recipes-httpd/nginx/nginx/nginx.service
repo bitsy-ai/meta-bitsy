@@ -1,6 +1,6 @@
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
-After=syslog.target network.target remote-fs.target nss-lookup.target
+After=syslog.target network.target remote-fs.target nss-lookup.target cloud-config.target
 
 [Service]
 Type=forking

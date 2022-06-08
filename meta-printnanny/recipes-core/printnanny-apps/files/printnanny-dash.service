@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny Dashboard
-After=network.target network-online.target cloud-config.target
-Wants=network.target network-online.target cloud-config.target
+After=network.target cloud-config.target
+Wants=network.target cloud-config.target
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target printnanny.target
 
@@ -12,7 +12,7 @@ ExecStart=/bin/bash -c "ROCKET_SECRET_KEY=$(cat ${CREDENTIALS_DIRECTORY}/cookie-
     ROCKET_CONFIG=/etc/printnanny/dash/Rocket.toml \
     JANUS_EDGE_ADMIN_SECRET_FILE=${CREDENTIALS_DIRECTORY}/janus-edge-admin-secret \
     JANUS_EDGE_API_TOKEN_FILE=${CREDENTIALS_DIRECTORY}/janus-edge-api-token \
-    /usr/bin/printnanny-dash"
+    /usr/bin/printnanny -vv dash"
 Restart=on-failure
 RestartSec=30
 

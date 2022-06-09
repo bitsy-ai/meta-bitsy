@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eac
 
 S = "${WORKDIR}/pycparser-2.21"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

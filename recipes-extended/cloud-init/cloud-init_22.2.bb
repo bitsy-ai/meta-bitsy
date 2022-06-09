@@ -60,6 +60,7 @@ RDEPENDS:${PN} = "python3 \
                   python3-jsonschema \
                   python3-pyyaml \
                   python3-oauthlib \
+                  python3-urllib3 \
                   bash \
                  "
 # overrides setuptools3_legacy bbclass to remove:

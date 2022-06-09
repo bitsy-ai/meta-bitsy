@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "ce6f2ba0edb7b0c1d8976565298ad2deba6f8064d2bebb6ffce2ca896e
 
 S = "${WORKDIR}/frozenlist-1.3.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

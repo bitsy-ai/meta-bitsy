@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "1dfdea35e40744d46aada72831f7613d67bf38e8b20ccaaa9e91fdc37a
 
 S = "${WORKDIR}/Flask-Assets-2.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

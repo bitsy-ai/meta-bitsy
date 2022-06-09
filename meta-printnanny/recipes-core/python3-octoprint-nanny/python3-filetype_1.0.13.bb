@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "6a104762fe93d755c962aa96cb3d930a48f91a0761047126c5eead2153
 
 S = "${WORKDIR}/filetype-1.0.13"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

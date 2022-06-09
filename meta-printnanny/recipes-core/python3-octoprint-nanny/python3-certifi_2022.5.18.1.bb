@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390
 
 S = "${WORKDIR}/certifi-2022.5.18.1"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

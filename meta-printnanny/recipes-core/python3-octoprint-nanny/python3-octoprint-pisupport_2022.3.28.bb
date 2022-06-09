@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "bfd420398e04a93653b9876ac0561b09f6bebcf65c4e24088fbe2515bd
 
 S = "${WORKDIR}/OctoPrint-PiSupport-2022.3.28"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

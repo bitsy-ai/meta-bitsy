@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "f48fb904e64f10ad6bef62422eaf4736acfd9b13ab64ba44822637a9db
 
 S = "${WORKDIR}/sarge-0.1.6"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

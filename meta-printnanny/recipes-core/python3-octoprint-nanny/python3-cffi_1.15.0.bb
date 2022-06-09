@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "920f0d66a896c2d99f0adbb391f990a84091179542c205fa53ce5787af
 
 S = "${WORKDIR}/cffi-1.15.0"
 
-RDEPENDS_${PN} = "python3-pycparser"
+RDEPENDS:${PN} = "python3-pycparser"
 
 inherit setuptools3

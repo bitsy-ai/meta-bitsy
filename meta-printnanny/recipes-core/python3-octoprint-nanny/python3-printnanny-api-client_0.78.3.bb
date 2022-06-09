@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "6cc429ebfe9c6abd788b3e2d953c4e0b81c57afa632ba7ba56d9fa227f
 
 S = "${WORKDIR}/printnanny-api-client-0.78.3"
 
-RDEPENDS_${PN} = "python3-urllib3 python3-six python3-python-dateutil python3-protobuf python3-aiohttp"
+RDEPENDS:${PN} = "python3-urllib3 python3-six python3-python-dateutil python3-protobuf python3-aiohttp"
 
 inherit setuptools3

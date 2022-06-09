@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2
 
 S = "${WORKDIR}/async-timeout-4.0.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

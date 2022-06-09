@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7fac4542f0a13fbe704db4942f41ba3abffec5af8b100025973e59dff6
 
 S = "${WORKDIR}/frozendict-2.3.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

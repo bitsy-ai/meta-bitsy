@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "1306d474a270a036d6fd14f45640c4d77355e4f1c67ca4331b372d3448
 
 S = "${WORKDIR}/Flask-Login-0.6.1"
 
-RDEPENDS_${PN} = "python3-flask python3-werkzeug"
+RDEPENDS:${PN} = "python3-flask python3-werkzeug"
 
 inherit setuptools3

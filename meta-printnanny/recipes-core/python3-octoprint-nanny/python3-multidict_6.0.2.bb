@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "5ff3bd75f38e4c43f1f470f2df7a4d430b821c4ce22be384e1459cb57d
 
 S = "${WORKDIR}/multidict-6.0.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

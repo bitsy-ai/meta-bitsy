@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "27da485f4637ce7163cdeab13a80312b93b7d0c1b775bef4a47629a311
 
 S = "${WORKDIR}/feedparser-6.0.10"
 
-RDEPENDS_${PN} = "python3-sgmllib3k"
+RDEPENDS:${PN} = "python3-sgmllib3k"
 
 inherit setuptools3

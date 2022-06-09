@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "259535ba66933eacf85ab46524188c84dcb4c39f40348455ce15e2c0ac
 
 S = "${WORKDIR}/sentry-sdk-1.5.12"
 
-RDEPENDS_${PN} = "python3-urllib3 python3-certifi"
+RDEPENDS:${PN} = "python3-urllib3 python3-certifi"
 
 inherit setuptools3

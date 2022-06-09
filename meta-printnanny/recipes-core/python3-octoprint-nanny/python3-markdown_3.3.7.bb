@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "cbb516f16218e643d8e0a95b309f77eb118cb138d39a4f27851e6a6358
 
 S = "${WORKDIR}/Markdown-3.3.7"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

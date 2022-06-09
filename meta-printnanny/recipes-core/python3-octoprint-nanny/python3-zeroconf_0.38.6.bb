@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "c98f87a9145c58ad544cf1708b5eb2f444d40cd5defc69c88eeaac0527
 
 S = "${WORKDIR}/zeroconf-0.38.6"
 
-RDEPENDS_${PN} = "python3-ifaddr"
+RDEPENDS:${PN} = "python3-ifaddr"
 
 inherit setuptools3

@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "47ad140a63ab9389648dadfbb4330700e0ffeeb28ec04664ee47d37ed1
 
 S = "${WORKDIR}/pylru-1.2.1"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

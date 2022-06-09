@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "6d03149126864abd32715d4e9267d2754cede25a69052901399356ad3b
 
 S = "${WORKDIR}/watchdog-2.1.8"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

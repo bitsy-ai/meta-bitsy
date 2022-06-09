@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "315ded2ddf8a6281567edb27393010fe3406188bafbfe65a3339d5787d
 
 S = "${WORKDIR}/Flask-2.1.2"
 
-RDEPENDS_${PN} = "python3-werkzeug python3-jinja2 python3-itsdangerous python3-click"
+RDEPENDS:${PN} = "python3-werkzeug python3-jinja2 python3-itsdangerous python3-click"
 
 inherit setuptools3

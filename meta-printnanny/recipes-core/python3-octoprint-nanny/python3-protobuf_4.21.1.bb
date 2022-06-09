@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "5d9b5c8270461706973c3871c6fbdd236b51dfe9dab652f1fb6a36aa88
 
 S = "${WORKDIR}/protobuf-4.21.1"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

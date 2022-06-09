@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "c9ac98b45a38b23852ac40478f974c09961b3b0a5aa0a6397b37ba061d
 
 S = "${WORKDIR}/OctoPrint-Nanny-0.10.2"
 
-RDEPENDS_${PN} = "python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff"
+RDEPENDS:${PN} = "python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff"
 
 inherit setuptools3

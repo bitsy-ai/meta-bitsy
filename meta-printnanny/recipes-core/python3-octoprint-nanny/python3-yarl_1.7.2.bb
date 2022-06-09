@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "45399b46d60c253327a460e99856752009fcee5f5d3c80b2f7c0cae1c3
 
 S = "${WORKDIR}/yarl-1.7.2"
 
-RDEPENDS_${PN} = "python3-multidict python3-idna"
+RDEPENDS:${PN} = "python3-multidict python3-idna"
 
 inherit setuptools3

@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "344f73204009e4c83c5b6beb00b3c45dc70fcdae3c80db919e0a4171d0
 
 S = "${WORKDIR}/colorlog-6.6.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "f224ad253cc9cea7568f49077007d2263efa57396a2f2f78114066fd54
 
 S = "${WORKDIR}/cryptography-37.0.2"
 
-RDEPENDS_${PN} = "python3-cffi"
+RDEPENDS:${PN} = "python3-cffi"
 
 inherit setuptools3

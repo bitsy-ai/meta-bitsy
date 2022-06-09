@@ -1,27 +1,16 @@
+
+SUMMARY = "Get notified when defects are detected in your print."
+HOMEPAGE = "https://github.com/bitsy-ai/octoprint-nanny-plugin"
+AUTHOR = "Leigh Johnson <leigh@bitsy.ai>"
 LICENSE = "AGPLv3"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
-inherit pypi setuptools3_legacy systemd
-
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI:append = "\
-    file://config.yaml \
-    file://octoprint.service \
-"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
+SRC_URI = "https://files.pythonhosted.org/packages/5c/2f/05af1a2455f974e4c5be1691b95643df8c911300ca3a73692ada5852a5e0/OctoPrint-Nanny-0.10.2.tar.gz"
+SRC_URI[md5sum] = "bf746350194468c56cd2608249f33ded"
 SRC_URI[sha256sum] = "c9ac98b45a38b23852ac40478f974c09961b3b0a5aa0a6397b37ba061d7e8f10"
-PYPI_PACKAGE = "OctoPrint-Nanny"
 
+S = "${WORKDIR}/OctoPrint-Nanny-0.10.2"
 
-do_install:append() {
-    install -d ${D}${sysconfdir}/octoprint
-    install -d ${D}${systemd_system_unitdir}
-    install -m 0755 ${WORKDIR}/config.yaml ${D}${sysconfdir}/octoprint/config.yaml
-    install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
-}
+RDEPENDS_${PN} = "python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff"
 
-SYSTEMD_SERVICE:${PN} = "octoprint.service"
-SYSTEMD_AUTO_ENABLE = "enable"
-
-RDEPENDS:${PN}:append = "\
-    python3-pip \
-"
+inherit setuptools3

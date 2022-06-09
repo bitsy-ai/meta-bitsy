@@ -6,5 +6,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
+    python3-pip \
     python3-octoprint-nanny \
 "

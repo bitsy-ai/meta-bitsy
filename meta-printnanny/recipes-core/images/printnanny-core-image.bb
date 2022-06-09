@@ -2,6 +2,7 @@ LICENSE = "AGPLv3"
 DESCRIPTION = "A console-only image with minimal Linux system functionality installed."
 
 WKS_FILE = "sdimage-printnanny.wks"
+DISTRO ?= "printnanny"
 
 # required to use both overlayfs-etc and package-management features
 # see note: https://git.yoctoproject.org/poky/plain/meta/classes/overlayfs-etc.bbclass

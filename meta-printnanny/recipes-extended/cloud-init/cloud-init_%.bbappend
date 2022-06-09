@@ -10,6 +10,7 @@ SRC_URI:append = "\
     file://cloud-init.service \
     file://cloud-config.service \
 "
+PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 

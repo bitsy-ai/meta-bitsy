@@ -11,9 +11,6 @@ SRC_URI[sha256sum] = "d4109d854c6b1a4155af3360597b31aed28a1a20df146d77105060ed74
 
 S = "${WORKDIR}/OctoPrint-1.8.1"
 
-
-PREFERRED_VERSION:python3-pyyaml = "5.4.1"
-
 RDEPENDS:${PN} = "\
     python3-blinker \
     python3-cachelib \

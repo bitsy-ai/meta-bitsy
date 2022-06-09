@@ -5,11 +5,11 @@ AUTHOR = "Matthew Frazier <leafstormrush@gmail.com>"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8aa87a1cd9fa41d969ad32cfdac2c596"
 
-SRC_URI = "https://files.pythonhosted.org/packages/3c/0a/e376d599eb6a8999b803a8d390e32451e43a346dbe540350dad48be0069c/Flask-Login-0.6.1.tar.gz"
-SRC_URI[md5sum] = "0a1576eab473c2a8bb576348333d5ef5"
-SRC_URI[sha256sum] = "1306d474a270a036d6fd14f45640c4d77355e4f1c67ca4331b372d3448997b8c"
+SRC_URI = "https://files.pythonhosted.org/packages/f9/01/f6c0a3a654ca125cf9cd273314c03a8bc6a47bf861765c8c1d375e15a28d/Flask-Login-0.5.0.tar.gz"
+SRC_URI[md5sum] = "a2d94aa6ae935345ebc68eb3cbb5fccd"
+SRC_URI[sha256sum] = "6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b"
 
-S = "${WORKDIR}/Flask-Login-0.6.1"
+S = "${WORKDIR}/Flask-Login-0.5.0"
 
 RDEPENDS:${PN} = "python3-flask python3-werkzeug"
 

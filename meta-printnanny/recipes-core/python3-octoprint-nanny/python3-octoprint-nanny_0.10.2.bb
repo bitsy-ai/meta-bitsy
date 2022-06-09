@@ -9,8 +9,10 @@ SRC_URI = "https://files.pythonhosted.org/packages/5c/2f/05af1a2455f974e4c5be169
 SRC_URI[md5sum] = "bf746350194468c56cd2608249f33ded"
 SRC_URI[sha256sum] = "c9ac98b45a38b23852ac40478f974c09961b3b0a5aa0a6397b37ba061d7e8f10"
 
+inherit python_setuptools3_rust
+
 S = "${WORKDIR}/OctoPrint-Nanny-0.10.2"
 
-RDEPENDS:${PN} = "python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff"
+RDEPENDS:${PN} = "python3-octoprint python3-pip python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff"
 
 inherit setuptools3

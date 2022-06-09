@@ -6,10 +6,8 @@ Wants=network.target network-online.target
 [Service]
 Type=simple
 SyslogIdentifier=octoprint
-EnvironmentFile=-octoprint
 WorkingDirectory=/etc/octoprint
-ExecStart=/usr/local/bin/octoprint
-User=octoprint
+ExecStart=/usr/bin/octoprint serve --config /etc/octoprint/config.yaml --basedir /etc/octoprint
 Restart=on-failure
 RestartSec=30
 

@@ -5,11 +5,11 @@ AUTHOR = "Paul Scott-Murphy, William McBrine, Jakub Stasiak <>"
 LICENSE = "LGPL-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3bb705b228ea4a14ea2728215b780d80"
 
-SRC_URI = "https://files.pythonhosted.org/packages/b0/32/242620030c197fdc984f23e956518754d062a0625154514d663685106f3c/zeroconf-0.38.6.tar.gz"
-SRC_URI[md5sum] = "8db52b1e119f5283e9a72bc242fb6e39"
-SRC_URI[sha256sum] = "c98f87a9145c58ad544cf1708b5eb2f444d40cd5defc69c88eeaac0527a28795"
+SRC_URI = "https://files.pythonhosted.org/packages/8e/52/8cb1d5fdd6ff773c7e8a7c7038a1dc1a698688821472b0e7c82c9bf93b27/zeroconf-0.33.4.tar.gz"
+SRC_URI[md5sum] = "e3291ed5222108a493a64f740d8822a4"
+SRC_URI[sha256sum] = "95b4fd11e0498ec8e38d0a0ff50e3bd7250be2b02d131ef8501b12cd3a499d66"
 
-S = "${WORKDIR}/zeroconf-0.38.6"
+S = "${WORKDIR}/zeroconf-0.33.4"
 
 RDEPENDS:${PN} = "python3-ifaddr"
 

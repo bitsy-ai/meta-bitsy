@@ -1,6 +1,6 @@
 LICENSE = "AGPLv3"
 
-inherit pypi setuptools3 systemd
+inherit pypi setuptools3_legacy systemd
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI:append = "\
@@ -24,5 +24,4 @@ SYSTEMD_AUTO_ENABLE = "enable"
 
 RDEPENDS:${PN}:append = "\
     python3-pip \
-    python3-octoprint \
 "

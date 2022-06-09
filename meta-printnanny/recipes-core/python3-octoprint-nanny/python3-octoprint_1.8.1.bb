@@ -9,4 +9,7 @@ PYPI_PACKAGE = "OctoPrint"
 # SYSTEMD_SERVICE:${PN} = "octoprint.service"
 # SYSTEMD_AUTO_ENABLE = "enable"
 
-RDEPENDS:${PN}:append = " python3-pip"
+RDEPENDS:${PN}:append = "\
+    python3-click \
+    python3-pip \
+"

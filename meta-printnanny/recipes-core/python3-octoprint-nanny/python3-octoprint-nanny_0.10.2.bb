@@ -21,3 +21,8 @@ do_install:append() {
 
 SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
+
+RDEPENDS:${PN}:append = "\
+    python3-pip \
+    python3-octoprint \
+"

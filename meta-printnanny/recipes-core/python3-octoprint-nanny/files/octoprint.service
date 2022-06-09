@@ -10,6 +10,7 @@ WorkingDirectory=/etc/octoprint
 ExecStart=/usr/bin/octoprint serve --config /etc/octoprint/config.yaml --basedir /etc/octoprint
 Restart=on-failure
 RestartSec=30
+User=printnanny
 
 [Install]
 WantedBy=multi-user.target

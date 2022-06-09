@@ -13,6 +13,7 @@ ConfigurationDirectory=printnanny
 ExecStart=/usr/bin/printnanny -v event subscribe
 Restart=on-failure
 RestartSec=30
+User=printnanny
 
 [Install]
 WantedBy=multi-user.target

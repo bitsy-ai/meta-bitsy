@@ -15,6 +15,7 @@ ExecStart=/bin/bash -c "ROCKET_SECRET_KEY=$(cat ${CREDENTIALS_DIRECTORY}/cookie-
     /usr/bin/printnanny -vv dash"
 Restart=on-failure
 RestartSec=30
+User=printnanny
 
 [Install]
 WantedBy=multi-user.target

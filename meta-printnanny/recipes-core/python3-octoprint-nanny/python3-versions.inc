@@ -1,1 +1,0 @@
-PREFERRED_VERSION_python3-netifaces = "0.11.0"

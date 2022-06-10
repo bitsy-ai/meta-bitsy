@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
 SRC_URI = "\
 	https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
 	file://janus-gateway.service \
-	file://janus.jcfg \
+	file://janus.jcfg.template \
 	file://janus.plugin.streaming.jcfg \
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
@@ -61,3 +61,4 @@ INSANE_SKIP:${PN} = "dev-so"
 
 SYSTEMD_SERVICE:${PN} = "janus-gateway.service"
 SYSTEMD_AUTO_ENABLE = "enable"
+RDEPENDS:${PN} = "curl"

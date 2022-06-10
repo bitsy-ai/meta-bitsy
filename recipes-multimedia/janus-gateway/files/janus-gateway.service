@@ -10,6 +10,10 @@ ExecStartPre=/bin/bash -c "JANUS_ADMIN_SECRET=$(cat ${CREDENTIAL_DIRECTORY}/janu
     JANUS_SERVER_NAME=$(cat /etc/hostname) \
     janus-envsubst-on-templates"
 ExecStart=/usr/bin/janus
+ExecStartPost=sleep 10
+ExecStartPost=curl -X POST http://127.0.0.1:7088/admin \
+    -H 'Content-Type: application/json' \
+    -d '{"transaction" : "$(echo $RANDOM | md5sum | head -c 20; echo;)","janus" : "add_token", "token": "$(cat ${CREDENTIAL_DIRECTORY}/janus-edge-api-token)", "admin_secret": "$(cat ${CREDENTIAL_DIRECTORY}/janus-edge-admin-secret"}'
 Restart=always
 RestartSec=60
 LimitNOFILE=65536

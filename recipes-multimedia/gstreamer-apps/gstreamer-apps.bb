@@ -16,7 +16,7 @@ do_install() {
 }
 
 SYSTEMD_SERVICE:${PN} = "gstreamer-rtph264pay.service"
-
+LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
 RDEPENDS:${PN} = "\
     gstreamer1.0 \
 "

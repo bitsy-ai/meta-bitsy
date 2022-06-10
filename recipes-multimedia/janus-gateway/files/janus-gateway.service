@@ -6,7 +6,10 @@ Wants=network-online.target
 [Service]
 Type=simple
 SyslogIdentifier=janus
-ExecStart=/usr/bin/janus -o
+ExecStart=/usr/bin/janus \
+    --adminsecret=$(cat ${CREDENTIAL_DIRECTORY}/janus-edge-admin-secret) \
+    --tokenauth
+
 Restart=always
 RestartSec=60
 LimitNOFILE=65536

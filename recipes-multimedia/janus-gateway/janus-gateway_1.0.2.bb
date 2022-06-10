@@ -18,7 +18,7 @@ SRC_REV = "1.0.2"
 inherit autotools pkgconfig systemd
 
 DEPENDS += "libsrtp jansson libconfig libnice openssl glib-2.0 gengetopt-native"
-PACKAGECONFIG ?= "rest_api rest websockets unix_sockets plugin_videoroom plugin_streaming"
+PACKAGECONFIG ?= "rest_api rest websockets plugin_videoroom plugin_streaming"
 PACKAGECONFIG[datachannels] = "--enable-data-channels,--disable-data-channels,usrsctp"
 PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"
 PACKAGECONFIG[nanomsg] = "--enable-nanomsg,--disable-nanomsg,libnanomsg"

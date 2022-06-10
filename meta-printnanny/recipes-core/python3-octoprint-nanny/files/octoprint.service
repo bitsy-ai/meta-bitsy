@@ -1,0 +1,20 @@
+[Unit]
+Description=OctoPrint
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+SyslogIdentifier=octoprint
+ExecStart=/usr/bin/octoprint serve \
+    --config /home/printnanny/.octoprint/config.yaml \
+    --basedir /home/printnanny/.octoprint \
+    --host 127.0.0.1 \
+    --port 5001
+
+Restart=on-failure
+RestartSec=30
+User=printnanny
+
+[Install]
+WantedBy=multi-user.target

@@ -2,6 +2,7 @@ LICENSE = "AGPLv3"
 DESCRIPTION = "A console-only image with minimal Linux system functionality installed."
 
 WKS_FILE = "sdimage-printnanny.wks"
+DISTRO ?= "printnanny"
 
 # required to use both overlayfs-etc and package-management features
 # see note: https://git.yoctoproject.org/poky/plain/meta/classes/overlayfs-etc.bbclass
@@ -44,4 +45,3 @@ VOLATILE_LOG_DIR = "no"
 # send boot messaegs to tty1
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
-

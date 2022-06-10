@@ -47,6 +47,8 @@ RDEPENDS:${PN}-systemd += " ${PN}"
 SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
+PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
+
 DEPENDS += "python3-pyyaml-native \
             python3-requests-native \
             python3-jinja2-native \
@@ -60,6 +62,7 @@ RDEPENDS:${PN} = "python3 \
                   python3-jsonschema \
                   python3-pyyaml \
                   python3-oauthlib \
+                  python3-urllib3 \
                   bash \
                  "
 # overrides setuptools3_legacy bbclass to remove:

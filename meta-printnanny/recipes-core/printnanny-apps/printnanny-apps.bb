@@ -39,11 +39,6 @@ RDEPENDS:${PN}-systemd += " ${PN}"
 SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
-inherit extrausers
-PRINTNANNY_USER ?= "printnanny"
-EXTRA_USERS_PARAMS = " useradd ${PRINTNANNY_USER}; \
-    usermod  -a -G sudo ${PRINTNANNY_USER};"
-
 RDEPENDS:${PN}-nginx = "${PN} nginx"
 
 PACKAGES += "${PN}-systemd"

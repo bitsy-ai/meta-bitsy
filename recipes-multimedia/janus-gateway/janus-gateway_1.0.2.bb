@@ -11,8 +11,8 @@ SRC_URI = "\
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
 "
-SRC_URI[sha256sum] = "2b065c5feaec9e40b2310b97cf598bb53346b326bdad73f57b3de319eb0fc65f"
-SRC_REV = "0.11.8"
+SRC_URI[sha256sum] = "a1ca0ae787fa162a36b4e391c29ae81f9388c3077699fb7b7c054149a5503355"
+SRC_REV = "1.0.2"
 
 inherit autotools pkgconfig systemd
 

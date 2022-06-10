@@ -10,6 +10,7 @@ JANUS_ADMIN_FILE="/etc/systemd/system/janus-gateway.service.d/janus-edge-admin-s
 JANUS_ADMIN_DASH_LN="/etc/systemd/system/printnanny-dash.service.d/janus-edge-admin-secret.conf"
 JANUS_TOKEN_FILE="/etc/systemd/system/janus-gateway.service.d/janus-edge-api-token.conf"
 JANUS_TOKEN_DASH_LN="/etc/systemd/system/printnanny-dash.service.d/janus-edge-api-token.conf"
+JANUS_TOKEN_OCTOPRINT_LN="/etc/systemd/system/octoprint.service.d/janus-edge-api-token.conf"
 
 # default PrintNannyConfig file
 PRINTNANNY_CONF_FILE="/etc/printnanny/default.toml"
@@ -47,6 +48,8 @@ else
     echo "<4>printnanny-generator[$$]: Created $JANUS_TOKEN_FILE" > /dev/kmsg
     ln -s "$JANUS_TOKEN_FILE" "$JANUS_TOKEN_DASH_LN"
     echo "<4>printnanny-generator[$$]: Created link from $JANUS_TOKEN_FILE to $JANUS_TOKEN_DASH_LN"
+    ln -s "$JANUS_TOKEN_FILE" "$JANUS_TOKEN_OCTOPRINT_LN"
+    echo "<4>printnanny-generator[$$]: Created link from $JANUS_TOKEN_FILE to $JANUS_TOKEN_OCTOPRINT_LN"
 fi
 
 if [ -f "$PRINTNANNY_CONF_FILE" ]; then

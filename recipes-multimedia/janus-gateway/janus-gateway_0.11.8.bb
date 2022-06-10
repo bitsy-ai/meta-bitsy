@@ -43,9 +43,9 @@ do_install:append() {
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
 	install -d "${D}${sysconfdir}/systemd/system/janus-gateway.service.d"
 	install -m 0644 ${WORKDIR}/janus.jcfg ${D}${sysconfdir}/janus/janus.jcfg
-	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus.plugin.streaming.jcfg
-	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus.transport.http.jcfg
-	install -m 0644 ${WORKDIR}/janus.transport.websockets.jcfg ${D}${sysconfdir}/janus.transport.websockets.jcfg
+	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
+	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg
+	install -m 0644 ${WORKDIR}/janus.transport.websockets.jcfg ${D}${sysconfdir}/janus/janus.transport.websockets.jcfg
 }
 
 FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus/transports ${libdir}/janus/events ${sysconfdir}/janus"

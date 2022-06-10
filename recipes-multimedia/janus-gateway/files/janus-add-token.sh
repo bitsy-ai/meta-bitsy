@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 JANUS_ADMIN_SECRET="$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-admin-secret)"
 JANUS_API_TOKEN="$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-api-token)"

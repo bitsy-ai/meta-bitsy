@@ -5,15 +5,14 @@ Wants=network.target
 
 [Service]
 Type=simple
-SyslogIdentifier=janus
-ExecStartPre=/bin/bash -c "JANUS_ADMIN_SECRET=$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-admin-secret) \
+SyslogIdentifier=janus-gateway
+ExecStart=/bin/bash -c "JANUS_ADMIN_SECRET=$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-admin-secret) \
     JANUS_SERVER_NAME=$(cat /etc/hostname) \
-    janus-envsubst-on-templates"
-ExecStart=/usr/bin/janus
+    janus-envsubst-on-templates; \
+    /usr/bin/janus
+    "
 ExecStartPost=sleep 10
-ExecStartPost=curl -X POST http://127.0.0.1:7088/admin \
-    -H 'Content-Type: application/json' \
-    -d '{"transaction" : "$(echo $RANDOM | md5sum | head -c 20; echo;)","janus" : "add_token", "token": "$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-api-token)", "admin_secret": "$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-admin-secret"}'
+ExecStartPost=janus-add-token
 Restart=always
 RestartSec=60
 LimitNOFILE=65536

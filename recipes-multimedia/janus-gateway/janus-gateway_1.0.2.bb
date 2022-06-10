@@ -11,6 +11,7 @@ SRC_URI = "\
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
 	file://janus-envsubst-on-templates.sh \
+	file://janus-add-token.sh \
 "
 SRC_URI[sha256sum] = "a1ca0ae787fa162a36b4e391c29ae81f9388c3077699fb7b7c054149a5503355"
 SRC_REV = "1.0.2"
@@ -52,6 +53,7 @@ do_install:append() {
 	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.websockets.jcfg ${D}${sysconfdir}/janus/janus.transport.websockets.jcfg
 	install -m 0755 ${WORKDIR}/janus-envsubst-on-templates.sh ${D}${bindir}/janus-envsubst-on-templates
+	install -m 0755 ${WORKDIR}/janus-add-token.sh ${D}${bindir}/janus-add-token
 }
 
 FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus ${sysconfdir}/janus"

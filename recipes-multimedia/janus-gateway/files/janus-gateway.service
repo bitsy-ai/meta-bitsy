@@ -6,10 +6,10 @@ Wants=network.target
 [Service]
 Type=simple
 SyslogIdentifier=janus
-ExecStart=/usr/bin/janus \
-    --adminsecret=$(cat ${CREDENTIAL_DIRECTORY}/janus-edge-admin-secret) \
-    --tokenauth
-
+ExecStartPre=/bin/bash -c "JANUS_ADMIN_SECRET=$(cat ${CREDENTIAL_DIRECTORY}/janus-edge-admin-secret) \
+    JANUS_SERVER_NAME=$(cat /etc/hostname) \
+    janus-envsubst-on-templates"
+ExecStart=/usr/bin/janus
 Restart=always
 RestartSec=60
 LimitNOFILE=65536

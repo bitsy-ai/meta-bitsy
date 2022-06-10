@@ -38,7 +38,7 @@ general: {
 									# where you do the things your way) and you
 									# don't want other application to mess with
 									# this Janus instance.
-	#token_auth = true				# Enable a token based authentication
+	token_auth = true				# Enable a token based authentication
 									# mechanism to force users to always provide
 									# a valid token in all requests. Useful if
 									# you want to authenticate requests from web
@@ -47,14 +47,14 @@ general: {
 									# without this, the Admin API MUST
 									# be enabled, as tokens are added and removed
 									# through messages sent there.
-	admin_secret = {{ default .Env.ADMIN_SECRET "janusoverlord" }}	# String that all Janus requests must contain
+	admin_secret = "$JANUS_ADMIN_SECRET"	# String that all Janus requests must contain
 									# to be accepted/authorized by the admin/monitor.
 									# only needed if you enabled the admin API
 									# in any of the available transports.
 
 		# Generic settings
 	#interface = "1.2.3.4"			# Interface to use (will be used in SDP)
-	#server_name = "MyJanusInstance"# Public name of this Janus instance
+	server_name = "$JANUS_SERVER_NAME"	# Public name of this Janus instance
 									# as it will appear in an info request
 	#session_timeout = 60			# How long (in seconds) we should wait before
 									# deciding a Janus session has timed out. A

@@ -10,6 +10,7 @@ SRC_URI = "\
 	file://janus.plugin.streaming.jcfg \
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
+	file://janus-envsubst-on-templates.sh \
 "
 SRC_URI[sha256sum] = "a1ca0ae787fa162a36b4e391c29ae81f9388c3077699fb7b7c054149a5503355"
 SRC_REV = "1.0.2"
@@ -39,13 +40,14 @@ PACKAGECONFIGF[websockets] = "--enable-websockets,--disable-websockets,libwebsoc
 
 do_install:append() {
 	install -d ${D}${systemd_unitdir}/system
-	install -d ${D}${sysconfdir}/janus
+	install -d ${D}${sysconfdir}/janus/templates
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
 	install -d "${D}${sysconfdir}/systemd/system/janus-gateway.service.d"
-	install -m 0644 ${WORKDIR}/janus.jcfg ${D}${sysconfdir}/janus/janus.jcfg
+	install -m 0644 ${WORKDIR}/janus.jcfg.template ${D}${sysconfdir}/janus/templates/janus.jcfg.template
 	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.websockets.jcfg ${D}${sysconfdir}/janus/janus.transport.websockets.jcfg
+	install -m 0755 ${WORKDIR}/janus-envsubst-on-templates.sh ${D}${bindir}/janus-envsubst-on-templates
 }
 
 FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus/transports ${libdir}/janus/events ${sysconfdir}/janus"

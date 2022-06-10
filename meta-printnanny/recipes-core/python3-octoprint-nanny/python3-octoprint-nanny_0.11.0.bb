@@ -5,7 +5,7 @@ AUTHOR = "Leigh Johnson <leigh@bitsy.ai>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
-SRC_URI[sha256sum] = "1dc1c9d7a4c4827ce8c2d2781f0ec966e9a491cd4bfaedd94e49ea11eb1bc6ee"
+SRC_URI[sha256sum] = "b071c972627ba26e9f4c29f77f76d2711a16cdf33cfbccaa650184c3b4a50252"
 PYPI_PACKAGE = "OctoPrint-Nanny"
 inherit python_setuptools3_rust setuptools3 pypi
 

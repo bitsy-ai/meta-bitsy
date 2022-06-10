@@ -13,4 +13,3 @@ gst-launch-1.0 libcamerasrc \
     ! h264parse \
     ! rtph264pay \
     ! "udpsink host=$GSTREAMER_UDP_SINK_HOST port=$GSTREAMER_UDP_SINK_PORT"
-

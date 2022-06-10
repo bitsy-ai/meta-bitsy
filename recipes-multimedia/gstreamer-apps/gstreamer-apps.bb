@@ -20,5 +20,7 @@ SYSTEMD_SERVICE:${PN} = "gstreamer-rtph264pay.service"
 LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
 RDEPENDS:${PN} = "\
     gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    libcamera \
 "
 FILES:${PN} = "${systemd_unitdir}/* ${bindir}/*"

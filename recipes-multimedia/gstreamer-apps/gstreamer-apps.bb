@@ -21,6 +21,7 @@ LICENSE_FLAGS_ACCEPTED += "commercial_gstreamer1.0-omx"
 RDEPENDS:${PN} = "\
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
     libcamera \
     libcamera-gst \
 "

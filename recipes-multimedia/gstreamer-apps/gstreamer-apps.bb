@@ -11,6 +11,7 @@ inherit systemd
 
 do_install() {
     install -d "${D}${systemd_system_unitdir}"
+    install -d "${D}${bindir}"
     install -m 0644 "${WORKDIR}/gstreamer-rtph264pay.service" "${D}${systemd_system_unitdir}/gstreamer-rtph264pay.service"
     install -m 0755 "${WORKDIR}/gstreamer-rtph264pay.sh" "${D}${bindir}/gstreamer-rtph264pay"
 }

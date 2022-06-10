@@ -6,8 +6,7 @@ Wants=network.target
 [Service]
 Type=simple
 SyslogIdentifier=octoprint
-WorkingDirectory=/etc/octoprint
-ExecStart=/usr/bin/octoprint serve --config /etc/octoprint/config.yaml --basedir /etc/octoprint
+ExecStart=/usr/bin/octoprint serve --config /home/printnanny/.octoprint/config.yaml --basedir /home/printnanny/.octoprint
 Restart=on-failure
 RestartSec=30
 User=printnanny

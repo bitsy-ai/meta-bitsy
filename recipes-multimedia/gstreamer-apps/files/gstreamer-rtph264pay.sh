@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -x
 
 GSTREAMER_UDP_SINK_HOST="${GSTREAMER_UDP_SINK_HOST:-127.0.0.1}"

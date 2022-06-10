@@ -11,6 +11,8 @@ RequiresMountsFor=/var/lib/cloud
 
 [Service]
 Type=oneshot
+# goofy hack to ensure user-data is merged
+ExecStartPre=/usr/bin/cloud-init-merge
 ExecStart=/usr/bin/cloud-init init --local
 RemainAfterExit=yes
 TimeoutSec=0

@@ -28,7 +28,7 @@ IMAGE_INSTALL = "\
     packagegroup-base-extended \
     packagegroup-core-full-cmdline \
     packagegroup-printnanny-core \
-    packagegroup-printnanny-multimedia \
+    packagegroup-printnanny-webrtc \
     packagegroup-core-base-utils \
     packagegroup-bitsy \
     packagegroup-bitsy-cloudinit \

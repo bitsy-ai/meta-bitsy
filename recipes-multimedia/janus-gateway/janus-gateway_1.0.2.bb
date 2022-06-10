@@ -41,6 +41,10 @@ PACKAGECONFIGF[websockets] = "--enable-websockets,--disable-websockets,libwebsoc
 do_install:append() {
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${sysconfdir}/janus/templates
+	install -d ${D}${libdir}/janus/plugins
+	install -d ${D}${libdir}/janus/transports
+	install -d ${D}${libdir}/janus/events
+	install -d ${D}${libdir}/janus/loggers
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
 	install -d "${D}${sysconfdir}/systemd/system/janus-gateway.service.d"
 	install -m 0644 ${WORKDIR}/janus.jcfg.template ${D}${sysconfdir}/janus/templates/janus.jcfg.template
@@ -50,7 +54,7 @@ do_install:append() {
 	install -m 0755 ${WORKDIR}/janus-envsubst-on-templates.sh ${D}${bindir}/janus-envsubst-on-templates
 }
 
-FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus/transports ${libdir}/janus/events ${sysconfdir}/janus"
+FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus ${sysconfdir}/janus"
 FILES:${PN}-demo = "${datadir}/janus/demos ${datadir}/janus"
 FILES:${PN}-js = "${datadir}/janus/javascript"
 PACKAGES = "${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-demo ${PN}-js"

@@ -1,0 +1,13 @@
+[Unit]
+Description=Gstreamer RTP H264 Camera Stream
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gstreamer-rtph264pay
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

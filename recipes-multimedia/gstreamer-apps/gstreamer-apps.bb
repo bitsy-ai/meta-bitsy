@@ -22,5 +22,7 @@ RDEPENDS:${PN} = "\
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
     libcamera \
+    libcamera-dev \
+    libcamera-gst \
 "
 FILES:${PN} = "${systemd_unitdir}/* ${bindir}/*"

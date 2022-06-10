@@ -45,4 +45,3 @@ VOLATILE_LOG_DIR = "no"
 # send boot messaegs to tty1
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
-

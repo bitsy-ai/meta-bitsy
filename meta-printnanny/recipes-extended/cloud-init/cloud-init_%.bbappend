@@ -9,7 +9,6 @@ SRC_URI:append = "\
     file://cloud-init-local.service \
     file://cloud-init.service \
     file://cloud-config.service \
-    file://cloud-init-merge.sh \
 "
 PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 

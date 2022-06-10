@@ -1,12 +1,17 @@
 [Unit]
 Description=Janus WebRTC Gateway
-After=network.target network-online.target
-Wants=network-online.target
+After=network.target
+Wants=network.target
 
 [Service]
 Type=simple
-SyslogIdentifier=janus
-ExecStart=/usr/bin/janus -o
+SyslogIdentifier=janus-gateway
+ExecStart=/bin/bash -c "JANUS_ADMIN_SECRET=$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-admin-secret) \
+    JANUS_SERVER_NAME=$(cat /etc/hostname) \
+    janus-envsubst-on-templates; \
+    /usr/bin/janus"
+ExecStartPost=sleep 10
+ExecStartPost=janus-add-token
 Restart=always
 RestartSec=60
 LimitNOFILE=65536

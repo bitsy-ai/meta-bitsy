@@ -18,7 +18,8 @@ SRC_REV = "1.0.2"
 
 inherit autotools pkgconfig systemd
 
-DEPENDS += "libsrtp jansson libconfig libnice openssl glib-2.0 gengetopt-native"
+DEPENDS += "libsrtp jansson libconfig libnice glib-2.0 gengetopt-native openssl"
+
 PACKAGECONFIG ?= "rest_api rest websockets plugin_videoroom plugin_streaming"
 PACKAGECONFIG[datachannels] = "--enable-data-channels,--disable-data-channels,usrsctp"
 PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"
@@ -37,7 +38,7 @@ PACKAGECONFIG[plugin_voicemail] = "--enable-plugin-voicemail,--disable-plugin-vo
 PACKAGECONFIG[plugin_recordplay] = "--enable-plugin-recordplay,--disable-plugin-recordplay,"
 PACKAGECONFIG[plugin_textroom] = "--enable-plugin-textroom,--disable-plugin-textroom,"
 PACKAGECONFIG[plugin_streaming] = "--enable-plugin-streaming,--disable-plugin-streaming,"
-PACKAGECONFIGF[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
+PACKAGECONFIG[websockets] = "--enable-websockets,--disable-websockets,libwebsockets"
 
 do_install:append() {
 	install -d ${D}${systemd_unitdir}/system

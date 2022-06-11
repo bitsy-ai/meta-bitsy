@@ -30,12 +30,12 @@ EXTRA_OECMAKE = "\
     ${@bb.utils.contains("MACHINE", "raspberrypi4", "-DENABLE_COMPILE_FLAGS_FOR_TARGET=armv8-neon", "", d)} \
 "
 
-PACKAGECONFIG ??= "gst opencv tensorflow-lite"
+PACKAGECONFIG ??= "gst opencv"
 
 PACKAGECONFIG[drm] = "-DENABLE_DRM=1,-DENABLE_DRM=0,libdrm"
 PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
 PACKAGECONFIG[opencv] = "-DENABLE_OPENCV=1,-DENABLE_OPENCV=0,opencv"
-PACKAGECONFIG[tensorflow-lite] = "-DENABLE_TFLITE=1,-DENABLE_TFLITE=0,libtensorflow-lite,libtensorflow-lite"
+PACKAGECONFIG[tensorflow-lite] = "-DENABLE_TFLITE=1,-DENABLE_TFLITE=0,tensorflow-lite,tensorflow-lite"
 PACKAGECONFIG[qt] = "-DENABLE_QT=1,-DENABLE_QT=0"
 
 FILES:${PN} += "${libdir} ${nonarch_libdir}"

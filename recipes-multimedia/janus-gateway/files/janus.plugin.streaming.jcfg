@@ -101,16 +101,16 @@
 #}
 
 general: {
-	#admin_key = "supersecret"		# If set, mountpoints can be created via API
-									# only if this key is provided in the request
-	#rtp_port_range = "20000-40000"	# Range of ports to use for RTP/RTCP when '0' is
-									# passed as port for a mountpoint (default=10000-60000)
-	#events = false					# Whether events should be sent to event
-									# handlers (default=true)
+    #admin_key = "supersecret"		# If set, mountpoints can be created via API
+                                    # only if this key is provided in the request
+    #rtp_port_range = "20000-40000"	# Range of ports to use for RTP/RTCP when '0' is
+                                    # passed as port for a mountpoint (default=10000-60000)
+    #events = false					# Whether events should be sent to event
+                                    # handlers (default=true)
 
-	# By default, integers are used as a unique ID for both mountpoints. In case
-	# you want to use strings instead (e.g., a UUID), set string_ids to true.
-	#string_ids = true
+    # By default, integers are used as a unique ID for both mountpoints. In case
+    # you want to use strings instead (e.g., a UUID), set string_ids to true.
+    #string_ids = true
 }
 
 #
@@ -183,16 +183,16 @@ general: {
 # an x264enc+rtph264pay pipeline in gstreamer, an ffmpeg script or other.
 #
 #h264-sample: {
-	#type = "rtp"
-	#id = 10
-	#description = "H.264 live stream coming from gstreamer"
-	#audio = false
-	#video = true
-	#videoport = 8004
-	#videopt = 126
-	#videortpmap = "H264/90000"
-	#videofmtp = "profile-level-id=42e01f;packetization-mode=1"
-	#secret = "adminpwd"
+    #type = "rtp"
+    #id = 10
+    #description = "H.264 live stream coming from gstreamer"
+    #audio = false
+    #video = true
+    #videoport = 8004
+    #videopt = 126
+    #videortpmap = "H264/90000"
+    #videofmtp = "profile-level-id=42e01f;packetization-mode=1"
+    #secret = "adminpwd"
 #}
 
 #
@@ -205,15 +205,15 @@ general: {
 # datachannel messages will be sent as usual, and not use RTP at all.
 #
 #data-example: {
-	#type = "rtp"
-	#id = 15
-	#description = "Datachannel stream from an UDP source"
-	#audio = false
-	#video = false
-	#data = true
-	#dataport = 5008
-	#datatype = "text"
-	#secret = "adminpwd"
+    #type = "rtp"
+    #id = 15
+    #description = "Datachannel stream from an UDP source"
+    #audio = false
+    #video = false
+    #data = true
+    #dataport = 5008
+    #datatype = "text"
+    #secret = "adminpwd"
 #}
 
 #
@@ -222,20 +222,20 @@ general: {
 # need an external script to feed data on those ports, of course.
 #
 #rtp-multicast: {
-	#type = "rtp"
-	#id = 20
-	#description = "Opus/VP8 live multicast stream sample"
-	#audio = true
-	#video = true
-	#audioport = 5002
-	#audiomcast = "232.3.4.5"
-	#audiopt = 111
-	#audiortpmap = "opus/48000/2"
-	#videoport = 5004
-	#videomcast = "232.3.4.5"
-	#videopt = 100
-	#videortpmap = "VP8/90000"
-	#secret = "adminpwd"
+    #type = "rtp"
+    #id = 20
+    #description = "Opus/VP8 live multicast stream sample"
+    #audio = true
+    #video = true
+    #audioport = 5002
+    #audiomcast = "232.3.4.5"
+    #audiopt = 111
+    #audiortpmap = "opus/48000/2"
+    #videoport = 5004
+    #videomcast = "232.3.4.5"
+    #videopt = 100
+    #videortpmap = "VP8/90000"
+    #secret = "adminpwd"
 #}
 
 #
@@ -248,40 +248,52 @@ general: {
 # Again, you can override payload type, rtpmap and/or fmtp, if needed.
 #
 #rtsp-test: {
-	#type = "rtsp"
-	#id = 99
-	#description = "RTSP Test"
-	#audio = false
-	#video = true
-	#url = "rtsp://127.0.0.1:8554/unicast"
-	#rtsp_user = "username"
-	#rtsp_pwd = "password"
-	#secret = "adminpwd"
-	#rtsp_reconnect_delay = 5
-	#rtsp_session_timeout = 0
-	#rtsp_timeout = 10
-	#rtsp_conn_timeout = 5
+    #type = "rtsp"
+    #id = 99
+    #description = "RTSP Test"
+    #audio = false
+    #video = true
+    #url = "rtsp://127.0.0.1:8554/unicast"
+    #rtsp_user = "username"
+    #rtsp_pwd = "password"
+    #secret = "adminpwd"
+    #rtsp_reconnect_delay = 5
+    #rtsp_session_timeout = 0
+    #rtsp_timeout = 10
+    #rtsp_conn_timeout = 5
 #}
 
 h264-video: {
-   	type = "rtp"
-   	id = 100
-	video = true
-	audio = false
-	data = false
-	videortpmap = "H264/90000"
-	videopt = 100
-	videoport = 5104
-   	description = "h264 encoded video stream"
+       type = "rtp"
+       id = 100
+    video = true
+    audio = false
+    data = false
+    videortpmap = "H264/90000"
+    videopt = 100
+    videoport = 5104
+       description = "h264 encoded video"
 }
 h264-nn: {
-   	type = "rtp"
-   	id = 200
-	video = true
-	audio = false
-	data = false
-	videopt = 100
-	videortpmap = "H264/90000"
-	videoport = 5105
-	description = "nnstreamer output"
+    type = "rtp"
+    id = 200
+    description = "h264 encoded video with PrintNanny Vision"
+    media = (
+        {
+            type = "video"
+            mid = "v1"
+            label = "h264 encoded video"
+            port = 5105
+            pt = 100
+            rtpmap = "H264/90000"
+        },
+        {
+            type = "video"
+            mid = "v2"
+            label = "h264 encoded PrintNanny Vision"
+            port = 5106
+            pt = 100
+            rtpmap = "H264/90000"
+        }
+    )
 }

@@ -24,17 +24,18 @@ IMAGE_FEATURES = "\
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 
 IMAGE_INSTALL = "\
-    packagegroup-core-boot \
+    kernel-devicetree \
+    kernel-modules \
     packagegroup-base-extended \
+    packagegroup-bitsy \
+    packagegroup-bitsy-cloudinit \
+    packagegroup-core-base-utils \
+    packagegroup-core-boot \
     packagegroup-core-full-cmdline \
     packagegroup-printnanny-core \
     packagegroup-printnanny-cv \
+    packagegroup-printnanny-utils \
     packagegroup-printnanny-webrtc \
-    packagegroup-core-base-utils \
-    packagegroup-bitsy \
-    packagegroup-bitsy-cloudinit \
-    kernel-modules \
-    kernel-devicetree \
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 

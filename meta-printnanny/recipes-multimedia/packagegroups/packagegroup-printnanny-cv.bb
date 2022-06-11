@@ -7,7 +7,5 @@ inherit packagegroup
 
 # removed while debugging webrtc stack: nnstreamer, tensorflow-lite
 RDEPENDS:${PN} = "\
-    gstreamer-apps \
-    libcamera-apps \
-    janus-gateway \
+    nnstreamer \
 "

@@ -24,4 +24,4 @@ do_install(){
 }
 
 FILES:${PN} = "${datadir} ${bindir}"
-RDEPENDS:${PN} = "nnstreamer"
+RDEPENDS:${PN} = "nnstreamer nnstreamer-tensorflow-lite"

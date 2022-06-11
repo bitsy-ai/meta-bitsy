@@ -7,6 +7,6 @@ inherit packagegroup
 
 # removed while debugging webrtc stack: nnstreamer, tensorflow-lite
 RDEPENDS:${PN} = "\
-    nnstreamer \
     nnstreamer-models \
+    v4l-utils \
 "

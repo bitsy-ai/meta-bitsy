@@ -43,6 +43,7 @@ if [ -f "$JANUS_TOKEN_FILE" ]; then
 else
     SECRET=$(openssl rand -base64 32)
     mkdir -p /etc/systemd/system/janus-gateway.service.d/
+    mkdir -p /etc/systemd/system/octoprint.service.d/
     echo "[Service]" > "$JANUS_TOKEN_FILE"
     echo -n "$SECRET" | systemd-creds encrypt --name janus-edge-api-token -p - - >> "$JANUS_TOKEN_FILE"
     echo "<4>printnanny-generator[$$]: Created $JANUS_TOKEN_FILE" > /dev/kmsg

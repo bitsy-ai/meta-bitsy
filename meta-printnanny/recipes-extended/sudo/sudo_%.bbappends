@@ -1,11 +1,12 @@
-inherit extrausers
-
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 LICENSE = "AGPL-3.0-or-later"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
+DESCRIPTION = "PrintNannny sudoers.d rules"
+inherit extrausers
 
 SRC_URI = "\
     file://000_alias \
 "
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 PRINTNANNY_USER ??= "printnanny"
 
@@ -33,12 +34,9 @@ EXTRA_USERS_PARAMS += "\
     usermod -a -G video${PRINTNANNY_USER}; \
 "
 
-do_compile() {
+do_install:append(){
     echo "${@' '.join('${SUDOERSD_RULES}'.split())}" > "${WORKDIR}/020_printnanny_rules"
-}
-
-do_install(){
-    install -d "${D}/etc/sudoers.d"
-    install -m 0644 "${WORKDIR}/000_alias" "${D}/etc/sudoers.d/000_alias"
-    install -m 0644 "${WORKDIR}/020_printnanny_rules" "${D}/etc/sudoers.d/020_printnanny_rules"
+    install -d "${D}${sysconfdir}/sudoers.d"
+    install -m 0644 "${WORKDIR}/000_alias" "${D}${sysconfdir}/sudoers.d/000_alias"
+    install -m 0644 "${WORKDIR}/020_printnanny_rules" "${D}${sysconfdir}/sudoers.d/020_printnanny_rules"
 }

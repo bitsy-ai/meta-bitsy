@@ -1,4 +1,3 @@
----
 merge_how:
   - name: list
     settings: [append]

@@ -17,3 +17,5 @@ do_install:append() {
 
 SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
+FILES:${PN} += "/home/printnanny/.octoprint"
+RDEPENDS:${PN} = "python3-octoprint-nanny"

@@ -12,10 +12,10 @@ if [ -z "$MERGE_STRATEGY" ]; then
     echo "cloud-init merge_how strategy not found in $USER_DATA_FILE. Generating..."
     cat <<EOF >> $USER_DATA_FILE
 merge_how:
-- name: list
-settings: [append]
-- name: dict
-settings: [no_replace, recurse_list]
+  - name: list
+    settings: [append]
+  - name: dict
+    settings: [no_replace, recurse_list]
 
 EOF
     echo "Success! cloud-init wrote merge_how strategy to $USER_DATA_FILE"

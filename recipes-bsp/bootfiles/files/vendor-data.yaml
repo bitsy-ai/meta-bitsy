@@ -1,0 +1,15 @@
+---
+merge_how:
+  - name: list
+    settings: [append]
+  - name: dict
+    settings: [no_replace, recurse_list]
+
+users:
+  - name: printnanny
+    lock_passwd: True
+    gecos: PrintNanny
+    groups:
+      [adm, audio, dialout, gpio, i2c, input, netdev, plugdev, spi, sudo, video]
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash

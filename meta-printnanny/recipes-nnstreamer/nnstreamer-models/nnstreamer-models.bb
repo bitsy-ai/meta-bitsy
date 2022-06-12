@@ -22,7 +22,7 @@ do_install(){
     install -d ${D}${bindir}
     install -m 0644 ${WORKDIR}/model.tflite ${D}${datadir}/printnanny/model/model.tflite
     install -m 0644 ${WORKDIR}/dict.txt ${D}${datadir}/printnanny/model/dict.txt
-    install -m 0644 ${WORKDIR}/tflite_metadata.json ${D}${datadir}/printnanny/model/dict.txt
+    install -m 0644 ${WORKDIR}/tflite_metadata.json ${D}${datadir}/printnanny/model/tflite_metadata.json
     install -m 0755 ${WORKDIR}/nnstreamer-rtph264pay.sh ${D}${bindir}/nnstreamer-rtph264pay
     install -m 0644 "${WORKDIR}/nnstreamer.service" "${D}${systemd_system_unitdir}/nnstreamer.service"
 }

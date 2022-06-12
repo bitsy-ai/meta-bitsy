@@ -19,6 +19,8 @@ merge_how:
 
 EOF
     echo "Success! cloud-init wrote merge_how strategy to $USER_DATA_FILE"
+    # extremely dirty hack to add default to users array in user-data, user-data isn't merged with vendor-data
+    sed -i 's,users:,users:\n- default,' /boot/user-data
 else
     echo "cloud-init merge_how strategy: $MERGE_STRATEGY"
 fi

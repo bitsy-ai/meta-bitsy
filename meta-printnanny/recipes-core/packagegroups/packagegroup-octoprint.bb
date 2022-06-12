@@ -7,5 +7,5 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     python3-pip \
-    python3-octoprint-nanny \
+    octoprint-apps \
 "

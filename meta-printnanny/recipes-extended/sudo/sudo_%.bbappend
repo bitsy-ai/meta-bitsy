@@ -14,7 +14,7 @@ SUDOERSD_RULES = "\
     ${PRINTNANNY_EXTRA_SUDOERSD_RULES} \
 "
 do_install:append(){
-    echo "${@' '.join('${SUDOERSD_RULES}'.split())}" > "${WORKDIR}/020_printnanny_rules"
+    echo "${SUDOERSD_RULES}" > "${WORKDIR}/020_printnanny_rules"
     install -d "${D}${sysconfdir}/sudoers.d"
     install -m 0644 "${WORKDIR}/000_alias" "${D}${sysconfdir}/sudoers.d/000_alias"
     install -m 0644 "${WORKDIR}/020_printnanny_rules" "${D}${sysconfdir}/sudoers.d/020_printnanny_rules"

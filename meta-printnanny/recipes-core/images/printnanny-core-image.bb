@@ -20,6 +20,22 @@ IMAGE_FEATURES = "\
     ssh-server-openssh \
 "
 
+PRINTNANNY_USER ??= "printnanny"
+IMAGE_CLASSES += "extrausers"
+EXTRA_USERS_PARAMS += "\
+    useradd ${PRINTNANNY_USER}; \
+    usermod -a -G adm ${PRINTNANNY_USER}; \
+    usermod -a -G dialout ${PRINTNANNY_USER}; \
+    usermod -a -G i2c ${PRINTNANNY_USER}; \
+    usermod -a -G input ${PRINTNANNY_USER}; \
+    usermod -a -G netdev ${PRINTNANNY_USER}; \
+    usermod -a -G plugdev ${PRINTNANNY_USER}; \
+    usermod -a -G spi ${PRINTNANNY_USER}; \
+    usermod -a -G sudo ${PRINTANNNY_USER}; \
+    usermod -a -G video${PRINTNANNY_USER}; \
+"
+
+
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 

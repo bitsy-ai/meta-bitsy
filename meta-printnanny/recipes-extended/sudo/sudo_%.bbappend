@@ -1,14 +1,7 @@
-LICENSE = "AGPL-3.0-or-later"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
-DESCRIPTION = "PrintNannny sudoers.d rules"
-inherit extrausers
-
-SRC_URI = "\
+SRC_URI += "\
     file://000_alias \
 "
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-
-PRINTNANNY_USER ??= "printnanny"
 
 PRINTNANNY_USER_SUDOERSD_RULES = "\
     ${PRINTNANNY_USER} ALL=(ALL) NOPASSWD:OCTOPRINT_SERVICES,PRINTNANNY_SERVICES,WEB_SERVICES,REBOOT \
@@ -20,20 +13,6 @@ SUDOERSD_RULES = "\
     ${PRINTNANNY_USER_SUDOERSD_RULES} \
     ${PRINTNANNY_EXTRA_SUDOERSD_RULES} \
 "
-
-EXTRA_USERS_PARAMS += "\
-    useradd ${PRINTNANNY_USER}; \
-    usermod -a -G adm ${PRINTNANNY_USER}; \
-    usermod -a -G dialout ${PRINTNANNY_USER}; \
-    usermod -a -G i2c ${PRINTNANNY_USER}; \
-    usermod -a -G input ${PRINTNANNY_USER}; \
-    usermod -a -G netdev ${PRINTNANNY_USER}; \
-    usermod -a -G plugdev ${PRINTNANNY_USER}; \
-    usermod -a -G spi ${PRINTNANNY_USER}; \
-    usermod -a -G sudo ${PRINTANNNY_USER}; \
-    usermod -a -G video${PRINTNANNY_USER}; \
-"
-
 do_install:append(){
     echo "${@' '.join('${SUDOERSD_RULES}'.split())}" > "${WORKDIR}/020_printnanny_rules"
     install -d "${D}${sysconfdir}/sudoers.d"

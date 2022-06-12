@@ -9,8 +9,6 @@ SRC_URI:append = "\
     file://cloud-init-local.service \
     file://cloud-init.service \
     file://cloud-config.service \
-    file://cloud-init-merge.sh \
-    file://cloud-init-default.service \
 "
 PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
@@ -29,8 +27,4 @@ do_install:append(){
     install -m 0644 ${WORKDIR}/cloud-init-local.service ${D}${systemd_system_unitdir}/cloud-init-local.service
     install -m 0644 ${WORKDIR}/cloud-init.service ${D}${systemd_system_unitdir}/cloud-init.service
     install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
-    install -m 0755 ${WORKDIR}/cloud-init-merge.sh ${D}${bindir}/cloud-init-merge
-    install -m 0644 ${WORKDIR}/cloud-init-default.service ${D}${systemd_system_unitdir}/cloud-init-default.service
 }
-
-SYSTEMD_SERVICE:${PN} += "cloud-init-default.service"

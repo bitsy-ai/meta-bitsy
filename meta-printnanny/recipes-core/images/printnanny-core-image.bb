@@ -23,7 +23,7 @@ IMAGE_FEATURES = "\
 PRINTNANNY_USER ??= "printnanny"
 IMAGE_CLASSES += "extrausers"
 EXTRA_USERS_PARAMS += "\
-    useradd ${PRINTNANNY_USER}; \
+    useradd --create-home ${PRINTNANNY_USER}; \
     usermod -a -G adm ${PRINTNANNY_USER}; \
     usermod -a -G dialout ${PRINTNANNY_USER}; \
     groupadd i2c; \

@@ -16,6 +16,7 @@ merge_how:
 settings: [append]
 - name: dict
 settings: [no_replace, recurse_list]
+
 EOF
     echo "Success! cloud-init wrote merge_how strategy to $USER_DATA_FILE"
 else

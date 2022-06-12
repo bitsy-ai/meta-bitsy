@@ -13,7 +13,6 @@ ExecStart=/bin/bash -c "JANUS_EDGE_HOSTNAME=$(cat /etc/hostname) \
     --basedir /home/printnanny/.octoprint \
     --host 127.0.0.1 \
     --port 5001"
-
 Restart=on-failure
 RestartSec=30
 User=printnanny

@@ -12,7 +12,18 @@ folder:
 
 system:
   actions:
-  - name: Update PrintNanny OS
-    action: update_printnanny_os
-    command: sudo systemctl restart printnanny-update
-    confirm: You are about to update PrintNanny OS. System will reboot.
+    - name: Update PrintNanny OS
+      action: update_printnanny_os
+      command: sudo systemctl restart printnanny-update
+      confirm: You are about to update PrintNanny OS. System will reboot.
+
+events:
+  subscriptions:
+    - command: sudo systemctl restart nnstreamer.service
+      debug: true
+      event: plugin_octoprint_nanny_nnstreamer_start
+      type: system
+    - command: sudo systemctl stop nnstreamer.service
+      debug: true
+      event: plugin_octoprint_nanny_nnstreamer_stop
+      type: system

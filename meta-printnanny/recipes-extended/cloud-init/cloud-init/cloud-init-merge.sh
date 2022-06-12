@@ -6,21 +6,11 @@
 # merge lists (append) and dictionaries (recursively), so user-data is merged with service users
 
 USER_DATA_FILE="/boot/user-data"
-MERGE_STRATEGY="$(cat $USER_DATA_FILE | grep merge_how)"
+USER_DATA_BACKUP="$USER_DATA_FILE.bak"
 
-if [ -z "$MERGE_STRATEGY" ]; then
-    echo "cloud-init merge_how strategy not found in $USER_DATA_FILE. Generating..."
-    cat <<EOF >> $USER_DATA_FILE
-merge_how:
-  - name: list
-    settings: [append]
-  - name: dict
-    settings: [no_replace, recurse_list]
-
-EOF
-    echo "Success! cloud-init wrote merge_how strategy to $USER_DATA_FILE"
-    # extremely dirty hack to add default to users array in user-data, user-data isn't merged with vendor-data
-    sed -i 's,users:,users:\n- default,' /boot/user-data
+if [ -f "$USER_DATA_BACKUP" ]; then
+    echo "$USER_DATA_BACKUP exists, no modifications to $USER_DATA_FILE needed"
 else
-    echo "cloud-init merge_how strategy: $MERGE_STRATEGY"
+    cp "$USER_DATA_FILE" "$USER_DATA_BACKUP"
+    sed -i 's,users:,users:\n- default,' "$USER_DATA_FILE"
 fi

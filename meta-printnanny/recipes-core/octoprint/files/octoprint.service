@@ -6,11 +6,13 @@ Wants=network.target
 [Service]
 Type=simple
 SyslogIdentifier=octoprint
+ExecStartPre=-mkdir /data/octoprint/
+ExecStartPre=cp --no-clobber /etc/octorint/config.yaml /data/octoprint/config.yaml
 ExecStart=/bin/bash -c "JANUS_EDGE_HOSTNAME=$(cat /etc/hostname) \
     JANUS_EDGE_API_TOKEN=$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-api-token) \
     /usr/bin/octoprint serve \
-    --config /home/printnanny/.octoprint/config.yaml \
-    --basedir /home/printnanny/.octoprint \
+    --config /data/octoprint/config.yaml \
+    --basedir /data/octoprint/ \
     --host 127.0.0.1 \
     --port 5001"
 Restart=on-failure

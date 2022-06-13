@@ -52,8 +52,8 @@ then
         {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper /etc || \
             echo "PREINIT: Mounting etc-overlay failed!"
 
-    mkdir -p BITSY_OVERLAYFS_MOUNT_POINT/overlay-home/upper
-    mkdir -p BITSY_OVERLAYFS_MOUNT_POINT/overlay-home/work
+    mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper
+    mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work
     mount -n -t overlay \
         -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper \
         -o lowerdir=/home \

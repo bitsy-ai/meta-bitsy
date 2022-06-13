@@ -2,6 +2,6 @@
 # long-description: Creates a partitioned SD card image for use with
 # Raspberry Pi. Boot files are located in the first vfat partition.
 
-part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20 --no-fstab-update
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 --no-fstab-update 
-part /data --ondisk mmcblk0 --size 256M --fstype=ext4 --label data --align 4096 --no-fstab-update
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096
+part /data --ondisk mmcblk0 --size 256M --fstype=ext4 --label data --align 4096

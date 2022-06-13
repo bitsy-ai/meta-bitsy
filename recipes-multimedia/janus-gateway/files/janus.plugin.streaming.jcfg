@@ -263,26 +263,15 @@ general: {
     #rtsp_conn_timeout = 5
 #}
 
-h264-video: {
-       type = "rtp"
-       id = 100
-    video = true
-    audio = false
-    data = false
-    videortpmap = "H264/90000"
-    videopt = 100
-    videoport = 5104
-       description = "h264 encoded video"
-}
 h264-nn: {
     type = "rtp"
     id = 200
-    description = "h264 encoded video with PrintNanny Vision"
+    description = "PrintNanny Vision (h264 encoded)"
     media = (
         {
             type = "video"
             mid = "v1"
-            label = "h264 encoded video"
+            label = "h264-encoded video"
             port = 5105
             pt = 100
             rtpmap = "H264/90000"
@@ -290,7 +279,7 @@ h264-nn: {
         {
             type = "video"
             mid = "v2"
-            label = "h264 encoded PrintNanny Vision"
+            label = "PrintNanny Vision"
             port = 5106
             pt = 100
             rtpmap = "H264/90000"

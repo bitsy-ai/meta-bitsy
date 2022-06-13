@@ -49,22 +49,24 @@ SYSTEMD_AUTO_ENABLE = "enable"
 
 PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
-DEPENDS += "python3-pyyaml-native \
-            python3-requests-native \
-            python3-jinja2-native \
-           "
+DEPENDS += "\
+    python3-pyyaml-native \
+    python3-requests-native \
+    python3-jinja2-native \
+"
 
-RDEPENDS:${PN} = "python3 \
-                  python3-jinja2 \
-                  python3-configobj \
-                  python3-requests \
-                  python3-jsonpatch \
-                  python3-jsonschema \
-                  python3-pyyaml \
-                  python3-oauthlib \
-                  python3-urllib3 \
-                  bash \
-                 "
+RDEPENDS:${PN} = "\
+    python3 \
+    python3-jinja2 \
+    python3-configobj \
+    python3-requests \
+    python3-jsonpatch \
+    python3-jsonschema \
+    python3-pyyaml \
+    python3-oauthlib \
+    python3-urllib3 \
+    bash \
+"
 # overrides setuptools3_legacy bbclass to remove:
 # build --build-base=${B} install --skip-build ${SETUPTOOLS_INSTALL_ARGS}
 setuptools3_legacy_do_install() {

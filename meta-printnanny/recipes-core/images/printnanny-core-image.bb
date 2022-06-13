@@ -20,23 +20,15 @@ IMAGE_FEATURES = "\
     ssh-server-openssh \
 "
 
-PRINTNANNY_USER ??= "printnanny"
+PRINTNANNY_USER = "printnanny"
 IMAGE_CLASSES += "extrausers"
 EXTRA_USERS_PARAMS += "\
-    useradd --create-home ${PRINTNANNY_USER}; \
-    usermod -a -G adm ${PRINTNANNY_USER}; \
-    usermod -a -G dialout ${PRINTNANNY_USER}; \
     groupadd i2c; \
-    usermod -a -G i2c ${PRINTNANNY_USER}; \
-    usermod -a -G input ${PRINTNANNY_USER}; \
     groupadd netdev; \
-    usermod -a -G netdev ${PRINTNANNY_USER}; \
-    usermod -a -G plugdev ${PRINTNANNY_USER}; \
-    groupadd spi; \
-    usermod -a -G spi ${PRINTNANNY_USER}; \
-    usermod -a -G sudo ${PRINTANNNY_USER}; \
     groupadd video; \
-    usermod -a -G video${PRINTNANNY_USER}; \
+    groupadd spi; \
+    groupadd video; \
+    useradd -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video ${PRINTNANNY_USER}; \
 "
 
 

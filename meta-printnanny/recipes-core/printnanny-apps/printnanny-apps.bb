@@ -12,8 +12,19 @@ SRC_URI = " \
 "
 
 RDEPENDS:${PN} += "printnanny-cli"
+PRINTNANNY_USER = "printnanny"
 
 inherit systemd
+
+inherit extrausers
+EXTRA_USERS_PARAMS += "\
+  groupadd i2c; \
+  groupadd netdev; \
+  groupadd video; \
+  groupadd spi; \
+  groupadd video; \
+  useradd -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video ${PRINTNANNY_USER}; \
+"
 
 do_install() {
   install -d "${D}${systemd_system_unitdir}"
@@ -23,16 +34,15 @@ do_install() {
   install -d "${D}${systemd_unitdir}/system-generators"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-dash.service.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
+  install -d "${D}/home/${PRINTNANNY_USER}"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
-
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
-
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
 }
 
-FILES:${PN} = "${datadir}/* ${sysconfdir}/*"
+FILES:${PN} = "${datadir}/* ${sysconfdir}/* /home/${PRINTANNNY_USER}"
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 

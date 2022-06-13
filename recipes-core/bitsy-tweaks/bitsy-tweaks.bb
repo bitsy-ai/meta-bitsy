@@ -7,7 +7,7 @@ SRC_URI = "\
   file://getty@tty1.service.d/ \
   file://bitsy-growfs.service \
   file://bitsy-growfs.sh \
-  file://bitsy-overlayfs-all.target.in \
+  file://bitsy-overlayfs-all.service.in \
   file://bitsy-overlayfs-create-dirs.service.in \
   file://bitsy-overlayfs-unit.mount.in \
 "
@@ -18,7 +18,7 @@ inherit systemd
 
 OVERLAYFS_CREATE_DIRS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-create-dirs.service.in"
 OVERLAYFS_MOUNT_UNIT_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-unit.mount.in"
-OVERLAYFS_ALL_OVERLAYS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-all.target.in"
+OVERLAYFS_ALL_OVERLAYS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-all.service.in"
 
 OVERLAYFS_MOUNT_POINT[etc] = "/data/etc"
 OVERLAYFS_WRITABLE_PATHS[etc] = "/etc"
@@ -38,5 +38,6 @@ do_install:append() {
 }
 
 FILES:${PN} = "${systemd_system_unitdir}/* ${sysconfdir}/* ${sbindir}/*"
-SYSTEMD_SERVICE:${PN} = "bitsy-growfs.service"
-SYSTEMD_AUTO_ENABLE = "disable"
+# overlayfs class creates *-create-upper-dir.service, *.mount, and ${PN}-overlays.service
+SYSTEMD_SERVICE:${PN}:append = " bitsy-growfs.service"
+SYSTEMD_AUTO_ENABLE = "enable"

@@ -25,7 +25,7 @@
 # Regardless which mode you choose, update and migration strategy of configuration files under /etc
 # overlay is out of scope of this class
 
-ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-overlayfs", "create_overlayfs_etc_preinit;", "", d)}'
+ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-overlayfs", "create_bitsy_overlayfs_preinit;", "", d)}'
 IMAGE_FEATURES_CONFLICTS_bitsy-overlayfs = "${@ 'package-management' if bb.utils.to_boolean(d.getVar('OVERLAYFS_ETC_USE_ORIG_INIT_NAME'), True) else ''}"
 
 OVERLAYFS_ETC_MOUNT_POINT ??= ""
@@ -35,7 +35,7 @@ OVERLAYFS_ETC_USE_ORIG_INIT_NAME ??= "1"
 OVERLAYFS_ETC_MOUNT_OPTIONS ??= "defaults"
 OVERLAYFS_ETC_INIT_TEMPLATE ??= "${COREBASE}/meta/files/overlayfs-etc-preinit.sh.in"
 
-python create_overlayfs_etc_preinit() {
+python create_bitsy_overlayfs_preinit() {
     overlayEtcMountPoint = d.getVar("OVERLAYFS_ETC_MOUNT_POINT")
     overlayEtcFsType = d.getVar("OVERLAYFS_ETC_FSTYPE")
     overlayEtcDevice = d.getVar("OVERLAYFS_ETC_DEVICE")
@@ -71,6 +71,7 @@ python create_overlayfs_etc_preinit() {
         'PARTED_DEVICE': overlayEtcDevice.split('p')[0],
         'PARTED_PART': overlayEtcDevice.split('p')[1]
     }
+    
 
     if useOrigInit:
         # rename original /sbin/init
@@ -80,6 +81,7 @@ python create_overlayfs_etc_preinit() {
         preinitPath = origInit
 
     with open(preinitPath, 'w') as f:
+        bb.log(args)
         f.write(PreinitTemplate.format(**args))
     os.chmod(preinitPath, 0o755)
 }

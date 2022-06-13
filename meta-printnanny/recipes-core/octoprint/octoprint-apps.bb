@@ -12,7 +12,7 @@ PRINTNANNY_USER = "printnanny"
 do_install:append() {
     install -d ${D}${sysconfdir}/octoprint
     install -d ${D}${systemd_system_unitdir}
-    install -d ${D}/home/${PRINTNANNY_USER}/.octoprint
+    install -d -o ${PRINTNANNY_USER} ${D}/home/${PRINTNANNY_USER}/.octoprint
     install -m 0755 ${WORKDIR}/config.yaml ${D}/home/${PRINTNANNY_USER}/.octoprint/config.yaml
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
 }

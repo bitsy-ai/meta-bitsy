@@ -7,10 +7,24 @@ SRC_URI = "\
   file://getty@tty1.service.d/ \
   file://bitsy-growfs.service \
   file://bitsy-growfs.sh \
+  file://bitsy-overlayfs-all.target.in \
+  file://bitsy-overlayfs-create-dirs.service.in \
+  file://bitsy-overlayfs-unit.mount.in \
 "
 
 PV = "r0"
+inherit overlayfs
 inherit systemd
+
+OVERLAYFS_CREATE_DIRS_TEMPLATE = "bitsy-overlayfs-create-dirs.service.in"
+OVERLAYFS_MOUNT_UNIT_TEMPLATE = "bitsy-overlayfs-unit.mount.in"
+OVERLAYFS_ALL_OVERLAYS_TEMPLATE ??= "bitsy-overlayfs-all.service.in"
+
+OVERLAYFS_MOUNT_POINT[etc] = "/data/etc"
+OVERLAYFS_WRITABLE_PATHS[etc] = "/etc"
+
+OVERLAYFS_MOUNT_POINT[home] = "/data/home"
+OVERLAYFS_WRITABLE_PATHS[home] = "/home"
 
 do_install:append() {
   install -d ${D}${sysconfdir}/bitsy

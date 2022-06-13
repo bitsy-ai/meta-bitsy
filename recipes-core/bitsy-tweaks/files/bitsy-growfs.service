@@ -1,13 +1,14 @@
 [Unit]
 Description=Resize last partition/fs to fill disk
+Before=local-fs-pre.target
 DefaultDependencies=no
-Conflicts=shutdown.target
-After=systemd-remount-fs.service
-ConditionPathExists=!/etc/bitsy/growfs.done
-Before=cloud-init-local.service cloud-init.service cloud-init.target
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
-StandardOutput=journal+console
+TimeoutSec=infinity
 ExecStart=/usr/sbin/bitsy-growfs
+ExecStart=/bin/systemctl --no-reload disable %n
+StandardOutput=journal+console
+
+[Install]
+RequiredBy=local-fs-pre.target

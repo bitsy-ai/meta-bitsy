@@ -25,7 +25,7 @@
 # Regardless which mode you choose, update and migration strategy of configuration files under /etc
 # overlay is out of scope of this class
 
-ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("IMAGE_FEATURES", "bitsy-overlayfs", "create_overlayfs_etc_preinit;", "", d)}'
+ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-overlayfs", "create_overlayfs_etc_preinit;", "", d)}'
 IMAGE_FEATURES_CONFLICTS_bitsy-overlayfs = "${@ 'package-management' if bb.utils.to_boolean(d.getVar('OVERLAYFS_ETC_USE_ORIG_INIT_NAME'), True) else ''}"
 
 OVERLAYFS_ETC_MOUNT_POINT ??= ""
@@ -64,10 +64,10 @@ python create_overlayfs_etc_preinit() {
         'OVERLAYFS_ETC_MOUNT_OPTIONS': d.getVar('OVERLAYFS_ETC_MOUNT_OPTIONS'),
         'OVERLAYFS_ETC_FSTYPE': overlayEtcFsType,
         'OVERLAYFS_ETC_DEVICE': overlayEtcDevice,
-        'SBIN_INIT_NAME': initBaseName + origInitNameSuffix if useOrigInit else initBaseName
+        'SBIN_INIT_NAME': initBaseName + origInitNameSuffix if useOrigInit else initBaseName,
         'START_BLOCK': '/sys/block/{0}/{1}/start'.format(devicename, devicenamepart),
         'SIZE_BLOCK': '/sys/block/{0}/{1}/size'.format(devicename, devicenamepart),
-        'END_BLOCK': '/sys/block/{0}/size'.format(devicename)
+        'END_BLOCK': '/sys/block/{0}/size'.format(devicename),
         'PARTED_DEVICE': overlayEtcDevice.split('p')[0],
         'PARTED_PART': overlayEtcDevice.split('p')[1]
     }

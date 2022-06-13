@@ -14,7 +14,7 @@ SRC_URI = "\
 
 PV = "r0"
 inherit overlayfs
-inherit systemd
+# inherit systemd
 
 OVERLAYFS_CREATE_DIRS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-create-dirs.service.in"
 OVERLAYFS_MOUNT_UNIT_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-unit.mount.in"
@@ -29,12 +29,10 @@ do_install:append() {
   install -d ${D}${systemd_system_unitdir}/sysinit.target.wants/
   install -d ${D}${sbindir}
   install -m 0644 ${WORKDIR}/getty@tty1.service.d/50-noclear.conf ${D}${systemd_system_unitdir}/getty@tty1.service.d/50-noclear.conf
-  install -m 0644 ${WORKDIR}/bitsy-growfs.service ${D}${systemd_system_unitdir}/bitsy-growfs.service
   install -m 0755 ${WORKDIR}/bitsy-growfs.sh ${D}${sbindir}/bitsy-growfs
-  ln -sf ${D}${systemd_system_unitdir}/bitsy-growfs.service ${D}${systemd_system_unitdir}/sysinit.target.wants/bitsy-growfs.service 
 }
 
 FILES:${PN} = "${systemd_system_unitdir}/* ${sysconfdir}/* ${sbindir}/*"
 # overlayfs class creates *-create-upper-dir.service, *.mount, and ${PN}-overlays.service
-SYSTEMD_SERVICE:${PN}:append = " bitsy-growfs.service"
-SYSTEMD_AUTO_ENABLE = "enable"
+# SYSTEMD_SERVICE:${PN}:append = " bitsy-growfs.service"
+# SYSTEMD_AUTO_ENABLE = "enable"

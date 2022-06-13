@@ -23,7 +23,7 @@ EXTRA_USERS_PARAMS += "\
   groupadd video; \
   groupadd spi; \
   groupadd video; \
-  useradd -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video ${PRINTNANNY_USER}; \
+  useradd -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video printnanny; \
 "
 
 do_install() {
@@ -42,7 +42,7 @@ do_install() {
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
 }
 
-FILES:${PN} = "${datadir} ${sysconfdir} /home/${PRINTANNNY_USER}"
+FILES:${PN} = "${datadir} ${sysconfdir} /home/printnanny"
 
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"

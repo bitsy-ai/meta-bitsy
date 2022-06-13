@@ -4,11 +4,10 @@ DefaultDependencies=no
 Conflicts=shutdown.target
 After=systemd-remount-fs.service
 ConditionPathExists=!/etc/bitsy/growfs.done
+Before=cloud-init-local.service cloud-init.service cloud-init.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 StandardOutput=journal+console
-ExecStart=/bin/bash -c "yes | parted ---pretend-input-tty /dev/mmcblk0 resizepart 3 100%"
-ExecStart=/sbin/resize2fs /dev/mmcblk0p3
-ExecStart=/bin/bash -c "echo $(date +%s) > /etc/bitsy/growfs.done"
+ExecStart=/usr/sbin/bitsy-growfs

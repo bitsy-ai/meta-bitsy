@@ -12,7 +12,6 @@ SRC_URI = " \
 "
 
 RDEPENDS:${PN} += "printnanny-cli"
-PRINTNANNY_USER = "printnanny"
 
 inherit systemd
 
@@ -24,7 +23,6 @@ do_install() {
   install -d "${D}${systemd_unitdir}/system-generators"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-dash.service.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
-  install -d "${D}/home/${PRINTNANNY_USER}"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
@@ -32,7 +30,7 @@ do_install() {
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
 }
 
-FILES:${PN} = "${datadir} ${sysconfdir} /home/printnanny"
+FILES:${PN} = "${datadir} ${sysconfdir}"
 
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"

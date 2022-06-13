@@ -20,9 +20,6 @@ OVERLAYFS_CREATE_DIRS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-create-dirs.service
 OVERLAYFS_MOUNT_UNIT_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-unit.mount.in"
 OVERLAYFS_ALL_OVERLAYS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-all.service.in"
 
-OVERLAYFS_MOUNT_POINT[etc] = "/data/etc"
-OVERLAYFS_WRITABLE_PATHS[etc] = "/etc"
-
 OVERLAYFS_MOUNT_POINT[home] = "/data/home"
 OVERLAYFS_WRITABLE_PATHS[home] = "/home"
 

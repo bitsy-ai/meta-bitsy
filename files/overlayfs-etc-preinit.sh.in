@@ -14,10 +14,9 @@ mkdir -p /var/run
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 
-IFS='p' read -a DISKPARTS <<< "{OVERLAYFS_ETC_DEVICE}"
-START_BLOCK=$(cat /sys/block/${DISKPARTS[0]}/{OVERLAYFS_ETC_DEVICE}/start)
-END_BLOCK=$(($START_BLOCK+$(cat /sys/block/${DISKPARTS[0]}/{OVERLAYFS_ETC_DEVICE}/size)))
-END_DISK=$(($(cat /sys/block/${DISKPARTS[0]}/size)-8))
+START_BLOCK=$(cat {START_BLOCK})
+END_BLOCK=$(($START_BLOCK+$(cat {SIZE_BLOCK})))
+END_DISK=$(($(cat {END_BLOCK})-8))
 
 if [ "$END_DISK" -gt "$END_BLOCK" ]
 then
@@ -25,8 +24,8 @@ then
     echo "Growing {OVERLAYFS_ETC_DEVICE} to fill disk $START_TS" > /dev/kmsg
     umount {OVERLAYFS_ETC_DEVICE}
     echo "Unmounted {OVERLAYFS_ETC_DEVICE}"
-    echo "Running: parted ---pretend-input-tty ${DISKPARTS[0]} resizepart ${DISKPARTS[1]} 100%"
-    parted ---pretend-input-tty "${DISKPARTS[0]}" resizepart "${DISKPARTS[1]}" 100%
+    echo "Running: parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%"
+    parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%
     echo "Grew {OVERLAYFS_ETC_DEVICE} partition to 100%"
     resize2fs -p {OVERLAYFS_ETC_DEVICE}
     echo "Finished resizing filesystem {OVERLAYFS_ETC_DEVICE}"

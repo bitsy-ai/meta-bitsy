@@ -5,12 +5,12 @@
 # because the latter already requires /etc to be mounted
 #
 # The configuration must be machine specific. You should at least set these three variables:
-#   OVERLAYFS_ETC_MOUNT_POINT ?= "/data"
-#   OVERLAYFS_ETC_FSTYPE ?= "ext4"
-#   OVERLAYFS_ETC_DEVICE ?= "/dev/mmcblk0p2"
+#   BITSY_OVERLAYFS_MOUNT_POINT ?= "/data"
+#   BITSY_OVERLAYFS_FSTYPE ?= "ext4"
+#   BITSY_OVERLAYFS_DEVICE ?= "/dev/mmcblk0p2"
 #
 # To control more mount options you should consider setting mount options:
-#   OVERLAYFS_ETC_MOUNT_OPTIONS ?= "defaults"
+#   BITSY_OVERLAYFS_MOUNT_OPTIONS ?= "defaults"
 #
 # The class provides two options for /sbin/init generation
 # 1. Default option is to rename original /sbin/init to /sbin/init.orig and place generated init under
@@ -18,7 +18,7 @@
 #    parameters in order to make it work, but it poses a restriction that package-management can't
 #    be used, becaause updating init manager would remove generated script
 # 2. If you are would like to keep original init as is, you can set
-#    OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
+#    BITSY_OVERLAYFS_USE_ORIG_INIT_NAME = "0"
 #    Then generated init will be named /sbin/preinit and you would need to extend you kernel parameters
 #    manually in your bootloader configuration.
 #
@@ -28,32 +28,32 @@
 REQUIRED_DISTRO_FEATURES += "bitsy-overlayfs"
 
 ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-overlayfs", "create_bitsy_overlayfs_preinit;", "", d)}'
-IMAGE_FEATURES_CONFLICTS_bitsy-overlayfs = "${@ 'package-management' if bb.utils.to_boolean(d.getVar('OVERLAYFS_ETC_USE_ORIG_INIT_NAME'), True) else ''} overlayfs-etc"
+IMAGE_FEATURES_CONFLICTS_bitsy-overlayfs = "${@ 'package-management' if bb.utils.to_boolean(d.getVar('BITSY_OVERLAYFS_USE_ORIG_INIT_NAME'), True) else ''} overlayfs-etc"
 DISTRO_FEATURES_CONFLICTS_bitsy-overlays = "overlayfs"
 
-OVERLAYFS_ETC_MOUNT_POINT ??= ""
-OVERLAYFS_ETC_FSTYPE ??= ""
-OVERLAYFS_ETC_DEVICE ??= ""
-OVERLAYFS_ETC_USE_ORIG_INIT_NAME ??= "1"
-OVERLAYFS_ETC_MOUNT_OPTIONS ??= "defaults"
-OVERLAYFS_ETC_INIT_TEMPLATE ??= "${COREBASE}/meta/files/overlayfs-etc-preinit.sh.in"
+BITSY_OVERLAYFS_MOUNT_POINT ??= ""
+BITSY_OVERLAYFS_FSTYPE ??= ""
+BITSY_OVERLAYFS_DEVICE ??= ""
+BITSY_OVERLAYFS_USE_ORIG_INIT_NAME ??= "1"
+BITSY_OVERLAYFS_MOUNT_OPTIONS ??= "defaults"
+BITSY_OVERLAYFS_INIT_TEMPLATE ??= "${COREBASE}/meta/files/overlayfs-etc-preinit.sh.in"
 
 python create_bitsy_overlayfs_preinit() {
-    overlayEtcMountPoint = d.getVar("OVERLAYFS_ETC_MOUNT_POINT")
-    overlayEtcFsType = d.getVar("OVERLAYFS_ETC_FSTYPE")
-    overlayEtcDevice = d.getVar("OVERLAYFS_ETC_DEVICE")
+    overlayEtcMountPoint = d.getVar("BITSY_OVERLAYFS_MOUNT_POINT")
+    overlayEtcFsType = d.getVar("BITSY_OVERLAYFS_FSTYPE")
+    overlayEtcDevice = d.getVar("BITSY_OVERLAYFS_DEVICE")
 
     if not overlayEtcMountPoint:
-        bb.fatal("OVERLAYFS_ETC_MOUNT_POINT must be set in your MACHINE configuration")
+        bb.fatal("BITSY_OVERLAYFS_MOUNT_POINT must be set in your MACHINE configuration")
     if not overlayEtcDevice:
-        bb.fatal("OVERLAYFS_ETC_DEVICE must be set in your MACHINE configuration")
+        bb.fatal("BITSY_OVERLAYFS_DEVICE must be set in your MACHINE configuration")
     if not overlayEtcFsType:
-        bb.fatal("OVERLAYFS_ETC_FSTYPE should contain a valid file system type on {0}".format(overlayEtcDevice))
+        bb.fatal("BITSY_OVERLAYFS_FSTYPE should contain a valid file system type on {0}".format(overlayEtcDevice))
 
-    with open(d.getVar("OVERLAYFS_ETC_INIT_TEMPLATE"), "r") as f:
+    with open(d.getVar("BITSY_OVERLAYFS_INIT_TEMPLATE"), "r") as f:
         PreinitTemplate = f.read()
 
-    useOrigInit = oe.types.boolean(d.getVar('OVERLAYFS_ETC_USE_ORIG_INIT_NAME'))
+    useOrigInit = oe.types.boolean(d.getVar('BITSY_OVERLAYFS_USE_ORIG_INIT_NAME'))
     preinitPath = oe.path.join(d.getVar("IMAGE_ROOTFS"), d.getVar("base_sbindir"), "preinit")
     initBaseName = oe.path.join(d.getVar("base_sbindir"), "init")
     origInitNameSuffix = ".orig"
@@ -63,10 +63,10 @@ python create_bitsy_overlayfs_preinit() {
     part = devicenamepart.split('p')[-1]
 
     args = {
-        'OVERLAYFS_ETC_MOUNT_POINT': overlayEtcMountPoint,
-        'OVERLAYFS_ETC_MOUNT_OPTIONS': d.getVar('OVERLAYFS_ETC_MOUNT_OPTIONS'),
-        'OVERLAYFS_ETC_FSTYPE': overlayEtcFsType,
-        'OVERLAYFS_ETC_DEVICE': overlayEtcDevice,
+        'BITSY_OVERLAYFS_MOUNT_POINT': overlayEtcMountPoint,
+        'BITSY_OVERLAYFS_MOUNT_OPTIONS': d.getVar('BITSY_OVERLAYFS_MOUNT_OPTIONS'),
+        'BITSY_OVERLAYFS_FSTYPE': overlayEtcFsType,
+        'BITSY_OVERLAYFS_DEVICE': overlayEtcDevice,
         'SBIN_INIT_NAME': initBaseName + origInitNameSuffix if useOrigInit else initBaseName,
         'START_BLOCK': '/sys/block/{0}/{1}/start'.format(devicename, devicenamepart),
         'SIZE_BLOCK': '/sys/block/{0}/{1}/size'.format(devicename, devicenamepart),
@@ -84,7 +84,6 @@ python create_bitsy_overlayfs_preinit() {
         preinitPath = origInit
 
     with open(preinitPath, 'w') as f:
-        bb.log(args)
         f.write(PreinitTemplate.format(**args))
     os.chmod(preinitPath, 0o755)
 }

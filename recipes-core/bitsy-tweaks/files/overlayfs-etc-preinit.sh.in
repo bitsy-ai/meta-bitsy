@@ -4,20 +4,6 @@ echo "PREINIT: Start"
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-if [ ! -f "$GROWFSDONE" ]
-then
-    START=$(/bin/date +%s)
-    echo "Starting bitsy-growfs at $START" > /dev/kmsg
-    /sbin/bitsy-growfs
-    STOP=$(/bin/date +%s)
-    GROWFS_DONE="/boot/growfs.done"
-    echo "$STOP" > "$GROWFS_DONE"
-    echo "Finished bitsy-growfs at $STOP (ran $(($STOP-$START)) seconds)" > /dev/kmsg
-else
-    DONE=$(cat /boot/growfs.done)
-    echo "Skipping bitsy-growfs, already done at $DONE" > /dev/kmsg
-fi
-
 mount -o remount,rw /
 
 mkdir -p /proc
@@ -27,6 +13,28 @@ mkdir -p /var/run
 
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
+
+IFS='p' read -a DISKPARTS <<< "{OVERLAYFS_ETC_DEVICE}"
+START_BLOCK=$(cat /sys/block/${DISKPARTS[0]}/{OVERLAYFS_ETC_DEVICE}/start)
+END_BLOCK=$(($START_BLOCK+$(cat /sys/block/${DISKPARTS[0]}/{OVERLAYFS_ETC_DEVICE}/size)))
+END_DISK=$(($(cat /sys/block/${DISKPARTS[0]}/size)-8))
+
+if [ "$END_DISK" -gt "$END_BLOCK" ]
+then
+    START_TS=$(/bin/date +%s)
+    echo "Growing {OVERLAYFS_ETC_DEVICE} to fill disk $START_TS" > /dev/kmsg
+    umount {OVERLAYFS_ETC_DEVICE}
+    echo "Unmounted {OVERLAYFS_ETC_DEVICE}"
+    echo "Running: parted ---pretend-input-tty ${DISKPARTS[0]} resizepart ${DISKPARTS[1]} 100%"
+    parted ---pretend-input-tty "${DISKPARTS[0]}" resizepart "${DISKPARTS[1]}" 100%
+    echo "Grew {OVERLAYFS_ETC_DEVICE} partition to 100%"
+    resize2fs -p {OVERLAYFS_ETC_DEVICE}
+    echo "Finished resizing filesystem {OVERLAYFS_ETC_DEVICE}"
+    STOP_TS=$(/bin/date +%s)
+    echo "Finished bitsy-growfs at $STOP_TS (ran $(($STOP_TS-$START_TS)) seconds)" > /dev/kmsg
+else
+    echo "Skipping growfs, {OVERLAYFS_ETC_DEVICE} end block $END_BLOCK is within 8 sectors of $END_DISK" > /dev/kmsg
+fi
 
 [ -z "$CONSOLE" ] && CONSOLE="/dev/console"
 
@@ -44,6 +52,17 @@ then
         -o index=off,xino=off,redirect_dir=off,metacopy=off \
         {OVERLAYFS_ETC_MOUNT_POINT}/overlay-etc/upper /etc || \
             echo "PREINIT: Mounting etc-overlay failed!"
+
+    mkdir -p OVERLAYFS_ETC_MOUNT_POINT/overlay-home/upper
+    mkdir -p OVERLAYFS_ETC_MOUNT_POINT/overlay-home/work
+    mount -n -t overlay \
+        -o upperdir={OVERLAYFS_ETC_MOUNT_POINT}/overlay-home/upper \
+        -o lowerdir=/home \
+        -o workdir={OVERLAYFS_ETC_MOUNT_POINT}/overlay-home/work \
+        -o index=off,xino=off,redirect_dir=off,metacopy=off \
+        {OVERLAYFS_ETC_MOUNT_POINT}/overlay-home/upper /home || \
+            echo "PREINIT: Mounting home-overlay failed!"
+
 else
     echo "PREINIT: Mounting </data> failed!"
 fi

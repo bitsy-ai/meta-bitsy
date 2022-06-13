@@ -14,10 +14,12 @@ do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d ${D}/home/${PRINTNANNY_USER}/.octoprint
     install -m 0755 ${WORKDIR}/config.yaml ${D}/home/${PRINTNANNY_USER}/.octoprint/config.yaml
+    chown -R ${PRINTNANNY_USER} ${D}/home/${PRINTNANNY_USER}
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
 }
 
 SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 FILES:${PN} = "${sysconfdir} ${systemd_system_unitdir} /home/${PRINTNANNY_USER}/.octoprint"
+DEPENDS = "printnanny-users"
 RDEPENDS:${PN} = "python3-octoprint-nanny"

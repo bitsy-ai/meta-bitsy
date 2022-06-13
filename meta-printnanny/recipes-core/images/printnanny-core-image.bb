@@ -40,14 +40,3 @@ VOLATILE_LOG_DIR = "no"
 # send boot messaegs to tty1
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
-
-
-inherit extrausers
-EXTRA_USERS_PARAMS += "\
-  groupadd i2c; \
-  groupadd netdev; \
-  groupadd video; \
-  groupadd spi; \
-  groupadd video; \
-  useradd -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video printnanny; \
-"

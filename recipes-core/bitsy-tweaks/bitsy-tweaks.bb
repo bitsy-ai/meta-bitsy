@@ -16,9 +16,9 @@ PV = "r0"
 inherit overlayfs
 inherit systemd
 
-OVERLAYFS_CREATE_DIRS_TEMPLATE = "bitsy-overlayfs-create-dirs.service.in"
-OVERLAYFS_MOUNT_UNIT_TEMPLATE = "bitsy-overlayfs-unit.mount.in"
-OVERLAYFS_ALL_OVERLAYS_TEMPLATE ??= "bitsy-overlayfs-all.service.in"
+OVERLAYFS_CREATE_DIRS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-create-dirs.service.in"
+OVERLAYFS_MOUNT_UNIT_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-unit.mount.in"
+OVERLAYFS_ALL_OVERLAYS_TEMPLATE = "${WORKDIR}/bitsy-overlayfs-all.target.in"
 
 OVERLAYFS_MOUNT_POINT[etc] = "/data/etc"
 OVERLAYFS_WRITABLE_PATHS[etc] = "/etc"

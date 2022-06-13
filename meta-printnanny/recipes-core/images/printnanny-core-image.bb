@@ -4,22 +4,13 @@ DESCRIPTION = "A console-only image with minimal Linux system functionality inst
 WKS_FILE = "sdimage-printnanny.wks"
 DISTRO ?= "printnanny"
 
-# required to use both overlayfs-etc and package-management features
-# see note: https://git.yoctoproject.org/poky/plain/meta/classes/overlayfs-etc.bbclass
-# OVERLAYFS_ETC_USE_ORIG_INIT_NAME = "0"
-# OVERLAYFS_ETC_MOUNT_POINT = "/data/etc"
-# OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p3"
-# OVERLAYFS_ETC_FSTYPE = "ext4"
-
 IMAGE_FEATURES = "\
-    bash-completion-pkgs \
-    debug-tweaks \
-    overlayfs \
-    package-management \
-    splash \
-    ssh-server-openssh \
+  bash-completion-pkgs \
+  debug-tweaks \
+  package-management \
+  splash \
+  ssh-server-openssh \
 "
-
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 

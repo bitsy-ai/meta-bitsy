@@ -25,8 +25,11 @@
 # Regardless which mode you choose, update and migration strategy of configuration files under /etc
 # overlay is out of scope of this class
 
+REQUIRED_DISTRO_FEATURES += "bitsy-overlayfs"
+
 ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-overlayfs", "create_bitsy_overlayfs_preinit;", "", d)}'
-IMAGE_FEATURES_CONFLICTS_bitsy-overlayfs = "${@ 'package-management' if bb.utils.to_boolean(d.getVar('OVERLAYFS_ETC_USE_ORIG_INIT_NAME'), True) else ''}"
+IMAGE_FEATURES_CONFLICTS_bitsy-overlayfs = "${@ 'package-management' if bb.utils.to_boolean(d.getVar('OVERLAYFS_ETC_USE_ORIG_INIT_NAME'), True) else ''} overlayfs-etc"
+DISTRO_FEATURES_CONFLICTS_bitsy-overlays = "overlayfs"
 
 OVERLAYFS_ETC_MOUNT_POINT ??= ""
 OVERLAYFS_ETC_FSTYPE ??= ""
@@ -56,8 +59,8 @@ python create_bitsy_overlayfs_preinit() {
     origInitNameSuffix = ".orig"
 
     devicenamepart = overlayEtcDevice.split('/')[-1]
-    devicename = deviceparts.split('p')[0]
-    part = deviceparts.split('p')[-1]
+    devicename = devicenamepart.split('p')[0]
+    part = devicenamepart.split('p')[-1]
 
     args = {
         'OVERLAYFS_ETC_MOUNT_POINT': overlayEtcMountPoint,

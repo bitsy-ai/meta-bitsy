@@ -42,7 +42,8 @@ do_install() {
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
 }
 
-FILES:${PN} = "${datadir}/* ${sysconfdir}/* /home/${PRINTANNNY_USER}"
+FILES:${PN} = "${datadir} ${sysconfdir} /home/${PRINTANNNY_USER}"
+
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 

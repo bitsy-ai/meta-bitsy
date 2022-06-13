@@ -1,5 +1,4 @@
-LICENSE = "AGPLv3"
-DESCRIPTION = "A console-only image with minimal Linux system functionality installed."
+require recipes-core/images/bitsy-core-image.bb
 
 WKS_FILE = "sdimage-printnanny.wks"
 DISTRO ?= "printnanny"
@@ -16,7 +15,7 @@ IMAGE_FEATURES = "\
 
 # entire userland is installed here JUST for vcgencmd
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
-IMAGE_INSTALL = "\
+IMAGE_INSTALL:append = "\
     kernel-devicetree \
     kernel-modules \
     packagegroup-base-extended \
@@ -41,6 +40,7 @@ VOLATILE_LOG_DIR = "no"
 # send boot messaegs to tty1
 # install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image
+
 
 inherit extrausers
 EXTRA_USERS_PARAMS += "\

@@ -7,6 +7,3 @@ BITSY_OVERLAYFS_DEVICE = "/dev/mmcblk0p3"
 BITSY_OVERLAYFS_FSTYPE = "ext4"
 # custom template with /home overlayfs
 BITSY_OVERLAYFS_INIT_TEMPLATE = "${COREBASE}/meta-bitsy/files/bitsy-overlayfs-preinit.sh.in"
-CMDLINE:append = "\
-    init=/sbin/preinit \
-"

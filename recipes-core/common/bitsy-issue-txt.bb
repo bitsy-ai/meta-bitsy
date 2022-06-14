@@ -11,6 +11,6 @@ IMAGE_BUILDINFO_VARS:append = " DATETIME DISTRO_NAME IMAGE_BASENAME MACHINE TUNE
 IMAGE_BUILDINFO_VARS:append = " MACHINE_FEATURES DISTRO_FEATURES COMMON_FEATURES IMAGE_FEATURES"
 IMAGE_BUILDINFO_VARS:append = " TUNE_FEATURES TARGET_FPU"
 
-do_deploy[depends] = "rpi-bootfiles:do_deploy"
+do_deploy[depends] = "rpi-bootfiles:do_deploy image-buildinfo:buildinfo"
 do_deploy[dirs] += "${DEPLOYDIR}/${BOOTFILES_DIR_NAME}"
 addtask deploy before do_build after do_install

@@ -13,8 +13,6 @@ IMAGE_FEATURES = "\
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "service-user-printnanny"
-
 # entire userland is installed here JUST for vcgencmd
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
 IMAGE_INSTALL:append = "\

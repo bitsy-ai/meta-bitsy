@@ -22,7 +22,8 @@ SETUPTOOLS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'syst
 # --distro=bitsy -> "--distro" in sys.argv == False
 # ---distro bitsy -> "--distro" in sys.argv == True
 # ¯\_(ツ)_/¯
-SETUPTOOLS_INSTALL_ARGS:append = " --distro ${DISTRO}"
+CLOUDINIT_DISTRO ?= "bitsy"
+SETUPTOOLS_INSTALL_ARGS:append = " --distro ${CLOUDINIT_DISTRO}"
 
 PV = "${@bb.parse.vars_from_file(d.getVar('FILE', False),d)[1] or '1.0'}-${SRC_BRANCH}+git${SRCPV}"
 

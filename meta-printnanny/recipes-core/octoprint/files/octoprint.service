@@ -10,6 +10,7 @@ ExecStart=/bin/bash -c "JANUS_EDGE_HOSTNAME=$(cat /etc/hostname) \
     JANUS_EDGE_API_TOKEN=$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-api-token) \
     /usr/bin/octoprint serve \
     --host 127.0.0.1 \
+    --config /home/printnanny/.octoprint/config.yaml \
     --port 5001"
 Restart=on-failure
 RestartSec=30

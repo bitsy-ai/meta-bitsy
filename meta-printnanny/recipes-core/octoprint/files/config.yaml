@@ -20,10 +20,12 @@ system:
 events:
   subscriptions:
     - command: sudo systemctl restart nnstreamer.service
-      debug: true
+      debug: false
       event: plugin_octoprint_nanny_nnstreamer_start
       type: system
+      enabled: true
     - command: sudo systemctl stop nnstreamer.service
-      debug: true
+      enabled: true
+      debug: false
       event: plugin_octoprint_nanny_nnstreamer_stop
       type: system

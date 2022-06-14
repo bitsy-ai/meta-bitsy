@@ -11,3 +11,4 @@ USERADD_PARAM:printnanny-user = "-r -U -s /bin/bash -m -d /home/printnanny -G ad
 
 # https://lists.yoctoproject.org/g/yocto/message/55381
 ALLOW_EMPTY:${PN}="1"
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"

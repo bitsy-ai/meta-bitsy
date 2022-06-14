@@ -30,7 +30,6 @@ IMAGE_INSTALL:append = "\
     packagegroup-printnanny-cv \
     packagegroup-printnanny-utils \
     packagegroup-printnanny-webrtc \
-    service-user \
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 

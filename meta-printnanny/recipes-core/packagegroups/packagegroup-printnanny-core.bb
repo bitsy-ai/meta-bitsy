@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     printnanny-apps \
+    printnanny-users \
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'printnanny-apps-systemd', '', d)} \
     janus-gateway \
     nginx \

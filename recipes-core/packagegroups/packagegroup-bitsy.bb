@@ -14,6 +14,7 @@ PACKAGES = "\
 
 RDEPENDS:${PN}-sys = "\
     bitsy-tweaks \
+    bitsy-issue-txt \
     e2fsprogs-resize2fs \
     dhcpcd \
     ntp \

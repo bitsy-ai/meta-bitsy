@@ -3,7 +3,7 @@ server:
   commands:
     systemShutdownCommand: sudo shutdown -h now
     systemRestartCommand: sudo shutdown -r now
-    serverRestartCommand: sudo service octoprint restart
+    serverRestartCommand: sudo systemctl restart octoprint.service
 
 # https://docs.octoprint.org/en/master/configuration/config_yaml.html?highlight=logs#config-yaml
 folder:

@@ -6,8 +6,8 @@ LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
 PV = "0.11.1"
-SRC_URI = "git://git@github.com/bitsy-ai/octoprint-nanny-plugin.git;branch=start-systemd-services"
-SRCREV = "ee85ead798ad322895015c3b5fa0bcc621fc1a32"
+SRC_URI = "git://git@github.com/bitsy-ai/octoprint-nanny-plugin.git;branch=main"
+SRCREV = "44df241c416e5cd9d55ac1696443f1ed9329548b"
 S = "${WORKDIR}/git"
 
 inherit python_setuptools3_rust setuptools3

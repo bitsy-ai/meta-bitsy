@@ -14,5 +14,5 @@ USERADD_PACKAGES = "${PN}"
 # You must also set USERADD_PARAM and/or GROUPADD_PARAM when
 # you inherit useradd.
 GROUPADD_PARAM:${PN} = "i2c; netdev; video; spi"
-USERADD_PARAM:${PN} = "-s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video printnanny"
+USERADD_PARAM:${PN} = "-r -U -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,input,netdev,plugdev,spi,sudo,video printnanny"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"

@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
 PV = "0.11.1"
 SRC_URI = "git://git@github.com/bitsy-ai/octoprint-nanny-plugin.git;branch=main"
-SRCREV = "44df241c416e5cd9d55ac1696443f1ed9329548b"
+SRCREV = "3e8d3e3864a3f525496122131f76fca8c5a1ac98"
 S = "${WORKDIR}/git"
 
 inherit python_setuptools3_rust setuptools3

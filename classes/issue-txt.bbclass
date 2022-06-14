@@ -14,7 +14,7 @@
 #
 
 # Desired variables to display 
-BUILD_ID ??= "${@time.strftime('%Y-%m-%d %H:%M:%S',time.localtime())}"
+BUILD_ID ??= "${@time.strftime('%Y-%m-%dT%H:%M:%S',time.localtime())}"
 
 ISSUE_TXT_VARS ?= "\    
     BUILD_ID DISTRO_PRETTY \
@@ -79,7 +79,7 @@ python issue_txt () {
     with open(d.expand('${ISSUE_TXT_FILE}'), 'w') as build:
         build.writelines((
             '''-----------------------
-Build Configuration:  |
+Build Info:  |
 -----------------------
 ''',
             issue_txt_target(d),

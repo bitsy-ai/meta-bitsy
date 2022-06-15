@@ -26,7 +26,6 @@ IMAGE_INSTALL:append = "\
   kernel-devicetree \
   kernel-modules \
   packagegroup-bitsy \
-  packagegroup-bitsy-overlayfs \
   packagegroup-bitsy-cloudinit \
   packagegroup-core-full-cmdline \
   packagegroup-printnanny-core \

@@ -8,4 +8,4 @@
 part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20
 part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 --fsoptions="defaults,noatime"
 part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root2 --align 4096 --fsoptions="defaults,noatime"
-part /data --size 256M --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --fsoptions="defaults,x.systemd.growfs"
+part --size 256M --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --fsoptions="defaults"

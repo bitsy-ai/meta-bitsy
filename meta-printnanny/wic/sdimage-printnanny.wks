@@ -2,9 +2,10 @@
 # long-description: Creates a partitioned SD card image for use with
 # Raspberry Pi. Boot files are located in the first vfat partition.
 
-part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20
 # noatime fstab option disables writing file access time to drive each time a file is opened
 # this helps extend the lifetime of sd cards
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 --fsoptions "defaults,noatime"
-part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root2 --align 4096 --fsoptions "defaults,noatime"
-part --size 256M --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --fsoptions "defaults,x.systemd=growfs"
+
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 --fsoptions="defaults,noatime"
+part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root2 --align 4096 --fsoptions="defaults,noatime"
+part /data --size 256M --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --fsoptions="defaults,x.systemd=growfs"

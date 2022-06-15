@@ -8,6 +8,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 PACKAGES = "\
     ${PN}-cloudinit \
+    ${PN}-overlayfs \
     ${PN}-sys \
     ${PN} \
 "
@@ -27,3 +28,5 @@ RDEPENDS:${PN}-cloudinit = "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'cloud-init-systemd', '', d)} \
     netplan \
 "
+
+REDEPENDS:${PN}-overlayfs = "etc-overlay home-overlay"

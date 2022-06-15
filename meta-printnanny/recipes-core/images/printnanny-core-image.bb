@@ -24,6 +24,7 @@ IMAGE_INSTALL:append = "\
   kernel-modules \
   packagegroup-base-extended \
   packagegroup-bitsy \
+  packagegroup-bitsy-overlayfs \
   packagegroup-bitsy-cloudinit \
   packagegroup-core-base-utils \
   packagegroup-core-boot \

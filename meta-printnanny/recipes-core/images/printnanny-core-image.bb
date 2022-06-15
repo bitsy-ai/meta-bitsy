@@ -23,6 +23,11 @@ IMAGE_INSTALL:append = "\
   packagegroup-base-extended \
   packagegroup-core-base-utils \
   packagegroup-core-boot \
+  kernel-devicetree \
+  kernel-modules \
+  packagegroup-bitsy \
+  packagegroup-bitsy-overlayfs \
+  packagegroup-bitsy-cloudinit \
   packagegroup-core-full-cmdline \
   packagegroup-printnanny-core \
   packagegroup-printnanny-cv \
@@ -37,3 +42,4 @@ IMAGE_INSTALL:append = "\
 MACHINE_FEATURES += "bluetooth wifi keyboard"
 
 VOLATILE_LOG_DIR = "no"
+inherit core-image

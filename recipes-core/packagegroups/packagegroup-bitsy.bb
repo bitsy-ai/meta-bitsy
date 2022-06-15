@@ -1,14 +1,13 @@
+inherit packagegroup
 
 SUMMARY = "Bitsy Linux System Packages"
 DESCRIPTION = "Tweaks and system configurations for Bitsy Linux"
 
 PR = "r0"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-inherit packagegroup
 
 PACKAGES = "\
     ${PN}-cloudinit \
-    ${PN}-overlayfs \
     ${PN}-sys \
     ${PN} \
 "

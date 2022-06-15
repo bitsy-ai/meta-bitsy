@@ -1,0 +1,2 @@
+require ('swupdate')
+version = "@@DISTRO_VERSION@@";

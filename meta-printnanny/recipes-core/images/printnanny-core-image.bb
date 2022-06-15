@@ -1,5 +1,9 @@
 require recipes-core/images/bitsy-core-image.bb
 
+SRC_URI = "\
+  file://sw-description \
+"
+
 WKS_FILE = "sdimage-printnanny.wks"
 DISTRO ?= "printnanny"
 
@@ -16,19 +20,20 @@ IMAGE_FEATURES = "\
 # entire userland is installed here JUST for vcgencmd
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
 IMAGE_INSTALL:append = "\
-    kernel-devicetree \
-    kernel-modules \
-    packagegroup-base-extended \
-    packagegroup-bitsy \
-    packagegroup-bitsy-cloudinit \
-    packagegroup-core-base-utils \
-    packagegroup-core-boot \
-    packagegroup-core-full-cmdline \
-    packagegroup-printnanny-core \
-    packagegroup-printnanny-cv \
-    packagegroup-printnanny-utils \
-    packagegroup-printnanny-webrtc \
-    ${CORE_IMAGE_EXTRA_INSTALL} \
+  kernel-devicetree \
+  kernel-modules \
+  packagegroup-base-extended \
+  packagegroup-bitsy \
+  packagegroup-bitsy-cloudinit \
+  packagegroup-core-base-utils \
+  packagegroup-core-boot \
+  packagegroup-core-full-cmdline \
+  packagegroup-printnanny-core \
+  packagegroup-printnanny-cv \
+  packagegroup-printnanny-utils \
+  packagegroup-printnanny-webrtc \
+  packagegroup-swupdate \
+  ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES

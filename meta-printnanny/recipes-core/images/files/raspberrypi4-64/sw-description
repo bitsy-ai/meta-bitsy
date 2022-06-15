@@ -1,43 +1,42 @@
 software =
 {
-  version = "@@DISTRO_VERSION@@";
-  raspberrypi4- 64 = {
-    hardware-compatibility: ["1.0"];
-    stable: {
-      copy1: {
-        images: (
-          {
-            filename = "@@BASE_IMAGENAME@@-@@MACHINE@@@@SWUPDATE_IMAGES_FSTYPES[@@BASE_IMAGENAME@@]@@";
-            type = "raw";
-            compressed = true;
-            installed-directly = true;
-            device = "/dev/mmcblk0p2";
-          }
-        );
-        uboot: (
-          {
-            name = "rpipart";
-            value = "2";
-          }
-        );
-      };
-      copy2: {
-        images: (
-          {
-            filename = "@@BASE_IMAGENAME@@-@@MACHINE@@@@SWUPDATE_IMAGES_FSTYPES[@@BASE_IMAGENAME@@]@@";
-            type = "raw";
-            compressed = true;
-            installed-directly = true;
-            device = "/dev/mmcblk0p3";
-          }
-        );
-        uboot: (
-          {
-            name = "rpipart";
-            value = "3";
-          }
-        );
-	  };
-    };
-  }
+	version = "0.1.0";
+	raspberrypi4-64 = {
+		hardware-compatibility: [ "1.0"];
+		stable : {
+			copy1 : {
+				images: (
+					{
+						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
+						type = "raw";
+						compressed = "zlib";
+						device = "/dev/mmcblk0p2";
+					}
+				);
+				uboot: (
+					{
+						name = "rpipart";
+						value = "2";
+					}
+				);
+
+			};
+			copy2 : {
+				images: (
+					{
+						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
+						type = "raw";
+						compressed = "zlib";
+						device = "/dev/mmcblk0p3";
+					}
+				);
+				uboot: (
+					{
+						name = "rpipart";
+						value = "3";
+					}
+				);
+			};
+		};
+	}
 }

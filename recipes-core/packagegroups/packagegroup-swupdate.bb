@@ -9,6 +9,7 @@ inherit packagegroup
 RDEPENDS:${PN} = "\
     libubootenv \
 	swupdate \
+	swupdate-lua \
 	swupdate-progress \
 	swupdate-www \
 	swupdate-tools \

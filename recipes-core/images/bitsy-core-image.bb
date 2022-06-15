@@ -11,6 +11,9 @@
 IMAGE_INSTALL:append = " \
     kernel-devicetree \
     kernel-modules \
+    packagegroup-bitsy \
+    packagegroup-bitsy-overlayfs \
+    packagegroup-bitsy-cloudinit \
 "
 
 inherit core-image

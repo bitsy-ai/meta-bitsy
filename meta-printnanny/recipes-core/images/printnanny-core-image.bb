@@ -21,9 +21,6 @@ IMAGE_FEATURES = "\
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
 IMAGE_INSTALL:append = "\
   packagegroup-base-extended \
-  packagegroup-bitsy \
-  packagegroup-bitsy-overlayfs \
-  packagegroup-bitsy-cloudinit \
   packagegroup-core-base-utils \
   packagegroup-core-boot \
   packagegroup-core-full-cmdline \

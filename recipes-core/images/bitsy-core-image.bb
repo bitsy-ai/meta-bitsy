@@ -7,3 +7,10 @@
 # BITSY_OVERLAYFS_FSTYPE = "ext4"
 # # custom template with /home overlayfs
 # BITSY_OVERLAYFS_INIT_TEMPLATE = "${COREBASE}/meta-bitsy/files/bitsy-overlayfs-preinit.sh.in"
+
+IMAGE_INSTALL:append = " \
+    kernel-devicetree \
+    kernel-modules \
+"
+
+inherit core-image

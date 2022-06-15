@@ -20,13 +20,13 @@ IMAGE_FEATURES = "\
 # entire userland is installed here JUST for vcgencmd
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
 IMAGE_INSTALL:append = "\
-  kernel-devicetree \
-  kernel-modules \
   packagegroup-base-extended \
-  packagegroup-bitsy \
-  packagegroup-bitsy-cloudinit \
   packagegroup-core-base-utils \
   packagegroup-core-boot \
+  kernel-devicetree \
+  kernel-modules \
+  packagegroup-bitsy \
+  packagegroup-bitsy-cloudinit \
   packagegroup-core-full-cmdline \
   packagegroup-printnanny-core \
   packagegroup-printnanny-cv \
@@ -41,7 +41,4 @@ IMAGE_INSTALL:append = "\
 MACHINE_FEATURES += "bluetooth wifi keyboard"
 
 VOLATILE_LOG_DIR = "no"
-# disable splash
-# send boot messaegs to tty1
-# install empty-root-password, allow-empty-password, allow-root-login, post-install-logging
 inherit core-image

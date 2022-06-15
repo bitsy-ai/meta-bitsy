@@ -10,4 +10,8 @@ RDEPENDS:${PN} = "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'printnanny-apps-systemd', '', d)} \
     janus-gateway \
     nginx \
+	swupdate \
+	swupdate-progress \
+	swupdate-www \
+	swupdate-tools \
 "

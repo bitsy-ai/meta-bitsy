@@ -14,4 +14,6 @@ RDEPENDS:${PN} = "\
 	swupdate-progress \
 	swupdate-www \
 	swupdate-tools \
+    etc-overlay \
+    home-overlay \
 "

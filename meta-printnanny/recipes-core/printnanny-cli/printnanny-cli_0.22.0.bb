@@ -6,12 +6,12 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get printnanny-cli could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/printnanny-cli/0.22.0-rc.5"
+# SRC_URI += "crate://crates.io/printnanny-cli/0.22.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "ac5ac4f833294cbcfc7be99598e3189cbf797d9c"
+SRCREV = "845deac2ad0c664ff231b81948e1d37462306f55"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+ac5ac4f833"
+
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -263,7 +263,7 @@ SRC_URI += " \
     crate://crates.io/predicates-tree/1.0.5 \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
-    crate://crates.io/printnanny-api-client/0.80.0 \
+    crate://crates.io/printnanny-api-client/0.83.0 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \
@@ -457,6 +457,8 @@ SRC_URI += " \
     crate://crates.io/zeroize/1.5.5 \
 "
 
+
+
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
 SUMMARY = "PrintNanny Command-line Interface"
@@ -466,5 +468,5 @@ LICENSE = "AGPL-3.0-or-later"
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from
 # what cargo-bitbake generates.
-# include printnanny-cli-${PV}.inc
+include printnanny-cli-${PV}.inc
 include printnanny-cli.inc

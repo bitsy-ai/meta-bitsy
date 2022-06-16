@@ -1,6 +1,6 @@
 software =
 {
-	version = "0.1.0";
+	version = "@@DISTRO_VERSION@@";
 	raspberrypi4-64 = {
 		hardware-compatibility: [ "1.0"];
 		stable : {

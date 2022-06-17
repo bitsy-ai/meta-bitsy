@@ -459,10 +459,7 @@ SRC_URI += " \
 
 
 
-# FIXME: update generateme with the real MD5 of the license file
-LIC_FILES_CHKSUM = " \
-    file://AGPL-3.0-or-later;md5=generateme \
-"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
 SUMMARY = "PrintNanny Command-line Interface"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-cli.git"

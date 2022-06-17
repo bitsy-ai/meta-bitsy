@@ -18,3 +18,12 @@ do
     chown :video "$f"
     chmod 660 "$f"
 done
+
+FIX_PRINTNANNY_GROUP=(
+    "/etc/printnanny"
+)
+
+for f in "${FIX_VIDEO_GROUP[@]}"
+    chmod -R u=rwx,g=rwx,o=rx "$f"
+    chown -R :printnanny "$f"
+do

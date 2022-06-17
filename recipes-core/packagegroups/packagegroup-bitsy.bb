@@ -20,6 +20,7 @@ RDEPENDS:${PN}-sys = "\
     os-release \
     rsync \
     tzdata \
+    strace \
 "
 RDEPENDS:${PN}-cloudinit = "\
     ${PN}-sys \

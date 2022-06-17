@@ -2,7 +2,7 @@ PACKAGECONFIG:append = "openssl"
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += "\
-    files://050-wait-for-network-override.conf \
+    file://050-wait-for-network-override.conf \
 "
 
 do_install:append(){

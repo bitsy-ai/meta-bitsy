@@ -1,0 +1,19 @@
+[Unit]
+Description=PrintNanny License Service
+After=network.target cloud-config.target
+Wants=network.target cloud-config.target
+PartOf=printnanny-online.target
+ReloadPropagatedFrom=printnanny-online.target
+StartLimitInterval=200
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+SyslogIdentifier=printnanny-license
+ExecStart=/usr/bin/printnanny -vv check-license
+Restart=on-failure
+RestartSec=30
+User=printnanny
+
+[Install]
+WantedBy=multi-user.target

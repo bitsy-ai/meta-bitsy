@@ -25,6 +25,7 @@ do_install() {
   install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
+  install -m 0644 "${WORKDIR}/printnanny-license.service" "${D}${systemd_system_unitdir}/printnanny-license.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
@@ -35,7 +36,7 @@ FILES:${PN} = "${datadir} ${sysconfdir}"
 FILES:${PN}-systemd = "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 
-SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-mqtt.service"
+SYSTEMD_SERVICE:${PN} = "printnanny-dash.service printnanny-license.service printnanny-mqtt.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
 RDEPENDS:${PN}-nginx = "${PN} nginx"

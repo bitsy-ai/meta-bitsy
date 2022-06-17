@@ -1,0 +1,7 @@
+[Unit]
+Description=Web Services
+Requires=printnanny-license.service printnanny-mqtt.service printnanny-dash.service
+After=printnanny-license.service printnanny-mqtt.service printnanny-dash.service
+
+[Install]
+WantedBy=multi-user.target

@@ -24,6 +24,7 @@ IMAGE_INSTALL:append = "\
   packagegroup-core-base-utils \
   packagegroup-core-boot \
   kernel-devicetree \
+  kernel-image \
   kernel-modules \
   packagegroup-bitsy \
   packagegroup-bitsy-cloudinit \

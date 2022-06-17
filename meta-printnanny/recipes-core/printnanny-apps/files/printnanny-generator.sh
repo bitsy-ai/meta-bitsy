@@ -53,14 +53,6 @@ else
     echo "<4>printnanny-generator[$$]: Created link from $JANUS_TOKEN_FILE to $JANUS_TOKEN_OCTOPRINT_LN"
 fi
 
-if [ -f "$PRINTNANNY_CONF_FILE" ]; then
-    echo "<6>printnanny-generator[$$]: $PRINTNANNY_CONF_FILE exists, skipping config generation"
-else
-    /usr/bin/printnanny config init --output="$PRINTNANNY_CONF_FILE"
-    echo "<4>printnanny-generator[$$]: Created config $PRINTNANNY_CONF_FILE"
-fi
-
-
 if [ -f "$PRINTNANNY_KEYS" ]; then
     echo "<6>printnanny-generator[$$]: $PRINTNANNY_KEYS exists, skipping key generation"
 else

@@ -8,6 +8,7 @@ SRC_URI = " \
     file://printnanny-license.service \
     file://printnanny-mqtt.service \
     file://printnanny-online.target \
+    file://printnanny-generator.sh \
     file://Rocket.toml \
     file://dev.toml \
 "
@@ -29,6 +30,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-license.service" "${D}${systemd_system_unitdir}/printnanny-license.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
+  install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
 }
 

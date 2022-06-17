@@ -16,4 +16,5 @@ for f in "${FIX_VIDEO_GROUP[@]}"
 do
     echo "Changing group ownership of $f to root:video"
     chown :video "$f"
+    chmod 660 "$f"
 done

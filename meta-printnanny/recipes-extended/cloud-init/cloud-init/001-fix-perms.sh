@@ -24,6 +24,7 @@ FIX_PRINTNANNY_GROUP=(
 )
 
 for f in "${FIX_PRINTNANNY_GROUP[@]}"
+do
     chmod -R u=rwx,g=rwx,o=rx "$f"
     chown -R :printnanny "$f"
-do
+done

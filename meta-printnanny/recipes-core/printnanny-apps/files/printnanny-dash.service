@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny Dashboard
-After=network.target cloud-config.target
-Wants=network.target cloud-config.target
+After=network.target cloud-config.target printnanny-license.service
+Wants=network.target cloud-config.target printnanny-license.service
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target printnanny.target
 

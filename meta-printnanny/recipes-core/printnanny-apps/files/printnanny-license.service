@@ -9,6 +9,7 @@ StartLimitBurst=5
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 SyslogIdentifier=printnanny-license
 ExecStart=/usr/bin/printnanny -vv check-license
 Restart=on-failure

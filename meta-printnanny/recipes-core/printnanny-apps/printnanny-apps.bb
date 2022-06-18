@@ -40,7 +40,7 @@ do_install() {
   install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
-
+}
 FILES:${PN} = "${datadir} ${sysconfdir}"
 
 FILES:${PN}-systemd = "${systemd_unitdir}/*"

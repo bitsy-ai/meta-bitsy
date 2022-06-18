@@ -1,5 +1,7 @@
 require recipes-core/images/printnanny-core-image.bb
 
+VARIANT="PrintNanny OctoPrint Edition"
+VARIANT_ID="printnanny-octoprint"
 
 IMAGE_INSTALL += "\
     userland \

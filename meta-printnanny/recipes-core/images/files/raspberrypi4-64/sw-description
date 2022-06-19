@@ -3,8 +3,8 @@ software =
 	version = "@@DISTRO_VERSION@@";
 	raspberrypi4-64 = {
 		hardware-compatibility: [ "1.0"];
-		stable : {
-			copy1 : {
+		stable: {
+			copy1: {
 				images: (
 					{
 						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
@@ -22,7 +22,7 @@ software =
 				);
 
 			};
-			copy2 : {
+			copy2: {
 				images: (
 					{
 						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";

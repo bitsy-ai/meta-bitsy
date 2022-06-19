@@ -9,7 +9,7 @@ software =
 					{
 						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
 						type = "raw";
-						compressed = "gzip";;
+						compressed = "gzip";
 						installed-directly = true;
 						device = "/dev/mmcblk0p2";
 					}
@@ -27,7 +27,7 @@ software =
 					{
 						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
 						type = "raw";
-						compressed = "gzip";;
+						compressed = "gzip";
 						installed-directly = true;
 						device = "/dev/mmcblk0p3";
 					}

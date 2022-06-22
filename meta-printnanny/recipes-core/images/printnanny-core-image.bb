@@ -1,4 +1,5 @@
 require recipes-core/images/bitsy-core-image.bb
+require recipes-core/images/include/splash.inc
 
 SRC_URI = "\
   file://sw-description \
@@ -11,7 +12,6 @@ IMAGE_FEATURES = "\
   bash-completion-pkgs \
   debug-tweaks \
   package-management \
-  splash \
   ssh-server-openssh \
 "
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS

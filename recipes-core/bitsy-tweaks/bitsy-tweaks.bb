@@ -12,9 +12,9 @@ inherit systemd
 
 do_install:append() {
   install -d ${D}${sysconfdir}/bitsy
-  install -d ${D}${systemd_system_unitdir}/getty@tty1.service.d/
+  # install -d ${D}${systemd_system_unitdir}/getty@tty1.service.d/
   install -d ${D}${systemd_system_unitdir}/sysinit.target.wants/
-  install -m 0644 ${WORKDIR}/getty@tty1.service.d/50-noclear.conf ${D}${systemd_system_unitdir}/getty@tty1.service.d/50-noclear.conf
+  # install -m 0644 ${WORKDIR}/getty@tty1.service.d/50-noclear.conf ${D}${systemd_system_unitdir}/getty@tty1.service.d/50-noclear.conf
 }
 
 FILES:${PN} = "${systemd_system_unitdir}/* ${sysconfdir}/*"

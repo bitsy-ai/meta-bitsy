@@ -9,11 +9,13 @@ DISTRO ?= "printnanny"
 
 IMAGE_FEATURES = "\
   bash-completion-pkgs \
-  debug-tweaks \
   package-management \
   ssh-server-openssh \
   splash \
 "
+
+SPLASH = "psplash-printnanny"
+
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 

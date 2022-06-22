@@ -1,4 +1,4 @@
-FILESEXTRAPATHS:prepend:poky := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 # generated with: https://github.com/g0hl1n/psplash/blob/master/make-image-header.sh
 SRC_URI += "\

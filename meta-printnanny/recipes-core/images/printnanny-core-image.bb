@@ -9,11 +9,13 @@ DISTRO ?= "printnanny"
 
 IMAGE_FEATURES = "\
   bash-completion-pkgs \
-  debug-tweaks \
   package-management \
-  splash \
   ssh-server-openssh \
+  splash \
 "
+
+SPLASH = "psplash-printnanny"
+
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
 
@@ -40,6 +42,4 @@ IMAGE_INSTALL:append = "\
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"
-
-VOLATILE_LOG_DIR = "no"
 inherit core-image

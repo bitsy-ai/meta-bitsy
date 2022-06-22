@@ -17,3 +17,5 @@ do_install(){
 }
 
 FILES:${PN} = "${sysconfdir}/repart.d/*"
+
+DEPENDS = "systemd"

@@ -1,1 +1,2 @@
-PACKAGECONFIG:append = " repart firstboot"
+PACKAGECONFIG:append = "repart"
+PACKAGECONFIG:append = "firstboot"

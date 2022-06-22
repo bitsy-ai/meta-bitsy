@@ -41,6 +41,4 @@ IMAGE_INSTALL:append = "\
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"
-
-VOLATILE_LOG_DIR = "no"
 inherit core-image

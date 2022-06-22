@@ -1,5 +1,4 @@
 require recipes-core/images/bitsy-core-image.bb
-require recipes-core/images/include/splash.inc
 
 SRC_URI = "\
   file://sw-description \

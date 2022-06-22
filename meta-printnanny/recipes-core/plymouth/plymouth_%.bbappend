@@ -1,4 +1,8 @@
-FILESEXTRAPATHS:prepend = "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+
+SRC_URI += "\
+    file://printnanny.png \
+"
 
 SPLASH_IMAGES = "file://printnanny.png;outsuffix=default"
 

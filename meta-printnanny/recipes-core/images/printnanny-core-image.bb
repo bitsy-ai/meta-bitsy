@@ -1,5 +1,5 @@
 require recipes-core/images/bitsy-core-image.bb
-require recipes-core/images/include/splash.inc
+# require recipes-core/images/include/splash.inc
 
 SRC_URI = "\
   file://sw-description \
@@ -13,6 +13,7 @@ IMAGE_FEATURES = "\
   debug-tweaks \
   package-management \
   ssh-server-openssh \
+  splash \
 "
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS
 # https://docs.yoctoproject.org/ref-manual/variables.html#term-MACHINE_EXTRA_RRECOMMENDS
@@ -34,6 +35,7 @@ IMAGE_INSTALL:append = "\
   packagegroup-printnanny-utils \
   packagegroup-printnanny-webrtc \
   packagegroup-swupdate \
+  psplash \
   ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 

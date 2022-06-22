@@ -1,7 +1,7 @@
 require recipes-core/images/printnanny-core-image.bb
 
-VARIANT="PrintNanny OctoPrint Edition"
-VARIANT_ID="printnanny-octoprint"
+VARIANT_NAME="OctoPrint Edition"
+VARIANT_ID="octoprint"
 
 IMAGE_INSTALL += "\
     userland \

@@ -36,6 +36,7 @@ IMAGE_INSTALL:append = "\
   packagegroup-printnanny-webrtc \
   packagegroup-swupdate \
   psplash \
+  read-edid \
   ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 

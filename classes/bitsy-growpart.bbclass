@@ -48,8 +48,8 @@ python do_compile() {
 }
 
 do_install() {
-    install -d ${D}${sbindir}
-    install -m 0755 ${BITSY_GROWPART_BIN} ${D}${sbindir}
+    install -d ${D}${bindir}
+    install -m 0755 ${BITSY_GROWPART_BIN} ${D}${bindir}
 }
 
-FILES:${PN} += "${sbindir}/${BITSY_GROWPART_BIN}"
+FILES:${PN} += "${bindir}/${BITSY_GROWPART_BIN}"

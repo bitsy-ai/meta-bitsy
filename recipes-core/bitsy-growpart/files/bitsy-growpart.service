@@ -5,8 +5,7 @@ DefaultDependencies=no
 
 [Service]
 Type=simple
-SyslogIdentifier=octoprint
-ExecStart=/sbin/bitsy-growpart
+ExecStart=/usr/bin/bitsy-growpart
 
 [Install]
 WantedBy=local-fs.target

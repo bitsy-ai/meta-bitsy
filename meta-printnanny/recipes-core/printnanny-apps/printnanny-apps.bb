@@ -41,10 +41,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
   install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
 }
-FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/*"
-
-FILES:${PN}-systemd = "${systemd_unitdir}/*"
-RDEPENDS:${PN}-systemd += " ${PN}"
+FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-dash.service \
@@ -55,8 +52,6 @@ SYSTEMD_SERVICE:${PN} = "\
 SYSTEMD_AUTO_ENABLE = "enable"
 
 RDEPENDS:${PN}-nginx = "${PN} nginx"
-
-PACKAGES += "${PN}-systemd"
 
 inherit overlayfs
 

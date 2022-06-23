@@ -10,7 +10,7 @@ SRC_URI[md5sum] = "5970010bb72452344df3d76a10281b65"
 SRC_URI[sha256sum] = "0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"
 
 S = "${WORKDIR}/python-dateutil-2.8.2"
+DEPENDS:append = " python3-pip-native python3-setuptools-scm-native"
+RDEPENDS:${PN} = "python3-six python3-pip"
 
-RDEPENDS:${PN} = "python3-six"
-
-inherit setuptools3
+inherit pypi setuptools3_legacy

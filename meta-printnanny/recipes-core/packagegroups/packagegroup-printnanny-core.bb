@@ -14,5 +14,4 @@ RDEPENDS:${PN} = "\
 	swupdate-progress \
 	swupdate-www \
 	swupdate-tools \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd-repartd', '', d)} \
 "

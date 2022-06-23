@@ -45,7 +45,7 @@ FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
 
 
-SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service"
+SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service cloud-init.target"
 SYSTEMD_AUTO_ENABLE = "enable"
 
 PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"

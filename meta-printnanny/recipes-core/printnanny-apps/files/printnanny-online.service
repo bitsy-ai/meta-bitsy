@@ -1,0 +1,18 @@
+[Unit]
+Description=Web Services
+Requires=printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+After=printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+
+[Service]
+Type=oneshot
+ExecStart=echo "💜 PrintNanny is online!"
+ExecStart=echo "🚀 Open http://$(hostname)/ in your browser"
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5
+
+# Output needs to appear in instance console output
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target

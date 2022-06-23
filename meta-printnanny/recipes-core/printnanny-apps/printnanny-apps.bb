@@ -38,7 +38,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
-  install -m 0755 "${WORKDIR}/printnanny-link-confd" "${D}${bindir}/printnanny-link-confd"
+  install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
 }
 FILES:${PN} = "${datadir} ${sysconfdir}"
 

@@ -1,3 +1,7 @@
+
+REQUIRED_DISTRO_FEATURES += "bitsy-growpart"
+ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-growpart", "create_bitsy_growpart_script;", "", d)}'
+
 BITSY_OVERLAYFS_MOUNT_POINT ??= "/data"
 BITSY_OVERLAYFS_FSTYPE ??= "ext4"
 BITSY_OVERLAYFS_DEVICE = "${@bb.utils.contains('DISTRO_FEATURES', 'swupdate', '/dev/mmcblk0p4', '/dev/mmcblk0p3', d)}"
@@ -5,7 +9,7 @@ BITSY_OVERLAYFS_MOUNT_OPTIONS ??= "defaults"
 BITSY_GROWPART_INIT_TEMPLATE ??= "bitsy-growpart.sh.in"
 BITSY_GROWPART_BIN ??= "/sbin/bitsy-growpart"
 
-python create_bitsy_overlayfs_preinit() {
+python create_bitsy_growpart_script() {
     overlayEtcMountPoint = d.getVar("BITSY_OVERLAYFS_MOUNT_POINT")
     overlayEtcFsType = d.getVar("BITSY_OVERLAYFS_FSTYPE")
     overlayEtcDevice = d.getVar("BITSY_OVERLAYFS_DEVICE")

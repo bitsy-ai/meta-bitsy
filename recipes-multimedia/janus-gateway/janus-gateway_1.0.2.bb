@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
 SRC_URI = "\
 	https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
 	file://janus-gateway.service \
+	file://janus-gateway-creds.service \
 	file://janus.jcfg.template \
 	file://janus.plugin.streaming.jcfg \
 	file://janus.transport.http.jcfg \
@@ -48,8 +49,9 @@ do_install:append() {
 	install -d ${D}${libdir}/janus/transports
 	install -d ${D}${libdir}/janus/events
 	install -d ${D}${libdir}/janus/loggers
-	install -m 0755 "${WORKDIR}/janus-gateway-generator.sh" "${D}${bindir}/janus-gateway-generator"
+	install -m 0755 "${WORKDIR}/janus-creds-generator.sh" "${D}${bindir}/janus-creds-generator"
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
+	install -m 0644 ${WORKDIR}/janus-gateway-creds.service ${D}${systemd_unitdir}/system/
 	install -m 0644 ${WORKDIR}/janus.jcfg.template ${D}${sysconfdir}/janus/templates/janus.jcfg.template
 	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg
@@ -67,6 +69,6 @@ PACKAGES = "${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-de
 # ideally this would be fixed in janus package
 INSANE_SKIP:${PN} = "dev-so"
 
-SYSTEMD_SERVICE:${PN} = "janus-gateway.service"
+SYSTEMD_SERVICE:${PN} = "janus-gateway.service janus-gateway-creds.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 RDEPENDS:${PN} = "curl bash"

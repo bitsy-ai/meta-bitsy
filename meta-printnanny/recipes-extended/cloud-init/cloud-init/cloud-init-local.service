@@ -11,6 +11,7 @@ RequiresMountsFor=/var/lib/cloud
 
 [Service]
 Type=oneshot
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Applying User Settings" || echo "psplash-write failed"'
 ExecStart=/usr/bin/cloud-init init --local
 RemainAfterExit=yes
 TimeoutSec=0

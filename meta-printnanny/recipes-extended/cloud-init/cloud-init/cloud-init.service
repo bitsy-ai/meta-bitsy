@@ -8,6 +8,7 @@ Before=network-online.target
 
 [Service]
 Type=oneshot
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Configuring Hostname & Network" || echo "psplash-write failed"'
 ExecStart=/usr/bin/cloud-init init
 RemainAfterExit=yes
 TimeoutSec=0

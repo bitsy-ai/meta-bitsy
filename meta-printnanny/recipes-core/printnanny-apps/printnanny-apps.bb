@@ -30,6 +30,7 @@ do_install() {
   install -d "${D}${sysconfdir}/printnanny/conf.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-dash.service.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
+  install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-license.service" "${D}${systemd_system_unitdir}/printnanny-license.service"
@@ -40,10 +41,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
   install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
 }
-FILES:${PN} = "${datadir} ${sysconfdir}"
-
-FILES:${PN}-systemd = "${systemd_unitdir}/*"
-RDEPENDS:${PN}-systemd += " ${PN}"
+FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-dash.service \
@@ -54,8 +52,6 @@ SYSTEMD_SERVICE:${PN} = "\
 SYSTEMD_AUTO_ENABLE = "enable"
 
 RDEPENDS:${PN}-nginx = "${PN} nginx"
-
-PACKAGES += "${PN}-systemd"
 
 inherit overlayfs
 

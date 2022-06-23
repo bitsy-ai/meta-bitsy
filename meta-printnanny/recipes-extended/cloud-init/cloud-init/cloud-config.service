@@ -5,7 +5,9 @@ Wants=network-online.target cloud-config.target
 
 [Service]
 Type=oneshot
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Reticulating Splines" || echo "psplash-write failed"'
 ExecStart=/usr/bin/cloud-init modules --mode=config
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Done Applying User Settings" || echo "psplash-write failed"'
 RemainAfterExit=yes
 TimeoutSec=0
 

@@ -13,4 +13,4 @@ S = "${WORKDIR}/sarge-0.1.6"
 
 RDEPENDS:${PN} = ""
 
-inherit setuptools3
+inherit setuptools3_legacy

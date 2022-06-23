@@ -35,7 +35,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-license.service" "${D}${systemd_system_unitdir}/printnanny-license.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
-  install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
+  install -m 0644 "${WORKDIR}/printnanny-online.service" "${D}${systemd_system_unitdir}/printnanny-online.service"
   install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
@@ -47,7 +47,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-dash.service \
   printnanny-license.service \
   printnanny-mqtt.service \
-  printnanny-online.target \
+  printnanny-online.service \
 "
 SYSTEMD_AUTO_ENABLE = "enable"
 

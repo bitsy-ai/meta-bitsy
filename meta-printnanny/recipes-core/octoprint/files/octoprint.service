@@ -1,7 +1,7 @@
 [Unit]
 Description=OctoPrint
-After=network.target
-Wants=network.target
+After=network.target octoprint-link.service
+Wants=network.target octoprint-link.service
 
 [Service]
 Type=simple

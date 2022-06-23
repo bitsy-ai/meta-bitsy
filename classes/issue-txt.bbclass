@@ -25,7 +25,7 @@ ISSUE_TXT_VARS ?= "\
 "
 
 # Desired location of the output file in the image.
-ISSUE_TXT_FILE ??= "${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/issue.txt"
+ISSUE_TXT_FILE ??= "${DEPLOY_DIR_IMAGE}/${BOOTFILES_DIR_NAME}/issue.txt"
 
 # From buildhistory.bbclass
 def image_issue_txt_outputvars(vars, d):

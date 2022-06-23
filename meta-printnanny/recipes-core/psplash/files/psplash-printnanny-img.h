@@ -1,10 +1,10 @@
 /* GdkPixbuf RGBA C-Source image dump 1-byte-run-length-encoded */
 
-#define _IMG_ROWSTRIDE (2880)
-#define _IMG_WIDTH (720)
-#define _IMG_HEIGHT (747)
-#define _IMG_BYTES_PER_PIXEL (4) /* 3:RGB, 4:RGBA */
-#define _IMG_RLE_PIXEL_DATA ((uint8*) \
+#define POKY_IMG_ROWSTRIDE (2880)
+#define POKY_IMG_WIDTH (720)
+#define POKY_IMG_HEIGHT (747)
+#define POKY_IMG_BYTES_PER_PIXEL (4) /* 3:RGB, 4:RGBA */
+#define POKY_IMG_RLE_PIXEL_DATA ((uint8*) \
   "\377\0\0\0\0\377\0\0\0\0\341\0\0\0\0\22\40\27@\10\34\22""8#\34\21""97" \
   "\33\20""9E\35\24""9T\35\20:b\34\21""9n\35\22""9q\34\22""8q\34\22""9r" \
   "\34\21:r\34\22""9l\34\21:^$\34=Q\34\20""9D\34\20""95\35\21""9\34#\30" \

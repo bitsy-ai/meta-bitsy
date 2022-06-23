@@ -1,0 +1,11 @@
+[Unit]
+Description=Bitsy Growpart Service
+Before=local-fs-pre.target
+DefaultDependencies=no
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bitsy-growpart
+
+[Install]
+WantedBy=local-fs.target

@@ -5,7 +5,8 @@
 # noatime fstab option disables writing file access time to drive each time a file is opened
 # this helps extend the lifetime of sd cards
 
+# Root part UUID is for systemd-repart / repart.d identification, see systemd-repartd.bb
 part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 --fsoptions="defaults,noatime"
-part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root2 --align 4096 --fsoptions="defaults,noatime"
-part --size 256M --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --fsoptions="defaults,noatime"
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 --fsoptions="defaults,noatime" --uuid="10d4e6f6-9d18-4bb8-b856-c2723d43791a"
+part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root2 --align 4096 --fsoptions="defaults,noatime" --uuid="2589a229-912a-4ceb-9f7e-78eb536b894c"
+part /data --size 256M --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --fsoptions="defaults,noatime" --uuid="712aaf9a-d6a8-4f59-9738-e652decef229"

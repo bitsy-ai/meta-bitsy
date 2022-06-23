@@ -60,5 +60,6 @@ PACKAGES += "${PN}-systemd"
 
 inherit overlayfs
 
-OVERLAYFS_MOUNT_POINT[printnanny] = "/data/printnanny-overlayfs"
+OVERLAYFS_MOUNT_POINT[printnanny] = "/data"
 OVERLAYFS_WRITABLE_PATHS[printnanny] = "/etc/printnanny"
+OVERLAYFS_QA_SKIP[printnanny] = "mount-configured"

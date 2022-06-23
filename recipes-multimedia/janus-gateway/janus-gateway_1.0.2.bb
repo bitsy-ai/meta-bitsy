@@ -12,7 +12,7 @@ SRC_URI = "\
 	file://janus.transport.websockets.jcfg \
 	file://janus-envsubst-on-templates.sh \
 	file://janus-add-token.sh \
-	file://janus-gateway-generator.sh \
+	file://janus-creds-generator.sh \
 "
 SRC_URI[sha256sum] = "a1ca0ae787fa162a36b4e391c29ae81f9388c3077699fb7b7c054149a5503355"
 SRC_REV = "1.0.2"
@@ -48,8 +48,7 @@ do_install:append() {
 	install -d ${D}${libdir}/janus/transports
 	install -d ${D}${libdir}/janus/events
 	install -d ${D}${libdir}/janus/loggers
-	install -d "${D}${systemd_unitdir}/system-generators"
-	install -m 0755 "${WORKDIR}/janus-gateway-generator.sh" "${D}${systemd_unitdir}/system-generators/janus-gateway-generator"
+	install -m 0755 "${WORKDIR}/janus-gateway-generator.sh" "${D}${bindir}/janus-gateway-generator"
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
 	install -m 0644 ${WORKDIR}/janus.jcfg.template ${D}${sysconfdir}/janus/templates/janus.jcfg.template
 	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
@@ -59,7 +58,7 @@ do_install:append() {
 	install -m 0755 ${WORKDIR}/janus-add-token.sh ${D}${bindir}/janus-add-token
 }
 
-FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus ${sysconfdir}/janus ${systemd_unitdir}/system-generators"
+FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus ${sysconfdir}/janus"
 FILES:${PN}-demo = "${datadir}/janus/demos ${datadir}/janus"
 FILES:${PN}-js = "${datadir}/janus/javascript"
 PACKAGES = "${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-demo ${PN}-js"

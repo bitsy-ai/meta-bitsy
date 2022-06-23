@@ -2,6 +2,7 @@
 
 echo "PREINIT: Start"
 
+set -euxo pipefail
 # https://github.com/g0hl1n/psplash/blob/9426c25f86db8e61de25bc1843dc322c0f2f4488/psplash.c#L42
 # display message above psplash bar
 

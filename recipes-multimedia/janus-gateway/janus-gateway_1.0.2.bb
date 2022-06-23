@@ -59,7 +59,7 @@ do_install:append() {
 	install -m 0755 ${WORKDIR}/janus-add-token.sh ${D}${bindir}/janus-add-token
 }
 
-FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus ${sysconfdir}/janus"
+FILES:${PN} += "${nonarch_libdir}/janus/plugins/ ${libdir}/janus ${sysconfdir}/janus ${systemd_unitdir}/system-generators"
 FILES:${PN}-demo = "${datadir}/janus/demos ${datadir}/janus"
 FILES:${PN}-js = "${datadir}/janus/javascript"
 PACKAGES = "${PN}-dbg ${PN}-test ${PN} ${PN}-doc ${PN}-dev ${PN}-locale ${PN}-demo ${PN}-js"
@@ -70,4 +70,4 @@ INSANE_SKIP:${PN} = "dev-so"
 
 SYSTEMD_SERVICE:${PN} = "janus-gateway.service"
 SYSTEMD_AUTO_ENABLE = "enable"
-RDEPENDS:${PN} = "curl"
+RDEPENDS:${PN} = "curl bash"

@@ -10,7 +10,7 @@ SRC_URI = " \
     file://printnanny-license.service \
     file://printnanny-mqtt.service \
     file://printnanny-online.target \
-    file://printnanny-generator.sh \
+    file://printnanny-link-confd.sh \
     file://Rocket.toml \
     file://dev.toml \
 "
@@ -28,7 +28,6 @@ do_install() {
   install -d "${D}${datadir}/printnanny"
   install -d "${D}${sysconfdir}/printnanny/dash"
   install -d "${D}${sysconfdir}/printnanny/conf.d"
-  install -d "${D}${systemd_unitdir}/system-generators"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-dash.service.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
@@ -36,10 +35,10 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-license.service" "${D}${systemd_system_unitdir}/printnanny-license.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
-  install -m 0755 "${WORKDIR}/printnanny-generator.sh" "${D}${systemd_unitdir}/system-generators/printnanny-generator"
-  install -m 0755 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
+  install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
+  install -m 0755 "${WORKDIR}/printnanny-link-confd" "${D}${bindir}/printnanny-link-confd"
 }
 FILES:${PN} = "${datadir} ${sysconfdir}"
 

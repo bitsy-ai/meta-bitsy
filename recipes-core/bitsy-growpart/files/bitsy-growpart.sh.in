@@ -15,8 +15,7 @@ then
     /usr/bin/psplash-write "MSG Expanding {START_BLOCK} to fill SD card" || echo "Expanding {START_BLOCK} to fill SD card"
     START_TS=$(/bin/date +%s)
     echo "Expanding  {BITSY_OVERLAYFS_DEVICE} to fill disk $START_TS" > /dev/kmsg
-    umount {BITSY_OVERLAYFS_DEVICE}
-    echo "Unmounted {BITSY_OVERLAYFS_DEVICE}"
+    umount {BITSY_OVERLAYFS_DEVICE} || echo "umount failed $?"
     echo "Running: parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%"
     parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%
     echo "Grew {BITSY_OVERLAYFS_DEVICE} partition to 100%"

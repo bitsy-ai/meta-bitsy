@@ -9,7 +9,7 @@ SRC_URI = " \
     file://printnanny-dash.service \
     file://printnanny-license.service \
     file://printnanny-mqtt.service \
-    file://printnanny-online.target \
+    file://printnanny-online.service \
     file://printnanny-link-confd.sh \
     file://Rocket.toml \
     file://dev.toml \

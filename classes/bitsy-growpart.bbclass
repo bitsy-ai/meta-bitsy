@@ -1,15 +1,13 @@
 
 REQUIRED_DISTRO_FEATURES += "bitsy-growpart"
-ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-growpart", "do_create_bitsy_growpart_script;", "", d)}'
-
 BITSY_OVERLAYFS_MOUNT_POINT ??= "/data"
 BITSY_OVERLAYFS_FSTYPE ??= "ext4"
 BITSY_OVERLAYFS_DEVICE = "${@bb.utils.contains('DISTRO_FEATURES', 'swupdate', '/dev/mmcblk0p4', '/dev/mmcblk0p3', d)}"
 BITSY_OVERLAYFS_MOUNT_OPTIONS ??= "defaults"
 BITSY_GROWPART_INIT_TEMPLATE ??= "bitsy-growpart.sh.in"
-BITSY_GROWPART_BIN ??= "/sbin/bitsy-growpart"
+BITSY_GROWPART_BIN ??= "bitsy-growpart"
 
-python do_create_bitsy_growpart_script() {
+python do_compile() {
     overlayEtcMountPoint = d.getVar("BITSY_OVERLAYFS_MOUNT_POINT")
     overlayEtcFsType = d.getVar("BITSY_OVERLAYFS_FSTYPE")
     overlayEtcDevice = d.getVar("BITSY_OVERLAYFS_DEVICE")
@@ -44,8 +42,14 @@ python do_create_bitsy_growpart_script() {
         'PARTED_PART': overlayEtcDevice.split('p')[1]
     }
 
-    outFile = oe.path.join(d.getVar("IMAGE_ROOTFS"), binFile)
-    with open(outFile, 'w') as f:
+    with open(binFile, 'w') as f:
         f.write(PreinitTemplate.format(**args))
-    os.chmod(outFile, 0o755)
+    os.chmod(binFile, 0o755)
 }
+
+do_install() {
+    install -d ${D}${sbindir}
+    install -m 0755 ${BITSY_GROWPART_BIN} ${D}${sbindir}
+}
+
+FILES:${PN} += "${sbindir}/${BITSY_GROWPART_BIN}"

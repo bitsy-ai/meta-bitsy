@@ -3,6 +3,8 @@ REQUIRED_DISTRO_FEATURES += "bitsy-growpart"
 
 inherit bitsy-growpart systemd features_check
 
+S = "${WORKDIR}"
+
 SRC_URI = "\
     file://bitsy-growpart.sh.in \
     file://bitsy-growpart.service \

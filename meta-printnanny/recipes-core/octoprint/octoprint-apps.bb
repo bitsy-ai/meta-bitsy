@@ -6,12 +6,16 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 SRC_URI:append = "\
     file://config.yaml \
     file://octoprint.service \
+    file://octoprint-generator.sh \
 "
 PRINTNANNY_USER = "printnanny"
 
 do_install:append() {
     install -d ${D}${sysconfdir}/octoprint
     install -d ${D}${systemd_system_unitdir}
+    install -d "${D}${systemd_unitdir}/system-generators"
+    install -d "${D}${sysconfdir}/systemd/system/octoprint.service.d"
+    install -m 0755 "${WORKDIR}/octoprint-generator.sh" "${D}${systemd_unitdir}/system-generators/octoprint-generator"
     install -d ${D}/home/${PRINTNANNY_USER}/.octoprint
     install -m 0755 ${WORKDIR}/config.yaml ${D}/home/${PRINTNANNY_USER}/.octoprint/config.yaml
     chown -R ${PRINTNANNY_USER} ${D}/home/${PRINTNANNY_USER}

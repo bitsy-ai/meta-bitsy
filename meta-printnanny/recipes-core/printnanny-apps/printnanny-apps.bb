@@ -57,3 +57,8 @@ SYSTEMD_AUTO_ENABLE = "enable"
 RDEPENDS:${PN}-nginx = "${PN} nginx"
 
 PACKAGES += "${PN}-systemd"
+
+inherit overlayfs
+
+OVERLAYFS_MOUNT_POINT[printnanny] = "/data"
+OVERLAYFS_WRITABLE_PATHS[printnanny] = "/etc/printnanny"

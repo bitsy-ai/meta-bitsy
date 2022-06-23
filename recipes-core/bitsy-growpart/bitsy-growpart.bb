@@ -1,7 +1,7 @@
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 REQUIRED_DISTRO_FEATURES += "bitsy-growpart"
 
-inherit bitsy-growpart systemd
+inherit bitsy-growpart systemd features_check
 
 SRC_URI = "\
     file://bitsy-growpart.sh.in \

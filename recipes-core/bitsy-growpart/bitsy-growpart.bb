@@ -3,16 +3,17 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 inherit bitsy-growpart systemd
 
 SRC_URI = "\
-    file://growpart.sh.in \
+    file://bitsy-growpart.sh.in \
     file://bitsy-growpart.service \
 "
 
 do_install(){
     install -d "${D}/sbin"
-    install -m 0755 "${WORKDIR}/bitsy-growpart.service" "${D}${systemd_system_unitdir}/bitsy-growpart.service"
+    install -d "${D}${systemd_system_unitdir}"
+    install -m 0644 "${WORKDIR}/bitsy-growpart.service" "${D}${systemd_system_unitdir}/bitsy-growpart.service"
 }
 
-SYSTEMD_SERVICE:${PN} = "bitsy-growfs.service"
+SYSTEMD_SERVICE:${PN} = "bitsy-growpart.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
 FILES:${PN} = "${BITSY_GROWPART_BIN}"

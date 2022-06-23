@@ -1,1 +1,1 @@
-PACKAGECONFIG += "repart firstboot"
+PACKAGECONFIG += "firstboot"

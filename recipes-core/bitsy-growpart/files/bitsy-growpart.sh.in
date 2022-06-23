@@ -1,0 +1,33 @@
+#!/bin/sh
+
+echo "PREINIT: Start"
+
+# https://github.com/g0hl1n/psplash/blob/9426c25f86db8e61de25bc1843dc322c0f2f4488/psplash.c#L42
+# display message above psplash bar
+
+START_BLOCK=$(cat {START_BLOCK})
+END_BLOCK=$(($START_BLOCK+$(cat {SIZE_BLOCK})))
+END_DISK=$(($(cat {END_BLOCK})-8))
+
+if [ "$END_DISK" -gt "$END_BLOCK" ]
+then
+    /usr/bin/psplash-write "MSG Expanding {START_BLOCK} to fill SD card"
+    START_TS=$(/bin/date +%s)
+    echo "Expanding  {BITSY_OVERLAYFS_DEVICE} to fill disk $START_TS" > /dev/kmsg
+    umount {BITSY_OVERLAYFS_DEVICE}
+    echo "Unmounted {BITSY_OVERLAYFS_DEVICE}"
+    echo "Running: parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%"
+    parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%
+    echo "Grew {BITSY_OVERLAYFS_DEVICE} partition to 100%"
+    resize2fs -p {BITSY_OVERLAYFS_DEVICE}
+    echo "Finished resizing filesystem {BITSY_OVERLAYFS_DEVICE}"
+    STOP_TS=$(/bin/date +%s)
+    SECONDS="$(($STOP_TS-$START_TS))"
+    echo "Finished bitsy-growfs at $STOP_TS (ran $SECONDS seconds)" > /dev/kmsg
+
+    /usr/bin/psplash-write "MSG Finished bitsy-growpart {START_BLOCK} in $SECONDS"
+
+else
+    echo "Skipping growfs, {BITSY_OVERLAYFS_DEVICE} end block $END_BLOCK is within 8 sectors of $END_DISK" > /dev/kmsg
+    /usr/bin/psplash-write "MSG Skipping bitsy-growpart, nothing to do"
+fi

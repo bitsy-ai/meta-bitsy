@@ -14,7 +14,7 @@ PRINTNANNY_USER = "printnanny"
 do_install:append() {
     install -d ${D}${sysconfdir}/octoprint
     install -d ${D}${systemd_system_unitdir}
-    install -d "${D}${systemd_unitdir}/system-generators"
+    install -d "${D}${bindir}"
     install -m 0755 "${WORKDIR}/octoprint-link-confd.sh" "${D}${bindir}/octoprint-link-confd"
     install -d ${D}/home/${PRINTNANNY_USER}/.octoprint
     install -m 0755 ${WORKDIR}/config.yaml ${D}/home/${PRINTNANNY_USER}/.octoprint/config.yaml
@@ -24,7 +24,7 @@ do_install:append() {
 
 SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
-FILES:${PN} = "${sysconfdir} ${systemd_system_unitdir} /home/${PRINTNANNY_USER}/.octoprint"
+FILES:${PN} = "${sysconfdir} ${systemd_system_unitdir} /home/${PRINTNANNY_USER}/.octoprint ${bindir}"
 DEPENDS = "printnanny-user"
 RDEPENDS:${PN} = "\
     python3-octoprint-nanny \

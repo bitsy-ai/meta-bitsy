@@ -6,7 +6,7 @@ After=printnanny-license.service printnanny-mqtt.service printnanny-dash.service
 [Service]
 Type=oneshot
 ExecStart=echo "💜 PrintNanny is online!"
-ExecStart=echo "🚀 Open http://$(cat hostname)/ in your browser"
+ExecStart=echo "🚀 Open http://$(hostname)/ in your browser"
 RemainAfterExit=yes
 Restart=on-failure
 RestartSec=5

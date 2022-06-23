@@ -15,5 +15,3 @@ do_install(){
 
 SYSTEMD_SERVICE:${PN} = "bitsy-growpart.service"
 SYSTEMD_AUTO_ENABLE = "enable"
-
-FILES:${PN} = "${BITSY_GROWPART_BIN}"

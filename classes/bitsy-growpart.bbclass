@@ -1,6 +1,6 @@
 
 REQUIRED_DISTRO_FEATURES += "bitsy-growpart"
-ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-growpart", "create_bitsy_growpart_script;", "", d)}'
+ROOTFS_POSTPROCESS_COMMAND += '${@bb.utils.contains("DISTRO_FEATURES", "bitsy-growpart", "do_create_bitsy_growpart_script;", "", d)}'
 
 BITSY_OVERLAYFS_MOUNT_POINT ??= "/data"
 BITSY_OVERLAYFS_FSTYPE ??= "ext4"
@@ -9,7 +9,7 @@ BITSY_OVERLAYFS_MOUNT_OPTIONS ??= "defaults"
 BITSY_GROWPART_INIT_TEMPLATE ??= "bitsy-growpart.sh.in"
 BITSY_GROWPART_BIN ??= "/sbin/bitsy-growpart"
 
-python create_bitsy_growpart_script() {
+python do_create_bitsy_growpart_script() {
     overlayEtcMountPoint = d.getVar("BITSY_OVERLAYFS_MOUNT_POINT")
     overlayEtcFsType = d.getVar("BITSY_OVERLAYFS_FSTYPE")
     overlayEtcDevice = d.getVar("BITSY_OVERLAYFS_DEVICE")
@@ -43,15 +43,9 @@ python create_bitsy_growpart_script() {
         'PARTED_DEVICE': overlayEtcDevice.split('p')[0],
         'PARTED_PART': overlayEtcDevice.split('p')[1]
     }
-    
 
-    if useOrigInit:
-        # rename original /sbin/init
-        origInit = oe.path.join(d.getVar("IMAGE_ROOTFS"), initBaseName)
-        bb.debug(1, "rootfs path %s, init path %s, test %s" % (d.getVar('IMAGE_ROOTFS'), origInit, d.getVar("IMAGE_ROOTFS")))
-        bb.utils.rename(origInit, origInit + origInitNameSuffix)
-
-    with open(binFile, 'w') as f:
+    outFile = oe.path.join(d.getVar("IMAGE_ROOTFS"), binFile)
+    with open(outFile, 'w') as f:
         f.write(PreinitTemplate.format(**args))
-    os.chmod(binFile, 0o755)
+    os.chmod(outFile, 0o755)
 }

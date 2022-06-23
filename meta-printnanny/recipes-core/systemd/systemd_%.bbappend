@@ -1,4 +1,5 @@
 PACKAGECONFIG:append = "openssl"
+PACKAGECONFIG:append = "firstboot"
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += "\

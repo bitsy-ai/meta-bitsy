@@ -23,8 +23,8 @@ else
 fi
 
 # symlink janus admin and api tokens so printnanny can initialize webrtc sessions
-ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${PRINTNANNY_CONFD}/${JANUS_ADMIN_FILE}"
-ln -s "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" "${PRINTNANNY_CONFD}/${JANUS_TOKEN_FILE}"
+ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE}"
+ln -s "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}"
 
 # quick fix for Raspberry Pi userland expecting video group w/ 0660
 FIX_VIDEO_GROUP=(

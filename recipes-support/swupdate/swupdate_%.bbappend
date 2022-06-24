@@ -9,7 +9,7 @@ SRC_URI += " \
     file://09-swupdate-args \
     file://swupdate.cfg \
     file://favicon.ico \
-    file://icon.png \
+    file://background.png \
     file://favicon.png \
     file://logo.png \
     file://bootstrap.min.css \

@@ -4,7 +4,7 @@ After=network.target cloud-config.target
 Wants=network.target cloud-config.target
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
-StartLimitInterval=200
+StartLimitIntervalSec=1d
 StartLimitBurst=5
 
 [Service]
@@ -16,7 +16,7 @@ ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/pr
 ExecStart=/usr/bin/printnanny -vv check-license
 ExecStart=/usr/bin/printnanny-link-confd
 Restart=on-failure
-RestartSec=30
+RestartSec=60
 User=printnanny
 
 StandardOutput=journal+console

@@ -15,4 +15,4 @@ RestartSec=5
 StandardOutput=journal+console
 
 [Install]
-WantedBy=printnanny-online.target
+WantedBy=multi-user.target

@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny MQTT Client
-After=network.target cloud-config.target
-Wants=network.target cloud-config.target
+After=network-online.target printnanny-license.service
+Wants=network-online.target printnanny-license.service
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 

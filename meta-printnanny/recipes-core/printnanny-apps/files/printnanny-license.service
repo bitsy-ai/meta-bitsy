@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny License Service
-After=network-online.target cloud-final.service
-Wants=network-online.target cloud-final.service
+After=network-online.target cloud-init.target
+Wants=network-online.target cloud-init.target
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 StartLimitIntervalSec=1d
@@ -22,4 +22,4 @@ RestartSec=60
 StandardOutput=journal+console
 
 [Install]
-WantedBy=printnanny-online.target
+WantedBy=multi-user.target

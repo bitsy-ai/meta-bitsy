@@ -1,4 +1,4 @@
-location ~ ^/(swupdate|update)/ {
+location /update/ {
     proxy_pass http://127.0.0.1:8080/; # make sure to add trailing slash here!
     proxy_set_header Host $http_host;
     proxy_set_header Upgrade $http_upgrade;

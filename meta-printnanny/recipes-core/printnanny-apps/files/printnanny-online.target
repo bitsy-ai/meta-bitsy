@@ -1,0 +1,6 @@
+[Unit]
+Description=PrintNanny Services Online
+Requires=multi-user.target
+Wants=printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+After=multi-user.target rescue.service rescue.target printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+Conflicts=rescue.service rescue.target

@@ -15,4 +15,3 @@ StandardOutput=journal+console
 
 [Install]
 WantedBy=cloud-init.target multi-user.target
-

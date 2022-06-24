@@ -1,7 +1,7 @@
 [Unit]
 Description=Web Services
-Requires=printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
-After=printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+Requires=printnanny-online.target
+After=printnanny-online.target
 
 [Service]
 Type=oneshot
@@ -15,4 +15,4 @@ RestartSec=5
 StandardOutput=journal+console
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=printnanny-online.target

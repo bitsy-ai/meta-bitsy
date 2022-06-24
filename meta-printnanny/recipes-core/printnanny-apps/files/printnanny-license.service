@@ -12,7 +12,7 @@ Type=oneshot
 RemainAfterExit=yes
 SyslogIdentifier=printnanny-license
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Checking License" || echo "psplash-write failed"'
-ExecStart=/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"
+ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"'
 ExecStart=/usr/bin/printnanny -vv check-license
 ExecStart=/usr/bin/printnanny-link-confd
 Restart=on-failure

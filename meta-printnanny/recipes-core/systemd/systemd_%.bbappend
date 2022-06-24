@@ -46,4 +46,5 @@ SRC_URI += "\
 do_install:append(){
     install -d "${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/"
     install -m 0644 "${WORKDIR}/050-wait-for-network-override.conf" "${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/050-override.conf"
+    ln -fr -s "${D}${systemd_system_unitdir}/printnanny-online.target" "${D}${systemd_system_unitdir}/default.target"
 }

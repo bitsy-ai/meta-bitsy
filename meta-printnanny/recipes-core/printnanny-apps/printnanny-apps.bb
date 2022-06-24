@@ -10,6 +10,7 @@ SRC_URI = " \
     file://printnanny-license.service \
     file://printnanny-mqtt.service \
     file://printnanny-online.service \
+    file://printnanny-online.target \
     file://printnanny-link-confd.sh \
     file://Rocket.toml \
     file://dev.toml \
@@ -36,6 +37,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-license.service" "${D}${systemd_system_unitdir}/printnanny-license.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0644 "${WORKDIR}/printnanny-online.service" "${D}${systemd_system_unitdir}/printnanny-online.service"
+  install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
   install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
@@ -48,6 +50,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-license.service \
   printnanny-mqtt.service \
   printnanny-online.service \
+  printnanny-online.target \
 "
 SYSTEMD_AUTO_ENABLE = "enable"
 

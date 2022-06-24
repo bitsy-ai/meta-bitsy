@@ -10,7 +10,6 @@ SRC_URI:append = "\
     file://cloud-init.service \
     file://cloud-config.service \
     file://cloud-init.target \
-    file://001-fix-perms.sh \
 "
 PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
@@ -31,5 +30,4 @@ do_install:append(){
     install -m 0644 ${WORKDIR}/cloud-init.service ${D}${systemd_system_unitdir}/cloud-init.service
     install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
     install -m 0644 ${WORKDIR}/cloud-init.target ${D}${systemd_system_unitdir}/cloud-init.target
-    install -m 0755 ${WORKDIR}/001-fix-perms.sh ${D}/var/lib/cloud/scripts/per-boot/001-fix-perms.sh
 }

@@ -6,6 +6,7 @@ PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 StartLimitIntervalSec=1d
 StartLimitBurst=5
+Before=multi-user.target
 
 [Service]
 Type=oneshot
@@ -13,11 +14,11 @@ RemainAfterExit=yes
 SyslogIdentifier=printnanny-license
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Checking License" || echo "psplash-write failed"'
 ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"'
-ExecStart=/usr/bin/printnanny -vv check-license
+ExecStart=/usr/bin/printnanny -v check-license
 ExecStart=/usr/bin/printnanny-link-confd
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Starting PrintNanny Services" || echo "psplash-write failed"'
 Restart=on-failure
 RestartSec=60
-User=printnanny
 
 StandardOutput=journal+console
 

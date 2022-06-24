@@ -7,7 +7,7 @@ software =
 			copy1: {
 				images: (
 					{
-						filename = "@@IMAGE_NAME@@";
+						filename = "@@IMAGE_BASENAME@@-@@MACHINE@@";
 						type = "raw";
 						compressed = "zlib";
 						installed-directly = true;
@@ -25,7 +25,7 @@ software =
 			copy2: {
 				images: (
 					{
-						filename = "@@IMAGE_NAME@@";
+						filename = "@@IMAGE_BASENAME@@-@@MACHINE@@";
 						type = "raw";
 						compressed = "zlib";
 						installed-directly = true;

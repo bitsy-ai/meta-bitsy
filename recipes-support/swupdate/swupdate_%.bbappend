@@ -11,14 +11,20 @@ SRC_URI += " \
     file://favicon.ico \
     file://icon.png \
     file://favicon.png \
+    file://logo.png \
+    file://bootstrap.min.css \
 "
 
 do_install:append() {
     install -m 0644 ${WORKDIR}/09-swupdate-args ${D}${libdir}/swupdate/conf.d/
     install -d ${D}${sysconfdir}
     install -m 0644 ${WORKDIR}/swupdate.cfg ${D}${sysconfdir}
+    install -d ${D}/${wwwdir}/images
+    install -d ${D}/${wwwdir}/css
 
-    install -m 0644 ${WORKDIR}/favicon.ico ${D}/${wwwdir}/favicon.ico
-    install -m 0644 ${WORKDIR}/favicon.png ${D}/${wwwdir}/favicon.png
-    install -m 0644 ${WORKDIR}/icon.png ${D}/${wwwdir}/icon.png
+    install -m 0644 ${WORKDIR}/favicon.ico ${D}/${wwwdir}/images/favicon.ico
+    install -m 0644 ${WORKDIR}/favicon.png ${D}/${wwwdir}/images/favicon.png
+    install -m 0644 ${WORKDIR}/icon.png ${D}/${wwwdir}/images/icon.png
+    install -m 0644 ${WORKDIR}/logo.png ${D}/${wwwdir}/images/logo.png
+    install -m 0644 ${WORKDIR}/bootstrap.min.css ${D}/wwwdir/css/bootstrap.min.css
 }

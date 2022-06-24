@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-cli could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-cli/0.22.7"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "303bfc2ef108e6e774da00e47dfee60ef4659a7c"
+SRCREV = "24dd509147cb5a71f99bfd1b755d6d1fe0a20dda"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+303bfc2ef1"
+PV:append = ".AUTOINC+24dd509147"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -249,7 +249,7 @@ SRC_URI += " \
     crate://crates.io/predicates-tree/1.0.5 \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
-    crate://crates.io/printnanny-api-client/0.88.3 \
+    crate://crates.io/printnanny-api-client/0.89.1 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \
@@ -423,7 +423,12 @@ SRC_URI += " \
     crate://crates.io/zeroize/1.5.5 \
 "
 
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
+
+
+# FIXME: update generateme with the real MD5 of the license file
+LIC_FILES_CHKSUM = " \
+    file://AGPL-3.0-or-later;md5=generateme \
+"
 
 SUMMARY = "PrintNanny Command-line Interface"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-cli.git"

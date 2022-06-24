@@ -1,0 +1,2 @@
+BITSY_ROOTFS_COPY1_DEVICE = "/dev/mmcblk0p2"
+BITSY_ROOTFS_COPY2_DEVICE = "/dev/mmcblk0p3"

@@ -7,11 +7,11 @@ software =
 			copy1: {
 				images: (
 					{
-						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
+						filename = "@@IMAGE_NAME@@";
 						type = "raw";
 						compressed = "zlib";
 						installed-directly = true;
-						device = "/dev/mmcblk0p2";
+						device = "@@BITSY_ROOTFS_COPY1_DEVICE@@";
 					}
 				);
 				uboot: (
@@ -25,11 +25,11 @@ software =
 			copy2: {
 				images: (
 					{
-						filename = "printnanny-octoprint-image-raspberrypi4-64.ext4.gz";
+						filename = "@@IMAGE_NAME";
 						type = "raw";
 						compressed = "zlib";
 						installed-directly = true;
-						device = "/dev/mmcblk0p3";
+						device = "@@BITSY_ROOTFS_COPY2_DEVICE@@";
 					}
 				);
 				uboot: (

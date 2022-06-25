@@ -1,0 +1,20 @@
+[Unit]
+Description=PrintNanny Keys Service
+PartOf=printnanny-online.target
+ReloadPropagatedFrom=printnanny-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=printnanny-keys
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Generating machine identity" || echo "psplash-write failed"'
+ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"'
+ExecStart=/usr/bin/printnanny-link-confd
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

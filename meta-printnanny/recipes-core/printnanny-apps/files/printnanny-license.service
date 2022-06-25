@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny License Service
-After=network-online.target systemd-networkd-wait-online.service cloud-init.target
-Wants=network-online.target systemd-networkd-wait-online.service cloud-init.target
+After=network-online.target systemd-networkd-wait-online.service cloud-init.target printnanny-keys.service
+Wants=network-online.target systemd-networkd-wait-online.service cloud-init.target printnanny-keys.service
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 StartLimitIntervalSec=1d
@@ -11,8 +11,7 @@ StartLimitBurst=5
 Type=oneshot
 RemainAfterExit=yes
 SyslogIdentifier=printnanny-license
-ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Checking License" || echo "psplash-write failed"'
-ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"'
+
 ExecStart=/usr/bin/printnanny -v check-license
 ExecStart=/usr/bin/printnanny-link-confd
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Starting PrintNanny Services" || echo "psplash-write failed"'

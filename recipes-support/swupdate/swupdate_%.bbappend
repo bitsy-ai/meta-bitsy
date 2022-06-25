@@ -7,7 +7,7 @@ wwwdir = "${datadir}/swupdate/www"
 
 SRC_URI += " \
     file://09-swupdate-args \
-    file://10-mongoose-args \
+    file://10-mongoose-args-custom \
     file://swupdate.cfg \
     file://favicon.ico \
     file://background.png \
@@ -17,9 +17,9 @@ SRC_URI += " \
 "
 
 do_install:append() {
-    install -d ${D}${sysconfdir}/swupdate/conf.d/
-    install -m 0644 ${WORKDIR}/09-swupdate-args ${D}${sysconfdir}/swupdate/conf.d/09-swupdate-args
-    install -m 0644 ${WORKDIR}/10-mongoose-args ${D}${sysconfdir}/swupdate/conf.d/10-mongoose-args
+    install -d ${D}${libdir}/swupdate/conf.d/
+    install -m 0644 ${WORKDIR}/09-swupdate-args  ${D}${libdir}/swupdate/conf.d/09-swupdate-args
+    install -m 0644 ${WORKDIR}/10-mongoose-args-custom ${D}${libdir}/swupdate/conf.d/10-mongoose-args
     install -d ${D}${sysconfdir}
     install -m 0644 ${WORKDIR}/swupdate.cfg ${D}${sysconfdir}
     install -d ${D}/${wwwdir}/images

@@ -30,7 +30,7 @@ else
     echo "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE} already exists"
 fi
 
-if [ -f "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" ]; then
+if [ -f "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}" ]; then
     ln -s "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}"
     echo "Linked ${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE} from ${JANUS_CONFD}/${JANUS_TOKEN_FILE}"
 else

@@ -23,8 +23,19 @@ else
 fi
 
 # symlink janus admin and api tokens so printnanny can initialize webrtc sessions
-ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE}"
-ln -s "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}"
+if [ -f "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE}" ]; then
+    ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE}"
+    echo "Linked ${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE} from ${JANUS_CONFD}/${JANUS_ADMIN_FILE}"
+else
+    echo "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE} already exists"
+fi
+
+if [ -f "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" ]; then
+    ln -s "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}"
+    echo "Linked ${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE} from ${JANUS_CONFD}/${JANUS_TOKEN_FILE}"
+else
+    echo "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE} already exists"
+fi
 
 # quick fix for Raspberry Pi userland expecting video group w/ 0660
 FIX_VIDEO_GROUP=(

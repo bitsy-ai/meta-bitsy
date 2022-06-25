@@ -6,7 +6,7 @@ After=printnanny-online.target
 [Service]
 Type=oneshot
 ExecStart=echo "💜 PrintNanny is online!"
-ExecStart=echo "🚀 Open http://$(hostname)/ in your browser"
+ExecStart=/bin/sh -c 'echo "🚀 Open http://$(hostname)/ in your browser"'
 RemainAfterExit=yes
 Restart=on-failure
 RestartSec=5

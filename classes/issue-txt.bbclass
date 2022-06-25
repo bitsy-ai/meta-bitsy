@@ -1,5 +1,5 @@
 #
-# Writes build/version information to issue.txt
+# Writes build/version information to /etc/issue
 # Based on issue_txt.bbclass
 #
 # Copyright (C) 2022 Bitsy AI Labs
@@ -25,7 +25,7 @@ ISSUE_TXT_VARS ?= "\
 "
 
 # Desired location of the output file in the image.
-ISSUE_TXT_FILE ??= "${DEPLOY_DIR_IMAGE}/${BOOTFILES_DIR_NAME}/issue.txt"
+ISSUE_TXT_FILE ??= "${IMAGE_ROOTFS}${sysconfdir}/issue"
 
 # From buildhistory.bbclass
 def image_issue_txt_outputvars(vars, d):
@@ -94,4 +94,4 @@ Layer Revisions:      |
        ))
 }
 
-IMAGE_PREPROCESS_COMMAND += "issue_txt;"
+ROOTFS_POSTPROCESS_COMMAND += "issue_txt;"

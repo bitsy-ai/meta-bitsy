@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny Services Online
-Wants=cloud-init.target printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
-After=cloud-init.target printnanny-license.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+Wants=cloud-init.target printnanny-setup.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
+After=cloud-init.target printnanny-setup.service printnanny-mqtt.service printnanny-dash.service janus-gateway.service
 Conflicts=rescue.service rescue.target
 
 [Install]

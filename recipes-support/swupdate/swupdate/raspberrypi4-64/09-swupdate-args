@@ -21,3 +21,4 @@ else
 fi
 
 SWUPDATE_ARGS="-H raspberrypi4-64:1.0 ${selection} -f ${CFGFILE}"
+SWUPDATE_WEBSERVER_ARGS="-r /usr/share/swupdate/www ${SWUPDATE_MONGOOSE_EXTRA_ARGS:--p 8080}"

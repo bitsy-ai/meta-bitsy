@@ -5,7 +5,7 @@ VARIANT_ID="octoprint"
 
 IMAGE_INSTALL += "\
     userland \
-    packagegroup-octoprint\
+    packagegroup-octoprint \
 "
 DESCRIPTION = "BitsyLinux initramfs updater image"
 LICENSE = "AGPL-3.0-or-later"

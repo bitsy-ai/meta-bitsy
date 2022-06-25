@@ -27,6 +27,7 @@ SYSTEMD_AUTO_ENABLE = "enable"
 FILES:${PN} = "${sysconfdir} ${systemd_system_unitdir} /home/${PRINTNANNY_USER}/.octoprint ${bindir}"
 DEPENDS = "printnanny-user"
 RDEPENDS:${PN} = "\
+    python3-octoprint \
     python3-octoprint-nanny \
     python3-pip \
     python3-wheel \

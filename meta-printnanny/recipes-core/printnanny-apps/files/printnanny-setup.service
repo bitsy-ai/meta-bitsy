@@ -14,8 +14,9 @@ RemainAfterExit=yes
 SyslogIdentifier=printnanny-setup
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Generating machine identity" || echo "psplash-write failed"'
 ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v check-license && echo $(date +%s) > /etc/printnanny/setup.done'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v check-license'
 ExecStart=/usr/bin/printnanny-link-confd
+ExecStart=/bin/sh -c 'echo $(date +%s) > /etc/printnanny/setup.done'
 Restart=on-failure
 RestartSec=5
 StandardOutput=journal+console

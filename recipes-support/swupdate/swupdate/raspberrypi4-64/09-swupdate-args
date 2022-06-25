@@ -1,7 +1,9 @@
-rootfs=`swupdate -g`
+#!/bin/bash
+
+rootfs=$(swupdate -g)
 
 # select the non-active partition for update
-if [ $rootfs == '/dev/mmcblk0p2' ];then
+if [ "$rootfs" == '/dev/mmcblk0p2' ];then
 	selection="-e stable,copy2"
 else
 	selection="-e stable,copy1"
@@ -20,4 +22,4 @@ else
 	CFGFILE="/etc/swupdate.cfg"
 fi
 
-SWUPDATE_ARGS="-H raspberrypi4-64:1.0 ${selection} -f ${CFGFILE}"
+export SWUPDATE_ARGS="-H raspberrypi4-64:1.0 ${selection} -f ${CFGFILE}"

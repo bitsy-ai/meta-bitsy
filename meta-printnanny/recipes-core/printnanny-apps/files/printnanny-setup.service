@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny First Boot Service
-After=network-online.target printnanny- systemd-networkd-wait-online.service cloud-init.target etc-printnanny.mount
-Wants=network-online.target systemd-networkd-wait-online.service cloud-init.target
+After=network-online.target systemd-networkd-wait-online.service etc-printnanny.mount
+Wants=network-online.target systemd-networkd-wait-online.service
 Requires=etc-printnanny.mount
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target

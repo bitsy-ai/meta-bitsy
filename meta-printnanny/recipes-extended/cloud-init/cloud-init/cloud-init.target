@@ -1,6 +1,6 @@
 [Unit]
 Description=Cloud-init target
-Before=multi-user.target
+After=multi-user.target
 
 [Install]
 WantedBy=multi-user.target

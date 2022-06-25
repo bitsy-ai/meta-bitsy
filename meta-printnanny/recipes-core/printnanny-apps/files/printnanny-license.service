@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny License Service
-After=network-online.target cloud-init.target
-Wants=network-online.target cloud-init.target
+After=network-online.target systemd-networkd-wait-online.service cloud-init.target
+Wants=network-online.target systemd-networkd-wait-online.service cloud-init.target
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 StartLimitIntervalSec=1d

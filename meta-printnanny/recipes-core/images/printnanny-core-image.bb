@@ -43,5 +43,5 @@ IMAGE_INSTALL:append = "\
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"
 
-SYSTEMD_DEFAULT_TARGET = "printnanny-online.target"
+# SYSTEMD_DEFAULT_TARGET = "printnanny-online.target"
 inherit core-image

@@ -6,15 +6,13 @@ PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 StartLimitIntervalSec=1d
 StartLimitBurst=5
+ConditionFirstBoot=yes
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 SyslogIdentifier=printnanny-license
-
 ExecStart=/usr/bin/printnanny -v check-license
-ExecStart=/usr/bin/printnanny-link-confd
-ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Starting PrintNanny Services" || echo "psplash-write failed"'
 Restart=on-failure
 RestartSec=60
 

@@ -4,6 +4,7 @@ PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 StartLimitIntervalSec=1d
 StartLimitBurst=5
+ConditionFirstBoot=yes
 
 [Service]
 Type=oneshot

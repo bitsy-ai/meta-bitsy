@@ -13,5 +13,6 @@ RDEPENDS:${PN} = "\
 	swupdate-progress \
 	swupdate-www \
 	swupdate-tools \
+    u-boot-fw-utils \
     printnanny-user \
 "

@@ -24,7 +24,7 @@ do_install:append() {
 
     install -m 0644 ${WORKDIR}/favicon.ico ${D}/${wwwdir}/images/favicon.ico
     install -m 0644 ${WORKDIR}/favicon.png ${D}/${wwwdir}/images/favicon.png
-    install -m 0644 ${WORKDIR}/icon.png ${D}/${wwwdir}/images/icon.png
+    install -m 0644 ${WORKDIR}/background.png ${D}/${wwwdir}/images/background.png
     install -m 0644 ${WORKDIR}/logo.png ${D}/${wwwdir}/images/logo.png
     install -m 0644 ${WORKDIR}/bootstrap.min.css ${D}/${wwwdir}/css/bootstrap.min.css
 }

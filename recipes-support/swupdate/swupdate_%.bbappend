@@ -14,6 +14,7 @@ SRC_URI += " \
     file://favicon.png \
     file://logo.png \
     file://bootstrap.min.css \
+    file://swupdate.min.css \
 "
 
 do_install:append() {
@@ -30,4 +31,5 @@ do_install:append() {
     install -m 0644 ${WORKDIR}/background.png ${D}/${wwwdir}/images/background.png
     install -m 0644 ${WORKDIR}/logo.png ${D}/${wwwdir}/images/logo.png
     install -m 0644 ${WORKDIR}/bootstrap.min.css ${D}/${wwwdir}/css/bootstrap.min.css
+    install -m 0644 ${WORKDIR}/swupdate.min.css ${D}/${wwwdir}/css/swupdate.min.css
 }

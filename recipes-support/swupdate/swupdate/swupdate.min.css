@@ -1,0 +1,32 @@
+/*!
+ * Copyright (C) 2017-2018 Weidmüller Interface GmbH & Co. KG
+ * Stefan Herbrechtsmeier <stefan.herbrechtsmeier@weidmueller.com>
+ *
+ * Modified 2022 Bitsy AI Labs, LLC
+ * Leigh Johnson <leigh@bitsy.ai>
+ * SPDX-License-Identifier: MIT
+ */
+body {
+    background-attachment: fixed;
+    background-image: url(../images/background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.dropzone {
+    background: #fff;
+    background: rgba(255, 255, 255, .75);
+    min-height: 200px
+}
+
+.dropzone .dz-preview .dz-image {
+    width: 220px
+}
+
+[data-toggle=collapse] i:before {
+    content: "\f139"
+}
+
+[data-toggle=collapse].collapsed i:before {
+    content: "\f13a"
+}

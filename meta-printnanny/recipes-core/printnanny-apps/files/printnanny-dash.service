@@ -1,9 +1,10 @@
 [Unit]
 Description=PrintNanny Dashboard
-After=network.target cloud-config.target printnanny-license.service
-Wants=network.target cloud-config.target printnanny-license.service
+After=network-online.target cloud-init.target printnanny-setup.service etc-printnanny.mount
+Wants=network-online.target cloud-init.target printnanny-setup.service
+Requires=etc-printnanny.mount
 PartOf=printnanny-online.target
-ReloadPropagatedFrom=printnanny-online.target printnanny.target
+ReloadPropagatedFrom=printnanny-online.target
 
 [Service]
 Type=simple

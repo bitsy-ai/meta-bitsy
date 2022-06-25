@@ -1,0 +1,25 @@
+[Unit]
+Description=PrintNanny First Boot Service
+After=network-online.target printnanny- systemd-networkd-wait-online.service cloud-init.target etc-printnanny.mount
+Wants=network-online.target systemd-networkd-wait-online.service cloud-init.target
+Requires=etc-printnanny.mount
+PartOf=printnanny-online.target
+ReloadPropagatedFrom=printnanny-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=5
+ConditionPathExists=!/etc/printnanny/setup.done
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=printnanny-setup
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Generating machine identity" || echo "psplash-write failed"'
+ExecStart=/bin/sh -c '/usr/bin/printnanny config generate-keys --output="/etc/printnanny/keys" || echo "Skipping key generation, keys already in /etc/printnanny/keys"'
+ExecStart=/usr/bin/printnanny-link-confd
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v check-license && echo $(date +%s) > /etc/printnanny/setup.done'
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target

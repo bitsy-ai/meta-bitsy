@@ -1,7 +1,8 @@
 [Unit]
 Description=PrintNanny Dashboard
-After=network-online.target cloud-init.target printnanny-setup.service
+After=network-online.target cloud-init.target printnanny-setup.service etc-printnanny.mount
 Wants=network-online.target cloud-init.target printnanny-setup.service
+Requires=etc-printnanny.mount
 PartOf=printnanny-online.target
 ReloadPropagatedFrom=printnanny-online.target
 

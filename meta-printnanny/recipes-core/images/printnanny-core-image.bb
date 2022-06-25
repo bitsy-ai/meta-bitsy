@@ -45,3 +45,5 @@ MACHINE_FEATURES += "bluetooth wifi keyboard"
 
 # SYSTEMD_DEFAULT_TARGET = "printnanny-online.target"
 inherit core-image
+
+ROOTFS_POSTPROCESS_COMMAND += "rm_machine_id;"

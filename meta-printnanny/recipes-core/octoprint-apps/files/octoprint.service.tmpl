@@ -6,10 +6,8 @@ Wants=network-online.target octoprint-setup.target
 [Service]
 Type=simple
 SyslogIdentifier=octoprint
-Environment=WEBRTC_API_TOKEN_FILE=%d/webrtc-api-token
-
 ExecStart=/bin/bash -c "JANUS_EDGE_HOSTNAME=$(cat /etc/hostname) \
-    JANUS_EDGE_API_TOKEN=$(cat ${CREDENTIALS_DIRECTORY}/janus-edge-api-token) \
+    JANUS_EDGE_API_TOKEN=$(cat %d/janus-edge-api-token) \
     {OCTOPRINT_VENV}/bin/python -m octoprint serve \
     --host 127.0.0.1 \
     --config {OCTOPRINT_BASEDIR}/config.yaml \

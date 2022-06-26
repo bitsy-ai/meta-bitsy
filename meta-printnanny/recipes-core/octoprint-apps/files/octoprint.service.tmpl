@@ -1,0 +1,21 @@
+[Unit]
+Description=OctoPrint
+After=network-online.target octoprint-setup.target
+Wants=network-online.target octoprint-setup.target
+
+[Service]
+Type=simple
+SyslogIdentifier=octoprint
+Environment=WEBRTC_API_TOKEN=%d/webrtc-api-token
+
+ExecStart=/bin/bash -c "WEBRTC_HOSTNAME=$(cat /etc/hostname) \
+    /usr/bin/octoprint serve \
+    --host 127.0.0.1 \
+    --config {OCTOPRINT_BASEDIR}/config.yaml \
+    --port {OCTOPRINT_PORT}"
+Restart=on-failure
+RestartSec=30
+User={OCTOPRINT_USER}
+
+[Install]
+WantedBy=multi-user.target

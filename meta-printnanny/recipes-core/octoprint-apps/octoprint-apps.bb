@@ -1,36 +1,60 @@
 LICENSE = "AGPLv3"
 
-inherit systemd
+inherit systemd bitsy_tmpl
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 SRC_URI:append = "\
     file://config.yaml \
-    file://octoprint.service \
+    file://octoprint.service.tmpl \
+    file://octoprint-venv.service.tmpl \
     file://octoprint-link.service \
     file://octoprint-link-confd.sh \
 "
-PRINTNANNY_USER = "printnanny"
-PYTHON_VENV = "/home/printnanny/.octoprint/.venv"
+OCTOPRINT_USER ?= "printnanny"
+# install to /home directory, which is a writable overlayfs
+# OctoPrint allows users to update the software & install plugins via pip module, so it can't be installed to read-only rootfs
+# The pip module must also be sandboxed (virtualenv)
+OCTOPRINT_BASEDIR ?= "/home/${OCTOPRINT_USER}/.octoprint"
+OCTOPRINT_VENV ?= "${OCTOPRINT_BASEDIR}/.venv"
+OCTOPRINT_ENV ?= "/run/octoprint/env"
+OCTOPRINT_PORT ?= "5001"
+
+BITSY_TEMPLATE_FILES = "\
+    octoprint.service.tmpl \
+    octoprint-venv.service.tmpl \
+"
+
+BITSY_TEMPLATE_ARGS = "\
+    OCTOPRINT_ENV \
+    OCTOPRINT_VENV \
+    OCTOPRINT_BASEDIR \
+    OCTOPRINT_USER \
+    OCTOPRINT_PORT \
+"
 
 do_install:append() {
-    install -d ${D}${sysconfdir}/octoprint
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
     install -m 0755 "${WORKDIR}/octoprint-link-confd.sh" "${D}${bindir}/octoprint-link-confd"
-    install -d ${D}/home/${PRINTNANNY_USER}/.octoprint
-    install -m 0755 ${WORKDIR}/config.yaml ${D}/home/${PRINTNANNY_USER}/.octoprint/config.yaml
-    chown -R ${PRINTNANNY_USER} ${D}/home/${PRINTNANNY_USER}
+    install -d ${D}${OCTOPRINT_BASEDIR}/
+    install -m 0755 ${WORKDIR}/config.yaml ${D}${OCTOPRINT_BASEDIR}/config.yaml
+    chown -R ${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
+    install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service
+    install -m 0644 ${WORKDIR}/octoprint-link.service ${D}${systemd_system_unitdir}/octoprint-link.service
 }
 
-SYSTEMD_SERVICE:${PN} = "octoprint.service"
-SYSTEMD_AUTO_ENABLE = "enable"
-FILES:${PN} = "${sysconfdir} ${systemd_system_unitdir} /home/${PRINTNANNY_USER}/.octoprint ${bindir}"
 
-DEPENDS = "printnanny-user"
+SYSTEMD_SERVICE:${PN} = "octoprint.service octoprint-venv.service octoprint-link.service"
+SYSTEMD_AUTO_ENABLE = "enable"
+FILES:${PN} = "${systemd_system_unitdir} ${OCTOPRINT_BASEDIR}/* ${bindir}"
+
+DEPENDS = "${OCTOPRINT_USER}-user"
+
+# install python3-octoprint-nanny to system site-packages
 RDEPENDS:${PN} = "\
     python3-octoprint-nanny \
     python3-pip \
     python3-wheel \
-    printnanny-user \
+    ${OCTOPRINT_USER}-user \
 "

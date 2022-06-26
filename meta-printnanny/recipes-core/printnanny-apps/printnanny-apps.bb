@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 SRC_URI = " \
     https://pki.goog/gtsltsr/gtsltsr.crt;name=gtsltsr \
     https://pki.goog/gsr4/GSR4.crt;name=GSR4 \
+    file://printnanny-creds.service \
     file://printnanny-dash.service \
     file://printnanny-setup.service \
     file://printnanny-mqtt.service \
@@ -33,6 +34,7 @@ do_install() {
   install -d "${D}${sysconfdir}/systemd/system/printnanny-mqtt.service.d"
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
+  install -m 0644 "${WORKDIR}/printnanny-creds.service" "${D}${systemd_system_unitdir}/printnanny-creds.service"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-setup.service" "${D}${systemd_system_unitdir}/printnanny-setup.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
@@ -46,6 +48,7 @@ do_install() {
 FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "\
+  printnanny-creds.service \
   printnanny-dash.service \
   printnanny-setup.service \
   printnanny-mqtt.service \

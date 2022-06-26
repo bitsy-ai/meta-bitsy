@@ -12,6 +12,7 @@ COOKIE_SECRET_FILE="cookie-secret.conf"
 
 mkdir -p "$PRINTNANNY_DASH_CONFD"
 mkdir -p "$JANUS_CONFD"
+CHANGED="0"
 
 if [ -f "$COOKIE_SECRET_FILE" ]; then
     echo "<6>printnanny-generator[$$]: $COOKIE_SECRET_FILE exists, skipping credential generation"
@@ -20,12 +21,14 @@ else
     echo "[Service]" > "${PRINTNANNY_DASH_CONFD}/${COOKIE_SECRET_FILE}"
     echo -n "$SECRET" | systemd-creds encrypt --name cookie-secret -p - - >> "${PRINTNANNY_DASH_CONFD}/${COOKIE_SECRET_FILE}"
     echo "<4>printnanny-generator[$$]: Created $COOKIE_SECRET_FILE"
+    CHANGED="1"
 fi
 
 # symlink janus admin and api tokens so printnanny can initialize webrtc sessions
 if [ -f "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE}" ]; then
     ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE}"
     echo "Linked ${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE} from ${JANUS_CONFD}/${JANUS_ADMIN_FILE}"
+    CHANGED="1"
 else
     echo "${PRINTNANNY_DASH_CONFD}/${JANUS_ADMIN_FILE} already exists"
 fi
@@ -33,6 +36,7 @@ fi
 if [ -f "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}" ]; then
     ln -s "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE}"
     echo "Linked ${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE} from ${JANUS_CONFD}/${JANUS_TOKEN_FILE}"
+    CHANGED="1"
 else
     echo "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE} already exists"
 fi
@@ -65,3 +69,7 @@ do
     chmod -R u=rwx,g=rwx,o=rx "$f"
     chown -R :printnanny "$f"
 done
+
+if [ "$CHANGED" == "1" ]; then
+    systemctl daemon-reload
+fi

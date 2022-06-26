@@ -9,7 +9,7 @@ SyslogIdentifier=octoprint
 Environment=WEBRTC_API_TOKEN=%d/webrtc-api-token
 
 ExecStart=/bin/bash -c "WEBRTC_HOSTNAME=$(cat /etc/hostname) \
-    /usr/bin/octoprint serve \
+    {OCTOPRINT_VENV}/bin/python -m octoprint serve \
     --host 127.0.0.1 \
     --config {OCTOPRINT_BASEDIR}/config.yaml \
     --port {OCTOPRINT_PORT}"

@@ -1,0 +1,20 @@
+[Unit]
+Description=PrintNanny credentials service
+After=printnanny-setup.service
+Wants=printnanny-setup.service
+Requires=etc-printnanny.mount
+PartOf=printnanny-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=printnanny-creds
+ExecStart=/usr/bin/printnanny-link-confd
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+
+[Install]
+WantedBy=printnanny-online.target

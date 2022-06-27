@@ -15,12 +15,12 @@ mkdir -p "$OCTOPRINT_CONFD"
 CHANGED="0"
 
 # symlink janus admin and api tokens so printnanny can initialize webrtc sessions (via octoprint plugin)
-if [ -f "${OCTOPRINT_CONFD}/${JANUS_ADMIN_FILE}" ]; then
+if [ ! -f "${OCTOPRINT_CONFD}/${JANUS_ADMIN_FILE}" ]; then
     ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${OCTOPRINT_CONFD}/${JANUS_ADMIN_FILE}"
     CHANGED="1"
 fi
 
-if [ -f "${OCTOPRINT_CONFD}/${JANUS_TOKEN_FILE}" ]; then
+if [ ! -f "${OCTOPRINT_CONFD}/${JANUS_TOKEN_FILE}" ]; then
     ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${OCTOPRINT_CONFD}/${JANUS_TOKEN_FILE}"
     CHANGED="1"
 fi

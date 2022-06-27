@@ -7,7 +7,7 @@ JANUS_ADMIN_FILE="janus-edge-admin-secret.conf"
 JANUS_TOKEN_FILE="janus-edge-api-token.conf"
 
 # share janus gateway admin/token with octoprint-env.service
-OCTOPRINT_CONFD="/run/systemd/system/octoprint-env.service.d"
+OCTOPRINT_CONFD="/run/systemd/system/octoprint.service.d"
 
 mkdir -p "$JANUS_CONFD"
 mkdir -p "$OCTOPRINT_CONFD"

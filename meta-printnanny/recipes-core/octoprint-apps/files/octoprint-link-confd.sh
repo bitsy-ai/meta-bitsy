@@ -20,7 +20,7 @@ if [ -f "${OCTOPRINT_CONFD}/${JANUS_ADMIN_FILE}" ]; then
     CHANGED="1"
 fi
 
-if [ -f "${JANUS_CONFD}/${JANUS_TOKEN_FILE}" ]; then
+if [ -f "${OCTOPRINT_CONFD}/${JANUS_TOKEN_FILE}" ]; then
     ln -s "${JANUS_CONFD}/${JANUS_ADMIN_FILE}" "${OCTOPRINT_CONFD}/${JANUS_TOKEN_FILE}"
     CHANGED="1"
 fi

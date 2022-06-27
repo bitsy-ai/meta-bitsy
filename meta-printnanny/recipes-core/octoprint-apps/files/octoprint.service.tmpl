@@ -14,6 +14,7 @@ ExecStart=/bin/bash -c "JANUS_EDGE_HOSTNAME=$(cat /etc/hostname) \
     --port {OCTOPRINT_PORT}"
 Restart=on-failure
 RestartSec=30
+IOSchedulingClass=realtime
 User={OCTOPRINT_USER}
 
 [Install]

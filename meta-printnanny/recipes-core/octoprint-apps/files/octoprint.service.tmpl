@@ -1,7 +1,7 @@
 [Unit]
 Description=OctoPrint
-After=network-online.target octoprint-setup.target
-Wants=network-online.target octoprint-setup.target
+After=network-online.target octoprint-venv.service octoprint-link.service
+Wants=network-online.target octoprint-venv.service octoprint-link.service
 
 [Service]
 Type=simple

@@ -1,10 +1,10 @@
 # alias all janus commands
-Cmnd_Alias JANUS_SERVICES = /usr/bin/systemctl start janus*,/usr/bin/systemctl stop janus*,/usr/bin/systemctl restart janus*
+Cmnd_Alias JANUS_SERVICES = /bin/systemctl start janus*,/bin/systemctl stop janus*,/bin/systemctl restart janus*
 # alias all printnanny commands
-Cmnd_Alias PRINTNANNY_SERVICES = /usr/bin/systemctl start printnanny*,/usr/bin/systemctl stop printnanny*,/usr/bin/systemctl restart printnanny*,/usr/local/bin/printnanny*
+Cmnd_Alias PRINTNANNY_SERVICES = /bin/systemctl start printnanny*,/bin/systemctl stop printnanny*,/bin/systemctl restart printnanny*,/usr/local/bin/printnanny*
 # alias all octoprint commands
-Cmnd_Alias OCTOPRINT_SERVICES = /usr/bin/systemctl start octoprint*,/usr/bin/systemctl stop octoprint*,/usr/bin/systemctl restart octoprint*
+Cmnd_Alias OCTOPRINT_SERVICES = /bin/systemctl start octoprint*,/bin/systemctl stop octoprint*,/bin/systemctl restart octoprint*
 # alias all nginx commands
-Cmnd_Alias WEB_SERVICES = /usr/bin/systemctl start nginx*,/usr/bin/systemctl stop nginx*,/usr/bin/systemctl restart nginx*
+Cmnd_Alias WEB_SERVICES = /bin/systemctl start nginx*,/bin/systemctl stop nginx*,/bin/systemctl restart nginx*
 # generic system admin commands
-Cmnd_Alias REBOOT = /usr/sbin/reboot
+Cmnd_Alias REBOOT = /sbin/reboot -h now,/sbin/shutdown -h now,/sbin/shutdown -r now

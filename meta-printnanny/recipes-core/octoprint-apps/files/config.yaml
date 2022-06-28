@@ -6,9 +6,9 @@ server:
     serverRestartCommand: sudo systemctl restart octoprint.service
 
 # https://docs.octoprint.org/en/master/configuration/config_yaml.html?highlight=logs#config-yaml
-folder:
-  logs: /var/logs/octoprint
-  watched: /var/run/octoprint/watched
+# folder:
+#   logs: /var/logs/octoprint
+#   watched: /var/run/octoprint/watched
 
 system:
   actions:

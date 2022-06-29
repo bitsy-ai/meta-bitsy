@@ -1,4 +1,4 @@
-From 48689b918266f7f4c435c50913d762831ebc59b1 Mon Sep 17 00:00:00 2001
+From a0ec0e2251177ca98f4f15d4256958260393d29b Mon Sep 17 00:00:00 2001
 From: Leigh Johnson <leigh@bitsy.ai>
 Date: Tue, 28 Jun 2022 21:38:04 -0700
 Subject: [PATCH] shim startPrintNannyWebRTC if available
@@ -10,7 +10,7 @@ Subject: [PATCH] shim startPrintNannyWebRTC if available
  3 files changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/src/octoprint/static/js/app/helpers.js b/src/octoprint/static/js/app/helpers.js
-index 28f6e7a2b..164debb09 100644
+index 28f6e7a2b..941470917 100644
 --- a/src/octoprint/static/js/app/helpers.js
 +++ b/src/octoprint/static/js/app/helpers.js
 @@ -1739,3 +1739,12 @@ var startWebRTC = function (videoElement, streamUrl, iceServers) {
@@ -21,10 +21,10 @@ index 28f6e7a2b..164debb09 100644
 +var shimPrintNannyWebRTC = function (videoElement, streamUrl, iceServers) {
 +    console.debug("shimPrintNannyWebRTC called with videoElement, streamUrl, iceServers", videoElement, streamUrl, iceServers);
 +    if (startPrintNannyWebRTC == undefined || startPrintNannyWebRTC == null) {
-+        console.warning("startPrintNannyWebRTC function is not defined, falling back to OctoPrint built-in startWebRTC")
-+        return startWebRTC(videoElement, streamUrl, iceServers)
++        console.warning("startPrintNannyWebRTC function is not defined, falling back to OctoPrint built-in startWebRTC");
++        return startWebRTC(videoElement, streamUrl, iceServers);
 +    }
-+    return startPrintNannyWebRTC(videoElement, streamUrl, iceServers)
++    return startPrintNannyWebRTC(videoElement, streamUrl, iceServers);
 +};
 diff --git a/src/octoprint/static/js/app/viewmodels/control.js b/src/octoprint/static/js/app/viewmodels/control.js
 index 655f29fb4..b8308a9d6 100644

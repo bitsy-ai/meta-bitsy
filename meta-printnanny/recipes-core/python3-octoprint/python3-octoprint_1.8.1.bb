@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=73f1eb20517c55bf9493b7dd6e480788"
 SRC_BRANCH ?= "1.8.1"
 SRC_REV = "260a1aef11432c421246019e25b6b744abbaed60"
 SRC_URI = "\
-    git://github.com/OctoPrint/OctoPrint.git;rev=${SRC_REV};branch=${SRC_BRANCH};protocol=https; \
+    git://github.com/OctoPrint/OctoPrint.git;rev=${SRC_REV};protocol=https \
     file://0001-shim-startPrintNannyWebRTC-if-available.patch \
 "
 

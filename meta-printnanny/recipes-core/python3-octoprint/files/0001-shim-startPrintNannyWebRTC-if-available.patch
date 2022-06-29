@@ -1,0 +1,56 @@
+From 48689b918266f7f4c435c50913d762831ebc59b1 Mon Sep 17 00:00:00 2001
+From: Leigh Johnson <leigh@bitsy.ai>
+Date: Tue, 28 Jun 2022 21:38:04 -0700
+Subject: [PATCH] shim startPrintNannyWebRTC if available
+
+---
+ src/octoprint/static/js/app/helpers.js             | 9 +++++++++
+ src/octoprint/static/js/app/viewmodels/control.js  | 2 +-
+ src/octoprint/static/js/app/viewmodels/settings.js | 2 +-
+ 3 files changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/src/octoprint/static/js/app/helpers.js b/src/octoprint/static/js/app/helpers.js
+index 28f6e7a2b..164debb09 100644
+--- a/src/octoprint/static/js/app/helpers.js
++++ b/src/octoprint/static/js/app/helpers.js
+@@ -1739,3 +1739,12 @@ var startWebRTC = function (videoElement, streamUrl, iceServers) {
+     negotiateWebRTC(streamUrl);
+     return pc;
+ };
++
++var shimPrintNannyWebRTC = function (videoElement, streamUrl, iceServers) {
++    console.debug("shimPrintNannyWebRTC called with videoElement, streamUrl, iceServers", videoElement, streamUrl, iceServers);
++    if (startPrintNannyWebRTC == undefined || startPrintNannyWebRTC == null) {
++        console.warning("startPrintNannyWebRTC function is not defined, falling back to OctoPrint built-in startWebRTC")
++        return startWebRTC(videoElement, streamUrl, iceServers)
++    }
++    return startPrintNannyWebRTC(videoElement, streamUrl, iceServers)
++};
+diff --git a/src/octoprint/static/js/app/viewmodels/control.js b/src/octoprint/static/js/app/viewmodels/control.js
+index 655f29fb4..b8308a9d6 100644
+--- a/src/octoprint/static/js/app/viewmodels/control.js
++++ b/src/octoprint/static/js/app/viewmodels/control.js
+@@ -834,7 +834,7 @@ $(function () {
+ 
+             // Open a new connection if necessary
+             if (self.webRTCPeerConnection == null) {
+-                self.webRTCPeerConnection = startWebRTC(
++                self.webRTCPeerConnection = shimPrintNannyWebRTC(
+                     video,
+                     self.settings.webcam_streamUrlEscaped(),
+                     self.settings.webcam_streamWebrtcIceServers()
+diff --git a/src/octoprint/static/js/app/viewmodels/settings.js b/src/octoprint/static/js/app/viewmodels/settings.js
+index bf56727c3..b689d9e9b 100644
+--- a/src/octoprint/static/js/app/viewmodels/settings.js
++++ b/src/octoprint/static/js/app/viewmodels/settings.js
+@@ -488,7 +488,7 @@ $(function () {
+                 );
+                 video_element = webcam_element[0];
+ 
+-                webrtc_peer_connection = startWebRTC(
++                webrtc_peer_connection = shimPrintNannyWebRTC(
+                     video_element,
+                     url,
+                     self.webcam_streamWebrtcIceServers()
+-- 
+2.32.1 (Apple Git-133)

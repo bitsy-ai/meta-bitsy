@@ -5,7 +5,7 @@ AUTHOR = "Leigh Johnson <leigh@bitsy.ai>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
-SRC_BRANCH ?= "main"
+SRC_BRANCH ?= "shim-startwebrtc-fn"
 SRC_URI = "git://github.com/bitsy-ai/octoprint-nanny-plugin.git;branch=${SRC_BRANCH};protocol=https"
 SRCREV = "9a055240da3eae8c1e9330b17260223563fd7eca"
 

@@ -1,6 +1,7 @@
 [Unit]
 Description=Setup and synchronize PrintNanny Cloud settings
 After=network-online.target systemd-networkd-wait-online.service etc-printnanny.mount janus-gateway-creds.service
+Before=octoprint.service
 Wants=network-online.target systemd-networkd-wait-online.service janus-gateway-creds.service
 Requires=etc-printnanny.mount
 PartOf=printnanny-online.target

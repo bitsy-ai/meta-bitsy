@@ -13,8 +13,8 @@ Type=oneshot
 RemainAfterExit=yes
 SyslogIdentifier=printnanny-sync
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Syncing Configuration" || echo "psplash-write failed"'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v config set janus_edge.api_token=$(cat /run/credentials/janus-gateway.service/janus-edge-api-token)'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v config set janus_edge.admin_secret=$(cat /run/credentials/janus-gateway.service/janus-edge-admin-secret)'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config set janus_edge.api_token $(cat /run/credentials/janus-gateway.service/janus-edge-api-token)'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config set janus_edge.admin_secret $(cat /run/credentials/janus-gateway.service/janus-edge-admin-secret)'
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync'
 ExecStart=/usr/bin/printnanny-link-confd
 Restart=on-failure

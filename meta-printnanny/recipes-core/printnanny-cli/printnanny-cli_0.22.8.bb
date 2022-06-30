@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-cli could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-cli/0.22.8"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "f6a6edd27715ac2d6d0d4db1cc2465d3a09b145d"
+SRCREV = "277d8757c0632a1cc498ac8655cfd12d249896c7"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+f6a6edd277"
+PV:append = ".AUTOINC+277d8757c0"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -54,7 +54,7 @@ SRC_URI += " \
     crate://crates.io/byteorder/1.4.3 \
     crate://crates.io/bytes/1.1.0 \
     crate://crates.io/cache-padded/1.2.0 \
-    crate://crates.io/cc/1.0.73 \
+    crate://crates.io/cc/1.0.72 \
     crate://crates.io/cfg-if/0.1.10 \
     crate://crates.io/cfg-if/1.0.0 \
     crate://crates.io/chrono-tz-build/0.0.2 \
@@ -102,6 +102,7 @@ SRC_URI += " \
     crate://crates.io/fake-simd/0.1.2 \
     crate://crates.io/fastrand/1.7.0 \
     crate://crates.io/figment/0.10.6 \
+    crate://crates.io/file-lock/2.1.4 \
     crate://crates.io/filetime/0.2.16 \
     crate://crates.io/flate2/1.0.24 \
     crate://crates.io/float-cmp/0.8.0 \
@@ -174,7 +175,7 @@ SRC_URI += " \
     crate://crates.io/lazy_static/1.4.0 \
     crate://crates.io/lazycell/1.3.0 \
     crate://crates.io/lexical-core/0.7.6 \
-    crate://crates.io/libc/0.2.126 \
+    crate://crates.io/libc/0.2.121 \
     crate://crates.io/libsqlite3-sys/0.22.2 \
     crate://crates.io/linked-hash-map/0.5.4 \
     crate://crates.io/lock_api/0.4.7 \
@@ -191,6 +192,7 @@ SRC_URI += " \
     crate://crates.io/mio/0.6.23 \
     crate://crates.io/mio/0.8.3 \
     crate://crates.io/miow/0.2.2 \
+    crate://crates.io/mktemp/0.4.1 \
     crate://crates.io/mockall/0.10.2 \
     crate://crates.io/mockall_derive/0.10.2 \
     crate://crates.io/mqttbytes/0.6.0 \
@@ -198,6 +200,7 @@ SRC_URI += " \
     crate://crates.io/multipart/0.18.0 \
     crate://crates.io/native-tls/0.2.10 \
     crate://crates.io/net2/0.2.37 \
+    crate://crates.io/nix/0.24.1 \
     crate://crates.io/nom/5.1.2 \
     crate://crates.io/normalize-line-endings/0.3.0 \
     crate://crates.io/normpath/0.3.2 \
@@ -384,6 +387,7 @@ SRC_URI += " \
     crate://crates.io/untrusted/0.7.1 \
     crate://crates.io/url/2.2.2 \
     crate://crates.io/utf-8/0.7.6 \
+    crate://crates.io/uuid/0.8.2 \
     crate://crates.io/valuable/0.1.0 \
     crate://crates.io/vcpkg/0.2.15 \
     crate://crates.io/version_check/0.9.4 \
@@ -425,7 +429,6 @@ SRC_URI += " \
 
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
-
 
 SUMMARY = "PrintNanny Command-line Interface"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-cli.git"

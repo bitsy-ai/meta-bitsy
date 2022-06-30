@@ -1,0 +1,24 @@
+[Unit]
+Description=Setup and synchronize PrintNanny Cloud settings
+After=network-online.target systemd-networkd-wait-online.service etc-printnanny.mount janus-gateway-creds.service
+Wants=network-online.target systemd-networkd-wait-online.service janus-gateway-creds.service
+Requires=etc-printnanny.mount
+PartOf=printnanny-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=printnanny-setup
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Applying Configuration" || echo "psplash-write failed"'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config set janus_edge.api_token=$(cat /run/credentials/janus-gateway.service/janus-edge-api-token)'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config set janus_edge.admin_secret=$(cat /run/credentials/janus-gateway.service/janus-edge-admin-secret)'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync'
+ExecStart=/usr/bin/printnanny-link-confd
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target

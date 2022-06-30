@@ -7,7 +7,7 @@ SRC_URI = " \
     https://pki.goog/gtsltsr/gtsltsr.crt;name=gtsltsr \
     https://pki.goog/gsr4/GSR4.crt;name=GSR4 \
     file://printnanny-dash.service \
-    file://printnanny-setup.service \
+    file://printnanny-sync.service \
     file://printnanny-mqtt.service \
     file://printnanny-online.service \
     file://printnanny-online.target \
@@ -34,7 +34,7 @@ do_install() {
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
-  install -m 0644 "${WORKDIR}/printnanny-setup.service" "${D}${systemd_system_unitdir}/printnanny-setup.service"
+  install -m 0644 "${WORKDIR}/printnanny-sync.service" "${D}${systemd_system_unitdir}/printnanny-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
   install -m 0644 "${WORKDIR}/printnanny-online.service" "${D}${systemd_system_unitdir}/printnanny-online.service"
   install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
@@ -47,7 +47,7 @@ FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-dash.service \
-  printnanny-setup.service \
+  printnanny-sync.service \
   printnanny-mqtt.service \
   printnanny-online.service \
   printnanny-online.target \

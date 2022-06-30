@@ -7,7 +7,6 @@ SRC_URI:append = "\
     file://config.yaml \
     file://octoprint.service.tmpl \
     file://octoprint-venv.service.tmpl \
-    file://octoprint-link.service \
     file://octoprint-link-confd.sh \
 "
 OCTOPRINT_USER ?= "printnanny"
@@ -41,11 +40,10 @@ do_install:append() {
     chown -R ${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
     install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service
-    install -m 0644 ${WORKDIR}/octoprint-link.service ${D}${systemd_system_unitdir}/octoprint-link.service
 }
 
 
-SYSTEMD_SERVICE:${PN} = "octoprint.service octoprint-venv.service octoprint-link.service"
+SYSTEMD_SERVICE:${PN} = "octoprint.service octoprint-venv.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 FILES:${PN} = "${systemd_system_unitdir} ${OCTOPRINT_BASEDIR}/* ${bindir}"
 

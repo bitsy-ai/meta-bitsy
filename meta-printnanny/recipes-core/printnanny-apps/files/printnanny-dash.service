@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny Dashboard
-After=network-online.target printnanny-setup.service printnanny-creds.service etc-printnanny.mount
-Wants=network-online.target printnanny-setup.service printnanny-creds.service
+After=network-online.target printnanny-sync.service  etc-printnanny.mount
+Wants=network-online.target printnanny-sync.service 
 Requires=etc-printnanny.mount
 PartOf=printnanny-online.target
 

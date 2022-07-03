@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-gst could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-gst/0.23.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "035f1db28af0569039d43f2b5218294b7536895c"
+SRCREV = "9d5a64ee02cbbd2cea473ef7f5af43a2604ee42f"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "gst"
-PV:append = ".AUTOINC+035f1db28a"
+PV:append = ".AUTOINC+9d5a64ee02"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched

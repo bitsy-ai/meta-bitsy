@@ -19,12 +19,12 @@ system:
 
 events:
   subscriptions:
-    - command: sudo systemctl restart nnstreamer.service
+    - command: sudo systemctl start printnanny-cam.service
       debug: false
       event: plugin_octoprint_nanny_nnstreamer_start
       type: system
       enabled: true
-    - command: sudo systemctl stop nnstreamer.service
+    - command: sudo systemctl stop printnanny-cam.service
       enabled: true
       debug: false
       event: plugin_octoprint_nanny_nnstreamer_stop

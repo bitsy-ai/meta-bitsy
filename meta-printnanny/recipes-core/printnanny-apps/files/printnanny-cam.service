@@ -1,0 +1,21 @@
+[Unit]
+Description=PrintNanny Cam Service
+After=network-online.target printnanny-sync.service
+Wants=network-online.target printnanny-sync.service 
+PartOf=printnanny-online.target
+
+[Service]
+Type=simple
+SyslogIdentifier=printnanny-dash
+ExecStart=/usr/bin/printnanny-gst \
+    --encoder h264-hardware \
+    --host localhost \
+    --port-video 5105 \
+    --port-overlay 5106 \
+    rtp-tflite-overlay
+Restart=on-failure
+RestartSec=30
+User=printnanny
+
+[Install]
+WantedBy=multi-user.target

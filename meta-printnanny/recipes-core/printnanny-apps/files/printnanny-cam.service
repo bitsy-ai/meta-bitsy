@@ -6,8 +6,8 @@ PartOf=printnanny-online.target
 
 [Service]
 Type=simple
-SyslogIdentifier=printnanny-dash
-ExecStart=/usr/bin/printnanny-gst \
+SyslogIdentifier=printnanny-cam
+ExecStart=/usr/bin/printnanny-gst -v \
     --encoder=h264-hardware \
     --host=localhost \
     --port-data=5107 \

@@ -8,11 +8,19 @@ PartOf=printnanny-online.target
 Type=simple
 SyslogIdentifier=printnanny-dash
 ExecStart=/usr/bin/printnanny-gst \
-    --encoder h264-hardware \
-    --host localhost \
-    --port-video 5105 \
-    --port-overlay 5106 \
+    --encoder=h264-hardware \
+    --host=localhost \
+    --port-data=5107 \
+    --port-overlay=5106 \
+    --port-video=5105 \
+    --sink udpsink \
+    --src libcamerasrc \
+    --tensor-height=320 \
+    --tensor-width=320 \
+    --tflite-labels=/usr/share/printnanny/model/dict.txt \
+    --tflite-model=/usr/share/printnanny/model/model.tflite \
     rtp-tflite-overlay
+
 Restart=on-failure
 RestartSec=30
 User=printnanny

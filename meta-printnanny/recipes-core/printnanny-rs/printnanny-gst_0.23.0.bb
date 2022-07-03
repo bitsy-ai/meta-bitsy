@@ -453,7 +453,7 @@ LIC_FILES_CHKSUM = " \
 
 SUMMARY = "PrintNanny Gstreamer App"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-cli.git"
-LICENSE = "LICENSE"
+LICENSE = "AGPL-3.0-or-later"
 
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from

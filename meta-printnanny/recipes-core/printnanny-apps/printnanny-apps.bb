@@ -19,7 +19,7 @@ SRC_URI = " \
 SRC_URI[gtsltsr.sha256sum] = "0a76f50ae47b05d9a85954a1de9bc0b936bcd212911bcbfa650030072d17d946"
 SRC_URI[GSR4.sha256sum] = "bec94911c2955676db6c0a550986d76e3ba005667c442c9762b4fbb773de228c"
 
-RDEPENDS:${PN} += "printnanny-cli"
+RDEPENDS:${PN} += "printnanny-cli printnanny-gst"
 
 inherit systemd
 

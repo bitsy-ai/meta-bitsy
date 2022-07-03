@@ -6,12 +6,12 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get printnanny-cli could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/printnanny-cli/0.22.8"
+# SRC_URI += "crate://crates.io/printnanny-cli/0.23.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "b3fc08cdf464ed17abede8afbbab956fa3ec87db"
+SRCREV = "0d9fd188bc68789705aa1d6ddf229d9ba4c62c2e"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+b3fc08cdf4"
+PV:append = ".AUTOINC+0d9fd188bc"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -55,6 +55,7 @@ SRC_URI += " \
     crate://crates.io/bytes/1.1.0 \
     crate://crates.io/cache-padded/1.2.0 \
     crate://crates.io/cc/1.0.72 \
+    crate://crates.io/cfg-expr/0.10.3 \
     crate://crates.io/cfg-if/0.1.10 \
     crate://crates.io/cfg-if/1.0.0 \
     crate://crates.io/chrono-tz-build/0.0.2 \
@@ -67,6 +68,7 @@ SRC_URI += " \
     crate://crates.io/concurrent-queue/1.2.2 \
     crate://crates.io/config/0.11.0 \
     crate://crates.io/console/0.14.1 \
+    crate://crates.io/convert_case/0.4.0 \
     crate://crates.io/cookie/0.16.0 \
     crate://crates.io/core-foundation-sys/0.8.3 \
     crate://crates.io/core-foundation/0.9.3 \
@@ -78,6 +80,7 @@ SRC_URI += " \
     crate://crates.io/darling/0.13.4 \
     crate://crates.io/darling_core/0.13.4 \
     crate://crates.io/darling_macro/0.13.4 \
+    crate://crates.io/derive_more/0.99.17 \
     crate://crates.io/deunicode/0.4.3 \
     crate://crates.io/devise/0.3.1 \
     crate://crates.io/devise_codegen/0.3.1 \
@@ -136,9 +139,15 @@ SRC_URI += " \
     crate://crates.io/gimli/0.26.1 \
     crate://crates.io/git-version-macro/0.3.5 \
     crate://crates.io/git-version/0.3.5 \
+    crate://crates.io/glib-macros/0.15.11 \
+    crate://crates.io/glib-sys/0.15.10 \
+    crate://crates.io/glib/0.15.12 \
     crate://crates.io/glob/0.3.0 \
     crate://crates.io/globset/0.4.9 \
     crate://crates.io/globwalk/0.8.1 \
+    crate://crates.io/gobject-sys/0.15.10 \
+    crate://crates.io/gstreamer-sys/0.18.0 \
+    crate://crates.io/gstreamer/0.18.8 \
     crate://crates.io/h2/0.3.13 \
     crate://crates.io/handlebars/4.3.1 \
     crate://crates.io/hashbrown/0.12.1 \
@@ -196,6 +205,7 @@ SRC_URI += " \
     crate://crates.io/mockall/0.10.2 \
     crate://crates.io/mockall_derive/0.10.2 \
     crate://crates.io/mqttbytes/0.6.0 \
+    crate://crates.io/muldiv/1.0.0 \
     crate://crates.io/multer/2.0.2 \
     crate://crates.io/multipart/0.18.0 \
     crate://crates.io/native-tls/0.2.10 \
@@ -208,6 +218,7 @@ SRC_URI += " \
     crate://crates.io/num-bigint/0.2.6 \
     crate://crates.io/num-bigint/0.4.3 \
     crate://crates.io/num-integer/0.1.45 \
+    crate://crates.io/num-rational/0.4.1 \
     crate://crates.io/num-traits/0.1.43 \
     crate://crates.io/num-traits/0.2.15 \
     crate://crates.io/num_cpus/1.13.1 \
@@ -220,6 +231,7 @@ SRC_URI += " \
     crate://crates.io/openssl-probe/0.1.5 \
     crate://crates.io/openssl-sys/0.9.74 \
     crate://crates.io/openssl/0.10.40 \
+    crate://crates.io/option-operations/0.4.1 \
     crate://crates.io/os_str_bytes/6.1.0 \
     crate://crates.io/parking/2.0.0 \
     crate://crates.io/parking_lot/0.11.2 \
@@ -227,6 +239,7 @@ SRC_URI += " \
     crate://crates.io/parking_lot_core/0.8.5 \
     crate://crates.io/parking_lot_core/0.9.3 \
     crate://crates.io/parse-zoneinfo/0.3.0 \
+    crate://crates.io/paste/1.0.7 \
     crate://crates.io/pear/0.2.3 \
     crate://crates.io/pear_codegen/0.2.3 \
     crate://crates.io/pem/0.8.3 \
@@ -252,8 +265,10 @@ SRC_URI += " \
     crate://crates.io/predicates-tree/1.0.5 \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
+    crate://crates.io/pretty-hex/0.3.0 \
     crate://crates.io/printnanny-api-client/0.92.0 \
     crate://crates.io/proc-macro-crate/0.1.5 \
+    crate://crates.io/proc-macro-crate/1.1.3 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \
     crate://crates.io/proc-macro-hack/0.5.19 \
@@ -332,6 +347,7 @@ SRC_URI += " \
     crate://crates.io/subtle/2.4.1 \
     crate://crates.io/syn/1.0.98 \
     crate://crates.io/sys-info/0.9.1 \
+    crate://crates.io/system-deps/6.0.2 \
     crate://crates.io/tempfile/3.3.0 \
     crate://crates.io/tera/1.16.0 \
     crate://crates.io/termcolor/1.1.3 \
@@ -390,6 +406,7 @@ SRC_URI += " \
     crate://crates.io/uuid/0.8.2 \
     crate://crates.io/valuable/0.1.0 \
     crate://crates.io/vcpkg/0.2.15 \
+    crate://crates.io/version-compare/0.1.0 \
     crate://crates.io/version_check/0.9.4 \
     crate://crates.io/wait-timeout/0.2.0 \
     crate://crates.io/waker-fn/1.1.0 \
@@ -426,7 +443,6 @@ SRC_URI += " \
     crate://crates.io/yansi/0.5.1 \
     crate://crates.io/zeroize/1.5.5 \
 "
-
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 

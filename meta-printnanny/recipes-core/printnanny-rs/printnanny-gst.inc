@@ -14,18 +14,17 @@ DEPENDS += "openssl \
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
     gstreamer1.0-libav \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
 "
 RDEPENDS:${PN} = "\
     gstreamer1.0 \
-    gstreamer1.0-dev \
     gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-base-dev \
     gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-good-dev \
     gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-bad-dev \
     gstreamer1.0-plugins-ugly \
-    gstreamer1.0-plugins-ugly-dev \
     libcamera \
     libcamera-gst \
     nnstreamer \

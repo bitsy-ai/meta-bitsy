@@ -5,7 +5,7 @@ ConditionPathExists=!{OCTOPRINT_VENV}
 [Service]
 Type=oneshot
 SyslogIdentifier=octoprint-venv
-ExecStart=/usr/bin/python3 -m venv {OCTOPRINT_VENV} --system-site-packages
+ExecStart=/usr/bin/python3 -m venv --system-site-packages {OCTOPRINT_VENV}
 User={OCTOPRINT_USER}
 [Install]
 WantedBy=octoprint.service

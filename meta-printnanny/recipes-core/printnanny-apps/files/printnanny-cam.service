@@ -7,19 +7,33 @@ PartOf=printnanny-online.target
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-cam
-ExecStart=/usr/bin/printnanny-gst -v \
-    --encoder=h264-hardware \
-    --host=localhost \
-    --port-data=5107 \
-    --port-overlay=5106 \
-    --port-video=5105 \
-    --sink udpsink \
-    --src libcamerasrc \
-    --tensor-height=320 \
-    --tensor-width=320 \
-    --tflite-labels=/usr/share/printnanny/model/dict.txt \
-    --tflite-model=/usr/share/printnanny/model/model.tflite \
-    rtp-tflite-overlay
+
+ caps = application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, packetization-mode=(string)1, sprop-parameter-sets=(string)"J0LAKJWgKA9oQAAAAwBAAAAMOSgACYlgABfXm97gHiRNQA\=\=\,KM4fIA\=\=", profile-level-id=(string)42c028, profile=(string)constrained-baseline, payload=(int)96, ssrc=(uint)2012639465, timestamp-offset=(uint)3384043561, seqnum-offset=(uint)30982, a-framerate=(string)24
+
+ExecStart=gst-launch-1.0 -v \
+    udpsrc port=5205 caps="application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96, packetization-mode=(string)1, profile-level-id=(string)42c028, profile=(string)constrained-baseline, a-framerate=(string)24" \
+    ! queue2 \
+    ! rtph264depay \
+    ! h264parse \
+    ! v4l2h264dec extra-controls="controls,repeat_sequence_header=1" \
+    ! v4l2convert \
+    ! video/x-raw,format=RGB,width=640,height=480 \
+    ! videoscale ! video/x-raw,width=320,height=320 \
+    ! tensor_converter \
+    ! tensor_transform mode=arithmetic option=typecast:uint8,add:0,div:1 \
+    ! other/tensors,num_tensors=1,format=static \
+    ! queue2 \
+    ! tensor_filter \
+        framework=tensorflow2-lite \
+        model=/usr/share/printnanny/model/model.tflite \
+    ! tensor_decoder mode=bounding_boxes option1=mobilenet-ssd-postprocess option2=/usr/share/printnanny/model/dict.txt option3=0:1:2:3,50 option4=640:480 option5=320:320 \
+    ! queue2 \
+    ! v4l2convert \
+    ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" \
+    ! 'video/x-h264,width=640,height=480,level=(string)4' \
+    ! h264parse \
+    ! rtph264pay \
+    ! udpsink host=127.0.0.1 port=5106
 
 Restart=on-failure
 RestartSec=30

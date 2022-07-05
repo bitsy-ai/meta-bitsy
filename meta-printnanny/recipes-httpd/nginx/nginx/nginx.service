@@ -4,6 +4,7 @@ After=syslog.target network-online.target remote-fs.target nss-lookup.target clo
 
 [Service]
 Type=forking
+RuntimeDirectory=www
 PIDFile=/run/nginx/nginx.pid
 ExecStartPre=/bin/bash -c "PRINTNANNY_API_URL=$(/usr/bin/printnanny config get api.base_path -F json | tr -d '\"') /usr/bin/nginx-envsubst-on-templates"
 ExecStartPre=/usr/sbin/nginx -t

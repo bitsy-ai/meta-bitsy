@@ -1,7 +1,7 @@
 # https://github.com/bitsy-ai/printnanny-os/issues/15#issuecomment-1162805510
 # update cma=64M kernel parameter, which is set by RASPBERRYPI_CAMERA_V2 / RASPBERRYPI_HD_CAMERA
 CMDLINE:remove = "cma=64M"
-CMDLINE:remove = "cma=128M"
+CMDLINE:append = "cma=128M"
 
 # Note also that Linux supports multiple consoles for output - but only one for input
 # the last named (or default if none named) from the kernel commandline specifies which is used for input, and all are used for output

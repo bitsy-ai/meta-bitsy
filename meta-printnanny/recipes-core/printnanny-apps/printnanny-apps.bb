@@ -10,7 +10,7 @@ SRC_URI = " \
     file://printnanny-dash.service \
     file://printnanny-sync.service \
     file://printnanny-mqtt.service \
-    file://printnanny-rtp-server.service \
+    file://printnanny-vision.service \
     file://printnanny-online.service \
     file://printnanny-online.target \
     file://printnanny-link-confd.sh \
@@ -36,7 +36,7 @@ do_install() {
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-cam.service" "${D}${systemd_system_unitdir}/printnanny-cam.service"
-  install -m 0644 "${WORKDIR}/printnanny-rtp-server.service" "${D}${systemd_system_unitdir}/printnanny-rtp-server.service"
+  install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-sync.service" "${D}${systemd_system_unitdir}/printnanny-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
@@ -50,7 +50,7 @@ do_install() {
 FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "\
-  printnanny-rtp-server.service \
+  printnanny-vision.service \
   printnanny-cam.service \
   printnanny-dash.service \
   printnanny-sync.service \

@@ -1,12 +1,17 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
+# build nginx with nginx-rtmp-module v1.2.2-r1
 SRC_URI += "\
     file://nginx-envsubst-on-templates.sh \
     file://server.conf.template \
     file://dash.locations.template \
     file://octoprint.locations.template \
     file://swupdate.locations.template \
+    git://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git;name=nginx-rtmp-module;rev=22861b746d29c52ef99818dbecb954a87714c3c6;destsuffix=nginx-rtmp-module \
 "
+
+PACKAGECONFIG[rtmp] = "--add-module=../nginx-rtmp-module,,"
+PACKAGECONFIG = "ssl rtmp"
 
 do_install:append(){
   install -d "${D}${bindir}"

@@ -263,25 +263,33 @@ general: {
     #rtsp_conn_timeout = 5
 #}
 
-h264-nn: {
+rtp-live-cam: {
     type = "rtp"
     id = 200
-    description = "PrintNanny Vision (h264 encoded)"
+    description = "PrintNanny Cam (24 FPS)"
     media = (
         {
             type = "video"
             mid = "v1"
-            label = "h264-encoded video"
+            label = "H264-encoded camera stream"
             port = 5105
-            pt = 100
+            pt = 96
             rtpmap = "H264/90000"
-        },
+        }
+    )
+}
+
+rtp-vision-simulation: {
+    type = "rtp"
+    id = 201
+    description = "PrintNanny Vision Simulation (1 FPS)"
+    media = (
         {
             type = "video"
-            mid = "v2"
-            label = "PrintNanny Vision"
+            mid = "v1"
+            label = "H264-encoded composite of rtp-cam and bounding box streams (downsampled)"
             port = 5106
-            pt = 100
+            pt = 26
             rtpmap = "H264/90000"
         }
     )

@@ -289,7 +289,7 @@ rtp-vision-simulation: {
             mid = "v1"
             label = "H264-encoded composite of rtp-cam and bounding box streams (downsampled)"
             port = 5106
-            pt = 26
+            pt = 96
             rtpmap = "H264/90000"
         }
     )

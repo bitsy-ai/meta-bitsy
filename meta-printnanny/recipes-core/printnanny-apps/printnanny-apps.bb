@@ -6,11 +6,12 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 SRC_URI = " \
     https://pki.goog/gtsltsr/gtsltsr.crt;name=gtsltsr \
     https://pki.goog/gsr4/GSR4.crt;name=GSR4 \
+    file://printnanny-octoprint-defaults.sh \
     file://printnanny-cam.service \
     file://printnanny-dash.service \
     file://printnanny-sync.service \
     file://printnanny-mqtt.service \
-    file://printnanny-rtp-server.service \
+    file://printnanny-vision.service \
     file://printnanny-online.service \
     file://printnanny-online.target \
     file://printnanny-link-confd.sh \
@@ -36,7 +37,7 @@ do_install() {
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-cam.service" "${D}${systemd_system_unitdir}/printnanny-cam.service"
-  install -m 0644 "${WORKDIR}/printnanny-rtp-server.service" "${D}${systemd_system_unitdir}/printnanny-rtp-server.service"
+  install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-sync.service" "${D}${systemd_system_unitdir}/printnanny-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-mqtt.service" "${D}${systemd_system_unitdir}/printnanny-mqtt.service"
@@ -46,11 +47,12 @@ do_install() {
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
   install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
+  install -m 0755 "${WORKDIR}/printnanny-octoprint-defaults.sh" "${D}${bindir}/printnanny-octoprint-defaults"
 }
 FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "\
-  printnanny-rtp-server.service \
+  printnanny-vision.service \
   printnanny-cam.service \
   printnanny-dash.service \
   printnanny-sync.service \

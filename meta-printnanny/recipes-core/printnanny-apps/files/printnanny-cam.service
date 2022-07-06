@@ -7,7 +7,7 @@ PartOf=printnanny-online.target
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-cam
-WorkingDirectory=/run/www
+WorkingDirectory=/run/www/hls
 RuntimeDirectory=www/hls
 ExecStart=gst-launch-1.0 -v \
     rtpbin name=rtpbin1 \
@@ -21,7 +21,7 @@ ExecStart=gst-launch-1.0 -v \
     t0. ! rtph264pay \
         ! rtpbin1.send_rtp_sink_0 \
     rtpbin1.send_rtp_src_0 ! tee name=t1 \
-    t0. ! queue2 ! mpegtsmux ! hlssink playlist-root=hls playlist-location=hls/playlist.m3u8 location=hls/frame_%%05d.ts playlist-length=5 max-files=5 \
+    t0. ! queue2 ! mpegtsmux ! hlssink playlist-location=playlist.m3u8 location=frame_%%05d.ts playlist-length=5 max-files=5 \
     t1. ! queue2 ! udpsink host=127.0.0.1 port=5105 \
     t1. ! queue2 ! udpsink host=127.0.0.1 port=5205 \
     udpsrc port=5206 ! rtpbin1.recv_rtp_sink_0

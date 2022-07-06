@@ -10,5 +10,5 @@ BASEDIR="/home/printnanny/.octoprint"
 WEBCAM_STREAM=$($PYTHON -m octoprint --config "$BASEDIR/config.yaml" config get webcam.stream)
 
 if [ "$WEBCAM_STREAM" = "None" ]; then
-    $PYTHON -m octoprint  --config "$BASEDIR/config.yaml" config set webcam.stream "http://${HOSTNAME}.local/cam/hls/playlist.m3u8"
+    $PYTHON -m octoprint  --config "$BASEDIR/config.yaml" config set webcam.stream "http://${HOSTNAME}.local/hls/playlist.m3u8"
 fi

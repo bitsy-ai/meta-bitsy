@@ -1,4 +1,4 @@
-location /cam/hls {
+location /hls {
     # Disable cache
     add_header Cache-Control no-cache;
     # CORS setup
@@ -19,5 +19,5 @@ location /cam/hls {
         video/mp2t ts;
     }
 
-    root /var/printnanny/www/hls;
+    root /run/www;
 }

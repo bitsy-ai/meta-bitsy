@@ -6,7 +6,7 @@ USERADD_PACKAGES = "${PN}"
 
 # You must also set USERADD_PARAM and/or GROUPADD_PARAM when
 # you inherit useradd.
-GROUPADD_PARAM:${PN} = "i2c; netdev; video; spi; render;"
+GROUPADD_PARAM:${PN} = "i2c; netdev; video; spi; render; gpio"
 USERADD_PARAM:${PN} = "-r -U -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,gpio,input,netdev,plugdev,render,spi,sudo,video printnanny"
 
 # https://lists.yoctoproject.org/g/yocto/message/55381

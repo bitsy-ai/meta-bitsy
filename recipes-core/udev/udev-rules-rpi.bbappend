@@ -1,7 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += " \
-	file://10-local-rpi.rules \
+    file://10-local-rpi.rules \
     file://99-com.rules \
 "
 

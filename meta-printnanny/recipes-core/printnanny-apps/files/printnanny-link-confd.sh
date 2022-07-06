@@ -39,38 +39,6 @@ else
     echo "${PRINTNANNY_DASH_CONFD}/${JANUS_TOKEN_FILE} already exists"
 fi
 
-# quick fix for Raspberry Pi userland expecting video group w/ 0660
-FIX_VIDEO_GROUP_FILES=(
-    "/dev/rpivid-h264mem"
-    "/dev/rpivid-hevcmem"
-    "/dev/rpivid-intcmem"
-    "/dev/rpivid-vp9mem"
-    "/dev/v4l-subdev0"
-    "/dev/vchiq"
-    "/dev/vcio"
-    "/dev/vcsm-cma"
-    "/dev/dma_heap/linux,cma"
-    "/dev/dma_heap/system"
-)
-
-FIX_VIDEO_GROUP_DIRS=(
-    "/dev/dma_heap/"
-)
-
-for f in "${FIX_VIDEO_GROUP_FILES[@]}"
-do
-    echo "Changing group ownership of $f to root:video"
-    chown :video "$f"
-    chmod 660 "$f"
-done
-
-for f in "${FIX_VIDEO_GROUP_DIRS[@]}"
-do
-    echo "Changing group ownership of $f to root:video"
-    chown :video "$f"
-    chmod 755 "$f"
-done
-
 FIX_PRINTNANNY_GROUP=(
     "/etc/printnanny"
 )

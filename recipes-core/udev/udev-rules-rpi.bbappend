@@ -1,5 +1,6 @@
 SRC_URI += " \
-	file://10-local-rpi-rules.conf
+	file://10-local-rpi-rules.conf \
+    file://99-com.rules \
 "
 
 do_install:append(){

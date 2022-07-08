@@ -6,7 +6,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 SRC_URI = " \
     https://pki.goog/gtsltsr/gtsltsr.crt;name=gtsltsr \
     https://pki.goog/gsr4/GSR4.crt;name=GSR4 \
-    file://printnanny-octoprint-defaults.sh \
     file://printnanny-cam.service \
     file://printnanny-dash.service \
     file://printnanny-sync.service \
@@ -47,7 +46,6 @@ do_install() {
   install -m 0644 "${WORKDIR}/gtsltsr.crt" "${D}${sysconfdir}/ca-certificates/gtsltsr.crt"
   install -m 0644 "${WORKDIR}/GSR4.crt" "${D}${sysconfdir}/ca-certificates/GSR4.crt"
   install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
-  install -m 0755 "${WORKDIR}/printnanny-octoprint-defaults.sh" "${D}${bindir}/printnanny-octoprint-defaults"
 }
 FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 

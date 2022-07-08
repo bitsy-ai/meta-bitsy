@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
 SRC_BRANCH ?= "main"
 SRC_URI = "git://github.com/bitsy-ai/octoprint-nanny-plugin.git;branch=${SRC_BRANCH};protocol=https"
-SRCREV = "da7c2a378b38c67c60844c53c1165aa9bcf18735"
+SRCREV = "6d6cb1b2470a6a1b6855c9100beb40fb805b31ed"
 
 S = "${WORKDIR}/git"
 

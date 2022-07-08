@@ -1,9 +1,9 @@
 [Unit]
 Description=Symlink credentials used by OctoPrint
-
+Before=octoprint.service
 [Service]
 Type=simple
-SyslogIdentifier=octoprint
+SyslogIdentifier=octoprint-link
 ExecStart=/usr/bin/octoprint-link-confd
 
 [Install]

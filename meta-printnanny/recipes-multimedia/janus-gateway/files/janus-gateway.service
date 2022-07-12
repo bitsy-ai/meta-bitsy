@@ -6,7 +6,11 @@ Wants=network-online.target nss-lookup.target
 [Service]
 Type=simple
 SyslogIdentifier=janus-gateway
+ExecStartPre=/bin/bash -c "JANUS_ADMIN_SECRET=$(printnanny config get device.janus_edge.admin_secret) \
+    JANUS_SERVER_NAME=${HOSTNAME} \
+    /usr/bin/janus-envsubst-on-templates"
 ExecStart=/usr/bin/janus
+ExecStartPost=/usr/bin/printnanny janus add-token --plugins janus.plugin.echotest,janus.plugin.streaming
 Restart=always
 RestartSec=60
 LimitNOFILE=65536

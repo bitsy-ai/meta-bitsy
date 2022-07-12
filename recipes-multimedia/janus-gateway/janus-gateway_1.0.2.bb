@@ -6,14 +6,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
 SRC_URI = "\
 	https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
 	file://janus-gateway.service \
-	file://janus-gateway-creds.service \
 	file://janus.jcfg.template \
 	file://janus.plugin.streaming.jcfg \
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
 	file://janus-envsubst-on-templates.sh \
-	file://janus-add-token.sh \
-	file://janus-creds-generator.sh \
 "
 SRC_URI[sha256sum] = "a1ca0ae787fa162a36b4e391c29ae81f9388c3077699fb7b7c054149a5503355"
 SRC_REV = "1.0.2"

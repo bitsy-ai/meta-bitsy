@@ -8,3 +8,5 @@ do_install:append(){
 
 DEPENDS:append = " openssl"
 FILES:${PN} += "${datadir} ${bindir}"
+
+include printnanny-gst.inc

@@ -12,6 +12,7 @@ SRC_URI = " \
     file://printnanny-mqtt.service \
     file://printnanny-vision.service \
     file://printnanny-online.service \
+    file://printnanny-motd.service \
     file://printnanny-online.target \
     file://printnanny-link-confd.sh \
     file://Rocket.toml \
@@ -36,6 +37,7 @@ do_install() {
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-cam.service" "${D}${systemd_system_unitdir}/printnanny-cam.service"
+  install -m 0644 "${WORKDIR}/printnanny-motd.service" "${D}${systemd_system_unitdir}/printnanny-motd.service"
   install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
   install -m 0644 "${WORKDIR}/printnanny-sync.service" "${D}${systemd_system_unitdir}/printnanny-sync.service"
@@ -54,6 +56,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-cam.service \
   printnanny-dash.service \
   printnanny-sync.service \
+  printnanny-motd.service \
   printnanny-mqtt.service \
   printnanny-online.service \
   printnanny-online.target \

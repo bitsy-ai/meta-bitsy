@@ -1,0 +1,15 @@
+[Unit]
+Description=PrintNanny Message of the Day
+Before=multi-user.target
+Requires=etc-printnanny.mount
+After=etc-printnanny.mount
+
+[Service]
+Type=simple
+SyslogIdentifier=printnanny-motd
+ExecStart=/bin/bash -c "/usr/bin/printnanny os motd > /etc/motd"
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -19,3 +19,5 @@ do_install(){
     install -m 0644 ${WORKDIR}/dict.txt ${D}${datadir}/printnanny/model/dict.txt
     install -m 0644 ${WORKDIR}/tflite_metadata.json ${D}${datadir}/printnanny/model/tflite_metadata.json
 }
+
+FILES:${PN} = "${datadir}/printnanny"

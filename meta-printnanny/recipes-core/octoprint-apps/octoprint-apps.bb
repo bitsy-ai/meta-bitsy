@@ -33,7 +33,6 @@ BITSY_TEMPLATE_ARGS = "\
 do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
-    install -m 0755 "${WORKDIR}/octoprint-link-confd.sh" "${D}${bindir}/octoprint-link-confd"
     install -d ${D}${OCTOPRINT_BASEDIR}/
     install -m 0755 ${WORKDIR}/config.yaml ${D}${OCTOPRINT_BASEDIR}/config.yaml
     chown -R ${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}

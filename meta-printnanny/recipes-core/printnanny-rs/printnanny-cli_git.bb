@@ -11,7 +11,7 @@ SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobra
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = "+git${AUTOREV}"
+# PV:append = "+git${AUTOREV}"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched

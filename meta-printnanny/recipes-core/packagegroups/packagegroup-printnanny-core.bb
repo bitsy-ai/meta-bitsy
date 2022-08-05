@@ -15,5 +15,4 @@ RDEPENDS:${PN} = "\
 	swupdate-tools \
     u-boot-fw-utils \
     printnanny-user \
-    printnanny-swupdate-runner \
 "

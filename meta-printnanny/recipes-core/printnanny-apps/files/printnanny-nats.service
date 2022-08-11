@@ -1,5 +1,5 @@
 [Unit]
-Description=PrintNanny MQTT Client
+Description=PrintNanny NATS worker
 After=network-online.target printnanny-sync.service etc-printnanny.mount
 Wants=network-online.target printnanny-sync.service
 Requires=etc-printnanny.mount
@@ -7,9 +7,9 @@ PartOf=printnanny-online.target
 
 [Service]
 Type=simple
-SyslogIdentifier=printnanny-mqtt
+SyslogIdentifier=printnanny-nats
 RuntimeDirectory=printnanny
-ExecStart=/usr/bin/printnanny -v event subscribe
+ExecStart=/usr/bin/printnanny -v nats-worker
 Restart=on-failure
 RestartSec=30
 User=printnanny

@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-cli could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-cli/0.25.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "c3d846a5abf37483b9127fbf0607f7781ce6a3fb"
+SRCREV = "38d701d3fb483e04b9f1bc1abb63012e2a04a699"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+c3d846a5ab"
+PV:append = ".AUTOINC+38d701d3fb"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -73,7 +73,6 @@ SRC_URI += " \
     crate://crates.io/console/0.14.1 \
     crate://crates.io/const-oid/0.6.2 \
     crate://crates.io/convert_case/0.4.0 \
-    crate://crates.io/convert_case/0.5.0 \
     crate://crates.io/cookie/0.16.0 \
     crate://crates.io/core-foundation-sys/0.8.3 \
     crate://crates.io/core-foundation/0.9.3 \
@@ -280,7 +279,7 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.100.0 \
+    crate://crates.io/printnanny-api-client/0.100.5 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.1.3 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
@@ -334,6 +333,7 @@ SRC_URI += " \
     crate://crates.io/security-framework/2.6.1 \
     crate://crates.io/semver/1.0.10 \
     crate://crates.io/serde-hjson/0.9.1 \
+    crate://crates.io/serde-reflection/0.3.6 \
     crate://crates.io/serde/0.8.23 \
     crate://crates.io/serde/1.0.137 \
     crate://crates.io/serde_bytes/0.11.6 \
@@ -342,6 +342,7 @@ SRC_URI += " \
     crate://crates.io/serde_nanos/0.1.2 \
     crate://crates.io/serde_repr/0.1.8 \
     crate://crates.io/serde_urlencoded/0.7.1 \
+    crate://crates.io/serde_variant/0.1.1 \
     crate://crates.io/serde_with/1.14.0 \
     crate://crates.io/serde_with_macros/1.5.2 \
     crate://crates.io/sha-1/0.10.0 \

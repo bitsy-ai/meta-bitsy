@@ -7,9 +7,7 @@ Wants=network-online.target octoprint-venv.service
 Type=simple
 SyslogIdentifier=octoprint
 RuntimeDirectory=octoprint
-ExecStart=/bin/bash -c "JANUS_EDGE_HOSTNAME=$(cat /etc/hostname) \
-    JANUS_EDGE_API_TOKEN=$(cat $CREDENTIALS_DIRECTORY/janus-edge-api-token) \
-    {OCTOPRINT_VENV}/bin/python -m octoprint serve \
+ExecStart=/bin/bash -c "{OCTOPRINT_VENV}/bin/python -m octoprint serve \
     --host 127.0.0.1 \
     --config {OCTOPRINT_BASEDIR}/config.yaml \
     --port {OCTOPRINT_PORT}"

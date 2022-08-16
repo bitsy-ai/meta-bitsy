@@ -58,6 +58,7 @@ DEPENDS += "\
 
 RDEPENDS:${PN} = "\
     python3 \
+    python3-certifi \
     python3-jinja2 \
     python3-configobj \
     python3-requests \

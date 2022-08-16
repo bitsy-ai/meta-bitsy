@@ -1,0 +1,24 @@
+[Unit]
+Description=Initial PrintNanny setup service
+After=network-online.target systemd-networkd-wait-online.service etc-printnanny.mount
+Before=octoprint.service
+Wants=network-online.target systemd-networkd-wait-online.service
+Requires=etc-printnanny.mount
+PartOf=printnanny-online.target
+StartLimitIntervalSec=1d
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=printnanny-init
+ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG First boot initialization" || echo "psplash-write failed"'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config init'
+
+ExecStart=/usr/bin/printnanny-link-confd
+Restart=on-failure
+RestartSec=60
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target

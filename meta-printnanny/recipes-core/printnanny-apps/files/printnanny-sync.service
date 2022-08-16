@@ -17,7 +17,7 @@ ExecStart=/bin/sh -c '/usr/bin/printnanny -v config init' || echo "Config alread
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync'
 ExecStart=/usr/bin/printnanny-link-confd
 Restart=on-failure
-RestartSec=5
+RestartSec=60
 StandardOutput=journal+console
 
 [Install]

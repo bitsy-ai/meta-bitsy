@@ -5,14 +5,15 @@ LICENSE = "AGPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 SRC_URI = " \
     file://printnanny-cam.service \
+    file://printnanny-cloud-sync.service \
     file://printnanny-dash.service \
-    file://printnanny-sync.service \
-    file://printnanny-nats.service \
-    file://printnanny-vision.service \
-    file://printnanny-online.service \
-    file://printnanny-motd.service \
-    file://printnanny-online.target \
+    file://printnanny-init.service \
     file://printnanny-link-confd.sh \
+    file://printnanny-motd.service \
+    file://printnanny-nats.service \
+    file://printnanny-online.service \
+    file://printnanny-online.target \
+    file://printnanny-vision.service \
     file://Rocket.toml \
     file://dev.toml \
 "
@@ -35,13 +36,14 @@ do_install() {
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-cam.service" "${D}${systemd_system_unitdir}/printnanny-cam.service"
-  install -m 0644 "${WORKDIR}/printnanny-motd.service" "${D}${systemd_system_unitdir}/printnanny-motd.service"
-  install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
+  install -m 0644 "${WORKDIR}/printnanny-cloud-sync.service" "${D}${systemd_system_unitdir}/printnanny-cloud-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
-  install -m 0644 "${WORKDIR}/printnanny-sync.service" "${D}${systemd_system_unitdir}/printnanny-sync.service"
+  install -m 0644 "${WORKDIR}/printnanny-init.service" "${D}${systemd_system_unitdir}/printnanny-init.service"
+  install -m 0644 "${WORKDIR}/printnanny-motd.service" "${D}${systemd_system_unitdir}/printnanny-motd.service"
   install -m 0644 "${WORKDIR}/printnanny-nats.service" "${D}${systemd_system_unitdir}/printnanny-nats.service"
   install -m 0644 "${WORKDIR}/printnanny-online.service" "${D}${systemd_system_unitdir}/printnanny-online.service"
   install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
+  install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
   install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
 }
@@ -51,7 +53,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-vision.service \
   printnanny-cam.service \
   printnanny-dash.service \
-  printnanny-sync.service \
+  printnanny-cloud-sync.service \
   printnanny-motd.service \
   printnanny-nats.service \
   printnanny-online.service \

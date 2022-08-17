@@ -14,7 +14,7 @@ RemainAfterExit=yes
 SyslogIdentifier=printnanny-init
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG First boot initialization" || echo "psplash-write failed"'
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v config init'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v printnanny nats-publisher pi.{pi_id}.status.boot --event-type=reboot-started'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=reboot-started'
 ExecStart=/usr/bin/printnanny-link-confd
 Restart=on-failure
 RestartSec=60

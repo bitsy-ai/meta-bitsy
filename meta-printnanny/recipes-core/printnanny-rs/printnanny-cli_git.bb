@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-cli could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-cli/0.25.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "b1d9ba888582c7aa361bed4b2f3502fad60bc52b"
+SRCREV = "1747e63c29d6971b1bf9e620a8e1f2cb8b634795"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+b1d9ba8885"
+PV:append = ".AUTOINC+1747e63c29"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -213,7 +213,6 @@ SRC_URI += " \
     crate://crates.io/mktemp/0.4.1 \
     crate://crates.io/mockall/0.10.2 \
     crate://crates.io/mockall_derive/0.10.2 \
-    crate://crates.io/mqttbytes/0.6.0 \
     crate://crates.io/muldiv/1.0.0 \
     crate://crates.io/multer/2.0.2 \
     crate://crates.io/multipart/0.18.0 \
@@ -271,7 +270,6 @@ SRC_URI += " \
     crate://crates.io/pkcs8/0.7.6 \
     crate://crates.io/pkg-config/0.3.25 \
     crate://crates.io/polling/2.2.0 \
-    crate://crates.io/pollster/0.2.5 \
     crate://crates.io/polyval/0.5.3 \
     crate://crates.io/ppv-lite86/0.2.16 \
     crate://crates.io/predicates-core/1.0.3 \
@@ -279,7 +277,7 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.101.2 \
+    crate://crates.io/printnanny-api-client/0.102.2 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.1.3 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
@@ -310,7 +308,6 @@ SRC_URI += " \
     crate://crates.io/rocket_http/0.5.0-rc.2 \
     crate://crates.io/rocket_sync_db_pools/0.1.0-rc.2 \
     crate://crates.io/rocket_sync_db_pools_codegen/0.1.0-rc.2 \
-    crate://crates.io/rumqttc/0.10.0 \
     crate://crates.io/rust-ini/0.13.0 \
     crate://crates.io/rustc-demangle/0.1.21 \
     crate://crates.io/rustc_version/0.4.0 \

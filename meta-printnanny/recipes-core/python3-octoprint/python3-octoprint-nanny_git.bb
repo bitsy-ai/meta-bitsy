@@ -5,7 +5,7 @@ AUTHOR = "Leigh Johnson <leigh@bitsy.ai>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
-SRCREV = "f9bc3fc06eb36b2f50a241f4eb681eb1fa6dc2fe"
+SRCREV = "07c307bf5ab8e7f5b701d0b0cadc0e56b3bc4e43"
 SRC_URI = "git://git@github.com/bitsy-ai/octoprint-nanny-plugin.git;protocol=ssh;nobranch=1;branch=main"
 
 PV = "git${SRCPV}"

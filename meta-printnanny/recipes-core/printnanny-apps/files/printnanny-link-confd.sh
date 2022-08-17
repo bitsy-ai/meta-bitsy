@@ -7,9 +7,9 @@ COOKIE_SECRET_FILE="cookie-secret.conf"
 CHANGED="0"
 
 if [ ! -f "$COOKIE_SECRET_FILE" ]; then
+    mkdir -p "$PRINTNANNY_DASH_CONFD"
     SECRET=$(openssl rand -base64 32)
     echo "[Service]" > "${PRINTNANNY_DASH_CONFD}/${COOKIE_SECRET_FILE}"
-    mkdir -p "$PRINTNANNY_DASH_CONFD"
     echo -n "$SECRET" | systemd-creds encrypt --name cookie-secret -p - - >> "${PRINTNANNY_DASH_CONFD}/${COOKIE_SECRET_FILE}"
     echo "<4>printnanny-generator[$$]: Created $COOKIE_SECRET_FILE"
     CHANGED="1"

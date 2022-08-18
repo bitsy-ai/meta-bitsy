@@ -1,6 +1,7 @@
 [Unit]
 Description=Synchronize PrintNanny Cloud settings
-After=printnanny-init.service
+After=printnanny-init.service printnanny-nats.service
+Wants=printnanny-nats.service
 Before=octoprint.service
 Requires=etc-printnanny.mount printnanny-init.service
 PartOf=printnanny-online.target

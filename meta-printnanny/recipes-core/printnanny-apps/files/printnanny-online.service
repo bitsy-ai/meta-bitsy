@@ -1,7 +1,7 @@
 [Unit]
 Description=Web Services
-Requires=printnanny-online.target
-After=printnanny-online.target
+Wants=cloud-init.target printnanny-init.service printnanny-cloud-sync.service printnanny-nats.service printnanny-dash.service janus-gateway.service
+After=cloud-init.target printnanny-init.service printnanny-cloud-sync.service printnanny-nats.service printnanny-dash.service janus-gateway.service
 
 [Service]
 Type=oneshot
@@ -14,3 +14,6 @@ RestartSec=5
 
 # Output needs to appear in instance console output
 StandardOutput=journal+console
+
+[Install]
+WantedBy=printnanny-online.target

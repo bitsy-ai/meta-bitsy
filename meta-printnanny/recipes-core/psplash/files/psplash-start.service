@@ -1,0 +1,15 @@
+[Unit]
+Description=Start psplash boot splash screen
+DefaultDependencies=no
+RequiresMountsFor=/run
+Requires=sys-devices-platform-gpu-graphics-fb0.device
+After=sys-devices-platform-gpu-graphics-fb0.device
+
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/psplash
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

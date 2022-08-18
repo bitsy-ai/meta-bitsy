@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     printnanny-apps \
+    printnanny-vision \
     janus-gateway \
     nginx \
 	swupdate \

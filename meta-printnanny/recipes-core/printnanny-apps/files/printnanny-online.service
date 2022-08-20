@@ -5,7 +5,6 @@ After=cloud-init.target printnanny-init.service printnanny-cloud-sync.service pr
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'SYSTEM_STATUS=$(systemctl is-system-running --wait) systemctl is-system-running || /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=boot-degraded && /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=boot-success'
 ExecStart=/bin/sh -c 'echo "💜 PrintNanny is online!"'
 ExecStart=/bin/sh -c 'echo "🚀 Open http://$(hostname)/ in your browser"'
 RemainAfterExit=yes

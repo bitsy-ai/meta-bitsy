@@ -1,0 +1,14 @@
+[Unit]
+Description=Sent boot status report
+Wants=printnanny-online.target
+After=printnanny-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/printnanny-boot-report
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5
+
+# Output needs to appear in instance console output
+StandardOutput=journal

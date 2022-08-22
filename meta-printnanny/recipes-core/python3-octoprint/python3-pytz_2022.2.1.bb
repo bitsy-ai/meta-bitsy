@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "cea221417204f2d1a2aa03ddae3e867921971d0d76f14d87abb4414415
 
 S = "${WORKDIR}/pytz-2022.2.1"
 
-RDEPENDS:${PN} = ""
+RDEPENDS_${PN} = ""
 
 inherit setuptools3

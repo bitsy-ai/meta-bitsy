@@ -1,5 +1,6 @@
-PREFERRED_VERSION_python3-octoprint-nanny = "0.13.1"
+PREFERRED_VERSION_python3-octoprint-nanny = "0.13.2"
 PREFERRED_VERSION_python3-case-converter = "1.1.0"
+PREFERRED_VERSION_python3-cryptography = "37.0.4"
 PREFERRED_VERSION_python3-cffi = "1.15.1"
 PREFERRED_VERSION_python3-pycparser = "2.21"
 PREFERRED_VERSION_python3-pytz = "2022.2.1"

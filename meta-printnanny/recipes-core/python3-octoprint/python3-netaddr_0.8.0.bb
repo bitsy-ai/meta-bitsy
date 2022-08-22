@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "d6cc57c7a07b1d9d2e917aa8b36ae8ce61c35ba3fcd1b83ca31c5a0ee2
 
 S = "${WORKDIR}/netaddr-0.8.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

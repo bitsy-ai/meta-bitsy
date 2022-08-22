@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "d58c5f284d6a9bf8379dab423259fe8f85b70d5fa5d2916d5791a84594
 
 S = "${WORKDIR}/websocket-client-1.3.3"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

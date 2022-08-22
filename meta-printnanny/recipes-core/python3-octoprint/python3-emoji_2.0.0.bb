@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "297fac7ec9e86f7b602792c28eb6f04819ba67ab88a34c56afcde52243
 
 S = "${WORKDIR}/emoji-2.0.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

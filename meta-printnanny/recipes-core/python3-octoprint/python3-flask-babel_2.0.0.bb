@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "f9faf45cdb2e1a32ea2ec14403587d4295108f35017a7821a2b1acb8cf
 
 S = "${WORKDIR}/Flask-Babel-2.0.0"
 
-RDEPENDS_${PN} = "python3-pytz python3-flask python3-babel python3-jinja2"
+RDEPENDS:${PN} = "python3-pytz python3-flask python3-babel python3-jinja2"
 
 inherit setuptools3

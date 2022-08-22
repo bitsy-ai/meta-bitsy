@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7868fb1c8bfa764c1ac563d3cf369c381d1325d36124933a726f29fcda
 
 S = "${WORKDIR}/sgmllib3k-1.0.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

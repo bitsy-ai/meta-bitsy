@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df94
 
 S = "${WORKDIR}/Jinja2-3.1.2"
 
-RDEPENDS_${PN} = "python3-markupsafe"
+RDEPENDS:${PN} = "python3-markupsafe"
 
 inherit setuptools3

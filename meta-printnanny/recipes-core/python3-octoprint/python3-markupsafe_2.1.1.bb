@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7f91197cc9e48f989d12e4e6fbc46495c446636dfc81b9ccf50bb0ec74
 
 S = "${WORKDIR}/MarkupSafe-2.1.1"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

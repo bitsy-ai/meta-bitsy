@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7614553711ee97490f732126dc077f8d0ae084ebc6a96e23db1482afab
 
 S = "${WORKDIR}/Babel-2.10.3"
 
-RDEPENDS_${PN} = "python3-pytz"
+RDEPENDS:${PN} = "python3-pytz"
 
 inherit setuptools3

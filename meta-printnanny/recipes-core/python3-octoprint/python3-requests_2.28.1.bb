@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7
 
 S = "${WORKDIR}/requests-2.28.1"
 
-RDEPENDS_${PN} = "python3-charset-normalizer python3-idna python3-urllib3 python3-certifi"
+RDEPENDS:${PN} = "python3-charset-normalizer python3-idna python3-urllib3 python3-certifi"
 
 inherit setuptools3

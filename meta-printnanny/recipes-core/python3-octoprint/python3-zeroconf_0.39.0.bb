@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7c0d8257b940ee43e637fb560c2f9bd79da0638f37af162eb4f506f727
 
 S = "${WORKDIR}/zeroconf-0.39.0"
 
-RDEPENDS_${PN} = "python3-async-timeout python3-ifaddr"
+RDEPENDS:${PN} = "python3-async-timeout python3-ifaddr"
 
 inherit setuptools3

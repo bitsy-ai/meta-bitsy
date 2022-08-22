@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "506861624a8faf2633765eaf2aa6635bead8afc7471a375f399cbe5f33
 
 S = "${WORKDIR}/OctoPrint-FirmwareCheck-2021.10.11"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

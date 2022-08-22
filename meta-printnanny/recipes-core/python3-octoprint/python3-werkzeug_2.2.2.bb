@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9
 
 S = "${WORKDIR}/Werkzeug-2.2.2"
 
-RDEPENDS_${PN} = "python3-markupsafe"
+RDEPENDS:${PN} = "python3-markupsafe"
 
 inherit setuptools3

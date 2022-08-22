@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "5ff57d0fabe5ecb7a4f1e4957bfeb5ad8ab5ab4c0fa71f79c6bbc24bd9
 
 S = "${WORKDIR}/pathvalidate-2.5.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

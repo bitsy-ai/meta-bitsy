@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "69fe93aee98b597d98c631930a62d3af429e6038297ac1aaf0b3b148fe
 
 S = "${WORKDIR}/zipstream-ng-1.3.4"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

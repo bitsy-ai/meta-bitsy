@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "38222cc7c1b79a23606de5c2607f4925779e37cdcea1c2ad21b8bae94b
 
 S = "${WORKDIR}/cachelib-0.9.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

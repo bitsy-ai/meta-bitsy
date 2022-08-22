@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "5a3d016c7c547f69d6f81fb0db9449ce888b418b5b9952cc5e6e66843e
 
 S = "${WORKDIR}/charset-normalizer-2.1.1"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

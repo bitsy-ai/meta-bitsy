@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "9b630419bde84ec666bfd7ea0a4cb2a8a651c2d5cccdbdd1972a0c859d
 
 S = "${WORKDIR}/tornado-6.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

@@ -1,11 +1,11 @@
 [Unit]
 Description=Web Services
-Requires=printnanny-online.target
-After=printnanny-online.target
+Wants=cloud-init.target printnanny-init.service printnanny-cloud-sync.service printnanny-nats.service printnanny-dash.service janus-gateway.service
+After=cloud-init.target printnanny-init.service printnanny-cloud-sync.service printnanny-nats.service printnanny-dash.service janus-gateway.service
 
 [Service]
 Type=oneshot
-ExecStart=echo "💜 PrintNanny is online!"
+ExecStart=/bin/sh -c 'echo "💜 PrintNanny is online!"'
 ExecStart=/bin/sh -c 'echo "🚀 Open http://$(hostname)/ in your browser"'
 RemainAfterExit=yes
 Restart=on-failure
@@ -15,4 +15,4 @@ RestartSec=5
 StandardOutput=journal+console
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=printnanny-online.target

@@ -1,9 +1,9 @@
 [Unit]
 Description=Synchronize PrintNanny Cloud settings
-After=printnanny-init.service
+After=printnanny-init.service printnanny-nats.service
+Wants=printnanny-nats.service
 Before=octoprint.service
 Requires=etc-printnanny.mount printnanny-init.service
-PartOf=printnanny-online.target
 StartLimitIntervalSec=1d
 StartLimitBurst=5
 
@@ -12,6 +12,7 @@ Type=oneshot
 RemainAfterExit=yes
 SyslogIdentifier=printnanny-cloud-sync
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Syncing Configuration" || echo "psplash-write failed"'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=boot-started'
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-started'
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync || /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-error && /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-success'
 ExecStart=/usr/bin/printnanny-link-confd

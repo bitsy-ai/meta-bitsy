@@ -13,5 +13,4 @@ S = "${WORKDIR}/python-dateutil-2.8.2"
 
 DEPENDS:append = " python3-pip-native python3-setuptools-scm-native"
 RDEPENDS:${PN} = "python3-six python3-pip"
-
 inherit setuptools3_legacy

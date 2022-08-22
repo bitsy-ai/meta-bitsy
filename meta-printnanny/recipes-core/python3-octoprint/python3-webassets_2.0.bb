@@ -10,6 +10,6 @@ SRC_URI[sha256sum] = "167132337677c8cedc9705090f6d48da3fb262c8e0b2773b29f3352f05
 
 S = "${WORKDIR}/webassets-2.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

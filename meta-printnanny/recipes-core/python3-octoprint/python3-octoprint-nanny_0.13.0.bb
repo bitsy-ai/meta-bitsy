@@ -12,4 +12,4 @@ SRC_URI[sha256sum] = "d6c647331acfecf1931406977e3054dddeeb67c6b9f76b2e72b51571b5
 inherit pypi
 inherit setuptools3
 
-RDEPENDS:${PN} = "python3-aiohttp python3-backoff python3-cryptography python3-octoprint python3-printnanny-api-client python3-pytz"
+RDEPENDS:${PN} = "python3-aiohttp python3-backoff python3-cryptography python3-octoprint python3-printnanny-api-client python3-pytz python3-case-converter"

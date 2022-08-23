@@ -4,7 +4,7 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "0590a389af83ec98cb386a9e5aad7767f9e1202f"
+SRCREV = "c8782cddb34768e3862e9c3651ae194f81953da2"
 SRC_BRANCH = "bitsy-distro"
 SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
     file://cloud-init-source-local-lsb-functions.patch \

@@ -3,6 +3,3 @@ Description=PrintNanny Services Online
 Wants=printnanny-online.service
 After=printnanny-online.service
 Conflicts=rescue.service rescue.target
-
-[Install]
-WantedBy=multi-user.target

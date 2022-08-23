@@ -53,6 +53,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-nats.service \
   printnanny-online.service \
   printnanny-online.target \
+  printnanny-online.target \
   printnanny-boot-report.service \
 "
 SYSTEMD_AUTO_ENABLE = "enable"

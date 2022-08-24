@@ -6,6 +6,8 @@ SRC_URI:append = "\
     file://003-runcmd.cfg \
     file://099-fake_cloud.cfg \
     file://cloud.cfg \
+    file://cloud-config.service \
+
 "
 # PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
@@ -24,6 +26,6 @@ do_install:append(){
     install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg
 #     install -m 0644 ${WORKDIR}/cloud-init-local.service ${D}${systemd_system_unitdir}/cloud-init-local.service
 #     install -m 0644 ${WORKDIR}/cloud-init.service ${D}${systemd_system_unitdir}/cloud-init.service
-#     install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
+    install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
 #     install -m 0644 ${WORKDIR}/cloud-init.target ${D}${systemd_system_unitdir}/cloud-init.target
 }

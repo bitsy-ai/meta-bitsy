@@ -4,15 +4,20 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "c8782cddb34768e3862e9c3651ae194f81953da2"
-SRC_BRANCH = "bitsy-distro"
+SRCREV = "6976fb474ddf5f630239c44f530af233b75b8cdc"
+SRC_BRANCH = "bitsy-distro-22-3"
+# SRC_TAG = "bitsy/22.3"
 SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
-    file://cloud-init-source-local-lsb-functions.patch \
+    file://0001-patch-read-udevdir-from-pkg_config.patch \
     file://0001-setup.py-check-for-install-anywhere-in-args.patch \
-    file://0001-setup.py-respect-udevdir-variable.patch \
 "
 
 S = "${WORKDIR}/git"
+
+export CI_RV_TAGS
+export CI_RV_LONG
+CI_RV_TAGS = "1"
+CI_RV_LONG = "1"
 
 SETUPTOOLS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', '--init-system=sysvinit_deb', '', d)}"
 SETUPTOOLS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '--init-system=systemd', '', d)}"
@@ -32,8 +37,7 @@ inherit setuptools3_legacy
 # inherit update-rc.d
 inherit systemd
 
-# setup.py calls "pkg-config systemd --variable=systemdsystemunitdir" and needs to find our systemd
-DEPENDS += "systemd"
+DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
 
 inherit python3native
 
@@ -48,7 +52,7 @@ RDEPENDS:${PN}-systemd += " ${PN}"
 SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service cloud-init.target"
 SYSTEMD_AUTO_ENABLE = "enable"
 
-PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
+# PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
 DEPENDS += "\
     python3-pyyaml-native \
@@ -101,4 +105,11 @@ setuptools3_legacy_do_install() {
             mv -f ${D}${datadir}/share/* ${D}${datadir}/
             rmdir ${D}${datadir}/share
         fi
+}
+
+# cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+# move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+setuptools3_legacy_do_install:append(){
+    install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
+    install -m 0644 ${D}${sysconfdir}/systemd/system/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 }

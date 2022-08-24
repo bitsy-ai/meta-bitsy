@@ -1,0 +1,34 @@
+From ce2efa8df6d66ca6113a1cc0cd95671c42878147 Mon Sep 17 00:00:00 2001
+From: Leigh Johnson <leigh@bitsy.ai>
+Date: Tue, 23 Aug 2022 20:49:37 -0700
+Subject: [PATCH] patch: read udevdir from pkg_config
+
+Signed-off-by: Leigh Johnson <leigh@bitsy.ai>
+---
+ setup.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index e72ba042..434a822d 100644
+--- a/setup.py
++++ b/setup.py
+@@ -166,6 +166,7 @@ INITSYS_ROOTS = {
+     "sysvinit_deb": "etc/init.d",
+     "sysvinit_openrc": "etc/init.d",
+     "sysvinit_suse": "etc/init.d",
++    "udevdir": pkg_config_read("udev", "udevdir"),
+     "systemd": pkg_config_read("systemd", "systemdsystemunitdir"),
+     "systemd.generators": pkg_config_read(
+         "systemd", "systemdsystemgeneratordir"
+@@ -316,7 +317,7 @@ if not platform.system().endswith("BSD"):
+                 ["tools/hook-network-manager"],
+             ),
+             (ETC + "/dhcp/dhclient-exit-hooks.d/", ["tools/hook-dhclient"]),
+-            (RULES_PATH + "/udev/rules.d", [f for f in glob("udev/*.rules")]),
++            ("udevdir" + "/rules.d", [f for f in glob("udev/*.rules")]),
+             (
+                 ETC + "/systemd/system/sshd-keygen@.service.d/",
+                 ["systemd/disable-sshd-keygen-if-cloud-init-active.conf"],
+-- 
+2.34.1
+

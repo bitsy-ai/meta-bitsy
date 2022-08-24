@@ -6,13 +6,11 @@ SRC_URI:append = "\
     file://003-runcmd.cfg \
     file://099-fake_cloud.cfg \
     file://cloud.cfg \
+    file://cloud-config.service \
     file://cloud-init-local.service \
     file://cloud-init.service \
-    file://cloud-config.service \
     file://cloud-init.target \
 "
-PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
-
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 do_install:append(){

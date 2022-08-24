@@ -1,10 +1,11 @@
 [Unit]
 Description=Initial cloud-init job (metadata service crawler)
 Wants=cloud-init-local.service
-Wants=sshdgenkeys.service
 Wants=sshd.socket
 After=cloud-init-local.service
-Before=network-online.target systemd-resolved.service
+After=systemd-networkd-wait-online.service
+After=networking.service
+Before=network-online.target
 
 [Service]
 Type=oneshot

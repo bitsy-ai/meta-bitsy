@@ -11,8 +11,6 @@ SRC_URI:append = "\
     file://cloud-init.service \
     file://cloud-init.target \
 "
-# PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
-
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 do_install:append(){

@@ -107,3 +107,10 @@ setuptools3_legacy_do_install() {
             rmdir ${D}${datadir}/share
         fi
 }
+
+# cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+# move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+setuptools3_legacy_do_install:append(){
+    install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
+    install -m 0644 ${D}${sysconfdir}/systemd/system/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+}

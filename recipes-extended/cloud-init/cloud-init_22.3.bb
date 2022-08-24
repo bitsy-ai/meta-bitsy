@@ -7,7 +7,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 SRCREV = "5bd7ceea845297f6fd6a58d649874b314f993e3e"
 SRC_BRANCH = "bitsy-distro-22-3"
 # SRC_TAG = "bitsy/22.3"
-SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https"
+SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
+    file://0001-patch-read-udevdir-from-pkg_config.patch \
+    file://0001-setup.py-check-for-install-anywhere-in-args.patch \
+"
 
 S = "${WORKDIR}/git"
 

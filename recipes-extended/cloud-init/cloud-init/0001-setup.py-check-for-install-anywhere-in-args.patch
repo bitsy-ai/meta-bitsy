@@ -1,7 +1,10 @@
-From 5c96379a4727c07fb5222208525013ec8b878184 Mon Sep 17 00:00:00 2001
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Wed, 4 Nov 2020 21:15:50 -0500
-Subject: [PATCH] setup.py: check for 'install' anywhere in args
+From 8e6ebfe6b99abdc4b02e5e7c0ea8a182888d132a Mon Sep 17 00:00:00 2001
+From: Leigh Johnson <leigh@bitsy.ai>
+Date: Tue, 23 Aug 2022 20:57:49 -0700
+Subject: [PATCH] From 5c96379a4727c07fb5222208525013ec8b878184 Mon Sep 17
+ 00:00:00 2001 From: Bruce Ashfield <bruce.ashfield@gmail.com> Date: Wed, 4
+ Nov 2020 21:15:50 -0500 Subject: [PATCH] setup.py: check for 'install'
+ anywhere in args
 
 The python3distutils bbclass calls setup.py in a different way then
 cloud-init expects .. the 'install' is not argument 1, but is in fact
@@ -11,21 +14,23 @@ So rather than checking for install to be argv[1], we check for it
 anywhere in the arguments are trigger the template replacement to
 happen.
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
+Signed-off-by: Leigh Johnson <leigh@bitsy.ai>
 ---
  setup.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Index: git/setup.py
-===================================================================
---- git.orig/setup.py
-+++ git/setup.py
-@@ -87,7 +87,7 @@
+diff --git a/setup.py b/setup.py
+index 434a822d..56f6a40b 100644
+--- a/setup.py
++++ b/setup.py
+@@ -92,7 +92,7 @@ def render_tmpl(template, mode=None):
+     that files are different outside of the debian directory."""
  
-     # older versions of tox use bdist (xenial), and then install from there.
      # newer versions just use install.
--    if not (sys.argv[1] == "install" or sys.argv[1].startswith("bdist*")):
-+    if not ('install' in sys.argv or sys.argv[1].startswith('bdist*')):
+-    if not (sys.argv[1] == "install"):
++    if not ('install' in sys.argv):
          return template
  
      tmpl_ext = ".tmpl"
+-- 
+2.34.1

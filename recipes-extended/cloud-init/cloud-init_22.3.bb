@@ -4,15 +4,17 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "c8782cddb34768e3862e9c3651ae194f81953da2"
-SRC_BRANCH = "bitsy-distro"
-SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
-    file://cloud-init-source-local-lsb-functions.patch \
-    file://0001-setup.py-check-for-install-anywhere-in-args.patch \
-    file://0001-setup.py-respect-udevdir-variable.patch \
-"
+SRCREV = "5bd7ceea845297f6fd6a58d649874b314f993e3e"
+SRC_BRANCH = "bitsy-distro-22-3"
+# SRC_TAG = "bitsy/22.3"
+SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https"
 
 S = "${WORKDIR}/git"
+
+export CI_RV_TAGS
+export CI_RV_LONG
+CI_RV_TAGS = "1"
+CI_RV_LONG = "1"
 
 SETUPTOOLS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', '--init-system=sysvinit_deb', '', d)}"
 SETUPTOOLS_INSTALL_ARGS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '--init-system=systemd', '', d)}"
@@ -48,7 +50,7 @@ RDEPENDS:${PN}-systemd += " ${PN}"
 SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service cloud-init.target"
 SYSTEMD_AUTO_ENABLE = "enable"
 
-PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
+# PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
 DEPENDS += "\
     python3-pyyaml-native \

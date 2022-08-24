@@ -5,7 +5,7 @@ DefaultDependencies=no
 Before=sysinit.target
 Wants=network-pre.target
 After=systemd-remount-fs.service
-Before=network-pre.target systemd-resolved.service avahi-daemon.service
+Before=network-pre.target systemd-resolved.service systemd-resolved.service
 Before=shutdown.target
 RequiresMountsFor=/var/lib/cloud
 

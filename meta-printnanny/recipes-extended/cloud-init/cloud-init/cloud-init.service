@@ -4,7 +4,7 @@ Wants=cloud-init-local.service
 Wants=sshdgenkeys.service
 Wants=sshd.socket
 After=cloud-init-local.service
-Before=network-online.target avahi-daemon.service
+Before=network-online.target systemd-resolved.service
 
 [Service]
 Type=oneshot

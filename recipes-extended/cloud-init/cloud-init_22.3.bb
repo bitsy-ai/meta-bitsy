@@ -4,7 +4,7 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "5bd7ceea845297f6fd6a58d649874b314f993e3e"
+SRCREV = "6976fb474ddf5f630239c44f530af233b75b8cdc"
 SRC_BRANCH = "bitsy-distro-22-3"
 # SRC_TAG = "bitsy/22.3"
 SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \

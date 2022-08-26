@@ -6,7 +6,7 @@ Wants=network-online.target printnanny-cloud-sync.service
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-cam
-ExecStart=printnanny -v cam
+ExecStart=/usr/local/bin/printnanny-gst-cam
 Restart=on-failure
 RestartSec=30
 User=printnanny

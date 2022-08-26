@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-cli could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-cli/0.25.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "67b36e10ac627b8639a129de93b7c158cca66ef5"
+SRCREV = "da87df2df1295f47031670155157aea2fbce7ae3"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+67b36e10ac"
+PV:append = ".AUTOINC+da87df2df1"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -81,6 +81,7 @@ SRC_URI += " \
     crate://crates.io/crossbeam-utils/0.8.9 \
     crate://crates.io/crypto-common/0.1.3 \
     crate://crates.io/ctr/0.8.0 \
+    crate://crates.io/ctrlc/3.2.3 \
     crate://crates.io/curve25519-dalek/3.2.0 \
     crate://crates.io/darling/0.13.4 \
     crate://crates.io/darling_core/0.13.4 \
@@ -114,7 +115,7 @@ SRC_URI += " \
     crate://crates.io/fake-simd/0.1.2 \
     crate://crates.io/fastrand/1.7.0 \
     crate://crates.io/figment/0.10.6 \
-    crate://crates.io/file-lock/2.1.4 \
+    crate://crates.io/file-lock/2.1.6 \
     crate://crates.io/filetime/0.2.16 \
     crate://crates.io/flate2/1.0.24 \
     crate://crates.io/float-cmp/0.8.0 \
@@ -193,7 +194,7 @@ SRC_URI += " \
     crate://crates.io/lazy_static/1.4.0 \
     crate://crates.io/lazycell/1.3.0 \
     crate://crates.io/lexical-core/0.7.6 \
-    crate://crates.io/libc/0.2.121 \
+    crate://crates.io/libc/0.2.132 \
     crate://crates.io/libsqlite3-sys/0.22.2 \
     crate://crates.io/linked-hash-map/0.5.4 \
     crate://crates.io/lock_api/0.4.7 \
@@ -219,6 +220,7 @@ SRC_URI += " \
     crate://crates.io/native-tls/0.2.10 \
     crate://crates.io/net2/0.2.37 \
     crate://crates.io/nix/0.24.1 \
+    crate://crates.io/nix/0.25.0 \
     crate://crates.io/nkeys/0.2.0 \
     crate://crates.io/nom/5.1.2 \
     crate://crates.io/normalize-line-endings/0.3.0 \
@@ -277,7 +279,7 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.104.0 \
+    crate://crates.io/printnanny-api-client/0.105.1 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.1.3 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \

@@ -1,29 +1,37 @@
 #!/bin/bash
 set +xeuo pipefail
 
-VIDEO_FILENAME="$(printnanny cam new-filename)"
-export VIDEO_FILENAME=$VIDEO_FILENAME
 export VIDEO_HEIGHT="480"
 export VIDEO_WIDTH="640"
 export H264_LEVEL="4"
-export FRAMERATE="0/1"
+export FRAMERATE="24/1"
 export DOWNSAMPLE_RATE="1/1"
-RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
-export RTP_HOST=$RTP_HOST
-RTP_PORT="$(printnanny config get pi.webrtc_cloud.rtp_port)"
-export RTP_PORT=RTP_PORT
-export VISION_HOST="localhost"
-export VISION_PORT="5205"
+export RAW_VIDEO_SOCKET_PATH=/var/run/printnanny/video-raw.socket
+VIDEO_FILENAME="$(printnanny config get paths.new_video_filename)"
+export VIDEO_FILENAME="$VIDEO_FILENAME"
+# TODO
+# EDGE_RTP_HOST="$(printnanny config get pi.webrtc_edge.video_rtp_domain)"
+# export EDGE_RTP_HOST=$RTP_HOST
+# EDGE_RTP_PORT="$(printnanny config get pi.webrtc_edge.video_rtp_port)"
+# export EDGE_RTP_PORT=RTP_PORT
 
-gst-launch-1.0 -e -v \
+CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_edge.rtp_domain)"
+export CLOUD_RTP_HOST=$RTP_HOST
+CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_edge.video_rtp_port)"
+export CLOUD_RTP_PORT=RTP_PORT
+
+gst-launch-1.0 -v \
     libcamerasrc \
-    ! "video/x-raw,width=$VIDEO_WIDTH,height=$VIDEO_HEIGHT,framerate=$FRAMERATE,format=NV21" \
+    ! "video/x-raw,width=$VIDEO_WIDTH,height=$VIDEO_HEIGHT,framerate=$FRAMERATE,format=RGB" \
     ! v4l2convert \
-    ! queue \
-    ! v4l2h264enc extra-controls='controls,repeat_sequence_header=1' \
-    ! "video/x-h264,width=$VIDEO_WIDTH,height=$VIDEO_HEIGHT,framerate=$FRAMERATE,level=(string)4,format=NV21" \
     ! tee name=t0 \
-    ! queue \
-    ! filesink location="$VIDEO_FILENAME" \
-    t0. ! queue ! rtph264pay config-interval=1 aggregate-mode=zero-latency pt=96 ! tee name=t1 ! queue2 ! udpsink host="$RTP_HOST" port="$RTP_PORT" \
-    t1. ! queue2 ! videorate ! "video/x-h264,framerate=$DOWNSAMPLE_FRAMERATE" udpsink host="$VISION_HOST" port="$VISION_DOMAIN"
+    ! queue leaky=2 \
+    ! shmsink socket-path="$RAW_VIDEO_SOCKET_PATH" wait-for-connection=false \
+    t0. ! queue ! "video/x-raw,width=$VIDEO_WIDTH,height=$VIDEO_HEIGHT,framerate=$FRAMERATE,format=RGB" \
+        ! v4l2h264enc extra-controls='controls,repeat_sequence_header=1' \
+        ! "video/x-h264,width=$VIDEO_WIDTH,height=$VIDEO_HEIGHT,framerate=$FRAMERATE,level=(string)4,format=RGB" \
+        ! tee name=t1 \
+        ! rtph264pay config-interval=1 aggregate-mode=zero-latency pt=96 \
+        ! queue2 \
+        ! udpsink host="$CLOUD_RTP_HOST" port="$CLOUD_RTP_HOST"
+    t1. filesink location="$VIDEO_FILENAME"

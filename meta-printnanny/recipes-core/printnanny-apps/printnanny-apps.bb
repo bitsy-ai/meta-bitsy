@@ -50,6 +50,8 @@ do_install() {
 }
 FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
+RDEPENDS:${PN} = "bash"
+
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-dash.service \
   printnanny-cloud-sync.service \

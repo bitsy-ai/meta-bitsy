@@ -36,4 +36,6 @@ gst-launch-1.0 -v -e \
         ! udpsink host="$CLOUD_RTP_HOST" port="$CLOUD_RTP_HOST"
     t1. filesink location="$VIDEO_FILENAME"
 
-trap "rm -f $RAW_VIDEO_SOCKET_PATH" EXIT
+rm "$RAW_VIDEO_SOCKET_PATH"
+
+trap 'rm -f $RAW_VIDEO_SOCKET_PATH' EXIT

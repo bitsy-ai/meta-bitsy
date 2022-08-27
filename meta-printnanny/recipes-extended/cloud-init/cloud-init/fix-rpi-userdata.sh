@@ -15,6 +15,6 @@ USER_DATA_FILE="/boot/user-data"
 
 if grep -q "runcmd:" "$USER_DATA_FILE"; then
     mv "$USER_DATA_FILE" "$USER_DATA_FILE.bak"
-    head -n -5 "$USER_DATA_FILE.bak" > "$USER_DATA_FILE"
+    head -n -6 "$USER_DATA_FILE.bak" > "$USER_DATA_FILE"
     echo "Removed runcmd: section from $USER_DATA_FILE"
 fi

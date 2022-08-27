@@ -20,6 +20,7 @@ export CLOUD_RTP_HOST=$RTP_HOST
 CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_cloud.video_rtp_port)"
 export CLOUD_RTP_PORT=$RTP_PORT
 
+echo "Sending starting h264 RTP stream to $CLOUD_RTP_HOST:$CLOUD_RTP_HOST"
 gst-launch-1.0 -v -e \
     libcamerasrc \
     ! "video/x-raw,width=$VIDEO_WIDTH,height=$VIDEO_HEIGHT,framerate=$FRAMERATE,format=RGB" \

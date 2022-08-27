@@ -3,8 +3,8 @@ Description=Initial cloud-init job (pre-networking)
 
 DefaultDependencies=no
 Before=sysinit.target
-Wants=network-pre.target
-After=systemd-remount-fs.service
+Wants=network-pre.target boot.mount
+After=systemd-remount-fs.service boot.mount
 Before=network-pre.target systemd-networkd.service
 Before=shutdown.target
 RequiresMountsFor=/var/lib/cloud
@@ -12,6 +12,7 @@ RequiresMountsFor=/var/lib/cloud
 [Service]
 Type=oneshot
 ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Applying User Settings" || echo "psplash-write failed"'
+ExecStart=/bin/sh -c '/usr/bin/cloud-init-fix-rpi-userdata'
 ExecStart=/usr/bin/cloud-init init --local
 RemainAfterExit=yes
 TimeoutSec=0

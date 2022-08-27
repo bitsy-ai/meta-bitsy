@@ -6,7 +6,8 @@ Wants=network-online.target printnanny-cloud-sync.service
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-cam
-ExecStart=printnanny -v cam
+ExecStart=bash -c '/usr/bin/printnanny-gst-cam'
+ExecStop= bash -c 'rm -f /var/run/printnanny/video-raw.socket'
 Restart=on-failure
 RestartSec=30
 User=printnanny

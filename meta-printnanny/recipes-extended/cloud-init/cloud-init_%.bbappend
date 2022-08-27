@@ -10,6 +10,7 @@ SRC_URI:append = "\
     file://cloud-init-local.service \
     file://cloud-init.service \
     file://cloud-init.target \
+    file://fix-rpi-userdata.sh \
 "
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
@@ -28,4 +29,7 @@ do_install:append(){
     install -m 0644 ${WORKDIR}/cloud-init.service ${D}${systemd_system_unitdir}/cloud-init.service
     install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
     install -m 0644 ${WORKDIR}/cloud-init.target ${D}${systemd_system_unitdir}/cloud-init.target
+    install -m 0755 ${WORKDIR}/fix-rpi-userdata.sh ${D}${bindir}/cloud-init-fix-rpi-userdata
 }
+
+FILES:${PN} += "${bindir}/cloud-init-fix-rpi-userdata"

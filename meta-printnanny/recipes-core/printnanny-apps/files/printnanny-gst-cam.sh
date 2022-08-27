@@ -16,9 +16,9 @@ export VIDEO_FILENAME="$VIDEO_FILENAME"
 # export EDGE_RTP_PORT=RTP_PORT
 
 CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
-export CLOUD_RTP_HOST=$RTP_HOST
+export CLOUD_RTP_HOST=$CLOUD_RTP_HOST
 CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_cloud.video_rtp_port)"
-export CLOUD_RTP_PORT=$RTP_PORT
+export CLOUD_RTP_PORT=$CLOUD_RTP_PORT
 
 echo "Sending starting h264 RTP stream to $CLOUD_RTP_HOST:$CLOUD_RTP_HOST"
 gst-launch-1.0 -v -e \
@@ -34,7 +34,7 @@ gst-launch-1.0 -v -e \
         ! tee name=t1 \
         ! rtph264pay config-interval=1 aggregate-mode=zero-latency pt=96 \
         ! queue2 \
-        ! udpsink host="$CLOUD_RTP_HOST" port="$CLOUD_RTP_HOST"
+        ! udpsink host="$CLOUD_RTP_HOST" port="$CLOUD_RTP_HOST" \
     t1. filesink location="$VIDEO_FILENAME"
 
 rm "$RAW_VIDEO_SOCKET_PATH"

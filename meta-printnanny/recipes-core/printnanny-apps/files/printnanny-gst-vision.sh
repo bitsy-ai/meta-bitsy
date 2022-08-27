@@ -17,7 +17,7 @@ RTP_PORT="$(printnanny config get pi.webrtc_cloud.data_rtp_port)"
 export RTP_PORT=$RTP_PORT
 
 
-gst-launch-1.0 -v \
+gst-launch-1.0 -v -e \
     shmsrc socket-path="$RAW_VIDEO_SOCKET_PATH" \
     ! "video/x-raw, framerate=(fraction)24/1, format=(string)RGB, width=${VIDEO_WIDTH},height=${VIDEO_HEIGHT},framerate=(fraction)${FRAMERATE}, interlace-mode=(string)progressive, colorimetry=(string)1:1:5:1" \
     ! v4l2convert \

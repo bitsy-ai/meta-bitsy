@@ -15,9 +15,9 @@ export VIDEO_FILENAME="$VIDEO_FILENAME"
 # EDGE_RTP_PORT="$(printnanny config get pi.webrtc_edge.video_rtp_port)"
 # export EDGE_RTP_PORT=RTP_PORT
 
-CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_edge.rtp_domain)"
+CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
 export CLOUD_RTP_HOST=$RTP_HOST
-CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_edge.video_rtp_port)"
+CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_cloud.video_rtp_port)"
 export CLOUD_RTP_PORT=RTP_PORT
 
 gst-launch-1.0 -v \

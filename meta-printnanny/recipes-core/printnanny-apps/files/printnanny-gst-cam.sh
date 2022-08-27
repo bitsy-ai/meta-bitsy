@@ -18,7 +18,7 @@ export VIDEO_FILENAME="$VIDEO_FILENAME"
 CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
 export CLOUD_RTP_HOST=$RTP_HOST
 CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_cloud.video_rtp_port)"
-export CLOUD_RTP_PORT=RTP_PORT
+export CLOUD_RTP_PORT=$RTP_PORT
 
 gst-launch-1.0 -v \
     libcamerasrc \

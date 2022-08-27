@@ -34,7 +34,7 @@ gst-launch-1.0 -v -e \
         ! tee name=t1 \
         ! rtph264pay config-interval=1 aggregate-mode=zero-latency pt=96 \
         ! queue2 \
-        ! udpsink host="$CLOUD_RTP_HOST" port="$CLOUD_RTP_HOST" \
+        ! udpsink host="$CLOUD_RTP_HOST" port="$CLOUD_RTP_PORT" \
     t1. filesink location="$VIDEO_FILENAME"
 
 rm "$RAW_VIDEO_SOCKET_PATH"

@@ -11,13 +11,15 @@ export INPUT_MODEL_HEIGHT="320"
 export INPUT_MODEL_WIDTH="320"
 export H264_LEVEL="4"
 export FRAMERATE="24/1"
+
+echo "Running PrintNanny config sync"
+printnanny config sync
+
 RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
 export RTP_HOST=$RTP_HOST
 RTP_PORT="$(printnanny config get pi.webrtc_cloud.data_rtp_port)"
 export RTP_PORT=$RTP_PORT
 
-echo "Running PrintNanny config sync"
-printnanny config sync
 
 gst-launch-1.0 -v -e \
     shmsrc socket-path="$RAW_VIDEO_SOCKET_PATH" \

@@ -7,8 +7,10 @@ export H264_LEVEL="4"
 export FRAMERATE="24/1"
 export DOWNSAMPLE_RATE="1/1"
 export RAW_VIDEO_SOCKET_PATH=/var/run/printnanny/video-raw.socket
-VIDEO_FILENAME="$(printnanny config get paths.new_video_filename)"
-export VIDEO_FILENAME="$VIDEO_FILENAME"
+
+echo "Running PrintNanny config sync"
+printnanny config sync
+
 # TODO
 # EDGE_RTP_HOST="$(printnanny config get pi.webrtc_edge.video_rtp_domain)"
 # export EDGE_RTP_HOST=$RTP_HOST
@@ -19,9 +21,8 @@ CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
 export CLOUD_RTP_HOST=$CLOUD_RTP_HOST
 CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_cloud.video_rtp_port)"
 export CLOUD_RTP_PORT=$CLOUD_RTP_PORT
-
-echo "Running PrintNanny config sync"
-printnanny config sync
+VIDEO_FILENAME="$(printnanny config get paths.new_video_filename)"
+export VIDEO_FILENAME="$VIDEO_FILENAME"
 
 echo "Sending starting h264 RTP stream to $CLOUD_RTP_HOST:$CLOUD_RTP_HOST"
 gst-launch-1.0 -v -e \

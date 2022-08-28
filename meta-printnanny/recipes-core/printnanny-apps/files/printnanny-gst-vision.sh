@@ -1,5 +1,5 @@
 #!/bin/bash
-set +xeuo pipefail
+set +euo pipefail
 
 
 export RAW_VIDEO_SOCKET_PATH=/var/run/printnanny/video-raw.socket
@@ -16,6 +16,8 @@ export RTP_HOST=$RTP_HOST
 RTP_PORT="$(printnanny config get pi.webrtc_cloud.data_rtp_port)"
 export RTP_PORT=$RTP_PORT
 
+echo "Running PrintNanny config sync"
+printnanny config sync
 
 gst-launch-1.0 -v -e \
     shmsrc socket-path="$RAW_VIDEO_SOCKET_PATH" \

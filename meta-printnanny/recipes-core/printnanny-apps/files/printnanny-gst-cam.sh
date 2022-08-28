@@ -1,5 +1,5 @@
 #!/bin/bash
-set +xeuo pipefail
+set +euo pipefail
 
 export VIDEO_HEIGHT="480"
 export VIDEO_WIDTH="640"
@@ -19,6 +19,9 @@ CLOUD_RTP_HOST="$(printnanny config get pi.webrtc_cloud.rtp_domain)"
 export CLOUD_RTP_HOST=$CLOUD_RTP_HOST
 CLOUD_RTP_PORT="$(printnanny config get pi.webrtc_cloud.video_rtp_port)"
 export CLOUD_RTP_PORT=$CLOUD_RTP_PORT
+
+echo "Running PrintNanny config sync"
+printnanny config sync
 
 echo "Sending starting h264 RTP stream to $CLOUD_RTP_HOST:$CLOUD_RTP_HOST"
 gst-launch-1.0 -v -e \

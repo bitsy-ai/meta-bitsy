@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MPL-2.0;md5=81
 
 SRC_URI = "\
     https://github.com/syncthing/syncthing/releases/download/v${PV}/syncthing-linux-${SYNCTHING_TARGET_ARCH}-v${PV}.tar.gz \
-    file://syncthing.locations.conf \
+    file://syncthing.locations \
     file://syncthing@.service \
 "
 SRC_URI[sha256sum] = "5eeda7b2119a3da01271633878ace763869ace26bfa598e6f02a6d7987ca1cd7"
@@ -38,12 +38,12 @@ do_install() {
     install -d "${D}${bindir}"
     install -m 0755 "${S}/syncthing" "${D}${bindir}/syncthing"
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'nginx', d)}" ]; then
-        install -d "${D}${sysconfdir}/nginx/locations"
-        install -m 0644 "${WORKDIR}/syncthing.locations.conf" "${D}${sysconfdir}/nginx/locations/syncthing.locations.conf"
+        install -d "${D}${sysconfdir}/nginx/conf.d/"
+        install -m 0644 "${WORKDIR}/syncthing.locations" "${D}${sysconfdir}/nginx/conf.d/syncthing.locations"
     fi
 }
 
 FILES:${PN} = "${bindir}/*"
-FILES:${PN}-nginx = "${sysconfdir}/nginx/locations/*"
+FILES:${PN}-nginx = "${sysconfdir}/nginx/conf.d/*"
 
 PACKAGES += "${PN}-nginx"

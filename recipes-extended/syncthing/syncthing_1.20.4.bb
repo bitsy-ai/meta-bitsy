@@ -30,12 +30,12 @@ S = "${WORKDIR}/syncthing-linux-${SYNCTHING_TARGET_ARCH}-v${PV}"
 
 inherit systemd
 
-SYNCTHING_SERVICE ??= "default"
+SYNCTHING_USER ??= "syncthing"
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
 SYSTEMD_SERVICE:${PN} += "\
     syncthing-resume.service \
-    syncthing@${SYNCTHING_SERVICE}.service \
+    syncthing@${SYNCTHING_USER}.service \
 "
 SYSTEMD_AUTO_ENABLE = "enable"
 

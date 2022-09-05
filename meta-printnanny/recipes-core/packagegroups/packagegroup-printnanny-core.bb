@@ -5,6 +5,8 @@ PR = "r0"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
+SYNCTHING_USER = "printnanny"
+
 RDEPENDS:${PN} = "\
     printnanny-apps \
     printnanny-vision \

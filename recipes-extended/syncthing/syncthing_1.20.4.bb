@@ -31,7 +31,11 @@ inherit systemd
 SYNCTHING_SERVICE ??= "default"
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} += "${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'syncthing-resume.service syncthing@${SYNCTHING_SERVICE}.service', '', d)}"
+SYSTEMD_SERVICE:${PN} += "\
+    syncthing-resume.service \
+    syncthing@${SYNCTHING_SERVICE}.service \
+"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 do_install() {
     install -d "${D}${bindir}"

@@ -14,6 +14,7 @@ RDEPENDS:${PN} = "\
 	swupdate-progress \
 	swupdate-www \
 	swupdate-tools \
+    syncthing \
     u-boot-fw-utils \
     printnanny-user \
     natscli \

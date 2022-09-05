@@ -23,14 +23,15 @@ inherit systemd
 SRC_URI = "\
     https://github.com/syncthing/syncthing/releases/download/v${PV}/syncthing-linux-${SYNCTHING_TARGET_ARCH}-v${PV}.tar.gz \
     file://syncthing.location \
-    file://syncthing.service \
+    file://syncthing@.service \
 "
 
+SYNCTHING_SERVICE ??= "default"
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
 PACKAGECONFIG[systemd] = "--with-systemd,--without-systemd,systemd"
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} += "${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'syncthing.service', '', d)}"
+SYSTEMD_SERVICE:${PN} += "${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'syncthing@${SYNCTHING_SERVICE}.service', '', d)}"
 
 do_install() {
     install -d "${D}${bindir}"

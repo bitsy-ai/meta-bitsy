@@ -30,10 +30,10 @@ S = "${WORKDIR}/syncthing-linux-${SYNCTHING_TARGET_ARCH}-v${PV}"
 
 inherit systemd
 
-SYNCTHING_USER ??= "syncthing"
+SYNCTHING_USER ?= "syncthing"
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} += "\
+SYSTEMD_SERVICE:${PN} ?= "\
     syncthing-resume.service \
     syncthing@${SYNCTHING_USER}.service \
 "

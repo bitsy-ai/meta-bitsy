@@ -10,11 +10,12 @@ RDEPENDS:${PN} = "\
     printnanny-vision \
     janus-gateway \
     nginx \
-	swupdate \
-	swupdate-progress \
-	swupdate-www \
-	swupdate-tools \
+    swupdate \
+    swupdate-progress \
+    swupdate-www \
+    swupdate-tools \
     syncthing \
+    syncthing-nginx \
     u-boot-fw-utils \
     printnanny-user \
     natscli \

@@ -6,15 +6,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
-    printnanny-apps \
-    printnanny-vision \
-    janus-gateway \
-    nginx \
-    swupdate \
-    swupdate-progress \
-    swupdate-www \
-    swupdate-tools \
-    u-boot-fw-utils \
+    syncthing \
+    syncthing-nginx \
     printnanny-user \
-    natscli \
 "

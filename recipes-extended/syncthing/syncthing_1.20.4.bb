@@ -7,7 +7,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MPL-2.0;md5=81
 SRC_URI = "\
     https://github.com/syncthing/syncthing/releases/download/v${PV}/syncthing-linux-${SYNCTHING_TARGET_ARCH}-v${PV}.tar.gz \
     file://syncthing.locations \
-    file://syncthing@.service \
 "
 SRC_URI[sha256sum] = "5eeda7b2119a3da01271633878ace763869ace26bfa598e6f02a6d7987ca1cd7"
 
@@ -32,7 +31,7 @@ inherit systemd
 SYNCTHING_SERVICE ??= "default"
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} += "${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'syncthing@${SYNCTHING_SERVICE}.service', '', d)}"
+SYSTEMD_SERVICE:${PN} += "${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'syncthing-resume.service syncthing@${SYNCTHING_SERVICE}.service', '', d)}"
 
 do_install() {
     install -d "${D}${bindir}"
@@ -41,9 +40,18 @@ do_install() {
         install -d "${D}${sysconfdir}/nginx/conf.d/"
         install -m 0644 "${WORKDIR}/syncthing.locations" "${D}${sysconfdir}/nginx/conf.d/syncthing.locations"
     fi
+    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
+        install -d "${D}${systemd_unitdir}/user"
+        install -d "${D}${systemd_system_unitdir}"
+
+        install -m 0644 "${S}/etc/linux-systemd/system/syncthing-resume.service" "${D}${systemd_system_unitdir}/syncthing-resume.service"
+        install -m 0644 "${S}/etc/linux-systemd/system/syncthing@.service" "${D}${systemd_system_unitdir}/syncthing@.service"
+        install -m 0644 "${S}/etc/linux-systemd/user/syncthing.service" "${D}${systemd_unitdir}/user/syncthing.service"
+
+    fi
 }
 
-FILES:${PN} = "${bindir}/*"
+FILES:${PN} = "${bindir}/* ${systemd_unitdir}/*"
 FILES:${PN}-nginx = "${sysconfdir}/nginx/conf.d/*"
 
 PACKAGES += "${PN}-nginx"

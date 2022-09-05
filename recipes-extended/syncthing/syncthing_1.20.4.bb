@@ -7,6 +7,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MPL-2.0;md5=81
 SRC_URI = "\
     https://github.com/syncthing/syncthing/releases/download/v${PV}/syncthing-linux-${SYNCTHING_TARGET_ARCH}-v${PV}.tar.gz \
     file://syncthing.locations \
+    file://10-configure-syncthing.conf \ 
+    file://syncthing-configure.sh \
 "
 SRC_URI[sha256sum] = "5eeda7b2119a3da01271633878ace763869ace26bfa598e6f02a6d7987ca1cd7"
 
@@ -47,10 +49,14 @@ do_install() {
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_unitdir}/user"
         install -d "${D}${systemd_system_unitdir}"
+        install -d "${D}${systemd_system_unitdir}/syncthing@.service.d/"
 
         install -m 0644 "${S}/etc/linux-systemd/system/syncthing-resume.service" "${D}${systemd_system_unitdir}/syncthing-resume.service"
         install -m 0644 "${S}/etc/linux-systemd/system/syncthing@.service" "${D}${systemd_system_unitdir}/syncthing@.service"
+        install -m 0644 "${WORKDIR}/10-configure-syncthing.conf" "${D}${systemd_system_unitdir}/syncthing@.service.d/10-configure-syncthing.conf"
+
         install -m 0644 "${S}/etc/linux-systemd/user/syncthing.service" "${D}${systemd_unitdir}/user/syncthing.service"
+        install -m 0755 "${WORKDIR}/syncthing-configure.sh" "${D}${bindir}/syncthing-configure"
 
     fi
 }

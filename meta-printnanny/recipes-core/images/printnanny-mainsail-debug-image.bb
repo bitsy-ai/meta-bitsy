@@ -1,6 +1,3 @@
-VARIANT="PrintNanny Mainsail Edition"
-VARIANT_ID="printnanny-mainsail"
-
 require recipes-core/images/printnanny-mainsail-release-image.bb
 require recipes-core/images/include/debug.inc
 

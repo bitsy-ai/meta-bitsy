@@ -1,11 +1,7 @@
-DISTRO = "printnanny-mainsail"
 LICENSE = "AGPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
-VARIANT="PrintNanny Mainsail Edition"
-VARIANT_ID="printnanny-mainsail"
-
-require recipes-core/images/printnanny-core-image.bb
+require recipes-core/images/include/core.inc
 require recipes-core/images/include/mainsail.inc
 
 

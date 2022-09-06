@@ -1,6 +1,3 @@
-VARIANT="PrintNanny OctoPrint Edition"
-VARIANT_ID="printnanny-octoprint"
-
 require recipes-core/images/printnanny-octoprint-release-image.bb
 require recipes-core/images/include/debug.inc
 

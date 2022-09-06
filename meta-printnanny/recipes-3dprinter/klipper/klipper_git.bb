@@ -51,6 +51,8 @@ RDEPENDS:${PN} = "\
     python3-pyserial \
     python3-greenlet \
     python3-jinja2 \
+    python3-can \
+    python3-markupsafe \
     libusb1 \
     stm32flash \
     avr-gcc \

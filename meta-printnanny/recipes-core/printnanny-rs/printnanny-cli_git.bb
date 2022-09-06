@@ -8,10 +8,10 @@ inherit cargo
 # how to get printnanny-cli could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-cli/0.25.0"
 SRC_URI += "git://git@github.com/bitsy-ai/print-nanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "81063b759c76aacb346e581d61545527b8d9e660"
+SRCREV = "34d935270316375e8df31149211ff193ef7fab7b"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+81063b759c"
+PV:append = ".AUTOINC+34d9352703"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -78,6 +78,9 @@ SRC_URI += " \
     crate://crates.io/core-foundation/0.9.3 \
     crate://crates.io/cpufeatures/0.2.2 \
     crate://crates.io/crc32fast/1.3.2 \
+    crate://crates.io/crossbeam-channel/0.5.6 \
+    crate://crates.io/crossbeam-deque/0.8.2 \
+    crate://crates.io/crossbeam-epoch/0.9.10 \
     crate://crates.io/crossbeam-utils/0.8.9 \
     crate://crates.io/crypto-common/0.1.3 \
     crate://crates.io/ctr/0.8.0 \
@@ -204,6 +207,7 @@ SRC_URI += " \
     crate://crates.io/matchers/0.1.0 \
     crate://crates.io/matches/0.1.9 \
     crate://crates.io/memchr/2.5.0 \
+    crate://crates.io/memoffset/0.6.5 \
     crate://crates.io/mime/0.3.16 \
     crate://crates.io/mime_guess/2.0.4 \
     crate://crates.io/miniz_oxide/0.5.3 \
@@ -226,6 +230,7 @@ SRC_URI += " \
     crate://crates.io/normalize-line-endings/0.3.0 \
     crate://crates.io/normpath/0.3.2 \
     crate://crates.io/notify/4.0.17 \
+    crate://crates.io/ntapi/0.3.7 \
     crate://crates.io/nuid/0.3.2 \
     crate://crates.io/num-bigint/0.2.6 \
     crate://crates.io/num-bigint/0.4.3 \
@@ -279,7 +284,7 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.105.1 \
+    crate://crates.io/printnanny-api-client/0.107.2 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.1.3 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
@@ -295,6 +300,8 @@ SRC_URI += " \
     crate://crates.io/rand_chacha/0.3.1 \
     crate://crates.io/rand_core/0.5.1 \
     crate://crates.io/rand_core/0.6.3 \
+    crate://crates.io/rayon-core/1.9.3 \
+    crate://crates.io/rayon/1.5.3 \
     crate://crates.io/redox_syscall/0.2.13 \
     crate://crates.io/ref-cast-impl/1.0.7 \
     crate://crates.io/ref-cast/1.0.7 \
@@ -372,6 +379,7 @@ SRC_URI += " \
     crate://crates.io/syn/1.0.98 \
     crate://crates.io/synstructure/0.12.6 \
     crate://crates.io/sys-info/0.9.1 \
+    crate://crates.io/sysinfo/0.26.2 \
     crate://crates.io/system-deps/6.0.2 \
     crate://crates.io/tempfile/3.3.0 \
     crate://crates.io/tera/1.16.0 \

@@ -18,6 +18,6 @@ Environment=KLIPPER_SOCKET=/var/run/klipper/klippy_uds
 Type=simple
 User=printnanny
 RemainAfterExit=yes
-ExecStart=/usr/bin/python3 /home/printnanny/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
+ExecStart=/usr/bin/python3 /opt/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
 Restart=always
 RestartSec=10

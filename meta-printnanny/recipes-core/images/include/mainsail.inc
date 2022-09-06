@@ -1,6 +1,7 @@
 IMAGE_INSTALL += "\
     packagegroup-mainsail \
+    os-release \
 "
 
-VARIANT="PrintNanny Mainsail Edition"
+VARIANT_NAME="PrintNanny Mainsail Edition"
 VARIANT_ID="printnanny-mainsail"

@@ -48,4 +48,11 @@ do_install() {
 }
 
 
-FILES:${PN} = "${INSTALL_DIR}*"
+FILES:${PN} = "${INSTALL_DIR}/moonraker*"
+FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
+FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"
+FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
+FILES:${PN}-extra= "${INSTALL_DIR}/*"
+
+# NOTE: package ordering is import here! Packages are processed in left -> right order
+PACKAGES = "${PN} ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-scripts ${PN}-extra"

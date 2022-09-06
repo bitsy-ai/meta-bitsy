@@ -58,4 +58,15 @@ RDEPENDS:${PN} = "\
     glibc \
 "
 
-FILES:${PN} = "${INSTALL_DIR}*"
+FILES:${PN} = "\
+    ${INSTALL_DIR}/src/* \
+    ${INSTALL_DIR}/Makefile
+"
+FILES:${PN}-klippy = "${INSTALL_DIR}/klippy/*"
+FILES:${PN}-test = "${INSTALL_DIR}/test/*"
+FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"
+FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
+FILES:${PN}-extra= "${INSTALL_DIR}/*"
+
+# NOTE: package ordering is import here! Packages are processed in left -> right order
+PACKAGES = "${PN} ${PN}-klippy ${PN}-scripts ${PN}-tests ${PN}-docs ${PN}-extra"

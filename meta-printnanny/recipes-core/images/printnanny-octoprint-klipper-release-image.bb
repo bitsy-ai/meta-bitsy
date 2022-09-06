@@ -5,6 +5,8 @@ require recipes-core/images/include/core.inc
 require recipes-core/images/include/octoprint.inc
 require recipes-core/images/include/klipper.inc
 
+VARIANT_NAME="PrintNanny OctoPrint Klipper Edition"
+VARIANT_ID="printnanny-octoprint-klipper"
 
 SWUPDATE_IMAGES_FSTYPES[printnanny-octoprint-klipper-release-image-raspberrypi4-64] = ".ext4.gz"
 SWUPDATE_IMAGES_FSTYPES[uImage] = ".bin"

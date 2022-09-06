@@ -8,3 +8,5 @@ Cmnd_Alias OCTOPRINT_SERVICES = /bin/systemctl start octoprint*,/bin/systemctl s
 Cmnd_Alias WEB_SERVICES = /bin/systemctl start nginx*,/bin/systemctl stop nginx*,/bin/systemctl restart nginx*
 # generic system admin commands
 Cmnd_Alias REBOOT = /sbin/reboot -h now,/sbin/shutdown -h now,/sbin/shutdown -r now
+# klipper commands
+Cmnd Alias KLIPPER_SERIVCES = /bin/systemctl start klipper,/bin/systemctl stop klipper,/bin/systemctl restart klipper

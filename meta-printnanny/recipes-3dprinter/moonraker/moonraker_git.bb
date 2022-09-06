@@ -17,6 +17,22 @@ RDEPENDS:${PN} = "\
     python3 \
     python3-core \
     python3-pip \
+    python3-tornado \
+    python3-pyserial \
+    python3-pyserial-asyncio \
+    python3-pillow \
+    python3-lmdb \
+    python3-streaming-form-data \
+    python3-inotify-simple \
+    python3-libnacl \
+    python3-distro \
+    python3-paho-mqtt \
+    python3-pycurl \
+    python3-zeroconf \
+    python3-preprocess-cancellation \
+    python3-jinja2 \
+    python3-ldap3 \
+    python3-apprise \
     curl \
     libsodium \
     zlib \

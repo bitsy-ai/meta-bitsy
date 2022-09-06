@@ -19,12 +19,11 @@ do_install() {
     cp --preserve=mode,timestamps -R ${WORKDIR}/mainsail/* ${D}${INSTALL_DIR}
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'nginx', d)}" ]; then
         install -d "${D}${sysconfdir}/nginx/conf.d/"
-        install -d "${D}${sysconfdir}/nginx/sites-available/"
-        install -d "${D}${sysconfdir}/nginx/sites-enabled/"
+        install -d "${D}${sysconfdir}/nginx/locations/"
 
         install -m 0644 "${WORKDIR}/nginx/mainsail.nginx.upstream.conf" "${D}${sysconfdir}/nginx/conf.d/mainsail.upstream.conf"
         install -m 0644 "${WORKDIR}/nginx/mainsail.nginx.common.conf" "${D}${sysconfdir}/nginx/conf.d/mainsail.nginx.common.conf"
-        ln -s -r "${D}${sysconfdir}/nginx/mainsail.nginx.locations" "${D}${sysconfdir}/nginx/mainsail.nginx.locations"
+        ln -s -r "${D}${sysconfdir}/nginx/mainsail.nginx.locations" "${D}${sysconfdir}/nginx/locations/mainsail.nginx.locations"
     fi
 }
 

@@ -6,6 +6,10 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
-    python3-pip \
     klipper \
+    klipper-examples \
+    klipper-klippy \
+    klipper-scripts \
+    moonraker \
+    moonraker-scripts \
 "

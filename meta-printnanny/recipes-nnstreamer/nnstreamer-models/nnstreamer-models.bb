@@ -31,4 +31,4 @@ do_install(){
 SYSTEMD_SERVICE:${PN} = "nnstreamer.service"
 SYSTEMD_AUTO_ENABLE = "disable"
 FILES:${PN} = "${datadir} ${bindir} ${systemd_system_unitdir}"
-RDEPENDS:${PN} = "nnstreamer nnstreamer-tensorflow-lite"
+RDEPENDS:${PN} = "nnstreamer tensorflow-lite"

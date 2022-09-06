@@ -1,11 +1,8 @@
-require recipes-core/images/bitsy-core-image.bb
-
-SRC_URI = "\
+SRC_URI += "\
   file://sw-description \
 "
 
 WKS_FILE = "sdimage-printnanny.wks"
-DISTRO ?= "printnanny"
 
 IMAGE_FEATURES = "\
   bash-completion-pkgs \

@@ -11,3 +11,5 @@ IMAGE_FEATURES:append = "\
 CMDLINE:remove = "\
     quiet \
 "
+
+IMAGE_INSTALL:append = "systemd-analyze"

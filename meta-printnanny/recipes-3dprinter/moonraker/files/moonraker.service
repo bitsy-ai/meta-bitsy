@@ -1,0 +1,19 @@
+[Unit]
+Description=Moonraker provides Web API for klipper
+Documentation=https://moonraker.readthedocs.io/en/latest/
+After=network.target klipper.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+LogsDirectory=klipper
+RuntimeDirectory=klipper
+Environment=MOONRAKER_CONFIG=/home/printnanny/.config/klipper/moonraker.conf
+Environment=MOONRAKER_LOG=/var/log/klipper/moonraker.log
+Type=simple
+User=printnanny
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /opt/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
+Restart=always
+RestartSec=10

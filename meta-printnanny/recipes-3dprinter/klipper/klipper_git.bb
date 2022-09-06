@@ -21,14 +21,15 @@ inherit systemd
 
 do_compile() {
     echo "Skipping compilation, requires user-provided printer.cfg"
+    echo "WARNING, klipper does not provide pep517 compliant python build"
 }
 
 # install klipper source tree to /opt/klipper
 do_install() {
     install -d "${D}${INSTALL_DIR}"
-    install -d "${D}${systemd_system_unitdir}"
-    cp --preserve=mode,timestamps -R ${S}/* ${D}/opt/klipper
+    cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
+        install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/klipper.service" "${D}${systemd_system_unitdir}/klipper.service"
     fi
 }

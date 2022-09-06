@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     klipper \
+    klipper-examples \
     klipper-klippy \
     klipper-scripts \
     moonraker \

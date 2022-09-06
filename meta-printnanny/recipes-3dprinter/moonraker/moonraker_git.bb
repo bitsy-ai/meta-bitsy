@@ -41,12 +41,20 @@ do_install() {
     install -d "${D}${INSTALL_DIR}"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
+    # delete .git, .github
+    rm -rf ${D}${INSTALL_DIR}/.git
+    rm -rf ${D}${INSTALL_DIR}/.github
+
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
     fi
 }
 
+RDEPENDS:${PN}-scripts = "\
+    bash \
+    python3-core \
+"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker*"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
@@ -55,4 +63,4 @@ FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra= "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-scripts ${PN}-extra"
+PACKAGES = "${PN} ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-extra"

@@ -13,4 +13,5 @@ RDEPENDS:${PN} = "\
     moonraker \
     moonraker-scripts \
     mainsail \
+    mainsail-nginx \
 "

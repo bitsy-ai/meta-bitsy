@@ -29,6 +29,7 @@ do_install() {
     fi
 }
 
-FILES:${PN} = "\
-    ${INSTALL_DIR}/* \
-"
+FILES:${PN} = "${INSTALL_DIR}/*"
+FILES:${PN}-nginx = "${sysconfdir}/nginx/*"
+
+PACKAGES = "${PN} ${PN}-nginx"

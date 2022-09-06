@@ -1,0 +1,23 @@
+[Unit]
+Description=Starts Klipper and provides klippy Unix Domain Socket API
+Documentation=https://www.klipper3d.org/
+After=network.target
+Before=moonraker.service
+Wants=udev.target
+
+[Install]
+Alias=klippy
+WantedBy=multi-user.target
+
+[Service]
+LogsDirectory=klipper
+RuntimeDirectory=klipper
+Environment=KLIPPER_CONFIG=/home/printnanny/klipper_config/printer.cfg
+Environment=KLIPPER_LOG=/var/logs/klipper/klippy.log
+Environment=KLIPPER_SOCKET=/var/run/klipper/klippy_uds
+Type=simple
+User=printnanny
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /home/printnanny/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
+Restart=always
+RestartSec=10

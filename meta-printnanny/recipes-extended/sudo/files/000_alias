@@ -9,4 +9,4 @@ Cmnd_Alias WEB_SERVICES = /bin/systemctl start nginx*,/bin/systemctl stop nginx*
 # generic system admin commands
 Cmnd_Alias REBOOT = /sbin/reboot -h now,/sbin/shutdown -h now,/sbin/shutdown -r now
 # klipper commands
-Cmnd Alias KLIPPER_SERIVCES = /bin/systemctl start klipper,/bin/systemctl stop klipper,/bin/systemctl restart klipper
+Cmnd Alias KLIPPER_SERVICES = /bin/systemctl start klipper,/bin/systemctl stop klipper,/bin/systemctl restart klipper

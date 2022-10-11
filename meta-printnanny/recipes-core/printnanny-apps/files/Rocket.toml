@@ -1,7 +1,0 @@
-# https://rocket.rs/v0.5-rc/guide/configuration/#overview
-[default]
-address = "127.0.0.1"
-port = 9001
-template_dir = "/usr/share/printnanny/www/templates"
-workers = 2
-log_level = "normal"

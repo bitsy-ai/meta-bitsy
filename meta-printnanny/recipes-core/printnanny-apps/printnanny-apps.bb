@@ -11,12 +11,9 @@ SRC_URI = " \
     file://printnanny-nats.service \
     file://printnanny-online.service \
     file://printnanny-online.target \
-    file://Rocket.toml \
     file://dev.toml \
     file://printnanny-boot-report.sh \
     file://printnanny-boot-report.service \
-    file://printnanny-gst-cam.sh \
-    file://printnanny-gst-vision.sh \
 "
 
 RDEPENDS:${PN} += "printnanny-cli"
@@ -30,7 +27,6 @@ do_install() {
   install -d "${D}${sysconfdir}/printnanny/conf.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-nats.service.d"
   install -d "${D}${bindir}"
-  install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-boot-report.service" "${D}${systemd_system_unitdir}/printnanny-boot-report.service"
   install -m 0644 "${WORKDIR}/printnanny-cloud-sync.service" "${D}${systemd_system_unitdir}/printnanny-cloud-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-init.service" "${D}${systemd_system_unitdir}/printnanny-init.service"
@@ -41,8 +37,6 @@ do_install() {
   install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"
   install -m 0755 "${WORKDIR}/printnanny-link-confd.sh" "${D}${bindir}/printnanny-link-confd"
   install -m 0755 "${WORKDIR}/printnanny-boot-report.sh" "${D}${bindir}/printnanny-boot-report"
-  install -m 0755 "${WORKDIR}/printnanny-gst-cam.sh" "${D}${bindir}/printnanny-gst-cam"
-  install -m 0755 "${WORKDIR}/printnanny-gst-vision.sh" "${D}${bindir}/printnanny-gst-vision"
 }
 FILES:${PN} = "${datadir} ${sysconfdir} ${bindir}/* ${systemd_unitdir}/*"
 
@@ -53,7 +47,6 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-motd.service \
   printnanny-nats.service \
   printnanny-online.service \
-  printnanny-online.target \
   printnanny-online.target \
   printnanny-boot-report.service \
 "

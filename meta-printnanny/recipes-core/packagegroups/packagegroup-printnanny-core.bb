@@ -6,6 +6,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
+    printnanny-dash \
     printnanny-apps \
     printnanny-vision \
     janus-gateway \

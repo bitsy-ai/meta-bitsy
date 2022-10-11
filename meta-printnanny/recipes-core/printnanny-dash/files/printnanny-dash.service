@@ -1,0 +1,16 @@
+[Unit]
+Description=PrintNanny Dashboard
+After=network-online.target etc-printnanny.mount
+Wants=network-online.target
+Requires=etc-printnanny.mount
+
+[Service]
+Type=simple
+SyslogIdentifier=printnanny-dash
+ExecStart=/usr/bin/printnanny-dash
+Restart=on-failure
+RestartSec=30
+User=printnanny
+
+[Install]
+WantedBy=multi-user.target

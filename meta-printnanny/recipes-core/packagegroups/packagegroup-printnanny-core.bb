@@ -9,6 +9,7 @@ RDEPENDS:${PN} = "\
     printnanny-dash \
     printnanny-apps \
     printnanny-vision \
+    printnanny-gst-plugin \
     janus-gateway \
     nginx \
     swupdate \

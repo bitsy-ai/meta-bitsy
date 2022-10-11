@@ -19,6 +19,11 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-vision.service \
 "
 
+RDEPENDS:${PN} = "\
+  printnanny-gst-plugin \
+  printnanny-nn \
+"
+
 SYSTEMD_AUTO_ENABLE = "disable"
 
 inherit systemd

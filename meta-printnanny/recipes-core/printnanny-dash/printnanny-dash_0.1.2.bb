@@ -2,7 +2,7 @@ SUMMARY = "PrintNanny OS Dashboard"
 HOMEPAGE = ""
 
 SRC_URI = "\
-    https://github.com/bitsy-ai/printnanny-dash/releases/download/v0.1.2/printnanny-dash-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
+    https://github.com/bitsy-ai/printnanny-dash/releases/download/v${PV}/printnanny-dash-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
     file://printnanny-dash.service \
 "
 SRC_URI[sha256sum] = "a36b9ab091cc651a4beaf80d1d122605fd44d29163eee21a08f9fd68502ed887"

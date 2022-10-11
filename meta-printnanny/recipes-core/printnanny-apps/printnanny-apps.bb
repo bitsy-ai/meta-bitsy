@@ -11,7 +11,6 @@ SRC_URI = " \
     file://printnanny-nats.service \
     file://printnanny-online.service \
     file://printnanny-online.target \
-    file://Rocket.toml \
     file://dev.toml \
     file://printnanny-boot-report.sh \
     file://printnanny-boot-report.service \
@@ -30,7 +29,6 @@ do_install() {
   install -d "${D}${sysconfdir}/printnanny/conf.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-nats.service.d"
   install -d "${D}${bindir}"
-  install -m 0644 "${WORKDIR}/Rocket.toml" "${D}${sysconfdir}/printnanny/dash/Rocket.toml"
   install -m 0644 "${WORKDIR}/printnanny-boot-report.service" "${D}${systemd_system_unitdir}/printnanny-boot-report.service"
   install -m 0644 "${WORKDIR}/printnanny-cloud-sync.service" "${D}${systemd_system_unitdir}/printnanny-cloud-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-init.service" "${D}${systemd_system_unitdir}/printnanny-init.service"

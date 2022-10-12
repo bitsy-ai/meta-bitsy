@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     printnanny-dash \
+    printnanny-cli \
     printnanny-vision \
     janus-gateway \
     nginx \

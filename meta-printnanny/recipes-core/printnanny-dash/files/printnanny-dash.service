@@ -1,8 +1,7 @@
 [Unit]
 Description=PrintNanny Dashboard
-After=network-online.target etc-printnanny.mount
+After=network-online.target
 Wants=network-online.target
-Requires=etc-printnanny.mount
 
 [Service]
 Type=simple

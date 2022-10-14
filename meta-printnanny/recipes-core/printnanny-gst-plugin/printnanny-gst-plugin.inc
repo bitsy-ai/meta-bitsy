@@ -1,7 +1,12 @@
 inherit pkgconfig 
+inherit systemd
 
+SRC_URI = "\
+    file://printnanny-gst-pipeline.service \
+"
 do_install:append(){
-
+    install -d "${D}${systemd_system_unitdir}"
+    install -m 0644 "${WORKDIR}/printnanny-gst-pipeline.service" "${D}${systemd_system_unitdir}/printnanny-gst-pipeline.service"
 }
 
 # copy LICENSE_FLAGS_ACCEPTED to local.conf

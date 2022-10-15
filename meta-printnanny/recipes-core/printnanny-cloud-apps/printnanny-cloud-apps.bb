@@ -1,4 +1,4 @@
-DESCRIPTION = "PrintNanny OS services"
+DESCRIPTION = "PrintNanny Cloud Services"
 HOMEPAGE = "https://printnanny.ai/"
 LICENSE = "AGPL-3.0-or-later"
 
@@ -7,11 +7,9 @@ SRC_URI = " \
     file://printnanny-cloud-sync.service \
     file://printnanny-init.service \
     file://printnanny-link-confd.sh \
-    file://printnanny-motd.service \
-    file://printnanny-nats.service \
+    file://printnanny-cloud-nats.service \
     file://printnanny-online.service \
     file://printnanny-online.target \
-    file://dev.toml \
     file://printnanny-boot-report.sh \
     file://printnanny-boot-report.service \
 "
@@ -30,8 +28,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-boot-report.service" "${D}${systemd_system_unitdir}/printnanny-boot-report.service"
   install -m 0644 "${WORKDIR}/printnanny-cloud-sync.service" "${D}${systemd_system_unitdir}/printnanny-cloud-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-init.service" "${D}${systemd_system_unitdir}/printnanny-init.service"
-  install -m 0644 "${WORKDIR}/printnanny-motd.service" "${D}${systemd_system_unitdir}/printnanny-motd.service"
-  install -m 0644 "${WORKDIR}/printnanny-nats.service" "${D}${systemd_system_unitdir}/printnanny-nats.service"
+  install -m 0644 "${WORKDIR}/printnanny-cloud-nats.service" "${D}${systemd_system_unitdir}/printnanny-cloud-nats.service"
   install -m 0644 "${WORKDIR}/printnanny-online.service" "${D}${systemd_system_unitdir}/printnanny-online.service"
   install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
   install -m 0644 "${WORKDIR}/dev.toml" "${D}${sysconfdir}/printnanny"

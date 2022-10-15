@@ -1,4 +1,0 @@
-[api]
-base_path = 'http://aurora.local:8000'
-static_url = 'http://aurora.local:8000/static/'
-dashboard_url = 'http://aurora.local:8000/dashboard/'

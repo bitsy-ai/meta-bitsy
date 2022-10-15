@@ -36,9 +36,9 @@ BITSY_TEMPLATE_ARGS = "\
 do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
-    install -d ${D}${OCTOPRINT_BASEDIR}/
+    install --group=${OCTOPRINT_USER} --owner=${OCTOPRINT_USER} -d ${D}${OCTOPRINT_BASEDIR}/
     install -m 0755 ${WORKDIR}/config.yaml ${D}${OCTOPRINT_BASEDIR}/config.yaml
-    chown -R ${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}
+    chown -R ${OCTOPRINT_USER}:${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
     install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service
 }

@@ -2,7 +2,7 @@ SRC_URI += "\
   file://sw-description \
 "
 
-VARIANT_NAME ??= "PrintNanny Core Edition"
+VARIANT_NAME ??= "PrintNanny OS Core"
 VARIANT_ID ??="core"
 
 WKS_FILE = "sdimage-printnanny.wks"

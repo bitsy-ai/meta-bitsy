@@ -1,5 +1,5 @@
-SUMMARY = "PrintNanny OS Dashboard"
-HOMEPAGE = ""
+SUMMARY = "PrintNanny OS Gstreamer Plugin"
+HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs"
 
 SRC_URI = "\
     https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/v${PV}/printnanny-gst-plugin-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \

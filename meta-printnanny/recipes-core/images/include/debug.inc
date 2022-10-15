@@ -13,3 +13,6 @@ CMDLINE:remove = "\
 "
 
 IMAGE_INSTALL:append = "systemd-analyze"
+
+VARIANT_NAME = "PrintNanny OS Debug"
+VARIANT_ID ="debug"

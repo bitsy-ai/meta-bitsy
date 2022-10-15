@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 do_install(){
     install -d "${D}${bindir}"
     install -d "${D}${systemd_system_unitdir}"
-    install -m 0644 "${WORKDIR}/printnanny-dash" "${D}${bindir}/printnanny-dash"
+    install -m 0755 "${WORKDIR}/printnanny-dash" "${D}${bindir}/printnanny-dash"
     install -m 0644 "${WORKDIR}/printnanny-dash.service" "${D}${systemd_system_unitdir}/printnanny-dash.service"
 }
 

@@ -9,3 +9,7 @@ SRC_URI = " \
     file://printnanny-edge-nats.service \
 "
 
+do_install() {
+  install -m 0644 "${WORKDIR}/printnanny-motd.service" "${D}${systemd_system_unitdir}/printnanny-motd.service"
+    
+}

@@ -5,4 +5,4 @@ DESCRIPTION = "Minimal set of packages required to communicate with PrintNanny C
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
-RDEPENDS:${PN} = "printnanny-apps"
+RDEPENDS:${PN} = "printnanny-cloud-apps"

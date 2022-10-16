@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     printnanny-core-apps \
+    printnanny-cloud-apps \
     printnanny-dash \
     printnanny-cli \
     printnanny-vision \

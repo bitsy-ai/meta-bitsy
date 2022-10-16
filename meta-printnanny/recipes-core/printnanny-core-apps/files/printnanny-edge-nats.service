@@ -9,7 +9,7 @@ PartOf=printnanny-online.target
 Type=simple
 SyslogIdentifier=printnanny-nats
 RuntimeDirectory=printnanny
-ExecStart=/usr/bin/printnanny -v nats-worker
+ExecStart=/usr/bin/printnanny -v nats-edge-worker --subject="pi.command.>"
 Restart=on-failure
 RestartSec=30
 User=printnanny

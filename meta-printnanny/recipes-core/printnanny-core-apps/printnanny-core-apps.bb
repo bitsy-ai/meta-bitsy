@@ -16,3 +16,13 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-motd.service" "${D}${systemd_system_unitdir}/printnanny-motd.service"
   install -m 0644 "${WORKDIR}/printnanny-edge-nats.service" "${D}${systemd_system_unitdir}/printnanny-edge-nats.service"    
 }
+
+SYSTEMD_SERVICE:${PN} = "\
+  printnanny-motd.service \
+  printnanny-edge-nats.service \
+"
+
+SYSTEMD_AUTO_ENABLE = "enable"
+
+
+FILES:${PN} = "${systemd_system_unitdir}/*"

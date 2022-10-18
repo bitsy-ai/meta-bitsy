@@ -1,11 +1,11 @@
 SUMMARY = "PrintNanny OS Dashboard"
-HOMEPAGE = ""
+HOMEPAGE = "https://github.com/bitsy-ai/printnanny-dash/"
 
 SRC_URI = "\
     https://github.com/bitsy-ai/printnanny-dash/releases/download/v${PV}/printnanny-dash-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
     file://printnanny-dash.service \
 "
-SRC_URI[sha256sum] = "a36b9ab091cc651a4beaf80d1d122605fd44d29163eee21a08f9fd68502ed887"
+SRC_URI[sha256sum] = "bb541139b391527ec6111666cc2fdc773069d85906b5aea21a0bf7dbc067a299"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
 do_install(){

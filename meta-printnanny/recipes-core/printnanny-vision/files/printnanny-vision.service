@@ -6,7 +6,8 @@ Wants=network-online.target printnanny-cloud-sync.service
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-vision
-ExecStart=/usr/bin/printnanny-gst-vision
+EnvironmentFile=-/var/run/printnanny/printnanny-vision.conf
+ExecStart=/usr/bin/printnanny-vision
 Restart=on-failure
 RestartSec=30
 User=printnanny

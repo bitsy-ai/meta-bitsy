@@ -7,6 +7,6 @@ require recipes-core/images/include/mainsail.inc
 require recipes-core/images/include/octoprint.inc
 
 
-SWUPDATE_IMAGES_FSTYPES[printnanny-release-image-raspberrypi4-64] = ".ext4.xz"
+SWUPDATE_IMAGES_FSTYPES[printnanny-release-image-raspberrypi4-64] = ".ext4.gz"
 SWUPDATE_IMAGES_FSTYPES[uImage] = ".bin"
 inherit swupdate-image

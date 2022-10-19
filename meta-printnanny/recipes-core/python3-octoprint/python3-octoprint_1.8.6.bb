@@ -12,6 +12,7 @@ SRC_URI[sha256sum] = "3a8cc0d3d68f76bda077619b76a6133673d21bebccae1cb8f55a7b8ae3
 S = "${WORKDIR}/OctoPrint-1.8.6"
 
 RDEPENDS:${PN} = "\
+    python3-argon2-cffi \
     python3-blinker \
     python3-cachelib \
     python3-cchardet \
@@ -23,6 +24,7 @@ RDEPENDS:${PN} = "\
     python3-flask \
     python3-flask-assets \
     python3-flask-babel \
+    python3-flask-limiter \
     python3-flask-login \
     python3-frozendict \
     python3-future \

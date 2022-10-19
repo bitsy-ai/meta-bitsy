@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "380a85cf89e0e69b7cfbe2ea9f765f004ff419f34194018a6827ac0e3e
 
 S = "${WORKDIR}/wrapt-1.14.1"
 
-RDEPENDS:${PN} = ""
+RDEPENDS_${PN} = ""
 
 inherit setuptools3

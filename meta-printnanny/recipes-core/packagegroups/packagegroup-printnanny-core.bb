@@ -1,6 +1,6 @@
 SUMMARY = "PrintNanny Core Packages"
 DESCRIPTION = "Minimal set of packages required to run PrintNanny OS Apps"
-PR = "r0"
+PR = "r1"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup

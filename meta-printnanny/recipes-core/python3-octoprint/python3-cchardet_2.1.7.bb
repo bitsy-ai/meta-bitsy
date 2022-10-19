@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "c428b6336545053c2589f6caf24ea32276c6664cb86db817e03a94c60a
 
 S = "${WORKDIR}/cchardet-2.1.7"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "ba3a3775974105c221d31141f2c116f4fd65c5ceb0698657a11e9f295e
 
 S = "${WORKDIR}/rich-12.6.0"
 
-RDEPENDS_${PN} = "python3-pygments python3-commonmark"
+RDEPENDS:${PN} = "python3-pygments python3-commonmark"
 
 inherit setuptools3

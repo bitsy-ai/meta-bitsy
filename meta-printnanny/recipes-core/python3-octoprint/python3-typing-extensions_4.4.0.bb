@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "1511434bb92bf8dd198c12b1cc812e800d4181cfcb867674e0f8279cc9
 
 S = "${WORKDIR}/typing_extensions-4.4.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit python_flit_core

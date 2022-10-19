@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "01c32180e6136e6f68aeb60852a9a2881cc350eca8932ef9b4591a7ef9
 
 S = "${WORKDIR}/Flask-Limiter-2.6.3"
 
-RDEPENDS_${PN} = "python3-limits python3-flask python3-rich python3-typing-extensions"
+RDEPENDS:${PN} = "python3-limits python3-flask python3-rich python3-typing-extensions"
 
 inherit setuptools3

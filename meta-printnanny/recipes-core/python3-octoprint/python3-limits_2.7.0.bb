@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "847a78b24a47e822a8f8713028a1340db44003763ab1cb90e798ccf462
 
 S = "${WORKDIR}/limits-2.7.0"
 
-RDEPENDS_${PN} = "python3-deprecated python3-setuptools python3-packaging python3-typing-extensions"
+RDEPENDS:${PN} = "python3-deprecated python3-setuptools python3-packaging python3-typing-extensions"
 
 inherit setuptools3

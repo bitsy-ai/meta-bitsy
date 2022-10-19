@@ -6,13 +6,15 @@ After=printnanny-online.target
 PartOf=printnanny-cloud.service
 # Start this service unit after the printnanny-cloud.service start
 After=printnanny-cloud.service
+StartLimitInterval=60
+StartLimitBurst=3
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/printnanny-boot-report
 RemainAfterExit=yes
 Restart=on-failure
-RestartSec=5
+RestartSec=10
 
 # Output needs to appear in instance console output
 StandardOutput=journal

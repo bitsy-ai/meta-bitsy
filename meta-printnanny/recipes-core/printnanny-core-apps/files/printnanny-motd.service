@@ -3,13 +3,15 @@ Description=PrintNanny Message of the Day
 Before=multi-user.target
 Requires=etc-printnanny.mount
 After=etc-printnanny.mount
+StartLimitInterval=60
+StartLimitBurst=3
 
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-motd
 ExecStart=/bin/bash -c "/usr/bin/printnanny os motd > /etc/motd"
 Restart=on-failure
-RestartSec=30
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

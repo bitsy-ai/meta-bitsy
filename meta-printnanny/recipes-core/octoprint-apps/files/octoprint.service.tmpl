@@ -2,6 +2,8 @@
 Description=OctoPrint
 After=network-online.target octoprint-venv.service
 Wants=network-online.target octoprint-venv.service
+StartLimitInterval=60
+StartLimitBurst=3
 
 [Service]
 Type=simple
@@ -12,7 +14,7 @@ ExecStart=/bin/bash -c "{OCTOPRINT_VENV}/bin/python -m octoprint serve \
     --config {OCTOPRINT_BASEDIR}/config.yaml \
     --port {OCTOPRINT_PORT}"
 Restart=on-failure
-RestartSec=30
+RestartSec=10
 IOSchedulingClass=realtime
 User={OCTOPRINT_USER}
 

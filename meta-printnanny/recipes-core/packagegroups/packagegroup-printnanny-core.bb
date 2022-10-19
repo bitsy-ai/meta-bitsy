@@ -10,8 +10,6 @@ RDEPENDS:${PN} = "\
     printnanny-cloud-apps \
     printnanny-dash \
     printnanny-cli \
-    printnanny-vision \
-    printnanny-gst-plugin \
     janus-gateway \
     nginx \
     swupdate \

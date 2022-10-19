@@ -2,13 +2,15 @@
 Description=PrintNanny Cam Service
 After=network-online.target printnanny-cloud-sync.service
 Wants=network-online.target printnanny-cloud-sync.service 
+StartLimitInterval=60
+StartLimitBurst=3
 
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-vision
 ExecStart=/usr/bin/printnanny-vision --config /var/run/printnanny/printnanny-vision.toml
 Restart=on-failure
-RestartSec=30
+RestartSec=10
 User=printnanny
 
 [Install]

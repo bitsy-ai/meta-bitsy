@@ -5,7 +5,7 @@ PR = "r0"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
-# removed while debugging webrtc stack: nnstreamer, tensorflow-lite
 RDEPENDS:${PN} = "\
-    nnstreamer-models \
+    printnanny-vision \
+    printnanny-gst-plugin \
 "

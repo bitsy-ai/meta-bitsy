@@ -1,9 +1,12 @@
 [Unit]
 Description=PrintNanny NATS worker
-After=network-online.target printnanny-init.service etc-printnanny.mount
-Wants=network-online.target printnanny-init.service
+After=network-online.target
+Wants=network-online.target
 Requires=etc-printnanny.mount
 PartOf=printnanny-online.target
+StartLimitInterval=60
+StartLimitBurst=3
+
 
 [Service]
 Type=simple
@@ -11,7 +14,7 @@ SyslogIdentifier=printnanny-nats
 RuntimeDirectory=printnanny
 ExecStart=/usr/bin/printnanny -v nats-edge-worker --subject="pi.command.>"
 Restart=on-failure
-RestartSec=30
+RestartSec=10
 User=printnanny
 
 [Install]

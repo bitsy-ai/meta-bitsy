@@ -1,6 +1,8 @@
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
 After=syslog.target network-online.target remote-fs.target nss-lookup.target cloud-config.target
+StartLimitInterval=60
+StartLimitBurst=3
 
 [Service]
 Type=forking
@@ -13,7 +15,6 @@ ExecStart=/usr/sbin/nginx
 ExecReload=/usr/sbin/nginx -s reload
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
-Restart=on-failure
 Restart=on-failure
 RestartSec=5
 

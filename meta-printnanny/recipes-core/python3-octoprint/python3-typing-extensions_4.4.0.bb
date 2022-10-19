@@ -13,4 +13,4 @@ S = "${WORKDIR}/typing_extensions-4.4.0"
 
 RDEPENDS_${PN} = ""
 
-inherit setuptools3
+inherit python_flit_core

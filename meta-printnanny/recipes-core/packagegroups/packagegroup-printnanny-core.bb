@@ -21,4 +21,5 @@ RDEPENDS:${PN} = "\
     u-boot-fw-utils \
     printnanny-user \
     natscli \
+    nats-server \
 "

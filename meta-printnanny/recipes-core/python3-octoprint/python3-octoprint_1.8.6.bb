@@ -5,11 +5,11 @@ AUTHOR = "Gina Häußge <gina@octoprint.org>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-SRC_URI = "https://files.pythonhosted.org/packages/a9/87/0476b9d8c3e5214b81681d9e25afedbfcf55e5703b03f5fbc540ae1e1f51/OctoPrint-1.8.4.tar.gz"
-SRC_URI[md5sum] = "fac154e1a7ddd6710a65803483bb19d5"
-SRC_URI[sha256sum] = "f961553e96a45900aac1fde28819e1bab5267913636ca492e099c9983389d433"
+SRC_URI = "https://files.pythonhosted.org/packages/fc/91/f0c0afa62c7b7ad8a0fb5345b177643086cff1e4d766c9fe7d2cc103f9d6/OctoPrint-1.8.6.tar.gz"
+SRC_URI[md5sum] = "2045bf557130f10007564cc9b88e3e96"
+SRC_URI[sha256sum] = "3a8cc0d3d68f76bda077619b76a6133673d21bebccae1cb8f55a7b8ae3f1632c"
 
-S = "${WORKDIR}/OctoPrint-1.8.4"
+S = "${WORKDIR}/OctoPrint-1.8.6"
 
 RDEPENDS:${PN} = "\
     python3-blinker \
@@ -32,6 +32,7 @@ RDEPENDS:${PN} = "\
     python3-octoprint-filecheck \
     python3-octoprint-firmwarecheck \
     python3-octoprint-pisupport \
+    python3-passlib \
     python3-pathvalidate \
     python3-pkginfo \
     python3-psutil \

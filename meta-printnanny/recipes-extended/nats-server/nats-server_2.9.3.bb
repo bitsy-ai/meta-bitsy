@@ -23,8 +23,7 @@ do_install(){
     cp "${WORKDIR}/nats-server-v${PV}-linux-arm64/nats-server" "${D}${bindir}/nats-server"
 }
 
-SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
 SYSTEMD_SERVICE:${PN} = "printnanny-nats-server.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
-FILES:${PN} = "${bindir}/* ${sysconfdir}/*"
+FILES:${PN} = "${bindir}/* ${sysconfdir}/* ${systemd_system_unitdir}/*"

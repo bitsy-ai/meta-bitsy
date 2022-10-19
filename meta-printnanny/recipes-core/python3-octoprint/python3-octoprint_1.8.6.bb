@@ -23,6 +23,7 @@ RDEPENDS:${PN} = "\
     python3-flask \
     python3-flask-assets \
     python3-flask-babel \
+    python3-flask-limiter \
     python3-flask-login \
     python3-frozendict \
     python3-future \

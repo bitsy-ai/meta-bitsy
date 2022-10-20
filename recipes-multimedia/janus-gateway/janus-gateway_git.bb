@@ -4,7 +4,7 @@ SECTION = "libs/multimedia"
 LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
 SRC_URI = "\
-	https://github.com/meetecho/janus-gateway/archive/v${PV}.tar.gz \
+	git://github.com/meetecho/janus-gateway.git;protocol=https;branch=master \
 	file://janus-gateway.service \
 	file://janus.jcfg.template \
 	file://janus.plugin.streaming.jcfg \
@@ -12,8 +12,10 @@ SRC_URI = "\
 	file://janus.transport.websockets.jcfg \
 	file://janus-envsubst-on-templates.sh \
 "
-SRC_URI[sha256sum] = "a1ca0ae787fa162a36b4e391c29ae81f9388c3077699fb7b7c054149a5503355"
-SRC_REV = "1.0.2"
+# v1.1.1 + a few patches
+PV = "1.1.1+git${SRCPV}"
+SRCREV = "cc67cd9ac25eac46bd314548199dd8ea231e4ebe"
+S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig systemd
 

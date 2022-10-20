@@ -8,6 +8,7 @@ StartLimitBurst=3
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-dash
+Environment=RUST_LOG=info
 ExecStart=/usr/bin/printnanny-dash
 Restart=on-failure
 RestartSec=10

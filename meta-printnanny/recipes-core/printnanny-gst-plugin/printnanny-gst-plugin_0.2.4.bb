@@ -9,9 +9,9 @@ SRC_URI[sha256sum] = "3a8e9529a37a524e4983adf7a6a10fcda3928653971ba49b7d3f1ea9f0
 
 do_install(){
     install -d "${D}${bindir}"
-    install -d "${D}${libdir}"
+    install -d "${D}${libdir}/gstprintnanny"
     install -m 0755 "${WORKDIR}/printnanny-gst-pipeline" "${D}${bindir}/printnanny-gst-pipeline"
-    install -m 0644 "${WORKDIR}/libgstprintnanny.so" "${D}${libdir}/libgstprintnanny.so"
+    install -m 0644 "${WORKDIR}/libgstprintnanny.so" "${D}${libdir}/gstprintnanny/libgstprintnanny.so"
     cd ${D}/${libdir}
     ln -sf ./gstreamer-1.0/libgstprintnanny.so ./libgstprintnanny.so
 }

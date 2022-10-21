@@ -12,7 +12,7 @@ StartLimitBurst=3
 Type=simple
 SyslogIdentifier=printnanny-nats
 RuntimeDirectory=printnanny
-ExecStart=/usr/bin/printnanny -v nats-edge-worker --subject="pi.command.>" --nats-server-url="nats://localhost:4223"
+ExecStart=/usr/bin/printnanny -v nats-edge-worker --subject="pi.command.>" --nats-server-uri="nats://localhost:4223"
 Restart=on-failure
 RestartSec=10
 User=printnanny

@@ -17,7 +17,7 @@ SRC_URI[metadata.sha256sum] = "be8328a11f244065eed0b3579fb27048df95d39a89971a58f
 do_install(){
     install -d ${D}${datadir}/printnanny/model
     install -m 0644 ${WORKDIR}/model.tflite ${D}${datadir}/printnanny/model/model.tflite
-    install -m 0644 ${WORKDIR}/dict.txt ${D}${datadir}/printnanny/model/dict.txt
+    install -m 0644 ${WORKDIR}/dict.txt ${D}${datadir}/printnanny/model/labels.txt
     install -m 0644 ${WORKDIR}/tflite_metadata.json ${D}${datadir}/printnanny/model/tflite_metadata.json
 }
 

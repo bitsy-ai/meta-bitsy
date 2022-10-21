@@ -40,4 +40,4 @@ RDEPENDS:${PN} = "\
 
 INSANE_SKIP:${PN} += "dev-so"
 
-FILES:${PN} += "${libdir}/*.so ${libdir}/gstreamer-1.0/*.so"
+FILES:${PN} += "${libdir}/gstprintnanny/*.so ${libdir}/gstreamer-1.0/*.so"

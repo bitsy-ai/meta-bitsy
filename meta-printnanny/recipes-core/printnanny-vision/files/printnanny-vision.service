@@ -9,7 +9,7 @@ StartLimitBurst=3
 Type=simple
 SyslogIdentifier=printnanny-vision
 Environment=RUST_LOG=info
-ExecStart=/usr/bin/printnanny-vision --config /var/run/printnanny/printnanny-vision.toml
+ExecStart=/usr/bin/printnanny-gst-pipeline --config /var/run/printnanny/printnanny-vision.toml
 Restart=on-failure
 RestartSec=10
 User=printnanny

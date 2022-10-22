@@ -5,7 +5,7 @@ SRC_URI = "\
     https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/v${PV}/printnanny-gst-plugin-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
 "
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
-SRC_URI[sha256sum] = "26d315eb61e7917670e3e6b13e0a72ce2c84ecbc1bdb9a7b1e6fc4211b3ff5f0"
+SRC_URI[sha256sum] = "e43596b1efab2c6bb7442fef3e57c4ed0b459e57fe807fef7f6cdee14e7cd594"
 
 do_install(){
     install -d "${D}${bindir}"

@@ -14,10 +14,10 @@
 #
 
 # Desired variables to display 
-BUILD_ID ??= "${@time.strftime('%Y-%m-%dT%H:%M:%S',time.localtime())}"
+# BUILD_ID ??= "${@time.strftime('%Y-%m-%dT%H:%M:%S',time.localtime())}"
 
 ISSUE_TXT_VARS ?= "\    
-    BUILD_ID DISTRO_PRETTY \
+    IMAGE_NAME DISTRO_PRETTY \
     VARIANT_NAME VARIANT_ID \
     DISTRO DISTRO_NAME DISTRO_VERSION DISTRO_CODENAME ID_LIKE \
     HOME_URL BUG_REPORT_URL \

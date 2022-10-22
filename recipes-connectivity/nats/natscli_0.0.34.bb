@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7ca
 SRC_URI = "\
     https://github.com/nats-io/natscli/releases/download/v${PV}/nats-${PV}-linux-arm64.zip \
 "
-SRC_URI[sha256sum] = "b7c523c4bde007d29c6b4247a9d2f16fe84727ff945b3a0d53ef2889c783e477"
+SRC_URI[sha256sum] = "aafff6f6139236f3f0b955718754a24c2a9b890735235d8b8fe1bc92d657830d"
 
 do_install() {
     install -d "${D}${bindir}"

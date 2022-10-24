@@ -14,7 +14,6 @@ EXTRA_OEMESON =  "\
     -Dqcam=disabled \
     -Ddocumentation=disabled \
 "
-SRCREV = "e115a691353151b3136581ac7f49cab6a3b0eb9a"
-PV = "202205+git${SRCPV}"
+
 DEPENDS += "libyaml openssl libuv"
 RDEPENDS:${PN}-dev += "libyaml-dev"

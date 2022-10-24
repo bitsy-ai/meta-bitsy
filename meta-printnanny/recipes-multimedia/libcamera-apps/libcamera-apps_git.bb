@@ -2,11 +2,11 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://license.txt;md5=a0013d1b383d72ba4bdc5b750e7d1d77"
 
 SRC_URI = "git://github.com/raspberrypi/libcamera-apps.git;branch=main;protocol=https"
-SRCREV = "6582a730b059f086552414b034c90688cca047eb"
+SRCREV = "b89cc36c3872a8ae711b6ff6fae0bb77b6dfe927"
 
 S = "${WORKDIR}/git"
 
-PV = "202205+git${SRCPV}"
+PV = "202210+git${SRCPV}"
 
 inherit cmake pkgconfig
 

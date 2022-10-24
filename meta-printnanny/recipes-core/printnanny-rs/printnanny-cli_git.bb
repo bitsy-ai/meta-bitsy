@@ -2,6 +2,8 @@
 #
 inherit cargo
 
+RUSTVERSION ?= "1.64"
+
 # If this is git based prefer versioned ones if they exist
 # DEFAULT_PREFERENCE = "-1"
 

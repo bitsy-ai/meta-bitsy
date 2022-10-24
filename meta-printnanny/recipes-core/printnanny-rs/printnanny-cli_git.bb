@@ -204,6 +204,8 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.1 \
     crate://crates.io/printnanny-api-client/0.107.2 \
+    crate://crates.io/printnanny-gst-config/0.1.3 \
+    crate://crates.io/printnanny-services/0.27.4 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \
@@ -354,14 +356,9 @@ SRC_URI += " \
     crate://crates.io/zeroize/1.5.5 \
     crate://crates.io/zeroize_derive/1.3.2 \
     crate://crates.io/zip/0.6.2 \
-    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;nobranch=1;name=printnanny-services;destsuffix=printnanny-services;branch=main \
-    git://github.com/bitsy-ai/printnanny-gst-plugin-rs.git;protocol=https;nobranch=1;name=printnanny-gst-config;destsuffix=printnanny-gst-config;branch=main \
 "
 
-SRCREV:printnanny-gst-config = "${AUTOREV}"
-EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-gst-config"
-SRCREV:printnanny-services = "${AUTOREV}"
-EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-services"
+
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \

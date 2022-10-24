@@ -358,11 +358,9 @@ SRC_URI += " \
     git://github.com/bitsy-ai/printnanny-gst-plugin-rs.git;protocol=https;nobranch=1;name=printnanny-gst-config;destsuffix=printnanny-gst-config \
 "
 
-SRCREV_FORMAT .= "_printnanny-gst-config"
-SRCREV_printnanny-gst-config = "${AUTOREV}"
+SRCREV:printnanny-gst-config = "${AUTOREV}"
 EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-gst-config"
-SRCREV_FORMAT .= "_printnanny-services"
-SRCREV_printnanny-services = "${AUTOREV}"
+SRCREV:printnanny-services = "${AUTOREV}"
 EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-services"
 
 # FIXME: update generateme with the real MD5 of the license file

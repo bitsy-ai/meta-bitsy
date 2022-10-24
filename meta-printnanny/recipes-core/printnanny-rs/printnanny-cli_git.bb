@@ -6,9 +6,9 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get printnanny-cli could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/printnanny-cli/0.27.2"
+# SRC_URI += "crate://crates.io/printnanny-cli/0.27.4"
 SRC_URI += "git://git@github.com/bitsy-ai/printnanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "3cf8d22b30e76d9e5b92cc6f97035abc41e93f63"
+SRCREV = "c358b653122c2a4d5bf545173f7f88450d3bf260"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
 
@@ -354,9 +354,16 @@ SRC_URI += " \
     crate://crates.io/zeroize/1.5.5 \
     crate://crates.io/zeroize_derive/1.3.2 \
     crate://crates.io/zip/0.6.2 \
+    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;nobranch=1;name=printnanny-services;destsuffix=printnanny-services \
+    git://github.com/bitsy-ai/printnanny-gst-plugin-rs.git;protocol=https;nobranch=1;name=printnanny-gst-config;destsuffix=printnanny-gst-config \
 "
 
-
+SRCREV_FORMAT .= "_printnanny-gst-config"
+SRCREV_printnanny-gst-config = "${AUTOREV}"
+EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-gst-config"
+SRCREV_FORMAT .= "_printnanny-services"
+SRCREV_printnanny-services = "${AUTOREV}"
+EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-services"
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \

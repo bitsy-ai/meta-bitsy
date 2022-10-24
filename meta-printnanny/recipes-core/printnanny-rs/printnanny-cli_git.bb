@@ -354,8 +354,8 @@ SRC_URI += " \
     crate://crates.io/zeroize/1.5.5 \
     crate://crates.io/zeroize_derive/1.3.2 \
     crate://crates.io/zip/0.6.2 \
-    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;nobranch=1;name=printnanny-services;destsuffix=printnanny-services \
-    git://github.com/bitsy-ai/printnanny-gst-plugin-rs.git;protocol=https;nobranch=1;name=printnanny-gst-config;destsuffix=printnanny-gst-config \
+    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;nobranch=1;name=printnanny-services;destsuffix=printnanny-services;branch=main \
+    git://github.com/bitsy-ai/printnanny-gst-plugin-rs.git;protocol=https;nobranch=1;name=printnanny-gst-config;destsuffix=printnanny-gst-config;branch=main \
 "
 
 SRCREV:printnanny-gst-config = "${AUTOREV}"

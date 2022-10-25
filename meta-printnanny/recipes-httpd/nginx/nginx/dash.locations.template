@@ -12,7 +12,7 @@ location / {
     proxy_send_timeout 300; 
 }
 
-location /printnanny-hls {
+location /printnanny-hls/ {
     # Disable cache
     add_header Cache-Control no-cache;
 

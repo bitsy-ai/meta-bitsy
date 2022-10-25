@@ -13,6 +13,7 @@ Type=simple
 SyslogIdentifier=printnanny-nats
 RuntimeDirectory=printnanny
 Environment=PRINTNANNY_GST_CONFIG=/var/run/printnanny/printnanny-gst.toml
+RuntimeDirectoryPreserve=yes
 ExecStart=/usr/bin/printnanny -v nats-edge-worker --subject="pi.command.>" --nats-server-uri="nats://localhost:4223"
 Restart=on-failure
 RestartSec=10

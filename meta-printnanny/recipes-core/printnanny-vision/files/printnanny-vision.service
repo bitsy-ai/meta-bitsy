@@ -11,8 +11,9 @@ SyslogIdentifier=printnanny-vision
 Environment=RUST_LOG=info
 Environment=GST_PLUGIN_PATH=/usr/lib/gstprintnanny
 Environment=GST_DEBUG=4
+Environment=PRINTNANNY_GST_CONFIG=/var/run/printnanny/printnanny-gst.toml
 RuntimeDirectory=printnanny-hls printnanny
-ExecStart=/usr/bin/printnanny-gst-pipeline --config /var/run/printnanny/printnanny-vision.toml
+ExecStart=/usr/bin/printnanny-gst-pipeline --config /var/run/printnanny/printnanny-gst.toml
 Restart=on-failure
 RestartSec=10
 User=printnanny

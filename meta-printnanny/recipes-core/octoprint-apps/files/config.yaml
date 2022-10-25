@@ -12,11 +12,12 @@ server:
 
 system:
   actions:
-    - name: Update PrintNanny OS
-      action: update_printnanny_os
-      command: sudo systemctl restart printnanny-update
-      confirm: You are about to update PrintNanny OS. System will reboot.
-
+    - name: Start PrintNanny Cam
+      action: printnanny_cam_start
+      command: sudo systemctl restart printnanny-vision.service
+    - name: Stop PrintNanny Cam
+      action: printnanny_cam_start
+      command: sudo systemctl stop printnanny-vision.service
 events:
   subscriptions:
     - command: sudo systemctl start printnanny-vision.service

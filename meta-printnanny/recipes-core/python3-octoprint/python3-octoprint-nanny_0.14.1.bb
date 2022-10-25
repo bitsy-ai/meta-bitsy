@@ -4,8 +4,8 @@ HOMEPAGE = "https://github.com/bitsy-ai/octoprint-nanny-plugin"
 AUTHOR = "Leigh Johnson <leigh@bitsy.ai>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
-SRC_URI[sha256sum] = "24e1a2cfa90c77d8c8c29de2b536797b688b1c15f36975a2ef71aff7e1b2ae6d"
-S = "${WORKDIR}/OctoPrint-Nanny-0.13.6"
+SRC_URI[sha256sum] = "a8d8e983199472ce116f19c12bf9850afabf936a4b03f2dd9df57fce7f2f5982"
+S = "${WORKDIR}/OctoPrint-Nanny-0.14.1"
 
 inherit pypi setuptools3
 

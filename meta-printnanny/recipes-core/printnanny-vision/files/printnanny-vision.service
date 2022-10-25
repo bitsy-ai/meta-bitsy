@@ -11,9 +11,8 @@ SyslogIdentifier=printnanny-vision
 Environment=RUST_LOG=info
 Environment=GST_PLUGIN_PATH=/usr/lib/gstprintnanny
 Environment=GST_DEBUG=4
-Environment=PRINTNANNY_GST_CONFIG=/var/run/printnanny/printnanny-edge-nats/printnanny-gst.toml
-ExecStart=/usr/bin/printnanny-gst-pipeline --config /var/run/printnanny/printnanny-edge-nats/printnanny-gst.toml
-RestartSec=10
+Environment=PRINTNANNY_GST_CONFIG=/var/run/printnanny-edge-nats/printnanny-gst.toml
+ExecStart=/usr/bin/printnanny-gst-pipeline --config /var/run/printnanny-edge-nats/printnanny-gst.toml
 User=printnanny
 
 [Install]

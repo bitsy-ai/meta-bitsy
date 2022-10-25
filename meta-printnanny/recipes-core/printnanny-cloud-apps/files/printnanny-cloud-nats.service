@@ -10,7 +10,6 @@ StartLimitBurst=3
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-nats
-RuntimeDirectory=printnanny
 ExecStart=/usr/bin/printnanny -v nats-worker
 Restart=on-failure
 RestartSec=10

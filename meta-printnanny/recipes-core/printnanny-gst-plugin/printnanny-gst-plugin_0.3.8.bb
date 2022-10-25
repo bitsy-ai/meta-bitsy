@@ -2,10 +2,10 @@ SUMMARY = "PrintNanny OS Gstreamer Plugin"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs"
 
 SRC_URI = "\
-    https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/v${PV}/printnanny-gst-plugin-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
+    https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/printnanny-gst-plugin-v${PV}/printnanny-gst-plugin-v${PV}-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
 "
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
-SRC_URI[sha256sum] = "9a05eba23d8d08c587e6edb044e3e7b5b5d864ebbd89ac9e6f96edef91d91248"
+SRC_URI[sha256sum] = "2294fe2a75d3e93858fd8c5d0820f17f07c05d9e103b31ec8cf628b0ac49e772"
 do_install(){
     install -d "${D}${bindir}"
     install -d "${D}${libdir}/gstprintnanny"

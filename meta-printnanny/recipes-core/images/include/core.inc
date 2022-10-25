@@ -14,6 +14,11 @@ IMAGE_FEATURES = "\
   splash \
 "
 
+GPU_MEM = "96"
+GPU_MEM_256 = "128"
+GPU_MEM_512 = "128"
+GPU_MEM_1024 = "256"
+
 SPLASH = "psplash-printnanny"
 
 # packagegroup-base (via packagegroup-base-extended) is required to pull in MACHINE_EXTRA_RRECOMMENDS

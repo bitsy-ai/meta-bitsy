@@ -16,7 +16,7 @@ system:
       action: printnanny_cam_start
       command: sudo systemctl restart printnanny-vision.service
     - name: Stop PrintNanny Cam
-      action: printnanny_cam_start
+      action: printnanny_cam_stop
       command: sudo systemctl stop printnanny-vision.service
 events:
   subscriptions:

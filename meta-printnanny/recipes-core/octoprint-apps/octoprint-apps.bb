@@ -56,4 +56,5 @@ RDEPENDS:${PN} = "\
     python3-pip \
     python3-wheel \
     ${OCTOPRINT_USER}-user \
+    ffmpeg \
 "

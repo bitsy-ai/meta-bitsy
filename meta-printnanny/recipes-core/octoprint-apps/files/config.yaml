@@ -29,3 +29,6 @@ events:
       debug: false
       event: plugin_octoprint_nanny_nnstreamer_stop
       type: system
+
+webcam:
+  stream: /printnanny-hls/playlist.m3u8

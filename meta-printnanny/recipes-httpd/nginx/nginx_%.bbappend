@@ -17,6 +17,8 @@ do_install:append(){
   install -m 0755 "${WORKDIR}/swupdate.locations.template" "${D}${sysconfdir}/nginx/templates/swupdate.locations.template"
   install -m 0755 "${WORKDIR}/nginx-envsubst-on-templates.sh" "${D}${bindir}/nginx-envsubst-on-templates"
   install -m 0644 "${WORKDIR}/nginx.service" "${D}${systemd_system_unitdir}/nginx.service"
+  rm -f "${D}${sysconfdir}/nginx/sites-enabled/default_server"
 }
+
 RDEPENDS:${PN} += "gettext-runtime"
 FILES:${PN} += "${sysconfdir}/nginx/* ${bindir}/nginx*"

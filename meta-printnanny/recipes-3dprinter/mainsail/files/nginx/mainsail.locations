@@ -4,8 +4,6 @@ location /mainsail {
     root /opt/mainsail;
 
     index index.html;
-    server_name _;
-
     try_files $uri $uri/ /index.html;
 }
 

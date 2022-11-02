@@ -15,6 +15,8 @@ S = "${WORKDIR}/git"
 
 R = "1"
 
+inherit systemd bitsy_tmpl
+
 RDEPENDS:${PN} = "\
     python3 \
     python3-core \
@@ -43,12 +45,18 @@ RDEPENDS:${PN} = "\
     bash \
 "
 
-INSTALL_DIR = "/opt/moonraker"
+INSTALL_DIR ?= "/opt/moonraker"
+MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
 
-inherit systemd
-SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} = "moonraker.service"
-SYSTEMD_AUTO_ENABLE = "enable"
+PRINTNANNY_USER ?= "printnanny"
+
+BITSY_TEMPLATE_FILES = "\
+    moonraker-venv.service.tmpl \
+"
+BITSY_TEMPLATE_ARGS = "\
+    MOONRAKER_VENV \
+    PRINTNANNY_USER \
+"
 
 do_compile() {
     echo "Skipping compilation, moonraker does not provide pep517 compliant python build"
@@ -66,6 +74,7 @@ do_install() {
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
+        install -m 0644 "${WORKDIR}/moonraker-venv.service" "${D}${systemd_system_unitdir}/moonraker-venv.service"
     fi
 }
 
@@ -73,6 +82,10 @@ RDEPENDS:${PN}-scripts = "\
     bash \
     python3-core \
 "
+
+SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
+SYSTEMD_SERVICE:${PN} = "moonraker.service moonraker-venv.service"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/config/*"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"

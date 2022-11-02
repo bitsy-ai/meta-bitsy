@@ -2,7 +2,7 @@
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 BindsTo=mainsail.target
-After=network.target klipper.service mainsail.target
+After=network.target moonraker-venv.service klipper.service mainsail.target
 
 [Install]
 WantedBy=mainsail.target
@@ -12,9 +12,10 @@ LogsDirectory=klipper
 RuntimeDirectory=klipper
 Environment=MOONRAKER_CONFIG=/opt/moonraker/config/moonraker.conf
 Environment=MOONRAKER_LOG=/var/log/klipper/moonraker.log
+WorkingDirectory=/opt/moonraker
 Type=simple
 User=printnanny
 RemainAfterExit=yes
-ExecStart=/usr/bin/python3 /opt/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
+ExecStart=/opt/moonraker/.venv/bin/python3 /opt/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
 Restart=always
 RestartSec=10

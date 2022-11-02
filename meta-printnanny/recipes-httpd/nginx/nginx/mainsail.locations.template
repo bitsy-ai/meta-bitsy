@@ -1,8 +1,7 @@
 
-location /mainsail/ {
-    root /var/www/mainsail/;
+location ~^/mainsail/ {
+    alias /var/www/mainsail/;
     try_files $uri $uri/ /index.html;
-    # disable this section on smaller hardware like a pi zero
     gzip on;
     gzip_vary on;
     gzip_proxied any;
@@ -11,22 +10,11 @@ location /mainsail/ {
     gzip_buffers 16 8k;
     gzip_http_version 1.1;
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/x-javascript application/json application/xml;
-
 }
 
 location = /mainsail/index.html {
-    root /var/www/mainsail/;
+    alias /var/www/mainsail/;
     add_header Cache-Control "no-store, no-cache, must-revalidate";
-    # disable this section on smaller hardware like a pi zero
-    gzip on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_proxied expired no-cache no-store private auth;
-    gzip_comp_level 4;
-    gzip_buffers 16 8k;
-    gzip_http_version 1.1;
-    gzip_types text/plain text/css text/xml text/javascript application/javascript application/x-javascript application/json application/xml;
-
 }
 
 location /mainsail/websocket {

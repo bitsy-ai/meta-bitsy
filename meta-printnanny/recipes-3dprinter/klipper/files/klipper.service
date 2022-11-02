@@ -1,13 +1,14 @@
 [Unit]
 Description=Starts Klipper and provides klippy Unix Domain Socket API
 Documentation=https://www.klipper3d.org/
-After=network.target
+BindsTo=mainsail.target
+After=network.target mainsail.target
 Before=moonraker.service
 Wants=udev.target
 
 [Install]
 Alias=klippy
-WantedBy=multi-user.target
+WantedBy=mainsail.target
 
 [Service]
 LogsDirectory=klipper

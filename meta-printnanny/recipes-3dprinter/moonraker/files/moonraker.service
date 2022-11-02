@@ -1,10 +1,11 @@
 [Unit]
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
-After=network.target klipper.service
+BindsTo=mainsail.target
+After=network.target klipper.service mainsail.target
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=mainsail.target
 
 [Service]
 LogsDirectory=klipper

@@ -19,7 +19,7 @@ server {
     proxy_buffer_size 256k;
     error_log stderr info;
     rewrite_log on;
-    access_log /var/log/nginx/nginx.log;
-    error_log /var/log/nginx/nginx.error info;
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log notice;
     proxy_cookie_domain localhost $host;
 }

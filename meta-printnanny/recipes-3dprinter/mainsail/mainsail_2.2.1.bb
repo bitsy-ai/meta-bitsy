@@ -4,9 +4,8 @@ LICENSE = "GPL-3.0-or-later"
 
 SRC_URI = "\
     https://github.com/mainsail-crew/mainsail/releases/download/v${PV}/mainsail.zip;subdir=mainsail \
-    file://nginx/mainsail.nginx.upstream.conf \
-    file://nginx/mainsail.nginx.common.conf \
-    file://nginx/mainsail.nginx.locations \
+    file://nginx/mainsail.common.conf \
+    file://nginx/mainsail.locations \
     file://mainsail.target \
 "
 SRC_URI[sha256sum] = "93195529e8226652c8db1fc55cb69fcb3372ab327cb25c56469780e2c527c3b6"
@@ -22,10 +21,8 @@ do_install() {
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'nginx', d)}" ]; then
         install -d "${D}${sysconfdir}/nginx/conf.d/"
         install -d "${D}${sysconfdir}/nginx/locations/"
-
-        install -m 0644 "${WORKDIR}/nginx/mainsail.nginx.upstream.conf" "${D}${sysconfdir}/nginx/conf.d/mainsail.upstream.conf"
-        install -m 0644 "${WORKDIR}/nginx/mainsail.nginx.common.conf" "${D}${sysconfdir}/nginx/conf.d/mainsail.nginx.common.conf"
-        ln -s -r "${D}${sysconfdir}/nginx/mainsail.nginx.locations" "${D}${sysconfdir}/nginx/locations/mainsail.nginx.locations"
+        install -m 0644 "${WORKDIR}/nginx/mainsail.common.conf" "${D}${sysconfdir}/nginx/conf.d/mainsail.common.conf"
+        ln -s -r "${D}${sysconfdir}/nginx/mainsail.locations" "${D}${sysconfdir}/nginx/locations/mainsail.locations"
     fi
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
             install -d "${D}${systemd_system_unitdir}"

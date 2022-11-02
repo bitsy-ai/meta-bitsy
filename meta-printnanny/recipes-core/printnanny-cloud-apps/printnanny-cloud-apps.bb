@@ -14,13 +14,13 @@ RDEPENDS:${PN} += "printnanny-cli"
 inherit systemd
 
 do_install() {
-  install -d "${D}${sysconfdir}/ca-certificates"
   install -d "${D}${systemd_system_unitdir}"
   install -d "${D}${datadir}/printnanny"
   install -d "${D}${sysconfdir}/printnanny/conf.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-nats.service.d"
   install -d "${D}${bindir}"
   install -m 0644 "${WORKDIR}/printnanny-cloud-nats.service" "${D}${systemd_system_unitdir}/printnanny-cloud-nats.service"
+  install -m 0644 "${WORKDIR}/printnanny-cloud-sync.service" "${D}${systemd_system_unitdir}/printnanny-cloud-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-cloud.service" "${D}${systemd_system_unitdir}/printnanny-cloud.service"
   install -m 0755 "${WORKDIR}/printnanny-boot-report.sh" "${D}${bindir}/printnanny-boot-report"
 }
@@ -31,6 +31,7 @@ RDEPENDS:${PN} = "bash"
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-cloud.service \
   printnanny-cloud-nats.service \
+  printnanny-cloud-sync.service \
 "
 SYSTEMD_AUTO_ENABLE = "disable"
 

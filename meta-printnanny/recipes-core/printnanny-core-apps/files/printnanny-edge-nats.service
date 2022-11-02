@@ -11,6 +11,10 @@ StartLimitBurst=3
 [Service]
 Type=simple
 SyslogIdentifier=printnanny-nats
+ConfigurationDirectory=printnanny.d
+StateDirectory=printnanny printnanny/data printnanny/creds printnanny/recovery printnanny/printnanny.d
+LogsDirectory=printnanny
+
 RuntimeDirectory=printnanny-edge-nats
 Environment=PRINTNANNY_GST_CONFIG=/var/run/printnanny-edge-nats/printnanny-gst.toml
 ExecStart=/bin/bash -c 'touch /var/run/printnanny-edge-nats/printnanny-gst.toml && /usr/bin/printnanny -v nats-edge-worker --subject="pi.command.>" --nats-server-uri="nats://localhost:4223"'

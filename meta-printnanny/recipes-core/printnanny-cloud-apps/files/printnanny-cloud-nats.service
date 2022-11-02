@@ -13,6 +13,12 @@ After=printnanny-cloud.target
 Type=simple
 SyslogIdentifier=printnanny-cloud-nats
 ExecStart=/usr/bin/printnanny -v nats-cloud-worker
+StateDirectory=printnanny printnanny/data printnanny/creds printnanny/recovery printnanny/printnanny.d
+ConfigurationDirectory=printnanny.d
+StateDirectory=printnanny
+LogsDirectory=printnanny
+RuntimeDirectory=printnanny
+
 Restart=on-failure
 RestartSec=10
 User=printnanny

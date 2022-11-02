@@ -12,6 +12,10 @@ After=printnanny-cloud.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
+ConfigurationDirectory=printnanny.d
+StateDirectory=printnanny
+LogsDirectory=printnanny
+
 SyslogIdentifier=printnanny-cloud-sync
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=boot-started'
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=sync-settings-started'

@@ -6,7 +6,8 @@ upstream moonraker {
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name $hostname *.local;
+    server_name _;
+
     include /etc/nginx/conf.d/*.locations;
     proxy_busy_buffers_size 512k;
     proxy_buffers 2 512k;

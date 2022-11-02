@@ -1,8 +1,6 @@
 [Unit]
 Description=PrintNanny Message of the Day
 Before=multi-user.target
-Requires=etc-printnannyd.mount
-After=etc-printnannyd.mount
 StartLimitInterval=60
 StartLimitBurst=3
 

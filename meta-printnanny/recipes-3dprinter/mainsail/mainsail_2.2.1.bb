@@ -27,6 +27,5 @@ SYSTEMD_SERVICE:${PN} = "mainsail.target"
 SYSTEMD_AUTO_ENABLE = "disable"
 
 FILES:${PN} = "${INSTALL_DIR}/*"
-FILES:${PN}-nginx = "${sysconfdir}/nginx/*"
 
-PACKAGES = "${PN} ${PN}-nginx"
+PACKAGES = "${PN}"

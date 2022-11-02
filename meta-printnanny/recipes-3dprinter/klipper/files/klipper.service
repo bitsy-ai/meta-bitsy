@@ -21,6 +21,6 @@ User=printnanny
 RemainAfterExit=yes
 StateDirectory=klipper
 
-ExecStart= /var/lib/klipper/.venv /var/lib/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
+ExecStart= /var/lib/klipper/.venv/python3 /var/lib/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
 Restart=always
 RestartSec=10

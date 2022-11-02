@@ -1,19 +1,21 @@
 [Unit]
-Description=PrintNanny NATS worker
-After=network-online.target printnanny-init.service etc-printnanny.mount
-Wants=network-online.target printnanny-init.service
+Description=PrintNanny Cloud NATS worker
+After=network-online.target etc-printnanny.mount
+Wants=network-online.target
 Requires=etc-printnanny.mount
-PartOf=printnanny-online.target
 StartLimitInterval=60
 StartLimitBurst=3
 
+BindsTo=printnanny-cloud.target
+After=printnanny-cloud.target
+
 [Service]
 Type=simple
-SyslogIdentifier=printnanny-nats
-ExecStart=/usr/bin/printnanny -v nats-worker
+SyslogIdentifier=printnanny-cloud-nats
+ExecStart=/usr/bin/printnanny -v nats-cloud-worker
 Restart=on-failure
 RestartSec=10
 User=printnanny
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=printnanny-cloud.target

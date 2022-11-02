@@ -3,27 +3,19 @@ HOMEPAGE = "https://www.klipper3d.org/"
 LICENSE = "GPL-3.0-or-later"
 
 SRC_URI = "\
-    https://github.com/mainsail-crew/mainsail/releases/download/v${PV}/mainsail.zip;subdir=mainsail \
-    file://nginx/mainsail.common.conf \
-    file://nginx/mainsail.locations \
+    https://github.com/bitsy-ai/mainsail/releases/download/v${PV}/mainsail.zip;subdir=mainsail \
     file://mainsail.target \
 "
-SRC_URI[sha256sum] = "93195529e8226652c8db1fc55cb69fcb3372ab327cb25c56469780e2c527c3b6"
+SRC_URI[sha256sum] = "0ba891ca3623a67ba78afdbf75516d7d0eb13dd62b078dc4cef739875f944997"
 S = "${WORKDIR}/mainsail"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-3.0-or-later;md5=1c76c4cc354acaac30ed4d5eefea7245"
 
-INSTALL_DIR = "/opt/mainsail"
+INSTALL_DIR = "/var/www/mainsail"
 inherit systemd
 
 do_install() {
     install -d "${D}${INSTALL_DIR}"
     cp --preserve=mode,timestamps -R ${WORKDIR}/mainsail/* ${D}${INSTALL_DIR}
-    if [ "${@bb.utils.filter('DISTRO_FEATURES', 'nginx', d)}" ]; then
-        install -d "${D}${sysconfdir}/nginx/conf.d/"
-        install -d "${D}${sysconfdir}/nginx/locations/"
-        install -m 0644 "${WORKDIR}/nginx/mainsail.common.conf" "${D}${sysconfdir}/nginx/conf.d/mainsai.common.conf"
-        install -m 0644 "${WORKDIR}/nginx/mainsail.locations" "${D}${sysconfdir}/nginx/conf.d/mainsail.locations"
-    fi
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
             install -d "${D}${systemd_system_unitdir}"
             install -m 0644 "${WORKDIR}/mainsail.target" "${D}${systemd_system_unitdir}/mainsail.target"
@@ -35,6 +27,5 @@ SYSTEMD_SERVICE:${PN} = "mainsail.target"
 SYSTEMD_AUTO_ENABLE = "disable"
 
 FILES:${PN} = "${INSTALL_DIR}/*"
-FILES:${PN}-nginx = "${sysconfdir}/nginx/*"
 
-PACKAGES = "${PN} ${PN}-nginx"
+PACKAGES = "${PN}"

@@ -34,5 +34,5 @@ location /printnanny-hls/ {
         video/mp2t ts;
     }
 
-    root /var/run/printnanny-hls/;
+    alias /var/run/printnanny-hls/;
 }

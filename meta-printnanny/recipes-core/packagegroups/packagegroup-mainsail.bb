@@ -9,5 +9,4 @@ RDEPENDS:${PN} = "\
     packagegroup-klipper \
     packagegroup-moonraker \
     mainsail \
-    mainsail-nginx \
 "

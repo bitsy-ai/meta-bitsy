@@ -5,6 +5,7 @@ LICENSE = "GPL-3.0-or-later"
 
 SRC_URI = "\
     git://github.com/Arksine/moonraker/;protocol=ssh;nobranch=1;branch=master \
+    file://moonraker.conf \
     file://moonraker.service \
 "
 SRCREV = "5d856b9c490e6288e63daeba1056bbc064935449"
@@ -55,6 +56,7 @@ do_compile() {
 # install moonraker source tree to /opt/moonraker
 do_install() {
     install -d "${D}${INSTALL_DIR}"
+    install -d "${D}${INSTALL_DIR}/config"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
@@ -64,6 +66,7 @@ do_install() {
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
+        install -m 0644 "${WORKDIR}/moonraker.conf" "${D}${INSTALL_DIR}/config/moonraker.conf"
     fi
 }
 

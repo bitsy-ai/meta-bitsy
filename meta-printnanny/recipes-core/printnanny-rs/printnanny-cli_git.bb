@@ -6,9 +6,9 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get printnanny-cli could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/printnanny-cli/0.28.2"
+# SRC_URI += "crate://crates.io/printnanny-cli/0.29.0"
 SRC_URI += "git://git@github.com/bitsy-ai/printnanny-cli.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "f727b8d914c73a175893ce4f6a11deaf531f0bf7"
+SRCREV = "1b432a792b2d924f280ea8bd4c42894151c54cd7"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
 

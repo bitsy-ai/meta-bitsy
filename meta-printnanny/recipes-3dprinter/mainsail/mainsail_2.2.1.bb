@@ -21,8 +21,8 @@ do_install() {
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'nginx', d)}" ]; then
         install -d "${D}${sysconfdir}/nginx/conf.d/"
         install -d "${D}${sysconfdir}/nginx/locations/"
-        install -m 0644 "${WORKDIR}/nginx/mainsail.common.conf" "${D}${sysconfdir}/nginx/conf.d/mainsail.common.conf"
-        ln -s -r "${D}${sysconfdir}/nginx/mainsail.locations" "${D}${sysconfdir}/nginx/locations/mainsail.locations"
+        install -m 0644 "${WORKDIR}/nginx/mainsail.common.conf" "${D}${sysconfdir}/nginx/conf.d/mainsai.common.conf"
+        install -m 0644 "${WORKDIR}/nginx/mainsail.locations" "${D}${sysconfdir}/nginx/conf.d/mainsail.locations"
     fi
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
             install -d "${D}${systemd_system_unitdir}"

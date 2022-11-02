@@ -13,12 +13,14 @@ WantedBy=mainsail.target
 [Service]
 LogsDirectory=klipper
 RuntimeDirectory=klipper
-Environment=KLIPPER_CONFIG=/home/printnanny/.config/klipper/printer.cfg
+Environment=KLIPPER_CONFIG=/var/lib/klipper/.config/printer.cfg
 Environment=KLIPPER_LOG=/var/log/klipper/klippy.log
 Environment=KLIPPER_SOCKET=/var/run/klipper/klippy_uds
 Type=simple
 User=printnanny
 RemainAfterExit=yes
-ExecStart=/usr/bin/python3 /opt/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
+StateDirectory=klipper
+
+ExecStart= /var/lib/klipper/.venv /var/lib/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
 Restart=always
 RestartSec=10

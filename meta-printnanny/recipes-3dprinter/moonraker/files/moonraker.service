@@ -10,12 +10,14 @@ WantedBy=mainsail.target
 [Service]
 LogsDirectory=klipper
 RuntimeDirectory=klipper
-Environment=MOONRAKER_CONFIG=/opt/moonraker/config/moonraker.conf
+Environment=MOONRAKER_CONFIG=/var/lib/moonraker/config/moonraker.conf
 Environment=MOONRAKER_LOG=/var/log/klipper/moonraker.log
-WorkingDirectory=/opt/moonraker
+WorkingDirectory=/var/lib/moonraker
+StateDirectory=moonraker klipper
+
 Type=simple
 User=printnanny
 RemainAfterExit=yes
-ExecStart=/opt/moonraker/.venv/bin/python3 /opt/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
+ExecStart=/var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -c ${MOONRAKER_CONFIG} -l ${MOONRAKER_LOG}
 Restart=always
 RestartSec=10

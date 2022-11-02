@@ -47,7 +47,7 @@ RDEPENDS:${PN} = "\
     bash \
 "
 
-INSTALL_DIR ?= "/opt/moonraker"
+INSTALL_DIR ?= "/var/lib/moonraker"
 MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
 
 PRINTNANNY_USER ?= "printnanny"
@@ -56,7 +56,7 @@ do_compile() {
     echo "Skipping compilation, moonraker does not provide pep517 compliant python build"
 }
 
-# install moonraker source tree to /opt/moonraker
+# install moonraker source tree to /var/lib/klipper
 do_install() {
     install -d "${D}${INSTALL_DIR}/config"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}

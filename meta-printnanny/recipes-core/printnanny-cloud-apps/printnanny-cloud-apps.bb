@@ -37,9 +37,3 @@ SYSTEMD_SERVICE:${PN} = "\
 SYSTEMD_AUTO_ENABLE = "disable"
 
 RDEPENDS:${PN}-nginx = "${PN} nginx"
-
-inherit overlayfs
-
-OVERLAYFS_MOUNT_POINT[printnanny] = "/data"
-OVERLAYFS_WRITABLE_PATHS[printnanny] = "/etc/printnanny"
-OVERLAYFS_QA_SKIP[printnanny] = "mount-configured"

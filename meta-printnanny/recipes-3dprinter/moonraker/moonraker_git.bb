@@ -20,6 +20,7 @@ inherit systemd
 
 RDEPENDS:${PN} = "\
     python3 \
+    python3-dbus-next \
     python3-core \
     python3-pip \
     python3-tornado \

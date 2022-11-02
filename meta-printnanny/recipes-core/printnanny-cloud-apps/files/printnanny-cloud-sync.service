@@ -1,24 +1,24 @@
 [Unit]
 Description=Synchronize PrintNanny Cloud settings
-After=printnanny-init.service printnanny-nats.service systemd-timesyncd.service
-Wants=printnanny-nats.service
-Before=octoprint.service
-Requires=etc-printnanny.mount printnanny-init.service
+After=printnanny-cloud-nats.service systemd-timesyncd.service
+Wants=printnanny-cloud-nats.service
+Requires=etc-printnanny.mount
 StartLimitIntervalSec=1d
 StartLimitBurst=5
+
+BindsTo=printnanny-cloud.target
+After=printnanny-cloud.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 SyslogIdentifier=printnanny-cloud-sync
-ExecStart=/bin/sh -c '/usr/bin/psplash-write "MSG Syncing Configuration" || echo "psplash-write failed"'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=boot-started'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-started'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync || /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-error && /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-success'
-ExecStart=/usr/bin/printnanny-link-confd
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=boot-started'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=sync-settings-started'
+ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync || /usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=sync-settings-error && /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-success'
 Restart=on-failure
 RestartSec=60
-StandardOutput=journal+console
+User=printnanny
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=printnanny-cloud.target

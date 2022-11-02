@@ -1,11 +1,9 @@
 
 location /mainsail {
     # web_path from mainsail static files
-    root /home/pi/mainsail;
+    root /opt/mainsail;
 
     index index.html;
-    server_name _;
-
     try_files $uri $uri/ /index.html;
 }
 
@@ -32,20 +30,4 @@ location ~ ^/mainsail/(printer|api|access|machine|server)/ {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Scheme $scheme;
-}
-
-location /webcam/1/ {
-    proxy_pass http://mjpgstreamer1/;
-}
-
-location /webcam/2/ {
-    proxy_pass http://mjpgstreamer2/;
-}
-
-location /webcam/3/ {
-    proxy_pass http://mjpgstreamer3/;
-}
-
-location /webcam/4/ {
-    proxy_pass http://mjpgstreamer4/;
 }

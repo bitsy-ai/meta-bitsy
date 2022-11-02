@@ -5,13 +5,15 @@ LICENSE = "GPL-3.0-or-later"
 
 SRC_URI = "\
     git://github.com/Arksine/moonraker/;protocol=ssh;nobranch=1;branch=master \
+    file://moonraker.conf \
     file://moonraker.service \
 "
-SRCREV = "5d856b9c490e6288e63daeba1056bbc064935449"
-SRC_URI[sha256sum] = "fcd9fd2de95ff7174dba58826e393eaf948bfcc430ce44cbfaabefe685295b86"
+SRCREV = "779997c2b8aa1df2b484440ef1d3a6b09058fcff"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=db95b6e40dc7d26d8308b6b7375637b6"
 S = "${WORKDIR}/git"
+
+R = "1"
 
 RDEPENDS:${PN} = "\
     python3 \
@@ -54,13 +56,13 @@ do_compile() {
 
 # install moonraker source tree to /opt/moonraker
 do_install() {
-    install -d "${D}${INSTALL_DIR}"
+    install -d "${D}${INSTALL_DIR}/config"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
     rm -rf ${D}${INSTALL_DIR}/.git
     rm -rf ${D}${INSTALL_DIR}/.github
-
+    install -m 0644 "${WORKDIR}/moonraker.conf" "${D}${INSTALL_DIR}/config/moonraker.conf"
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
@@ -72,7 +74,7 @@ RDEPENDS:${PN}-scripts = "\
     python3-core \
 "
 
-FILES:${PN} = "${INSTALL_DIR}/moonraker*"
+FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/config/*"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"
 FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"

@@ -7,6 +7,7 @@ SRC_URI = "\
     git://github.com/Arksine/moonraker/;protocol=ssh;nobranch=1;branch=master \
     file://moonraker.conf \
     file://moonraker.service \
+    file://moonraker-venv.service \
 "
 SRCREV = "779997c2b8aa1df2b484440ef1d3a6b09058fcff"
 
@@ -15,7 +16,7 @@ S = "${WORKDIR}/git"
 
 R = "1"
 
-inherit systemd bitsy_tmpl
+inherit systemd
 
 RDEPENDS:${PN} = "\
     python3 \
@@ -49,14 +50,6 @@ INSTALL_DIR ?= "/opt/moonraker"
 MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
 
 PRINTNANNY_USER ?= "printnanny"
-
-BITSY_TEMPLATE_FILES = "\
-    moonraker-venv.service.tmpl \
-"
-BITSY_TEMPLATE_ARGS = "\
-    MOONRAKER_VENV \
-    PRINTNANNY_USER \
-"
 
 do_compile() {
     echo "Skipping compilation, moonraker does not provide pep517 compliant python build"

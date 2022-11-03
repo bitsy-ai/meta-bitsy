@@ -1,0 +1,12 @@
+[Unit]
+Description=Create klipper virtualenv 
+ConditionPathExists=!/var/lib/klipper/.venv
+
+[Service]
+Type=oneshot
+SyslogIdentifier=klipper-venv
+ExecStart=/usr/bin/python3 -m venv --system-site-packages /var/lib/klipper/.venv
+StateDirectory=klipper
+User=printnanny
+[Install]
+WantedBy=klipper.service

@@ -7,6 +7,7 @@ SRC_URI = "\
     git://github.com/Arksine/moonraker/;protocol=ssh;nobranch=1;branch=master \
     file://moonraker.conf \
     file://moonraker.service \
+    file://moonraker-venv.service \
 "
 SRCREV = "779997c2b8aa1df2b484440ef1d3a6b09058fcff"
 
@@ -15,8 +16,15 @@ S = "${WORKDIR}/git"
 
 R = "1"
 
+inherit systemd overlayfs
+
+OVERLAYFS_MOUNT_POINT[moonraker_data] = "/data"
+OVERLAYFS_WRITABLE_PATHS[moonraker_data] = "/var/lib/moonraker/data"
+OVERLAYFS_QA_SKIP[moonraker_data] = "mount-configured"
+
 RDEPENDS:${PN} = "\
     python3 \
+    python3-dbus-next \
     python3-core \
     python3-pip \
     python3-tornado \
@@ -43,29 +51,28 @@ RDEPENDS:${PN} = "\
     bash \
 "
 
-INSTALL_DIR = "/opt/moonraker"
+INSTALL_DIR ?= "/var/lib/moonraker"
+MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
 
-inherit systemd
-SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} = "moonraker.service"
-SYSTEMD_AUTO_ENABLE = "enable"
+PRINTNANNY_USER ?= "printnanny"
 
 do_compile() {
     echo "Skipping compilation, moonraker does not provide pep517 compliant python build"
 }
 
-# install moonraker source tree to /opt/moonraker
+# install moonraker source tree to /var/lib/klipper
 do_install() {
-    install -d "${D}${INSTALL_DIR}/config"
+    install -d "${D}${INSTALL_DIR}/data/config"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
     rm -rf ${D}${INSTALL_DIR}/.git
     rm -rf ${D}${INSTALL_DIR}/.github
-    install -m 0644 "${WORKDIR}/moonraker.conf" "${D}${INSTALL_DIR}/config/moonraker.conf"
+    install -m 0644 "${WORKDIR}/moonraker.conf" "${D}${INSTALL_DIR}/data/config/moonraker.conf"
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
+        install -m 0644 "${WORKDIR}/moonraker-venv.service" "${D}${systemd_system_unitdir}/moonraker-venv.service"
     fi
 }
 
@@ -73,6 +80,10 @@ RDEPENDS:${PN}-scripts = "\
     bash \
     python3-core \
 "
+
+SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
+SYSTEMD_SERVICE:${PN} = "moonraker.service moonraker-venv.service"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/config/*"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"

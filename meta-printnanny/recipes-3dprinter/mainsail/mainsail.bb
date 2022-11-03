@@ -4,6 +4,7 @@ LICENSE = "GPL-3.0-or-later"
 
 
 PV = "support-base-path-rc0"
+R = "rc0"
 SRC_URI = "\
     https://github.com/bitsy-ai/mainsail/releases/download/${PV}/mainsail.zip;subdir=mainsail \
     file://mainsail.target \

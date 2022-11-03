@@ -5,10 +5,10 @@ LICENSE = "GPL-3.0-or-later"
 
 PV = "support-base-path-rc0"
 SRC_URI = "\
-    https://github.com/bitsy-ai/mainsail/releases/download/v${PV}/mainsail.zip;subdir=mainsail \
+    https://github.com/bitsy-ai/mainsail/releases/download/${PV}/mainsail.zip;subdir=mainsail \
     file://mainsail.target \
 "
-SRC_URI[sha256sum] = "0ba891ca3623a67ba78afdbf75516d7d0eb13dd62b078dc4cef739875f944997"
+SRC_URI[sha256sum] = "28f5944c821bce74788570f0e6e4a85de158a457a10a7e8177a613d809a33f04"
 S = "${WORKDIR}/mainsail"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-3.0-or-later;md5=1c76c4cc354acaac30ed4d5eefea7245"
 

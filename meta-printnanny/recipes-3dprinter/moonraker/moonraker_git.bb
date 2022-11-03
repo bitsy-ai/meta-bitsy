@@ -16,7 +16,11 @@ S = "${WORKDIR}/git"
 
 R = "1"
 
-inherit systemd
+inherit systemd overlayfs
+
+OVERLAYFS_MOUNT_POINT[moonraker_data] = "/data"
+OVERLAYFS_WRITABLE_PATHS[moonraker_data] = "/var/lib/moonraker/data"
+OVERLAYFS_QA_SKIP[moonraker_data] = "mount-configured"
 
 RDEPENDS:${PN} = "\
     python3 \
@@ -58,13 +62,13 @@ do_compile() {
 
 # install moonraker source tree to /var/lib/klipper
 do_install() {
-    install -d "${D}${INSTALL_DIR}/config"
+    install -d "${D}${INSTALL_DIR}/data/config"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
     rm -rf ${D}${INSTALL_DIR}/.git
     rm -rf ${D}${INSTALL_DIR}/.github
-    install -m 0644 "${WORKDIR}/moonraker.conf" "${D}${INSTALL_DIR}/config/moonraker.conf"
+    install -m 0644 "${WORKDIR}/moonraker.conf" "${D}${INSTALL_DIR}/data/config/moonraker.conf"
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"

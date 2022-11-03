@@ -12,3 +12,4 @@ Cmnd_Alias REBOOT = /sbin/reboot -h now,/sbin/shutdown -h now,/sbin/shutdown -r 
 Cmnd_Alias KLIPPER_SERVICES = /bin/systemctl start klipper*,/bin/systemctl stop klipper*,/bin/systemctl restart klipper*
 # moonraker commands
 Cmnd_Alias MOONRAKER_SERVICES = /bin/systemctl start moonraker*,/bin/systemctl stop moonraker*,/bin/systemctl restart moonraker*
+Cmnd_Alias MOONRAKER_TASKS = /bin/systemctl --version

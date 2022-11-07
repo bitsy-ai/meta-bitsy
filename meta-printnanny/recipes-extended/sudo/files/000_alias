@@ -3,7 +3,7 @@ Cmnd_Alias JANUS_SERVICES = /bin/systemctl start janus*,/bin/systemctl stop janu
 # alias all printnanny commands
 Cmnd_Alias PRINTNANNY_SERVICES = /bin/systemctl start printnanny*,/bin/systemctl stop printnanny*,/bin/systemctl restart printnanny*,/bin/systemctl enable printnanny*,/bin/systemctl disable printnanny*,/usr/local/bin/printnanny*
 # alias all octoprint commands
-Cmnd_Alias OCTOPRINT_SERVICES = /bin/systemctl start octoprint*,/bin/systemctl stop octoprint*,/bin/systemctl restart octoprint*,/bin/systemctl enable octoprint*,/bin/systemctl disable octoprint*, 
+Cmnd_Alias OCTOPRINT_SERVICES = /bin/systemctl start octoprint*,/bin/systemctl stop octoprint*,/bin/systemctl restart octoprint*,/bin/systemctl enable octoprint*,/bin/systemctl disable octoprint*
 # alias all nginx commands
 Cmnd_Alias WEB_SERVICES = /bin/systemctl start nginx*,/bin/systemctl stop nginx*,/bin/systemctl restart nginx*
 # generic system admin commands

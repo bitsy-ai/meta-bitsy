@@ -83,7 +83,7 @@ FILES:${PN} = "\
     ${INSTALL_DIR}/Makefile \
 "
 
-FILES:${PN}-venv = "${D}${systemd_system_unitdir}/klipper-venv.service"
+FILES:${PN}-venv = "${systemd_system_unitdir}/klipper-venv.service"
 FILES:${PN}-examples = "${INSTALL_DIR}/config/*"
 FILES:${PN}-klippy = "${INSTALL_DIR}/klippy/*"
 FILES:${PN}-test = "${INSTALL_DIR}/test/*"

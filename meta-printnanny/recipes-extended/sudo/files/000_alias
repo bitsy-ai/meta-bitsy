@@ -14,4 +14,7 @@ Cmnd_Alias KLIPPER_SERVICES = /bin/systemctl start klipper*,/bin/systemctl stop 
 Cmnd_Alias MOONRAKER_SERVICES = /bin/systemctl start moonraker*,/bin/systemctl stop moonraker*,/bin/systemctl restart moonraker*,/bin/systemctl enable moonraker*,/bin/systemctl disable moonraker*
 Cmnd_Alias MOONRAKER_TASKS = /bin/systemctl --version
 Cmnd_Alias MAINSAIL_SERVICES = /bin/systemctl start mainsail*,/bin/systemctl stop mainsail*,/bin/systemctl restart mainsail*,/bin/systemctl enable mainsail*,/bin/systemctl disable mainsail*
+# syncthing commands
 Cmnd_Alias SYNCTHING_SERVICES = /bin/systemctl start syncthing*,/bin/systemctl stop syncthing*,/bin/systemctl restart syncthing*,/bin/systemctl enable syncthing*,/bin/systemctl disable syncthing*
+# swupdate commands
+Cmnd_Alias SWUPDATE_SERVICES = /bin/systemctl start swupdate*,/bin/systemctl stop swupdate*,/bin/systemctl restart swupdate*,/bin/systemctl enable swupdate*,/bin/systemctl disable swupdate*

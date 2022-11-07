@@ -9,4 +9,5 @@ RDEPENDS:${PN} = "\
     packagegroup-klipper \
     moonraker \
     moonraker-scripts \
+    moonraker-venv \
 "

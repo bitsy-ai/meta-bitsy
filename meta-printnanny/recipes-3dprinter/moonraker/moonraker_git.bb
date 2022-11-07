@@ -82,8 +82,11 @@ RDEPENDS:${PN}-scripts = "\
 "
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
-SYSTEMD_SERVICE:${PN} = "moonraker.service moonraker-venv.service"
-SYSTEMD_AUTO_ENABLE = "enable"
+SYSTEMD_SERVICE:${PN} = "moonraker.service"
+SYSTEMD_SERVICE:${PN}-venv = "moonraker-venv.service"
+
+SYSTEMD_AUTO_ENABLE:${PN} = "disable"
+SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/config/*"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
@@ -92,4 +95,4 @@ FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra= "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-extra"
+PACKAGES = "${PN} ${PN}-venv ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-extra"

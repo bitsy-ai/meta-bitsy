@@ -43,7 +43,9 @@ do_install() {
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
 SYSTEMD_SERVICE:${PN} = "klipper.service klipper-venv.service"
-SYSTEMD_AUTO_ENABLE = "enable"
+
+SYSTEMD_AUTO_ENABLE:${PN} = "disable"
+SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 RDEPENDS:${PN} = "\
     python3 \
@@ -81,6 +83,7 @@ FILES:${PN} = "\
     ${INSTALL_DIR}/Makefile \
 "
 
+FILES:${PN}-venv = "${D}${systemd_system_unitdir}/klipper-venv.service"
 FILES:${PN}-examples = "${INSTALL_DIR}/config/*"
 FILES:${PN}-klippy = "${INSTALL_DIR}/klippy/*"
 FILES:${PN}-test = "${INSTALL_DIR}/test/*"
@@ -89,4 +92,4 @@ FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra = "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-klippy ${PN}-examples ${PN}-scripts ${PN}-tests ${PN}-docs ${PN}-extra"
+PACKAGES = "${PN} ${PN}-venv ${PN}-klippy ${PN}-examples ${PN}-scripts ${PN}-tests ${PN}-docs ${PN}-extra"

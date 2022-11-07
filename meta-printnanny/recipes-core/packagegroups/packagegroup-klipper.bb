@@ -10,4 +10,5 @@ RDEPENDS:${PN} = "\
     klipper-examples \
     klipper-klippy \
     klipper-scripts \
+    klipper-venv \
 "

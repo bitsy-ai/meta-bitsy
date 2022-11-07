@@ -1,7 +1,7 @@
 [Unit]
 Description=Janus WebRTC Gateway
-After=network-online.target nss-lookup.target
-Wants=network-online.target nss-lookup.target
+After=network-online.target nss-lookup.target avahi-daemon.service
+Wants=network-online.target nss-lookup.target avahi-daemon.service
 
 [Service]
 Type=simple

@@ -1,15 +1,17 @@
 # alias all janus commands
-Cmnd_Alias JANUS_SERVICES = /bin/systemctl start janus*,/bin/systemctl stop janus*,/bin/systemctl restart janus*
+Cmnd_Alias JANUS_SERVICES = /bin/systemctl start janus*,/bin/systemctl stop janus*,/bin/systemctl restart janus*,/bin/systemctl enable janus*,/bin/systemctl disable janus*
 # alias all printnanny commands
-Cmnd_Alias PRINTNANNY_SERVICES = /bin/systemctl start printnanny*,/bin/systemctl stop printnanny*,/bin/systemctl restart printnanny*,/usr/local/bin/printnanny*
+Cmnd_Alias PRINTNANNY_SERVICES = /bin/systemctl start printnanny*,/bin/systemctl stop printnanny*,/bin/systemctl restart printnanny*,/bin/systemctl enable printnanny*,/bin/systemctl disable printnanny*,/usr/local/bin/printnanny*
 # alias all octoprint commands
-Cmnd_Alias OCTOPRINT_SERVICES = /bin/systemctl start octoprint*,/bin/systemctl stop octoprint*,/bin/systemctl restart octoprint*
+Cmnd_Alias OCTOPRINT_SERVICES = /bin/systemctl start octoprint*,/bin/systemctl stop octoprint*,/bin/systemctl restart octoprint*,/bin/systemctl enable octoprint*,/bin/systemctl disable octoprint*, 
 # alias all nginx commands
 Cmnd_Alias WEB_SERVICES = /bin/systemctl start nginx*,/bin/systemctl stop nginx*,/bin/systemctl restart nginx*
 # generic system admin commands
 Cmnd_Alias REBOOT = /sbin/reboot -h now,/sbin/shutdown -h now,/sbin/shutdown -r now
 # klipper commands
-Cmnd_Alias KLIPPER_SERVICES = /bin/systemctl start klipper*,/bin/systemctl stop klipper*,/bin/systemctl restart klipper*
-# moonraker commands
-Cmnd_Alias MOONRAKER_SERVICES = /bin/systemctl start moonraker*,/bin/systemctl stop moonraker*,/bin/systemctl restart moonraker*
+Cmnd_Alias KLIPPER_SERVICES = /bin/systemctl start klipper*,/bin/systemctl stop klipper*,/bin/systemctl restart klipper*,/bin/systemctl enable klipper*,/bin/systemctl disable klipper*
+# moonraker + klipper + mainsail commands
+Cmnd_Alias MOONRAKER_SERVICES = /bin/systemctl start moonraker*,/bin/systemctl stop moonraker*,/bin/systemctl restart moonraker*,/bin/systemctl enable moonraker*,/bin/systemctl disable moonraker*
 Cmnd_Alias MOONRAKER_TASKS = /bin/systemctl --version
+Cmnd_Alias MAINSAIL_SERVICES = /bin/systemctl start mainsail*,/bin/systemctl stop mainsail*,/bin/systemctl restart mainsail*,/bin/systemctl enable mainsail*,/bin/systemctl disable mainsail*
+Cmnd_Alias SYNCTHING_SERVICES = /bin/systemctl start syncthing*,/bin/systemctl stop syncthing*,/bin/systemctl restart syncthing*,/bin/systemctl enable syncthing*,/bin/systemctl disable syncthing*

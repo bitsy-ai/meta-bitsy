@@ -5,7 +5,7 @@ SRC_URI = "\
     https://github.com/bitsy-ai/printnanny-dash/releases/download/v${PV}/printnanny-dash-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
     file://printnanny-dash.service \
 "
-SRC_URI[sha256sum] = "fb893625a9feb8e1948b809ae284d864ab4dab7c3f44cf9e834d30388ce9f007"
+SRC_URI[sha256sum] = "0c122520ed31c02950471e31e485a4f54f6ea4210263d6ae370d1ddefe8ef5e9"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
 do_install(){

@@ -11,6 +11,7 @@ SRC_URI:append = "\
     file://cloud-init.service \
     file://cloud-init.target \
     file://fix-rpi-userdata.sh \
+    file://avahi-daemon-after-cloud-init.conf \
 "
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
@@ -20,8 +21,11 @@ do_install:append(){
     install -d ${D}${systemd_system_unitdir}
     install -d ${D}${bindir}
     install -d ${D}/var/lib/cloud/scripts/per-boot/
+    install -d ${D}${systemd_system_unitdir}/avahi-daemon.service.d/
+
+    install -m 0644 ${WORKDIR}/avahi-daemon-after-cloud-init.conf ${D}${systemd_system_unitdir}/avahi-daemon.service.d/avahi-daemon-after-cloud-init.conf
     install -m 0644 ${WORKDIR}/099-fake_cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/099-fake_cloud.cfg
-    # install -m 0644 ${WORKDIR}/001-telemetry.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/001-telemetry.cfg
+    install -m 0644 ${WORKDIR}/099-fake_cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/099-fake_cloud.cfg
     install -m 0644 ${WORKDIR}/002-ssh.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/002-ssh.cfg
     install -m 0644 ${WORKDIR}/003-runcmd.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/003-runcmd.cfg
     install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg

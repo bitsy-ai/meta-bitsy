@@ -24,6 +24,6 @@ RDEPENDS:${PN} = "\
   printnanny-nn \
 "
 
-SYSTEMD_AUTO_ENABLE = "disable"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 inherit systemd

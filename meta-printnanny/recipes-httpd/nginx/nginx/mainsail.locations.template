@@ -1,9 +1,8 @@
 
-location ^~ /mainsail/ {
-    alias /var/www/mainsail/;
-    try_files $uri $uri/ /index.html;
+location /mainsail {
+    root /var/www/;
+    try_files $uri $uri/ index.html;
     index index.html;
-    gzip on;
     gzip_vary on;
     gzip_proxied any;
     gzip_proxied expired no-cache no-store private auth;
@@ -28,7 +27,7 @@ location /mainsail/websocket {
     proxy_read_timeout 86400;
 }
 
-location ^~ /mainsail/(printer|api|access|machine|server)/ {
+location ~^/mainsail/(printer|api|access|machine|server)/ {
     proxy_pass http://moonraker$request_uri;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;

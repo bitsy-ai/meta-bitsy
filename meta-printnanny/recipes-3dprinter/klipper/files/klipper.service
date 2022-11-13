@@ -2,9 +2,9 @@
 Description=Starts Klipper and provides klippy Unix Domain Socket API
 Documentation=https://www.klipper3d.org/
 BindsTo=mainsail.target
-After=network.target mainsail.target
+After=network.target klipper-venv.service
 Before=moonraker.service
-Wants=udev.target
+Wants=udev.target klipper-venv.service
 
 [Install]
 Alias=klippy.service

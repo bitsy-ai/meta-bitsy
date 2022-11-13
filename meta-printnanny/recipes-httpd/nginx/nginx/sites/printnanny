@@ -22,4 +22,6 @@ server {
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log notice;
     proxy_cookie_domain localhost $host;
+
+    root /var/www;
 }

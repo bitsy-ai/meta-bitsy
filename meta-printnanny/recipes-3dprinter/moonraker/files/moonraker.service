@@ -3,6 +3,7 @@ Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 BindsTo=mainsail.target
 After=network.target var-lib-moonraker-data.mount moonraker-venv.service klipper.service mainsail.target
+Wants=moonraker-venv.service
 Requires=var-lib-moonraker-data.mount
 
 [Install]
@@ -19,6 +20,6 @@ StateDirectory=moonraker klipper moonraker/data moonraker/data/backup moonraker/
 Type=simple
 User=printnanny
 RemainAfterExit=yes
-ExecStart=/var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -d ${MOONRAKER_DATA_PATH} -l ${MOONRAKER_LOG}
+ExecStart=bash -c "cp -n /lib/moonraker/moonraker.conf /var/lib/moonraker/data/config/moonraker.conf || echo 'Refusing to overwrite existing /var/lib/moonraker/data/config/moonraker.conf' && echo 'Created /lib/moonraker/moonraker.conf from defaults'; /var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -d ${MOONRAKER_DATA_PATH} -l ${MOONRAKER_LOG}"
 Restart=always
 RestartSec=10

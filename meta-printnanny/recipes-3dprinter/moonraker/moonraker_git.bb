@@ -50,6 +50,8 @@ RDEPENDS:${PN} = "\
     libgpiod \
     bash \
 "
+RDEPENDS:${PN} += "polkit"
+
 
 INSTALL_DIR ?= "/var/lib/moonraker"
 MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
@@ -82,8 +84,6 @@ do_install() {
 inherit useradd
 USERADD_PACKAGES = "${PN}"
 GROUPADD_PARAM:${PN} = "moonraker-admin"
-
-RDEPENDS:${PN} = "polkit"
 
 RDEPENDS:${PN}-scripts = "\
     bash \

@@ -81,6 +81,7 @@ do_install() {
 RDEPENDS:${PN}-scripts = "\
     bash \
     python3-core \
+    polkit \
 "
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"

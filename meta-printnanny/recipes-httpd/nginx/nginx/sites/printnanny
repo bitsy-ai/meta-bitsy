@@ -1,6 +1,6 @@
 upstream moonraker {
     ip_hash;
-    server 127.0.0.1: 7125;
+    server 127.0.0.1:7125;
 }
 
 map $http_upgrade $connection_upgrade {
@@ -10,10 +10,10 @@ map $http_upgrade $connection_upgrade {
 
 server {
     listen 80 default_server;
-    listen[::]: 80 default_server;
+    listen [::]:80 default_server;
     server_name _;
 
-    include / etc / nginx / conf.d/*.locations;
+    include /etc/nginx/conf.d/*.locations;
     proxy_busy_buffers_size 512k;
     proxy_buffers 2 512k;
     proxy_buffer_size 256k;

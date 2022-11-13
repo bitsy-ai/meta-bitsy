@@ -8,7 +8,6 @@ SRC_URI = "\
     file://moonraker.conf \
     file://moonraker.service \
     file://moonraker-venv.service \
-    file://moonraker.rules \
 "
 SRCREV = "779997c2b8aa1df2b484440ef1d3a6b09058fcff"
 
@@ -57,8 +56,6 @@ MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
 
 PRINTNANNY_USER ?= "printnanny"
 
-MOONRAKER_POLKIT_RULES ?= "/etc/polkit-1/rules.d/moonraker.rules"
-
 do_compile() {
     echo "Skipping compilation, moonraker does not provide pep517 compliant python build"
 }
@@ -67,7 +64,6 @@ do_compile() {
 do_install() {
     install -d "${D}${INSTALL_DIR}/default"
     install -d "${D}/lib/moonraker"
-    install -d "${D}/etc/polkit-1/rules.d"
 
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
@@ -75,9 +71,6 @@ do_install() {
     rm -rf ${D}${INSTALL_DIR}/.git
     rm -rf ${D}${INSTALL_DIR}/.github
     install -m 0644 "${WORKDIR}/moonraker.conf" "${D}/lib/moonraker/moonraker.conf"
-
-    install -m 0644 "${WORKDIR}/moonraker.rules" "${D}/etc/polkit-1/rules.d/moonraker.rules"
-
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
@@ -105,7 +98,6 @@ SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /lib/moonraker/*"
-FILES:${PN}-admin = "/etc/polkit-1/rules.d/moonraker.rules"
 FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"

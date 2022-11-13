@@ -10,5 +10,5 @@ RDEPENDS:${PN} = "\
     moonraker \
     moonraker-scripts \
     moonraker-venv \
-    moonraker-polkit \
+    moonraker-admin \
 "

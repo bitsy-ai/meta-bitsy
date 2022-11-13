@@ -77,7 +77,7 @@ do_install() {
     install -m 0644 "${WORKDIR}/moonraker.conf" "${D}/lib/moonraker/moonraker.conf"
 
     install -d 0644 "${WORKDIR}/moonraker.rules" "${D}/etc/polkit-1/rules.d/moonraker.rules"
-    
+
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
@@ -87,7 +87,8 @@ do_install() {
 
 # create moonraker-admin group for use with policy kit
 inherit useradd
-GROUPADD_PARAM:${PN} = "moonraker-admin"
+USERADD_PACKAGES = "${PN}-admin"
+GROUPADD_PARAM:${PN}-admin = "moonraker-admin"
 
 
 RDEPENDS:${PN}-scripts = "\
@@ -104,7 +105,7 @@ SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /lib/moonraker/*"
-FILES:${PN}-polkit = "/etc/polkit-1/rules.d/*"
+FILES:${PN}-admin = "/etc/polkit-1/rules.d/*"
 FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"
@@ -112,4 +113,4 @@ FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra= "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-venv ${PN}-scripts ${PN}-polkit ${PN}-test ${PN}-docs ${PN}-extra"
+PACKAGES = "${PN} ${PN}-venv ${PN}-scripts ${PN}-admin ${PN}-test ${PN}-docs ${PN}-extra"

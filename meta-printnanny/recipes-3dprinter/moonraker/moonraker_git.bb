@@ -80,10 +80,10 @@ do_install() {
 
 # create moonraker-admin group for use with policy kit
 inherit useradd
-USERADD_PACKAGES = "${PN}-admin"
-GROUPADD_PARAM:${PN}-admin = "moonraker-admin"
+USERADD_PACKAGES = "${PN}"
+GROUPADD_PARAM:${PN} = "moonraker-admin"
 
-RDEPENDS:${PN}-admin = "polkit"
+RDEPENDS:${PN} = "polkit"
 
 RDEPENDS:${PN}-scripts = "\
     bash \
@@ -105,4 +105,4 @@ FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra= "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-venv ${PN}-scripts ${PN}-admin ${PN}-test ${PN}-docs ${PN}-extra"
+PACKAGES = "${PN} ${PN}-venv ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-extra"

@@ -1,4 +1,4 @@
-SRC_URI = "\
+SRC_URI += "\
     file://moonraker.rules \
 "
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"

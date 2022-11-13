@@ -90,11 +90,11 @@ inherit useradd
 USERADD_PACKAGES = "${PN}-admin"
 GROUPADD_PARAM:${PN}-admin = "moonraker-admin"
 
+RDEPENDS:${PN}-admin = "polkit"
 
 RDEPENDS:${PN}-scripts = "\
     bash \
     python3-core \
-    polkit \
 "
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"

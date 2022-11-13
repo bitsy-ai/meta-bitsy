@@ -7,7 +7,7 @@ Before=moonraker.service
 Wants=udev.target
 
 [Install]
-Alias=klippy
+Alias=klippy.service
 WantedBy=mainsail.target
 
 [Service]
@@ -21,6 +21,6 @@ User=printnanny
 RemainAfterExit=yes
 StateDirectory=klipper
 
-ExecStart= /var/lib/klipper/.venv/bin/python3 /var/lib/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
+ExecStart=/var/lib/klipper/.venv/bin/python3 /var/lib/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}
 Restart=always
 RestartSec=10

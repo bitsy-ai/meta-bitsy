@@ -105,7 +105,7 @@ SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /lib/moonraker/*"
-FILES:${PN}-admin = "/etc/polkit-1/rules.d/*"
+FILES:${PN}-admin = "/etc/polkit-1/rules.d/moonraker.rules"
 FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"

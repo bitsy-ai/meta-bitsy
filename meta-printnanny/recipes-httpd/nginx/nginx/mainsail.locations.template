@@ -1,7 +1,7 @@
 
-location /mainsail/ {
-    alias /var/www/mainsail/;
-    try_files $uri $uri/ /index.html;
+location ~^/mainsail/ {
+    root /var/www/mainsail/;
+    try_files $uri $uri/ /mainsail/index.html;
     index index.html;
     gzip on;
     gzip_vary on;
@@ -15,7 +15,6 @@ location /mainsail/ {
 
 location = /mainsail/index.html {
     add_header Cache-Control "no-store, no-cache, must-revalidate";
-    alias /var/www/mainsail/;
 }
 
 location /mainsail/websocket {

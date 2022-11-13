@@ -76,7 +76,7 @@ do_install() {
     rm -rf ${D}${INSTALL_DIR}/.github
     install -m 0644 "${WORKDIR}/moonraker.conf" "${D}/lib/moonraker/moonraker.conf"
 
-    install -d 0644 "${WORKDIR}/moonraker.rules" "${D}/etc/polkit-1/rules.d/moonraker.rules"
+    install -m 0644 "${WORKDIR}/moonraker.rules" "${D}/etc/polkit-1/rules.d/moonraker.rules"
 
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"

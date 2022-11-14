@@ -67,7 +67,9 @@ RDEPENDS:${PN} = "\
     zlib \
     expat \
     glibc \
+    gcc \
 "
+
 
 RDEPENDS:${PN}-scripts = "\
     bash \

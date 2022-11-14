@@ -50,6 +50,8 @@ RDEPENDS:${PN} = "\
     libgpiod \
     bash \
 "
+RDEPENDS:${PN} += "polkit"
+
 
 INSTALL_DIR ?= "/var/lib/moonraker"
 MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"

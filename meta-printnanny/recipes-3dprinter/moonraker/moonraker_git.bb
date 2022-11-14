@@ -80,11 +80,6 @@ do_install() {
     fi
 }
 
-# create moonraker-admin group for use with policy kit
-inherit useradd
-USERADD_PACKAGES = "${PN}"
-GROUPADD_PARAM:${PN} = "moonraker-admin"
-
 RDEPENDS:${PN}-scripts = "\
     bash \
     python3-core \

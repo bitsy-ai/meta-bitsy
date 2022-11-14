@@ -3,13 +3,12 @@ HOMEPAGE = "https://www.klipper3d.org/"
 LICENSE = "GPL-3.0-or-later"
 
 
-PV = "support-base-path-rc1"
-R = "rc1"
+PV = "support-base-path-rc2"
 SRC_URI = "\
     https://github.com/bitsy-ai/mainsail/releases/download/${PV}/mainsail.zip;subdir=mainsail \
     file://mainsail.target \
 "
-SRC_URI[sha256sum] = "ae4e8b59b00c7ecc662e2b61d80aa1954fd3df26f49ac2236eda6affc2dbfb8d"
+SRC_URI[sha256sum] = "70532f2332cee176a5c96a6a0e671121230ff35dff6cac8048982a558945bffe"
 S = "${WORKDIR}/mainsail"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-3.0-or-later;md5=1c76c4cc354acaac30ed4d5eefea7245"
 

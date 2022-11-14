@@ -9,7 +9,7 @@ SRC_URI = "\
     https://github.com/bitsy-ai/mainsail/releases/download/${PV}/mainsail.zip;subdir=mainsail \
     file://mainsail.target \
 "
-SRC_URI[sha256sum] = "71917bea83d36beb831803d5da67b623a6ae3b3efa770d0134ca3eadf75aa001"
+SRC_URI[sha256sum] = "ae4e8b59b00c7ecc662e2b61d80aa1954fd3df26f49ac2236eda6affc2dbfb8d"
 S = "${WORKDIR}/mainsail"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-3.0-or-later;md5=1c76c4cc354acaac30ed4d5eefea7245"
 

@@ -27,8 +27,8 @@ location /mainsail/websocket {
     proxy_read_timeout 86400;
 }
 
-location ~^/mainsail/(printer|api|access|machine|server)/ {
-    proxy_pass http://moonraker$request_uri;
+location ~^/mainsail/(printer|api|access|machine|server)/(.*) {
+    proxy_pass http://moonraker/$1/$2;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

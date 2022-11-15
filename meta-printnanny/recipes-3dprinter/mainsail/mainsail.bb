@@ -28,6 +28,11 @@ SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',
 SYSTEMD_SERVICE:${PN} = "mainsail.target"
 SYSTEMD_AUTO_ENABLE = "enable"
 
+RDEPENDS:${PN} = "\
+    packagegroup-klipper \
+    packagegroup-moonraker \
+"
+
 FILES:${PN} = "${INSTALL_DIR}/*"
 
 PACKAGES = "${PN}"

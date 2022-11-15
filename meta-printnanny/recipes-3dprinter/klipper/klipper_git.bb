@@ -67,7 +67,7 @@ RDEPENDS:${PN} = "\
     zlib \
     expat \
     glibc \
-    gcc \
+    packagegroup-core-buildessential \
 "
 
 

@@ -47,7 +47,7 @@ do_install() {
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
 SYSTEMD_SERVICE:${PN} = "klipper.service"
 SYSTEMD_SERVICE:${PN}-venv =  "klipper-venv.service"
-SYSTEMD_AUTO_ENABLE:${PN} = "disable"
+SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 RDEPENDS:${PN} = "\

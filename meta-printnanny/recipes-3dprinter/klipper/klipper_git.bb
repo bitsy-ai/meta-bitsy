@@ -9,8 +9,8 @@ SRC_URI = "\
     file://klipper-venv.service \
     file://printer.cfg \
 "
-SRCREV = "97a5b39aab9bb61aaf2181760886033a569626f7"
-SRC_URI[sha256sum] = "fcd9fd2de95ff7174dba58826e393eaf948bfcc430ce44cbfaabefe685295b86"
+SRCREV = "d883c57d77f80ea7343e995084d54dacbbd16290"
+# SRC_URI[sha256sum] = "fcd9fd2de95ff7174dba58826e393eaf948bfcc430ce44cbfaabefe685295b86"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=1ebbd3e34237af26da5dc08a4e440464"
 S = "${WORKDIR}/git"

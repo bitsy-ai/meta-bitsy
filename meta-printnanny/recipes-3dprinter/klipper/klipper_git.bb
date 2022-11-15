@@ -67,7 +67,9 @@ RDEPENDS:${PN} = "\
     zlib \
     expat \
     glibc \
+    packagegroup-core-buildessential \
 "
+
 
 RDEPENDS:${PN}-scripts = "\
     bash \

@@ -86,6 +86,7 @@ RDEPENDS:${PN}-docs = "\
 FILES:${PN} = "\
     ${INSTALL_DIR}/src/* \
     ${INSTALL_DIR}/Makefile \
+    ${INSTALL_DIR}/printer.cfg \
 "
 
 FILES:${PN}-venv = "${systemd_system_unitdir}/klipper-venv.service"

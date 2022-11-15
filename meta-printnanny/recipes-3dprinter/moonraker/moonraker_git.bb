@@ -89,7 +89,7 @@ SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',
 SYSTEMD_SERVICE:${PN} = "moonraker.service"
 SYSTEMD_SERVICE:${PN}-venv = "moonraker-venv.service"
 
-SYSTEMD_AUTO_ENABLE:${PN} = "disable"
+SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /lib/moonraker/*"

@@ -15,7 +15,7 @@ LogsDirectory=klipper
 RuntimeDirectory=klipper
 Environment=KLIPPER_CONFIG=/var/lib/klipper/.config/printer.cfg
 Environment=KLIPPER_LOG=/var/log/klipper/klippy.log
-Environment=KLIPPER_SOCKET=/var/run/klipper/klippy_uds
+Environment=KLIPPER_SOCKET=/var/run/klipper/klippy.sock
 Type=simple
 User=printnanny
 RemainAfterExit=yes

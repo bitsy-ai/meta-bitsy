@@ -34,6 +34,7 @@ RDEPENDS:${PN} = "\
     libcamera \
     libcamera-gst \
     nnstreamer \
+    nnstreamer-tensorflow-lite \
     tensorflow-lite \
 "
 

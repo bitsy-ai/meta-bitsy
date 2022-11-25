@@ -15,22 +15,13 @@ OCTOPRINT_USER ?= "printnanny"
 # OctoPrint allows users to update the software & install plugins via pip module, so it can't be installed to read-only rootfs
 # The pip module must also be sandboxed (virtualenv)
 OCTOPRINT_BASEDIR ?= "/var/lib/octoprint"
-OCTOPRINT_VENV ?= "${OCTOPRINT_BASEDIR}/.venv"
+OCTOPRINT_VENV ?= "${OCTOPRINT_BASEDIR}/venv"
 OCTOPRINT_ENV ?= "/run/octoprint/env"
 OCTOPRINT_PORT ?= "5001"
-
-BITSY_TEMPLATE_ARGS = "\
-    OCTOPRINT_ENV \
-    OCTOPRINT_VENV \
-    OCTOPRINT_BASEDIR \
-    OCTOPRINT_USER \
-    OCTOPRINT_PORT \
-"
 
 do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
-    install --group=${OCTOPRINT_USER} --owner=${OCTOPRINT_USER} -d ${D}${OCTOPRINT_BASEDIR}/
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
     install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service
 }

@@ -64,7 +64,7 @@ do_compile() {
 # install moonraker source tree to /var/lib/klipper
 do_install() {
     install -d "${D}${INSTALL_DIR}/default"
-    install -d "${D}/lib/moonraker"
+    install -d "${D}/var/lib/moonraker"
 
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
@@ -90,7 +90,7 @@ SYSTEMD_SERVICE:${PN}-venv = "moonraker-venv.service"
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
-FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /lib/moonraker/*"
+FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /var/lib/moonraker/*"
 FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"

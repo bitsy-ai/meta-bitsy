@@ -22,5 +22,5 @@ do_install(){
     chown -R root:root "${D}/var/lib/printnanny/settings/"
 
 }
-INSANE_SKIP_${PN} = "file-rdeps"
+INSANE_SKIP:${PN} = "file-rdeps"
 FILES:${PN} = "/var/lib/printnanny/settings/"

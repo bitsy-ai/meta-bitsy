@@ -14,12 +14,13 @@ LogsDirectory=klipper
 RuntimeDirectory=klipper
 Environment=MOONRAKER_DATA_PATH=/var/lib/moonraker/data
 Environment=MOONRAKER_LOG=/var/log/klipper/moonraker.log
+Environment=MOONRAKER_CONFIG_FILE=/var/lib/printnanny/settings/moonraker/moonraker.conf
 WorkingDirectory=/var/lib/moonraker
-StateDirectory=moonraker klipper moonraker/data moonraker/data/backup moonraker/data/certs moonraker/data/config moonraker/data/database moonraker/data/gcodes
+StateDirectory=moonraker klipper moonraker/data moonraker/data/backup moonraker/data/certs moonraker/data/config moonraker/data/database moonraker/data/gcodes printnanny/settings/moonraker
 Type=simple
 SupplementaryGroups=moonraker-admin
 User=printnanny
 RemainAfterExit=yes
-ExecStart=bash -c "cp -n /lib/moonraker/moonraker.conf /var/lib/moonraker/data/config/moonraker.conf || echo 'Refusing to overwrite existing /var/lib/moonraker/data/config/moonraker.conf' && echo 'Created /lib/moonraker/moonraker.conf from defaults'; /var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -d ${MOONRAKER_DATA_PATH} -l ${MOONRAKER_LOG}"
+ExecStart=/var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -d ${MOONRAKER_DATA_PATH} -l ${MOONRAKER_LOG} -c ${MOONRAKER_CONFIG_FILE}"
 Restart=always
 RestartSec=10

@@ -7,7 +7,6 @@ SRC_URI = "\
     git://github.com/Klipper3d/klipper;protocol=ssh;nobranch=1;branch=master \
     file://klipper.service \
     file://klipper-venv.service \
-    file://printer.cfg \
 "
 SRCREV = "d883c57d77f80ea7343e995084d54dacbbd16290"
 # SRC_URI[sha256sum] = "fcd9fd2de95ff7174dba58826e393eaf948bfcc430ce44cbfaabefe685295b86"
@@ -34,8 +33,6 @@ do_install() {
     # delete .git, .github
     rm -rf ${D}${INSTALL_DIR}/.git
     rm -rf ${D}${INSTALL_DIR}/.github
-
-    install -m 0644 "${WORKDIR}/printer.cfg" "${D}${INSTALL_DIR}/printer.cfg"
 
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
@@ -86,7 +83,6 @@ RDEPENDS:${PN}-docs = "\
 FILES:${PN} = "\
     ${INSTALL_DIR}/src/* \
     ${INSTALL_DIR}/Makefile \
-    ${INSTALL_DIR}/printer.cfg \
 "
 
 FILES:${PN}-venv = "${systemd_system_unitdir}/klipper-venv.service"

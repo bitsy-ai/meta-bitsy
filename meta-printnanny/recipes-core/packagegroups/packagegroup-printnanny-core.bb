@@ -11,6 +11,7 @@ RDEPENDS:${PN} = "\
     printnanny-dash \
     printnanny-cli \
     printnanny-overlayfs \
+    printnanny-settings \
     janus-gateway \
     nginx \
     swupdate \

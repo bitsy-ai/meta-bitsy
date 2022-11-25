@@ -1,0 +1,12 @@
+[Unit]
+Description=Create OctoPrint virtualenv 
+ConditionPathExists=!/var/lib/octoprint/venv
+
+[Service]
+Type=oneshot
+SyslogIdentifier=octoprint-venv
+Environment=OCTOPRINT_VENV=/var/lib/octoprint/venv
+ExecStart=/usr/bin/python3 -m venv --system-site-packages "${OCTOPRINT_VENV}"
+User=printnanny
+[Install]
+WantedBy=octoprint.service

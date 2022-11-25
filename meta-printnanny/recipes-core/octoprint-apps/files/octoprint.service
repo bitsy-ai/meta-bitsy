@@ -1,0 +1,27 @@
+[Unit]
+Description=OctoPrint
+After=network-online.target octoprint-venv.service
+Wants=network-online.target octoprint-venv.service
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+SyslogIdentifier=octoprint
+RuntimeDirectory=octoprint
+StateDirectory=octoprint
+Environment=OCTOPRINT_BASEDIR=/var/lib/octoprint
+Environment=OCTOPRINT_VENV=/var/lib/octoprint/venv
+Environment=OCTOPRINT_CONFIG=/var/lib/printnanny/settings/octoprint/octoprint.yaml
+Environment=OCTOPRINT_PORT=5001
+ExecStart=/bin/bash -c "${OCTOPRINT_VENV}/bin/python -m octoprint serve \
+    --host 127.0.0.1 \
+    --config "${OCTOPRINT_CONFIG}" \
+    --port "${OCTOPRINT_PORT}"
+Restart=on-failure
+RestartSec=10
+IOSchedulingClass=realtime
+User=printnanny
+
+[Install]
+WantedBy=multi-user.target

@@ -5,7 +5,6 @@ LICENSE = "GPL-3.0-or-later"
 
 SRC_URI = "\
     git://github.com/Arksine/moonraker/;protocol=ssh;nobranch=1;branch=master \
-    file://moonraker.conf \
     file://moonraker.service \
     file://moonraker-venv.service \
 "
@@ -64,15 +63,12 @@ do_compile() {
 
 # install moonraker source tree to /var/lib/klipper
 do_install() {
-    install -d "${D}${INSTALL_DIR}/default"
-    install -d "${D}/lib/moonraker"
-
+    install -d "${D}${INSTALL_DIR}"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
     rm -rf ${D}${INSTALL_DIR}/.git
     rm -rf ${D}${INSTALL_DIR}/.github
-    install -m 0644 "${WORKDIR}/moonraker.conf" "${D}/lib/moonraker/moonraker.conf"
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
@@ -92,7 +88,7 @@ SYSTEMD_SERVICE:${PN}-venv = "moonraker-venv.service"
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
-FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* /lib/moonraker/*"
+FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/*"
 FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"

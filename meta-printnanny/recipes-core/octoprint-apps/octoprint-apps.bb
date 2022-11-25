@@ -4,7 +4,6 @@ inherit systemd bitsy_tmpl
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 SRC_URI:append = "\
-    file://config.yaml \
     file://octoprint.service.tmpl \
     file://octoprint-venv.service.tmpl \
 "
@@ -37,7 +36,6 @@ do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
     install --group=${OCTOPRINT_USER} --owner=${OCTOPRINT_USER} -d ${D}${OCTOPRINT_BASEDIR}/
-    install -m 0755 ${WORKDIR}/config.yaml ${D}${OCTOPRINT_BASEDIR}/config.yaml
     chown -R ${OCTOPRINT_USER}:${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
     install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service

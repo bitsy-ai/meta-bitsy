@@ -17,6 +17,7 @@ do_install(){
     install -m 0644 "${WORKDIR}/moonraker.conf" "${D}/lib/printnanny/settings/moonraker/moonraker.conf"
     install -m 0644 "${WORKDIR}/octoprint.yaml" "${D}/lib/printnanny/settings/octoprint/octoprint.yaml"
     install -m 0644 "${WORKDIR}/klipper.cfg" "${D}/lib/printnanny/settings/klipper/klipper.cfg"
+    cd "${D}/lib/printnanny/settings/" && git init && git commit -m "default"
 }
 
 FILES:${PN} = "/var/lib/printnanny/settings/*"

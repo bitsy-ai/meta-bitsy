@@ -13,7 +13,7 @@ WantedBy=mainsail.target
 [Service]
 LogsDirectory=klipper
 RuntimeDirectory=klipper
-Environment=KLIPPER_CONFIG=/var/lib/klipper/printer.cfg
+Environment=KLIPPER_CONFIG=/var/lib/printnanny/settings/klipper/klipper.cfg
 Environment=KLIPPER_LOG=/var/log/klipper/klippy.log
 Environment=KLIPPER_SOCKET=/var/run/klipper/klippy.sock
 Type=simple

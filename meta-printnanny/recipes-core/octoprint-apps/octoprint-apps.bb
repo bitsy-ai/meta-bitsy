@@ -31,7 +31,6 @@ do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
     install --group=${OCTOPRINT_USER} --owner=${OCTOPRINT_USER} -d ${D}${OCTOPRINT_BASEDIR}/
-    chown -R ${OCTOPRINT_USER}:${OCTOPRINT_USER} ${D}/home/${OCTOPRINT_USER}
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
     install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service
 }

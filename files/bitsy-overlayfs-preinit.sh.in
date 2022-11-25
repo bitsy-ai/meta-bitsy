@@ -37,34 +37,34 @@ fi
 
 [ -z "$CONSOLE" ] && CONSOLE="/dev/console"
 
-mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}
-if mount -n -t {BITSY_OVERLAYFS_FSTYPE} \
-    -o {BITSY_OVERLAYFS_MOUNT_OPTIONS} \
-    {BITSY_OVERLAYFS_DEVICE} {BITSY_OVERLAYFS_MOUNT_POINT}
-then
-    mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper
-    mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/work
-    mount -n -t overlay \
-        -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper \
-        -o lowerdir=/etc \
-        -o workdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/work \
-        -o index=off,xino=off,redirect_dir=off,metacopy=off \
-        {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper /etc || \
-            echo "PREINIT: Mounting etc-overlay failed!"
+# mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}
+# if mount -n -t {BITSY_OVERLAYFS_FSTYPE} \
+#     -o {BITSY_OVERLAYFS_MOUNT_OPTIONS} \
+#     {BITSY_OVERLAYFS_DEVICE} {BITSY_OVERLAYFS_MOUNT_POINT}
+# then
+#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper
+#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/work
+#     mount -n -t overlay \
+#         -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper \
+#         -o lowerdir=/etc \
+#         -o workdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/work \
+#         -o index=off,xino=off,redirect_dir=off,metacopy=off \
+#         {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper /etc || \
+#             echo "PREINIT: Mounting etc-overlay failed!"
 
-    mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper
-    mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work
-    mount -n -t overlay \
-        -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper \
-        -o lowerdir=/home \
-        -o workdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work \
-        -o index=off,xino=off,redirect_dir=off,metacopy=off \
-        {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper /home || \
-            echo "PREINIT: Mounting home-overlay failed!"
+#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper
+#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work
+#     mount -n -t overlay \
+#         -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper \
+#         -o lowerdir=/home \
+#         -o workdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work \
+#         -o index=off,xino=off,redirect_dir=off,metacopy=off \
+#         {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper /home || \
+#             echo "PREINIT: Mounting home-overlay failed!"
 
-else
-    echo "PREINIT: Mounting </data> failed!"
-fi
+# else
+#     echo "PREINIT: Mounting </data> failed!"
+# fi
 
 echo "PREINIT: done; starting </sbin/init>"
 exec {SBIN_INIT_NAME}

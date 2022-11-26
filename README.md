@@ -18,11 +18,12 @@ an image. It uses Docker to manage these components, and so requires that the
 sudo apt-get update
 sudo apt-get -y install git cpio git python3-full binutils bzip2 chrpath \
                         build-essential diffstat file gawk lz4 zstd wget \
-                        locales vim tini
+                        locales vim tini sudo
 
 # ensure en_US.UTF-8 locale is generated
 
-grep -q '^en_US.UTF-8 UTF-8' || echo 'en_US.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
+grep -q '^en_US.UTF-8 UTF-8' /etc/locale.gen || echo 'en_US.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
+local-gen
 
 # Obtain the langdale branch of poky
 git clone -b langdale git://git.yoctoproject.org/poky poky
@@ -41,51 +42,51 @@ git clone             https://github.com/bitsy-ai/meta-bitsy.git
 # Populate bblayers.conf
 mkdir -p build/conf
 cat > build/conf/bblayers.conf <<EOF
-  POKY_BBLAYERS_CONF_VERSION = "2"
+POKY_BBLAYERS_CONF_VERSION = "2"
 
-  BBPATH = "\${TOPDIR}"
-  BBFILES ?= ""
+BBPATH = "\${TOPDIR}"
+BBFILES ?= ""
 
-  BBLAYERS ?= " \
-    /poky/meta \
-    /poky/meta-poky \
-    /poky/meta-yocto-bsp \
-    /poky/meta-raspberrypi \
-    /poky/meta-openembedded/meta-oe \
-    /poky/meta-openembedded/meta-python \
-    /poky/meta-openembedded/meta-multimedia \
-    /poky/meta-bitsy \
-    /poky/meta-neural-network \
-    /poky/meta-bitsy/meta-printnanny \
-    /poky/meta-openembedded/meta-networking \
-    /poky/meta-openembedded/meta-filesystems \
-    /poky/meta-openembedded/meta-initramfs \
-    /poky/meta-openembedded/meta-webserver \
-    /poky/meta-swupdate \
-    /poky/meta-microcontroller \
-  "
+BBLAYERS ?= "
+  /poky/meta
+  /poky/meta-poky
+  /poky/meta-yocto-bsp
+  /poky/meta-raspberrypi
+  /poky/meta-openembedded/meta-oe
+  /poky/meta-openembedded/meta-python
+  /poky/meta-openembedded/meta-multimedia
+  /poky/meta-bitsy
+  /poky/meta-neural-network
+  /poky/meta-bitsy/meta-printnanny
+  /poky/meta-openembedded/meta-networking
+  /poky/meta-openembedded/meta-filesystems
+  /poky/meta-openembedded/meta-initramfs
+  /poky/meta-openembedded/meta-webserver
+  /poky/meta-swupdate
+  /poky/meta-microcontroller
+"
 EOF
 
 # populate locale.conf
 cat > build/conf/local.conf <<EOF
-  BUILDCFG_VARS = "VARIANT_NAME VARIANT_ID BB_VERSION BUILD_SYS NATIVELSBSTRING TARGET_SYS MACHINE DISTRO DISTRO_VERSION TUNE_FEATURES TARGET_FPU"
-  DISTRO = "printnanny"
-  IMAGE_FSTYPES = "tar.gz ext4 ext4.gz ext4 wic wic.gz wic.bmap"
-  MACHINE ?= "raspberrypi4-64"
-  RUST_VERSION ?= "1.64"
-  PATCHRESOLVE = "noop"
+BUILDCFG_VARS = "VARIANT_NAME VARIANT_ID BB_VERSION BUILD_SYS NATIVELSBSTRING TARGET_SYS MACHINE DISTRO DISTRO_VERSION TUNE_FEATURES TARGET_FPU"
+DISTRO = "printnanny"
+IMAGE_FSTYPES = "tar.gz ext4 ext4.gz ext4 wic wic.gz wic.bmap"
+MACHINE ?= "raspberrypi4-64"
+RUST_VERSION ?= "1.64"
+PATCHRESOLVE = "noop"
 
-  BB_DISKMON_DIRS ??= "\
-      STOPTASKS,\${TMPDIR},1G,100K \
-      STOPTASKS,\${DL_DIR},1G,100K \
-      STOPTASKS,\${SSTATE_DIR},1G,100K \
-      STOPTASKS,/tmp,100M,100K \
-      HALT,\${TMPDIR},100M,1K \
-      HALT,\${DL_DIR},100M,1K \
-      HALT,\${SSTATE_DIR},100M,1K \
-      HALT,/tmp,10M,1K"
+BB_DISKMON_DIRS ??= "
+    STOPTASKS,\${TMPDIR},1G,100K
+    STOPTASKS,\${DL_DIR},1G,100K
+    STOPTASKS,\${SSTATE_DIR},1G,100K
+    STOPTASKS,/tmp,100M,100K
+    HALT,\${TMPDIR},100M,1K
+    HALT,\${DL_DIR},100M,1K
+    HALT,\${SSTATE_DIR},100M,1K
+    HALT,/tmp,10M,1K"
 
-  CONF_VERSION = "2"
+CONF_VERSION = "2"
 EOF
 
 # run the build

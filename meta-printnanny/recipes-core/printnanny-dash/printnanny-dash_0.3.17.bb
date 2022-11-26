@@ -7,6 +7,7 @@ SRC_URI = "\
 "
 SRC_URI[sha256sum] = "56b23386a243c711144a9aa7a631f497072722b568f2e70dd4522055761efe0b"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
+LICENSE = "AGPL-3.0-or-later"
 
 do_install(){
     install -d "${D}${bindir}"

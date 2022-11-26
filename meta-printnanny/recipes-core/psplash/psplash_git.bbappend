@@ -7,6 +7,7 @@ SRC_URI += "\
     file://10-fb0-systemd.rules \
 "
 SPLASH_IMAGES:rpi = "file://psplash-printnanny-img.h;outsuffix=printnanny"
+SPLASH_IMAGES:qemux86-64 = "file://psplash-printnanny-img.h;outsuffix=printnanny"
 
 do_install:prepend() {
     install -d "${D}/etc/udev/rules.d"

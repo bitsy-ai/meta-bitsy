@@ -7,6 +7,6 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     gstreamer-apps \
-    libcamera-apps \
+    ${@bb.utils.contains('MACHINE', 'raspberrypi4', 'libcamera-apps', '', d)} \
     janus-gateway \
 "

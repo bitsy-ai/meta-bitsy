@@ -1,0 +1,5 @@
+software =
+{
+	version = "@@DISTRO_VERSION@@";
+	qemuall = {};
+}

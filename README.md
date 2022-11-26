@@ -12,21 +12,19 @@ an image. It uses Docker to manage these components, and so requires that the
 
 ### Manual Process
 
+You can run the following steps, which [_must not_ be run as the `root` user](https://wiki.yoctoproject.org/wiki/Technical_FAQ#Why_can.27t_I_run_bitbake_as_root.3F) (however, you'll need `sudo` access).
+
 ```sh
-# are we root?
-
-[ $(id -u) = 0 ] || SUDO="sudo"
 # Install prerequisities
-
-$SUDO apt-get update
-$SUDO apt-get -y install git cpio git python3-full binutils bzip2 chrpath \
+sudo apt-get update
+sudo env DEBIAN_FRONTEND=noninteractive \
+      apt-get -y install git cpio git python3-full binutils bzip2 chrpath \
                         build-essential diffstat file gawk lz4 zstd wget \
-                        locales vim tini
+                        locales
 
 # ensure en_US.UTF-8 locale is generated
-
-grep -q '^en_US.UTF-8 UTF-8' /etc/locale.gen || echo 'en_US.UTF-8 UTF-8' | $SUDO tee -a /etc/locale.gen
-local-gen
+grep -q '^en_US.UTF-8 UTF-8' /etc/locale.gen || echo 'en_US.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
+sudo locale-gen
 
 # Obtain the langdale branch of poky
 git clone -b langdale git://git.yoctoproject.org/poky poky
@@ -50,23 +48,23 @@ POKY_BBLAYERS_CONF_VERSION = "2"
 BBPATH = "\${TOPDIR}"
 BBFILES ?= ""
 
-BBLAYERS ?= "
-  /poky/meta
-  /poky/meta-poky
-  /poky/meta-yocto-bsp
-  /poky/meta-raspberrypi
-  /poky/meta-openembedded/meta-oe
-  /poky/meta-openembedded/meta-python
-  /poky/meta-openembedded/meta-multimedia
-  /poky/meta-bitsy
-  /poky/meta-neural-network
-  /poky/meta-bitsy/meta-printnanny
-  /poky/meta-openembedded/meta-networking
-  /poky/meta-openembedded/meta-filesystems
-  /poky/meta-openembedded/meta-initramfs
-  /poky/meta-openembedded/meta-webserver
-  /poky/meta-swupdate
-  /poky/meta-microcontroller
+BBLAYERS ?= " \\
+  $PWD/meta \\
+  $PWD/meta-poky \\
+  $PWD/meta-yocto-bsp \\
+  $PWD/meta-raspberrypi \\
+  $PWD/meta-openembedded/meta-oe \\
+  $PWD/meta-openembedded/meta-python \\
+  $PWD/meta-openembedded/meta-multimedia \\
+  $PWD/meta-bitsy \\
+  $PWD/meta-neural-network \\
+  $PWD/meta-bitsy/meta-printnanny \\
+  $PWD/meta-openembedded/meta-networking \\
+  $PWD/meta-openembedded/meta-filesystems \\
+  $PWD/meta-openembedded/meta-initramfs \\
+  $PWD/meta-openembedded/meta-webserver \\
+  $PWD/meta-swupdate \\
+  $PWD/meta-microcontroller \\
 "
 EOF
 
@@ -79,14 +77,14 @@ MACHINE ?= "raspberrypi4-64"
 RUST_VERSION ?= "1.64"
 PATCHRESOLVE = "noop"
 
-BB_DISKMON_DIRS ??= "
-    STOPTASKS,\${TMPDIR},1G,100K
-    STOPTASKS,\${DL_DIR},1G,100K
-    STOPTASKS,\${SSTATE_DIR},1G,100K
-    STOPTASKS,/tmp,100M,100K
-    HALT,\${TMPDIR},100M,1K
-    HALT,\${DL_DIR},100M,1K
-    HALT,\${SSTATE_DIR},100M,1K
+BB_DISKMON_DIRS ??= " \\
+    STOPTASKS,\${TMPDIR},1G,100K \\
+    STOPTASKS,\${DL_DIR},1G,100K \\
+    STOPTASKS,\${SSTATE_DIR},1G,100K \\
+    STOPTASKS,/tmp,100M,100K \\
+    HALT,\${TMPDIR},100M,1K \\
+    HALT,\${DL_DIR},100M,1K \\
+    HALT,\${SSTATE_DIR},100M,1K \\
     HALT,/tmp,10M,1K"
 
 CONF_VERSION = "2"

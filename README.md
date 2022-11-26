@@ -92,7 +92,12 @@ EOF
 
 # run the build
 source oe-init-build-env ./build
-bitbake printnanny-release-image
+
+echo "Before continuing, you need to accept several licenses that are required to build this software."
+echo "To accept these licenses, run:"
+echo "   echo 'LICENSE_FLAGS_ACCEPTED += \"commercial_gstreamer1.0-libav commercial_gstreamer1.0-plugins-ugly commercial_ffmpeg commercial_mpeg2dec synaptics-killswitch\"' >> conf/local.conf"
+echo "Then run:"
+echo "   bitbake printnanny-release-image"
 ```
 
 ### Supported Yocto Project Releases

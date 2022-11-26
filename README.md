@@ -13,16 +13,19 @@ an image. It uses Docker to manage these components, and so requires that the
 ### Manual Process
 
 ```sh
+# are we root?
+
+[ $(id -u) = 0 ] || SUDO="sudo"
 # Install prerequisities
 
-sudo apt-get update
-sudo apt-get -y install git cpio git python3-full binutils bzip2 chrpath \
+$SUDO apt-get update
+$SUDO apt-get -y install git cpio git python3-full binutils bzip2 chrpath \
                         build-essential diffstat file gawk lz4 zstd wget \
-                        locales vim tini sudo
+                        locales vim tini
 
 # ensure en_US.UTF-8 locale is generated
 
-grep -q '^en_US.UTF-8 UTF-8' /etc/locale.gen || echo 'en_US.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
+grep -q '^en_US.UTF-8 UTF-8' /etc/locale.gen || echo 'en_US.UTF-8 UTF-8' | $SUDO tee -a /etc/locale.gen
 local-gen
 
 # Obtain the langdale branch of poky

@@ -9,14 +9,14 @@ SRC_URI:append = "\
     file://octoprint-venv.service.tmpl \
 "
 
-PV = "r1"
+PV = "r2"
 
 OCTOPRINT_USER ?= "printnanny"
 # install to /home directory, which is a writable overlayfs
 # OctoPrint allows users to update the software & install plugins via pip module, so it can't be installed to read-only rootfs
 # The pip module must also be sandboxed (virtualenv)
 OCTOPRINT_BASEDIR ?= "/home/${OCTOPRINT_USER}/.octoprint"
-OCTOPRINT_VENV ?= "${OCTOPRINT_BASEDIR}/.venv"
+OCTOPRINT_VENV ?= "/home/${OCTOPRINT_USER}/octoprint-venv"
 OCTOPRINT_ENV ?= "/run/octoprint/env"
 OCTOPRINT_PORT ?= "5001"
 

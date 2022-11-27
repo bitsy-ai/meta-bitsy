@@ -42,7 +42,10 @@ COPY recipes-connectivity /poky/meta-bitsy/recipes-connectivity
 COPY recipes-core         /poky/meta-bitsy/recipes-core
 COPY recipes-devtools     /poky/meta-bitsy/recipes-devtools
 COPY recipes-extended     /poky/meta-bitsy/recipes-extended
+COPY recipes-graphics     /poky/meta-bitsy/recipes-graphics
+COPY recipes-kernel       /poky/meta-bitsy/recipes-kernel
 COPY recipes-multimedia   /poky/meta-bitsy/recipes-multimedia
+COPY recipes-support      /poky/meta-bitsy/recipes-support
 COPY recipes-tensorflow   /poky/meta-bitsy/recipes-tensorflow
 
 COPY docker/bblayers.conf docker/local.conf /poky/build/conf/

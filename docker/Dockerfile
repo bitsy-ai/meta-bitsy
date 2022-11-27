@@ -40,6 +40,7 @@ COPY conf                 /poky/meta-bitsy/conf
 COPY meta-printnanny      /poky/meta-bitsy/meta-printnanny
 COPY recipes-connectivity /poky/meta-bitsy/recipes-connectivity
 COPY recipes-core         /poky/meta-bitsy/recipes-core
+COPY recipes-devtools     /poky/meta-bitsy/recipes-devtools
 COPY recipes-extended     /poky/meta-bitsy/recipes-extended
 COPY recipes-multimedia   /poky/meta-bitsy/recipes-multimedia
 COPY recipes-tensorflow   /poky/meta-bitsy/recipes-tensorflow

@@ -34,6 +34,8 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
+MESON_BUILDTYPE:printnanny = "release"
+
 RDEPENDS:${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)}"
 
 inherit meson pkgconfig python3native

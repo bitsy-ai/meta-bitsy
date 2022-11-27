@@ -2,7 +2,7 @@
 
 set -e
 
-#/ build.sh [--qemu]
+#/ build.sh [--qemu] [<target>]
 #/
 #/ Leverages docker to produce a Print Nanny image, optionally targeting qemu
 #/ (untested) instead of the Raspberry Pi 4.
@@ -18,10 +18,12 @@ usage() {
 }
 
 MACHINE="raspberrypi4-64"
+
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --qemu) MACHINE=qemux86-64; shift ;;
-    *) usage ;;
+    -*) usage ;;
+    *) break ;;
   esac
 done
 
@@ -29,8 +31,16 @@ DOCKER_BUILDKIT=true docker build -t printnanny-yocto -f docker/Dockerfile .
 
 docker run \
   --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \
+  --mount type=volume,source=printnanny-yocto-downloads,destination=/poky/build/downloads \
+  --mount type=volume,source=printnanny-yocto-sscache,destination=/poky/build/sstate-cache \
+  ubuntu:22.04 \
+  chown -R 999 /poky/build
+
+docker run \
+  --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \
+  --mount type=volume,source=printnanny-yocto-downloads,destination=/poky/build/downloads \
   --mount type=volume,source=printnanny-yocto-sscache,destination=/poky/build/sstate-cache \
   -e MACHINE="$MACHINE" \
   -it \
   printnanny-yocto \
-    printnanny-release-image
+    "${1:-printnanny-release-image}"

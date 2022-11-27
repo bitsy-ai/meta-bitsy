@@ -13,4 +13,4 @@ S = "${WORKDIR}/argon2-cffi-21.3.0"
 
 RDEPENDS:${PN} = "python3-argon2-cffi-bindings"
 
-inherit setuptools3
+inherit python_poetry_core

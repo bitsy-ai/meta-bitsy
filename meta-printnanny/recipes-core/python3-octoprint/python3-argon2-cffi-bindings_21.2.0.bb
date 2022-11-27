@@ -11,6 +11,14 @@ SRC_URI[sha256sum] = "bb89ceffa6c791807d1305ceb77dbfacc5aa499891d2c55661c6459651
 
 S = "${WORKDIR}/argon2-cffi-bindings-21.2.0"
 
+DEPENDS += "python3-setuptools-scm-native python3-cffi-native"
+
 RDEPENDS:${PN} = ""
 
-inherit setuptools3
+inherit python_poetry_core
+
+# disable SSE2 optimization
+# https://github.com/hynek/argon2-cffi-bindings/tree/eac4e7b8370d41af0d4714cfae608a112649f2a5#overriding-automatic-sse2-detection
+do_compile:prepend(){
+    export ARGON2_CFFI_USE_SSE2=0
+}

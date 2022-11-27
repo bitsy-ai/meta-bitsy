@@ -1,21 +1,12 @@
 SUMMARY = "PrintNanny OS Gstreamer Plugin"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs"
 
-SRC_URI = "\
-    https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/printnanny-gst-plugin-v${PV}/printnanny-gst-plugin-v${PV}-${TARGET_ARCH}-unknown-linux-gnu.tar.gz \
+SRC_URI:aarch64 = "\
+    https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/printnanny-gst-plugin-v${PV}/printnanny-gst-plugin-v${PV}-${TARGET_ARCH}-unknown-linux-gnu.tar.gz;sha256sum=78b8b9f15800aa5eeb75ad3e69c519b66cdd3e7ecbae910f69c2442b99fd3d9c \
 "
-
-SRC_URI[sha256sum] = "${@bb.utils.contains( \
-    'TARGET_ARCH', \
-    'aarch64', \
-    '78b8b9f15800aa5eeb75ad3e69c519b66cdd3e7ecbae910f69c2442b99fd3d9c', \
-    bb.utils.contains( \
-      'TARGET_ARCH', \
-      'x86_64', \
-      '3439fd013133a3c58440666a61338a03ffdaced819c7e53257e4730902b2c0bd', \
-      '', \
-      d), \
-    d)}"
+SRC_URI:x86-64 = "\
+    https://github.com/bitsy-ai/printnanny-gst-plugin-rs/releases/download/printnanny-gst-plugin-v${PV}/printnanny-gst-plugin-v${PV}-${TARGET_ARCH}-unknown-linux-gnu.tar.gz;sha256sum=3439fd013133a3c58440666a61338a03ffdaced819c7e53257e4730902b2c0bd \
+"
 
 LICENSE = "AGPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"

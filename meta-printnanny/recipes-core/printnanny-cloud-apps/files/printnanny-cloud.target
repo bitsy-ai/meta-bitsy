@@ -1,7 +1,5 @@
 [Unit]
 Description=systemd unit to group all PrintNanny Cloud services
-
-[Service]
 Wants=printnanny-cloud-nats.service printnanny-cloud-sync.service
 
 [Install]

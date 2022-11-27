@@ -29,18 +29,31 @@ done
 
 DOCKER_BUILDKIT=true docker build -t printnanny-yocto -f docker/Dockerfile .
 
-docker run \
-  --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \
-  --mount type=volume,source=printnanny-yocto-downloads,destination=/poky/build/downloads \
-  --mount type=volume,source=printnanny-yocto-sscache,destination=/poky/build/sstate-cache \
-  ubuntu:22.04 \
-  chown -R 999 /poky/build
+mkdir -p output
 
 docker run \
   --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \
   --mount type=volume,source=printnanny-yocto-downloads,destination=/poky/build/downloads \
   --mount type=volume,source=printnanny-yocto-sscache,destination=/poky/build/sstate-cache \
+  --mount type=volume,source=printnanny-yocto-tmp,destination=/poky/build/tmp \
+  --mount type=bind,source="$(pwd)/output",target=/output \
+  ubuntu:22.04 \
+  chown -R 999 /poky/build /output
+
+docker run \
+  --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \
+  --mount type=volume,source=printnanny-yocto-downloads,destination=/poky/build/downloads \
+  --mount type=volume,source=printnanny-yocto-sscache,destination=/poky/build/sstate-cache \
+  --mount type=volume,source=printnanny-yocto-tmp,destination=/poky/build/tmp \
+  --mount type=bind,source="$(pwd)/output",target=/output \
   -e MACHINE="$MACHINE" \
   -it \
   printnanny-yocto \
-    "${1:-printnanny-release-image}"
+    "${1:-printnanny-release-image}" || RC=$?
+
+docker run \
+  --mount type=bind,source="$(pwd)/output",target=/output \
+  ubuntu:22.04 \
+  chown -R "$(id -u)" /output
+
+exit "${RC:-0}"

@@ -35,7 +35,6 @@ RUN git clone             https://github.com/nnstreamer/meta-neural-network.git 
 RUN git clone             https://github.com/sbabic/meta-swupdate.git               /poky/meta-swupdate
 RUN git clone             https://github.com/schnitzeltony/meta-microcontroller.git /poky/meta-microcontroller
 
-COPY .git                 /poky/meta-bitsy/.git
 COPY classes              /poky/meta-bitsy/classes
 COPY conf                 /poky/meta-bitsy/conf
 COPY meta-printnanny      /poky/meta-bitsy/meta-printnanny
@@ -49,9 +48,10 @@ COPY docker/bblayers.conf docker/local.conf /poky/build/conf/
 
 USER root
 RUN chown -R yocto /poky/meta-bitsy /poky/build
+COPY .git /poky/meta-bitsy/.git
+RUN chown -R yocto /poky/meta-bitsy/.git
 
 COPY docker/entrypoint.sh /
 
 USER yocto
-RUN /entrypoint.sh -p
 ENTRYPOINT [ "tini", "--", "/entrypoint.sh" ]

@@ -2,10 +2,16 @@
 
 set -e
 
-#/ build.sh [--qemu] [<target>]
+#/ build.sh [--qemu] [--shell] [<target>]
 #/
 #/ Leverages docker to produce a Print Nanny image, optionally targeting qemu
 #/ (untested) instead of the Raspberry Pi 4.
+#/
+#/ --qemu    build an image that is usable on qemu and not physical hardware.
+#/           this is probably broken.
+#/
+#/ --shell   drop you into a shell in the yocto environment rather than
+#/           invoking bitbake
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "⛔ docker is required for build.sh, but it could not be found. please install docker and try again." >&2
@@ -18,12 +24,14 @@ usage() {
 }
 
 MACHINE="raspberrypi4-64"
-
+SHELL=""
+TARGET="printnanny-release-image"
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --qemu) MACHINE=qemux86-64; shift ;;
+    --shell) SHELL="$1"; TARGET=""; shift ;;
     -*) usage ;;
-    *) break ;;
+    *) TARGET="$1"; break ;;
   esac
 done
 
@@ -48,8 +56,9 @@ docker run \
   --mount type=bind,source="$(pwd)/output",target=/output \
   -e MACHINE="$MACHINE" \
   -it \
+  ${SHELL:+--entrypoint=/bin/bash} \
   printnanny-yocto \
-    "${1:-printnanny-release-image}" || RC=$?
+    ${TARGET:+"$TARGET"} || RC=$?
 
 docker run \
   --mount type=bind,source="$(pwd)/output",target=/output \

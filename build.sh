@@ -35,18 +35,14 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
-DOCKER_BUILDKIT=true docker build -t printnanny-yocto -f docker/Dockerfile .
+DOCKER_BUILDKIT=true docker build --pull -t printnanny-yocto -f docker/Dockerfile .
 
 mkdir -p output
 
 docker run \
-  --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \
-  --mount type=volume,source=printnanny-yocto-downloads,destination=/poky/build/downloads \
-  --mount type=volume,source=printnanny-yocto-sscache,destination=/poky/build/sstate-cache \
-  --mount type=volume,source=printnanny-yocto-tmp,destination=/poky/build/tmp \
   --mount type=bind,source="$(pwd)/output",target=/output \
   ubuntu:22.04 \
-  chown -R 999 /poky/build /output
+  chown -R 999 /output
 
 docker run \
   --mount type=volume,source=printnanny-yocto-cache,destination=/poky/build/cache \

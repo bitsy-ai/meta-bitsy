@@ -29,11 +29,13 @@ RUN --mount=type=cache,target=/var/cache/apt \
 RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen; locale-gen
 
 USER yocto
-RUN git clone             https://github.com/agherzan/meta-raspberrypi.git          /poky/meta-raspberrypi
-RUN git clone -b langdale https://github.com/openembedded/meta-openembedded         /poky/meta-openembedded
+RUN git clone -b langdale https://github.com/agherzan/meta-raspberrypi.git          /poky/meta-raspberrypi
+RUN git clone -b langdale https://github.com/openembedded/meta-openembedded.git     /poky/meta-openembedded; \
+    cd /poky/meta-openembedded; git reset --hard c5668905a6d8a78fb72c2cbf8b20e91e686ceb86
 RUN git clone             https://github.com/nnstreamer/meta-neural-network.git     /poky/meta-neural-network
 RUN git clone             https://github.com/sbabic/meta-swupdate.git               /poky/meta-swupdate
 RUN git clone             https://github.com/schnitzeltony/meta-microcontroller.git /poky/meta-microcontroller
+
 
 COPY classes              /poky/meta-bitsy/classes
 COPY conf                 /poky/meta-bitsy/conf

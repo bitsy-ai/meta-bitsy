@@ -13,4 +13,6 @@ S = "${WORKDIR}/PyYAML-6.0"
 
 RDEPENDS:${PN} = ""
 
+DEPENDS = "libyaml ${PYTHON_PN}-cython-native"
+
 inherit setuptools3

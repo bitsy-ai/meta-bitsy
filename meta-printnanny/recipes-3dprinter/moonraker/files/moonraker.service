@@ -21,6 +21,6 @@ Type=simple
 SupplementaryGroups=moonraker-admin
 User=printnanny
 RemainAfterExit=yes
-ExecStart=/var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -d ${MOONRAKER_DATA_PATH} -l ${MOONRAKER_LOG} -c ${MOONRAKER_CONFIG_FILE}"
+ExecStart=/var/lib/moonraker/.venv/bin/python3 /var/lib/moonraker/moonraker/moonraker.py -d "${MOONRAKER_DATA_PATH}" -l "${MOONRAKER_LOG}" -c "${MOONRAKER_CONFIG_FILE}"
 Restart=always
 RestartSec=10

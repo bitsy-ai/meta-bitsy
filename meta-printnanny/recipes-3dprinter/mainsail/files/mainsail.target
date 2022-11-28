@@ -1,7 +1,5 @@
 [Unit]
 Description=systemd unit to group all Mainsail, Moonraker, Klipper services
-
-[Service]
 Wants=klipper.service moonraker.service
 
 [Install]

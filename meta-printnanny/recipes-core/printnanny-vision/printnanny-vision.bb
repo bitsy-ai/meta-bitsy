@@ -8,7 +8,6 @@ SRC_URI = " \
     file://printnanny-vision.service \
 "
 
-RDEPENDS:${PN} += "printnanny-cli printnanny-nn"
 
 do_install() {
     install -d "${D}${systemd_system_unitdir}"
@@ -19,7 +18,8 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-vision.service \
 "
 
-RDEPENDS:${PN} = "\
+RDEPENDS:${PN} += "\
+  printnanny-cli \
   printnanny-gst-plugin \
   printnanny-nn \
 "

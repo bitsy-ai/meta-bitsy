@@ -15,6 +15,11 @@ do_install(){
     ln -sf ./gstreamer-1.0/libgstprintnanny.so ./libgstprintnanny.so
 }
 
+R = "1"
+
+PREFERRED_VERSION:${PN}:tensorflow-lite-native = "2.10.0"
+PREFERRED_VERSION:${PN}:tensorflow-lite = "2.10.0"
+
 SYSTEMD_AUTO_ENABLE = "enable"
 
 
@@ -22,9 +27,10 @@ DEPENDS = "\
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
     nnstreamer \
+    tensorflow-lite \
 "
 
-RDEPENDS:${PN} = "\
+RDEPENDS:${PN} += "\
     glib-2.0 \
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
@@ -37,6 +43,4 @@ RDEPENDS:${PN} = "\
     tensorflow-lite \
 "
 
-INSANE_SKIP:${PN} += "dev-so"
-
-FILES:${PN} += "${libdir}/gstprintnanny/*.so ${libdir}/gstreamer-1.0/*.so"
+FILES:${PN} += "${libdir}/"

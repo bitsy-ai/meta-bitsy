@@ -18,7 +18,7 @@ DEPENDS += "openssl \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly \
 "
-RDEPENDS:${PN} = "\
+RDEPENDS:${PN} += "\
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good \
@@ -27,5 +27,6 @@ RDEPENDS:${PN} = "\
     libcamera \
     libcamera-gst \
     nnstreamer \
+    tensorflow-lite \
 "
 FILES:${PN} += "${datadir} ${bindir}"

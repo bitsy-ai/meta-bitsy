@@ -15,33 +15,6 @@ do_install(){
     ln -sf ./gstreamer-1.0/libgstprintnanny.so ./libgstprintnanny.so
 }
 
-R = "1"
+FILES:${PN} += "${libdir}/gstprintnanny ${bindir}/printnanny-gst-pipeline"
 
-PREFERRED_VERSION:${PN}:tensorflow-lite-native = "2.9.1"
-PREFERRED_VERSION:${PN}:tensorflow-lite = "2.9.1"
-
-SYSTEMD_AUTO_ENABLE = "enable"
-
-DEPENDS = "\
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    nnstreamer \
-    tensorflow-lite \
-"
-
-RDEPENDS:${PN} += "\
-    glib-2.0 \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-ugly \
-    libcamera \
-    libcamera-gst \
-    nnstreamer \
-    nnstreamer-dev \
-    nnstreamer-tensorflow-lite \
-    tensorflow-lite \
-"
-
-FILES:${PN} += "${libdir}/"
+include printnanny-gst-plugin.inc

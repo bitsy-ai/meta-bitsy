@@ -15,6 +15,9 @@ do_install(){
     ln -sf ./gstreamer-1.0/libgstprintnanny.so ./libgstprintnanny.so
 }
 
+PREFERRED_VERSION:${PN}:tensorflow-lite-native = "2.9.1"
+PREFERRED_VERSION:${PN}:tensorflow-lite = "2.9.1"
+
 SYSTEMD_AUTO_ENABLE = "enable"
 
 
@@ -34,8 +37,9 @@ RDEPENDS:${PN} = "\
     libcamera \
     libcamera-gst \
     nnstreamer \
+    tensorflow-lite \
 "
 
 INSANE_SKIP:${PN} += "dev-so"
 
-FILES:${PN} += "${libdir}/gstprintnanny/*.so ${libdir}/gstreamer-1.0/*.so"
+FILES:${PN} += "${libdir}/"

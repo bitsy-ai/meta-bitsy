@@ -17,11 +17,10 @@ do_install(){
 
 R = "1"
 
-PREFERRED_VERSION:${PN}:tensorflow-lite-native = "2.10.0"
-PREFERRED_VERSION:${PN}:tensorflow-lite = "2.10.0"
+PREFERRED_VERSION:${PN}:tensorflow-lite-native = "2.9.1"
+PREFERRED_VERSION:${PN}:tensorflow-lite = "2.9.1"
 
 SYSTEMD_AUTO_ENABLE = "enable"
-
 
 DEPENDS = "\
     gstreamer1.0 \
@@ -40,6 +39,7 @@ RDEPENDS:${PN} += "\
     libcamera \
     libcamera-gst \
     nnstreamer \
+    nnstreamer-dev \
     nnstreamer-tensorflow-lite \
     tensorflow-lite \
 "

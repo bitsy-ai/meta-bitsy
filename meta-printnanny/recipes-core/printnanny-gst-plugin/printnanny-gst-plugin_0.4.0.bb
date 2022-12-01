@@ -34,7 +34,6 @@ RDEPENDS:${PN} = "\
     libcamera \
     libcamera-gst \
     nnstreamer \
-    tensorflow-lite \
 "
 
 INSANE_SKIP:${PN} += "dev-so"

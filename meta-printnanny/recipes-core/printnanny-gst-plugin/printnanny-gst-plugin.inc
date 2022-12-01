@@ -27,6 +27,5 @@ RDEPENDS:${PN} = "\
     libcamera \
     libcamera-gst \
     nnstreamer \
-    tensorflow-lite \
 "
 FILES:${PN} += "${datadir} ${bindir}"

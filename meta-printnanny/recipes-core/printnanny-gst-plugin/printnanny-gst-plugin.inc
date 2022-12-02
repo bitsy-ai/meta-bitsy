@@ -38,3 +38,6 @@ RDEPENDS:${PN} += "\
     tensorflow-lite \
 "
 FILES:${PN} += "${datadir} ${bindir} ${libdir}/"
+
+# required to install nnstreamer-dev
+INSANE_SKIP:${PN} += "dev-deps"

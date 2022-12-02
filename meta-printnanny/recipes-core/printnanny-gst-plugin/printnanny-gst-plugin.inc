@@ -1,9 +1,3 @@
-inherit pkgconfig 
-inherit systemd
-
-PREFERRED_VERSION:${PN}:tensorflow-lite-native = "2.9.1"
-PREFERRED_VERSION:${PN}:tensorflow-lite = "2.9.1"
-
 # copy LICENSE_FLAGS_ACCEPTED to local.conf
 LICENSE_FLAGS_ACCEPTED += "\
     commercial_gstreamer1.0-libav \

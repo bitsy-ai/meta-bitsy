@@ -15,11 +15,7 @@ S = "${WORKDIR}/git"
 
 R = "1"
 
-inherit systemd overlayfs
-
-OVERLAYFS_MOUNT_POINT[moonraker_data] = "/data"
-OVERLAYFS_WRITABLE_PATHS[moonraker_data] = "/var/lib/moonraker/data"
-OVERLAYFS_QA_SKIP[moonraker_data] = "mount-configured"
+inherit systemd
 
 RDEPENDS:${PN} = "\
     python3 \
@@ -52,10 +48,9 @@ RDEPENDS:${PN} = "\
 RDEPENDS:${PN} += "polkit"
 
 
-INSTALL_DIR ?= "/var/lib/moonraker"
-MOONRAKER_VENV ?= "${INSTALL_DIR}/.venv"
-
-PRINTNANNY_USER ?= "printnanny"
+MOONRAKER_USER ?= "printnanny"
+INSTALL_DIR ?= "/home/${MOONRAKER_USER}/.moonraker"
+MOONRAKER_VENV ?= "/home/${MOONRAKER_USER}/moonraker-venv"
 
 do_compile() {
     echo "Skipping compilation, moonraker does not provide pep517 compliant python build"

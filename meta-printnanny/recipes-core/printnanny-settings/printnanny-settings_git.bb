@@ -8,9 +8,12 @@ SRC_URI = "git://github.com/bitsy-ai/printnanny-settings.git;branch=main;protoco
 SRCREV = "c9ab22b48b7de712e170048a85afecab5c820f8d"
 S = "${WORKDIR}/git"
 
+PRINTNANNY_USER ?= "printnanny"
+INSTALL_DIR ?= "/home/${PRINTNANNY_USER}/.config/printnanny/settings"
+
 do_install(){
-    install -d "${D}/var/lib/printnanny/settings/"
-    cp -r "${S}" "${D}/var/lib/printnanny/settings/"
+    install -d "${D}${INSTALL_DIR}"
+    cp -r "${S}" "${D}${INSTALL_DIR}"
 }
 INSANE_SKIP:${PN} = "file-rdeps"
-FILES:${PN} = "/var/lib/printnanny/settings/"
+FILES:${PN} = "${INSTALL_DIR}"

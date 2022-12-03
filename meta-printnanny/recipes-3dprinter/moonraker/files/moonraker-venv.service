@@ -1,6 +1,6 @@
 [Unit]
 Description=Create Moonraker virtualenv 
-ConditionPathExists=!/var/lib/moonraker/.venv
+ConditionPathExists=!/home/printnanny/klipper-venv
 
 [Service]
 Type=oneshot

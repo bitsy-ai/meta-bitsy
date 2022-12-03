@@ -9,15 +9,14 @@ SRC_URI = "\
     file://klipper-venv.service \
 "
 SRCREV = "d883c57d77f80ea7343e995084d54dacbbd16290"
-# SRC_URI[sha256sum] = "fcd9fd2de95ff7174dba58826e393eaf948bfcc430ce44cbfaabefe685295b86"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=1ebbd3e34237af26da5dc08a4e440464"
 S = "${WORKDIR}/git"
 
-
-INSTALL_DIR = "/var/lib/klipper"
-
 KLIPPER_USER ?= "printnanny"
+INSTALL_DIR = "/home/${KLIPPER_USER}/.klipper"
+VENV_DIR = "/home/${KLIPPER_USER}/klipper-venv"
+
 inherit systemd
 
 do_compile() {
@@ -25,7 +24,7 @@ do_compile() {
     echo "WARNING, klipper does not provide pep517 compliant python build"
 }
 
-# install klipper source tree to /var/lib/klipper
+# install klipper source tree to $INSTALL_DIR 
 do_install() {
     install -d "${D}${INSTALL_DIR}"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}

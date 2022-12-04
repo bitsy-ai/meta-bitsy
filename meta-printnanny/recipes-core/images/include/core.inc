@@ -34,6 +34,7 @@ IMAGE_INSTALL:append = "\
   packagegroup-printnanny-cv \
   packagegroup-printnanny-utils \
   packagegroup-printnanny-syncthing \
+  packagegroup-printnanny-tailscale \
   packagegroup-printnanny-webrtc \
   packagegroup-swupdate \
   ${CORE_IMAGE_EXTRA_INSTALL} \

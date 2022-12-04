@@ -1,6 +1,7 @@
 DESCRIPTION = "Tailscale client"
 HOMEPAGE = "https://tailscale.com/"
 LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-3-Clause;md5=550794465ba0ec5312d6919e203a55f9"
 
 SRC_URI:aarch64 = "\
     https://pkgs.tailscale.com/stable/tailscale_${PV}_arm64.tgz \

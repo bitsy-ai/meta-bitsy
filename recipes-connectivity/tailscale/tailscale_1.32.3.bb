@@ -3,9 +3,9 @@ HOMEPAGE = ""
 LICENSE = "BSD-3-Clause"
 
 SRC_URI:aarch64 = "\
-    https://pkgs.tailscale.com/stable/tailscale_${PV}_arm64.tgz
+    https://pkgs.tailscale.com/stable/tailscale_${PV}_arm64.tgz \
 "
-SRC_URI[sha256sum]:aarch64 = ""
+SRC_URI[sha256sum] = "3992e7accfe797e03118a0d09a3d6b77dce9056b170860bc9ed20bc66178877c"
 
 inherit systemd
 

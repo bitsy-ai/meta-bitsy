@@ -7,7 +7,8 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     htop \
-    v4l-utils \
-    nano \
     lsof \
+    nano \
+    v4l-utils \
+    tree \
 "

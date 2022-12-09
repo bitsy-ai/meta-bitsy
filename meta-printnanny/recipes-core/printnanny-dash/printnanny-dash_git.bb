@@ -20,7 +20,7 @@ INSTALL_DIR = "/var/www/printnanny-dash"
 DEPENDS:prepend = "nodejs-native nodejs-oe-cache-native "
 
 do_compile(){
-    cd ${S} && npm install && npm build
+    cd ${S} && npm install && npm run build
 }
 
 do_install(){

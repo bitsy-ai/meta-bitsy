@@ -6,12 +6,12 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get printnanny-dash could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/printnanny-dash/0.3.17"
+# SRC_URI += "crate://crates.io/printnanny-dash/0.4.0"
 SRC_URI += "git://git@github.com/bitsy-ai/printnanny-dash.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "4c148776a5f373ad8041234834269e382464e807"
+SRCREV = "76908264ddb5ac59faae075c4c4a59bbca1f3f42"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
-PV:append = ".AUTOINC+4c148776a5"
+PV:append = ".AUTOINC+76908264dd"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched

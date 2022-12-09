@@ -1,12 +1,12 @@
 # If this is git based prefer versioned ones if they exist
 # DEFAULT_PREFERENCE = "-1"
 
-inherit npm
+# inherit npm
 
 # how to get printnanny-dash could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-dash/0.4.0"
 SRC_URI = "git://git@github.com/bitsy-ai/printnanny-os-dash.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "b03383e67227a78d6f13c8256ed41a7ea5afa4b4"
+SRCREV = "d9993172f69ce5f2e8b633c33434ba38bcf98002"
 S = "${WORKDIR}/git"
 
 LIC_FILES_CHKSUM = " \
@@ -20,10 +20,12 @@ LICENSE = "LICENSE"
 INSTALL_DIR = "/var/www/printnanny-dash"
 
 DEPENDS:prepend = "nodejs-native nodejs-oe-cache-native "
-
+PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 
 do_install(){
     install -d ${D}${INSTALL_DIR}
+    export PSEUDO_DEBUG="nfoPcvdDyerpswikVx"
+    cd ${S} && npm install && npm run build --logs-max=0
     cp --preserve=mode,timestamps -R ${S}/dist/* ${D}${INSTALL_DIR}
 }
 

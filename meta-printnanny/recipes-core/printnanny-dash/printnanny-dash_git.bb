@@ -22,10 +22,13 @@ INSTALL_DIR = "/var/www/printnanny-dash"
 DEPENDS:prepend = "nodejs-native nodejs-oe-cache-native "
 PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 
+do_compile(){
+    cd ${S}
+    npm install
+    npm run build
+}
 do_install(){
     install -d ${D}${INSTALL_DIR}
-    export PSEUDO_DEBUG="nfoPcvdDyerpswikVx"
-    cd ${S} && npm install && npm run build --logs-max=0
     cp --preserve=mode,timestamps -R ${S}/dist/* ${D}${INSTALL_DIR}
 }
 

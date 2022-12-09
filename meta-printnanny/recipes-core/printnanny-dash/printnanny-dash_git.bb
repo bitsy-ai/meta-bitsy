@@ -6,7 +6,7 @@
 # how to get printnanny-dash could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-dash/0.4.0"
 SRC_URI = "git://git@github.com/bitsy-ai/printnanny-os-dash.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "d9993172f69ce5f2e8b633c33434ba38bcf98002"
+SRCREV = "d86e7ad4f30a3995ac6ae35fb31cc0aa16448c72"
 S = "${WORKDIR}/git"
 
 LIC_FILES_CHKSUM = " \

@@ -17,7 +17,7 @@ SUMMARY = "PrintNanny OS Dashboard"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-dash"
 LICENSE = "LICENSE"
 
-INSTALL_DIR = "/var/www/printnanny-dash"
+INSTALL_DIR = "/var/www/"
 
 DEPENDS:prepend = "nodejs-native nodejs-oe-cache-native "
 PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"

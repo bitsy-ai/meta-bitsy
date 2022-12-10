@@ -6,7 +6,5 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:${PN} = "\
-    gstreamer-apps \
-    libcamera-apps \
     janus-gateway \
 "

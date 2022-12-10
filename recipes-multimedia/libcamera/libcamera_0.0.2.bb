@@ -36,7 +36,7 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-EXTRA_OEMESON:raspberrypi-64 = " \
+EXTRA_OEMESON:raspberrypi4-64 = " \
     -Dpipelines=raspberrypi \
     -Dipas=raspberrypi \
     -Dv4l2=true \
@@ -58,8 +58,8 @@ do_configure:prepend() {
 }
 
 do_install:append() {
-    chrpath -d ${D}${libdir}/libcamera.so.0.0.1
-    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.1
+    chrpath -d ${D}${libdir}/libcamera.so.0.0.2
+    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.2
 }
 
 addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata

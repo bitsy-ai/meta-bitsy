@@ -2,7 +2,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += "\
     file://nginx-envsubst-on-templates.sh \
-    file://sites/printnanny \
+    file://sites/printnanny.conf \
     file://dash.locations.template \
     file://octoprint.locations.template \
     file://swupdate.locations.template \
@@ -15,7 +15,7 @@ do_install:append(){
   install -d "${D}${sysconfdir}/nginx/sites-available"
   install -d "${D}${sysconfdir}/nginx/sites-enabled"
 
-  install -m 0644 "${WORKDIR}/sites/printnanny" "${D}${sysconfdir}/nginx/sites-available/printnanny"
+  install -m 0644 "${WORKDIR}/sites/printnanny.conf" "${D}${sysconfdir}/nginx/sites-available/printnanny"
   ln -s -r "${D}${sysconfdir}/nginx/sites-available/printnanny" "${D}${sysconfdir}/nginx/sites-enabled/"
 
 

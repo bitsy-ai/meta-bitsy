@@ -12,17 +12,17 @@ SRC_URI = " \
         git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
 "
 
-SRCREV = "7219110a121c3904dca3bfb86da27ca5bfb57a76"
-PV = "202210+git${SRCPV}"
+SRCREV = "e3b26b4c4eb2582ea778a38545a8ac7801384db2"
+PV = "20221209+git${SRCPV}"
 S = "${WORKDIR}/git"
 
-DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent"
+DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
-
-PACKAGES =+ "${PN}-gst"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
+PACKAGECONFIG[tracing] = "-Dtracing=enabled,-Dtracing=disabled,libuv,libuv"
+PACKAGECONFIG[pycamera] = "-Dpycamera=enabled,-Dpycamera=disabled,pybind11"
 
 EXTRA_OEMESON = " \
     -Dpipelines=uvcvideo,simple,vimc \
@@ -34,7 +34,20 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-RDEPENDS:${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)}"
+EXTRA_OEMESON:raspberrypi4-64 = " \
+    -Dpipelines=raspberrypi \
+    -Dipas=raspberrypi \
+    -Dv4l2=true \
+    -Dcam=enabled \
+    -Dlc-compliance=disabled \
+    -Dtest=false \
+    -Ddocumentation=disabled \
+"
+
+RDEPENDS:${PN}-dev = "libyaml-dev"
+RDEPENDS:${PN} = "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)} \
+"
 
 inherit meson pkgconfig python3native
 
@@ -43,8 +56,8 @@ do_configure:prepend() {
 }
 
 do_install:append() {
-    chrpath -d ${D}${libdir}/libcamera.so.0.0.1
-    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.1
+    chrpath -d ${D}${libdir}/libcamera.so.0.0.2
+    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.2
 }
 
 addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
@@ -63,10 +76,10 @@ do_recalculate_ipa_signatures_package() {
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
 FILES:${PN}-dev += " ${libdir}/libcamera.so"
 FILES:${PN} += " ${libdir}/libcamera.so.0"
-FILES:${PN} += " ${libdir}/libcamera.so.0.0.1"
+FILES:${PN} += " ${libdir}/libcamera.so.0.0.2"
 FILES:${PN}-dev += " ${libdir}/libcamera-base.so"
 FILES:${PN} += " ${libdir}/libcamera-base.so.0"
-FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.1"
+FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.2"
 FILES:${PN} += " ${libdir}/v4l2-compat.so"
 FILES:${PN}-gst = "${libdir}/gstreamer-1.0/libgstlibcamera.so"
 FILES:${PN} += " ${bindir}/cam"

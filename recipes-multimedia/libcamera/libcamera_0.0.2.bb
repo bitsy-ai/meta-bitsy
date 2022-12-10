@@ -46,8 +46,8 @@ EXTRA_OEMESON:raspberrypi4-64 = " \
     -Ddocumentation=disabled \
 "
 
+RDEPENDS:${PN}-dev = "libyaml-dev"
 RDEPENDS:${PN} = "\
-    libyaml-dev \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)} \
 "
 

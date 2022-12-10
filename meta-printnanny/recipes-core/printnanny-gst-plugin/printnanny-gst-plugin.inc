@@ -25,7 +25,7 @@ RDEPENDS:${PN} += "\
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly \
     libcamera \
-    libcamera-gst \
+    libcamera-dev \
     nnstreamer \
     nnstreamer-dev \
     nnstreamer-tensorflow-lite \

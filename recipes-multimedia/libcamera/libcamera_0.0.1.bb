@@ -16,13 +16,15 @@ SRCREV = "7219110a121c3904dca3bfb86da27ca5bfb57a76"
 PV = "202210+git${SRCPV}"
 S = "${WORKDIR}/git"
 
-DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent"
+DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
 
 PACKAGES =+ "${PN}-gst"
 
 PACKAGECONFIG ??= ""
-PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
+PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base,gstreamer1.0 gstreamer1.0-plugins-base"
+PACKAGECONFIG[tracing] = "-Dtracing=enabled,-Dtracing=disabled,libuv,libuv"
+PACKAGECONFIG[pycamera] = "-Dpycamera=enabled,-Dpycamera=disabled,pybind11"
 
 EXTRA_OEMESON = " \
     -Dpipelines=uvcvideo,simple,vimc \
@@ -34,7 +36,20 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-RDEPENDS:${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)}"
+EXTRA_OEMESON:raspberrypi-64 = " \
+    -Dpipelines=raspberrypi \
+    -Dipas=raspberrypi \
+    -Dv4l2=true \
+    -Dcam=enabled \
+    -Dlc-compliance=disabled \
+    -Dtest=false \
+    -Ddocumentation=disabled \
+"
+
+RDEPENDS:${PN} = "\
+    libyaml-dev \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)} \
+"
 
 inherit meson pkgconfig python3native
 

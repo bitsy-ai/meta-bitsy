@@ -1,8 +1,8 @@
 [Unit]
 Description=PrintNanny Cloud NATS worker
-After=network-online.target etc-printnannyd.mount var-lib-printnanny.mount
+After=network-online.target home.mount
 Wants=network-online.target
-Requires=etc-printnannyd.mount var-lib-printnanny.mount
+Requires=home.mount
 StartLimitInterval=60
 StartLimitBurst=3
 

@@ -40,6 +40,8 @@ IMAGE_INSTALL:append = "\
   ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 
+IMAGE_INSTALL:raspberrypi4-64:append = "userland"
+
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages
 MACHINE_FEATURES += "bluetooth wifi keyboard"

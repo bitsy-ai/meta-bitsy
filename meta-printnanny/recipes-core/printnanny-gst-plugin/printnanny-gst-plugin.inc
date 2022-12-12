@@ -34,5 +34,15 @@ RDEPENDS:${PN} += "\
 "
 FILES:${PN} += "${datadir} ${bindir} ${libdir}/"
 
+do_install(){
+    install -d "${D}${bindir}"
+    install -d "${D}${libdir}/gstprintnanny"
+    install -m 0755 "${WORKDIR}/printnanny-gst-pipeline" "${D}${bindir}/printnanny-gst-pipeline"
+    install -m 0644 "${WORKDIR}/libgstprintnanny.so" "${D}${libdir}/gstprintnanny/libgstprintnanny.so"
+    cd ${D}/${libdir}
+    ln -sf ./gstreamer-1.0/libgstprintnanny.so ./libgstprintnanny.so
+}
+
 # required to install nnstreamer-dev
 INSANE_SKIP:${PN} += "dev-deps"
+FILES:${PN} += "${libdir}/gstprintnanny ${bindir}/printnanny-gst-pipeline"

@@ -420,25 +420,15 @@ SRC_URI += " \
     crate://crates.io/zstd/0.11.2+zstd.1.5.2 \
     crate://crates.io/zvariant/3.8.0 \
     crate://crates.io/zvariant_derive/3.8.0 \
-    git://github.com/bitsy-ai/printnanny-cli;protocol=https;nobranch=1;name=printnanny-dbus;destsuffix=printnanny-dbus;branch=main \
-    git://github.com/bitsy-ai/printnanny-cli;protocol=https;nobranch=1;name=printnanny-settings;destsuffix=printnanny-settings;branch=main \
 "
 
-SRCREV_FORMAT .= "_printnanny-dbus"
-SRCREV_printnanny-dbus = "${AUTOREV}"
-EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-dbus"
-SRCREV_FORMAT .= "_printnanny-settings"
-SRCREV_printnanny-settings = "${AUTOREV}"
-EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-settings"
-
-# FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://printnanny-gst-plugin/LICENSE;md5=cb62de80c4980285b960fd1e14782242 \
+    file://LICENSE;md5=cb62de80c4980285b960fd1e14782242 \
 "
 
 SUMMARY = "PrintNanny Gstreamer Plugins"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs/"
-LICENSE = "LICENSE"
+LICENSE = "AGPL-3.0-or-later"
 
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from

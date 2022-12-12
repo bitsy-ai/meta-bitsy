@@ -1,3 +1,11 @@
+SRC_URL += "\
+    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;nobranch=1;name=printnanny-cli;dest=printnanny-cli;branch=main \
+"
+SRCREV_FORMAT .= "_printnanny-cli"
+SRCREV_printnanny-cli = "${AUTOREV}"
+EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-cli/settings"
+EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-cli/dbus"
+
 # copy LICENSE_FLAGS_ACCEPTED to local.conf
 LICENSE_FLAGS_ACCEPTED += "\
     commercial_gstreamer1.0-libav \

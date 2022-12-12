@@ -2,9 +2,9 @@
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 BindsTo=mainsail.target
-After=network.target var-lib-moonraker-data.mount moonraker-venv.service klipper.service mainsail.target
+After=network.target home.mount moonraker-venv.service klipper.service mainsail.target
 Wants=moonraker-venv.service
-Requires=var-lib-moonraker-data.mount
+Requires=home.mount
 
 [Install]
 WantedBy=mainsail.target

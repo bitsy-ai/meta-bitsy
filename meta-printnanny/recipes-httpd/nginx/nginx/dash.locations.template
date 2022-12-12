@@ -1,6 +1,7 @@
 location / {
     proxy_http_version 1.1;
     root /var/www/;
+    try_files $uri $uri/ /index.html;
     index index.html;
     gzip_vary on;
     gzip_proxied any;

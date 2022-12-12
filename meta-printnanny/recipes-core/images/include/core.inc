@@ -21,6 +21,7 @@ SPLASH = "psplash-printnanny"
 # entire userland is installed here JUST for vcgencmd
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
 IMAGE_INSTALL:append = "\
+  os-release \
   packagegroup-base-extended \
   packagegroup-core-base-utils \
   packagegroup-core-boot \

@@ -1,4 +1,3 @@
-IMAGE_INSTALL += "\
+IMAGE_INSTALL:append = "\
     packagegroup-mainsail \
-    os-release \
 "

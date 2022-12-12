@@ -420,8 +420,8 @@ SRC_URI += " \
     crate://crates.io/zstd/0.11.2+zstd.1.5.2 \
     crate://crates.io/zvariant/3.8.0 \
     crate://crates.io/zvariant_derive/3.8.0 \
-    git://github.com/bitsy-ai/printnanny-cli;protocol=ssh;nobranch=1;name=printnanny-dbus;destsuffix=printnanny-dbus \
-    git://github.com/bitsy-ai/printnanny-cli;protocol=ssh;nobranch=1;name=printnanny-settings;destsuffix=printnanny-settings \
+    git://github.com/bitsy-ai/printnanny-cli;protocol=https;nobranch=1;name=printnanny-dbus;destsuffix=printnanny-dbus;branch=main \
+    git://github.com/bitsy-ai/printnanny-cli;protocol=https;nobranch=1;name=printnanny-settings;destsuffix=printnanny-settings;branch=main \
 "
 
 SRCREV_FORMAT .= "_printnanny-dbus"

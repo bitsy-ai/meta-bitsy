@@ -1,11 +1,11 @@
 SRC_URI += "\
-    file://moonraker.rules \
-    file://printnanny.rules \
+    file://10-moonraker.rules \
+    file://10-printnanny.rules \
 "
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 do_install:append(){
     install -d "${D}/etc/polkit-1/rules.d"
-    install -m 0644 "${WORKDIR}/moonraker.rules" "${D}/etc/polkit-1/rules.d/moonraker.rules"
-    install -m 0644 "${WORKDIR}/printnanny.rules" "${D}/etc/polkit-1/rules.d/printnanny.rules"
+    install -m 0644 "${WORKDIR}/10-moonraker.rules" "${D}/etc/polkit-1/rules.d/10-moonraker.rules"
+    install -m 0644 "${WORKDIR}/10-printnanny.rules" "${D}/etc/polkit-1/rules.d/10-printnanny.rules"
 }

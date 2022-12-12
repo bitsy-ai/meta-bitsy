@@ -1,5 +1,5 @@
-SRC_URL += "\
-    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;name=printnanny-cli;dest=printnanny-cli;branch=main \
+SRC_URI += "\
+    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;name=printnanny-cli;destsuffix=printnanny-cli;branch=main \
 "
 SRCREV_FORMAT .= "_printnanny-cli"
 SRCREV_printnanny-cli = "${AUTOREV}"

@@ -1,5 +1,5 @@
 SRC_URL += "\
-    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;nobranch=1;name=printnanny-cli;dest=printnanny-cli;branch=main \
+    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;name=printnanny-cli;dest=printnanny-cli;branch=main \
 "
 SRCREV_FORMAT .= "_printnanny-cli"
 SRCREV_printnanny-cli = "${AUTOREV}"
@@ -41,6 +41,10 @@ RDEPENDS:${PN} += "\
     tensorflow-lite \
 "
 FILES:${PN} += "${datadir} ${bindir} ${libdir}/"
+
+oe_cargo_build:prepend() {
+	"${CARGO}" fetch --manifest-path="${MANIFEST_PATH}" 
+}
 
 do_install(){
     install -d "${D}${bindir}"

@@ -1,3 +1,3 @@
-IMAGE_INSTALL:append = "\
+IMAGE_INSTALL += "\
     packagegroup-klipper \
 "

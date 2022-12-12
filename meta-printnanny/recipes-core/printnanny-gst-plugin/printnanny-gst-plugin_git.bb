@@ -268,7 +268,7 @@ SRC_URI += " \
     crate://crates.io/ppv-lite86/0.2.16 \
     crate://crates.io/pretty-hex/0.3.0 \
     crate://crates.io/printnanny-api-client/0.113.0 \
-    crate://crates.io/printnanny-asyncapi-models/0.1.31 \
+    crate://crates.io/printnanny-asyncapi-models/0.1.32 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \
@@ -433,12 +433,11 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://LICENSE;md5=502f097d09aa7db676cbf9ab2d15d451 \
+    file://LICENSE;md5=cb62de80c4980285b960fd1e14782242 \
 "
 
 SUMMARY = "PrintNanny Gstreamer Plugins"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs/"
-
 LICENSE = "AGPL-3.0-or-later"
 
 # includes this file if it exists but does not fail

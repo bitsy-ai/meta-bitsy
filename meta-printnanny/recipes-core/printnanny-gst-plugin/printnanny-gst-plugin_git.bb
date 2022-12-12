@@ -433,7 +433,7 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://LICENSE;md5=26bc145b58bd4e5d617276478377373f \
+    file://LICENSE;md5=502f097d09aa7db676cbf9ab2d15d451 \
 "
 
 SUMMARY = "PrintNanny Gstreamer Plugins"

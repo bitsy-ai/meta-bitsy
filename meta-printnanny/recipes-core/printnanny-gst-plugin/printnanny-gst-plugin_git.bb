@@ -8,14 +8,16 @@ inherit cargo
 # how to get printnanny-gst-plugin could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-gst-plugin/0.4.0"
 SRC_URI += "git://git@github.com/bitsy-ai/printnanny-gst-plugin-rs.git;protocol=ssh;nobranch=1;branch=main"
-SRCREV = "b3eac0573993d2d99b444be12f705f293bd3d2b2"
+SRCREV = "a34d92c34b8c42b32271f5c28afadf70b1cdea9e"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "printnanny-gst-plugin"
-PV:append = ".AUTOINC+b3eac05739"
+PV:append = ".AUTOINC+a34d92c34b"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
 SRC_URI += " \
+    crate://crates.io/addr2line/0.17.0 \
+    crate://crates.io/adler/1.0.2 \
     crate://crates.io/ahash/0.7.6 \
     crate://crates.io/ahash/0.8.0 \
     crate://crates.io/aho-corasick/0.7.19 \
@@ -39,6 +41,7 @@ SRC_URI += " \
     crate://crates.io/atomic_refcell/0.1.8 \
     crate://crates.io/atty/0.2.14 \
     crate://crates.io/autocfg/1.1.0 \
+    crate://crates.io/backtrace/0.3.66 \
     crate://crates.io/base64-url/1.4.13 \
     crate://crates.io/base64/0.13.1 \
     crate://crates.io/base64ct/1.1.1 \
@@ -131,6 +134,7 @@ SRC_URI += " \
     crate://crates.io/fxhash/0.2.1 \
     crate://crates.io/generic-array/0.14.6 \
     crate://crates.io/getrandom/0.2.8 \
+    crate://crates.io/gimli/0.26.2 \
     crate://crates.io/gio-sys/0.16.0 \
     crate://crates.io/git-version-macro/0.3.5 \
     crate://crates.io/git-version/0.3.5 \
@@ -206,6 +210,7 @@ SRC_URI += " \
     crate://crates.io/memoffset/0.6.5 \
     crate://crates.io/mime/0.3.16 \
     crate://crates.io/mime_guess/2.0.4 \
+    crate://crates.io/miniz_oxide/0.5.4 \
     crate://crates.io/mio/0.8.4 \
     crate://crates.io/mktemp/0.4.1 \
     crate://crates.io/muldiv/1.0.0 \
@@ -227,6 +232,7 @@ SRC_URI += " \
     crate://crates.io/num/0.4.0 \
     crate://crates.io/num_cpus/1.13.1 \
     crate://crates.io/num_threads/0.1.6 \
+    crate://crates.io/object/0.29.0 \
     crate://crates.io/once_cell/1.15.0 \
     crate://crates.io/opaque-debug/0.3.0 \
     crate://crates.io/openssl-macros/0.1.0 \
@@ -262,7 +268,7 @@ SRC_URI += " \
     crate://crates.io/ppv-lite86/0.2.16 \
     crate://crates.io/pretty-hex/0.3.0 \
     crate://crates.io/printnanny-api-client/0.113.0 \
-    crate://crates.io/printnanny-asyncapi-models/0.1.15 \
+    crate://crates.io/printnanny-asyncapi-models/0.1.31 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \
@@ -286,10 +292,11 @@ SRC_URI += " \
     crate://crates.io/redox_users/0.4.3 \
     crate://crates.io/regex-automata/0.1.10 \
     crate://crates.io/regex-syntax/0.6.27 \
-    crate://crates.io/regex/1.6.0 \
+    crate://crates.io/regex/1.7.0 \
     crate://crates.io/remove_dir_all/0.5.3 \
     crate://crates.io/reqwest/0.11.12 \
     crate://crates.io/ring/0.16.20 \
+    crate://crates.io/rustc-demangle/0.1.21 \
     crate://crates.io/rustix/0.35.11 \
     crate://crates.io/rustls-native-certs/0.5.0 \
     crate://crates.io/rustls-pemfile/0.2.1 \
@@ -422,13 +429,16 @@ SRC_URI += " \
     crate://crates.io/zvariant_derive/3.8.0 \
 "
 
+
+
+# FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
     file://LICENSE;md5=cb62de80c4980285b960fd1e14782242 \
 "
 
 SUMMARY = "PrintNanny Gstreamer Plugins"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs/"
-LICENSE = "AGPL-3.0-or-later"
+LICENSE = "LICENSE"
 
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from

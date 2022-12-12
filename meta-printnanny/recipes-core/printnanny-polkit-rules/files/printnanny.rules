@@ -5,7 +5,7 @@ polkit.addRule(function(action, subject) {
         action.id == "org.freedesktop.login1.reboot" ||
         action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
         action.id.startsWith("org.freedesktop.packagekit.")) &&
-        subject.isInGroup("printnanny-admin")) {
+        (subject.isInGroup("moonraker-admin") || subject.user == "printnanny") {
         return polkit.Result.YES;
     }
 });

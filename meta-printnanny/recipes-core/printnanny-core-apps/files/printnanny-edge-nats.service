@@ -21,6 +21,8 @@ ExecStart=/bin/bash -c '/usr/bin/printnanny -v nats-edge-worker --subject="pi.$(
 Restart=on-failure
 RestartSec=10
 User=printnanny
+SupplementaryGroups=printnanny-admin
+
 
 [Install]
 WantedBy=multi-user.target

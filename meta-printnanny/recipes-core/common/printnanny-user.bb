@@ -8,8 +8,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 
 # You must also set USERADD_PARAM and/or GROUPADD_PARAM when
 # you inherit useradd.
-GROUPADD_PARAM:${PN} = "i2c; netdev; video; spi; render; gpio; moonraker-admin"
-USERADD_PARAM:${PN} = "-r -U -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,gpio,input,netdev,plugdev,render,spi,sudo,video,moonraker-admin printnanny"
+GROUPADD_PARAM:${PN} = "i2c; netdev; video; spi; render; gpio; moonraker-admin; printnanny-admin"
+USERADD_PARAM:${PN} = "-r -U -s /bin/bash -m -d /home/printnanny -G adm,dialout,i2c,gpio,input,netdev,plugdev,render,spi,sudo,video,moonraker-admin,printnanny-admin printnanny"
 
 # https://lists.yoctoproject.org/g/yocto/message/55381
 ALLOW_EMPTY:${PN}="1"

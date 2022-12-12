@@ -51,8 +51,8 @@ oe_cargo_build:prepend() {
 do_install(){
     install -d "${D}${bindir}"
     install -d "${D}${libdir}/gstprintnanny"
-    install -m 0755 "${WORKDIR}/printnanny-gst-pipeline" "${D}${bindir}/printnanny-gst-pipeline"
-    install -m 0644 "${WORKDIR}/libgstprintnanny.so" "${D}${libdir}/gstprintnanny/libgstprintnanny.so"
+    install -m 0755 "${WORKDIR}/build/target/${CARGO_TARGET_SUBDIR}/printnanny-gst-pipeline" "${D}${bindir}/printnanny-gst-pipeline"
+    install -m 0644 "${WORKDIR}/build/target/${CARGO_TARGET_SUBDIR}/libgstprintnanny.so" "${D}${libdir}/gstprintnanny/libgstprintnanny.so"
     cd ${D}/${libdir}
     ln -sf ./gstreamer-1.0/libgstprintnanny.so ./libgstprintnanny.so
 }

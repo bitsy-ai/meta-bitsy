@@ -6,6 +6,7 @@ USERADD_PACKAGES = "${PN}"
 LICENSE = "AGPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 
+R = "r1"
 # You must also set USERADD_PARAM and/or GROUPADD_PARAM when
 # you inherit useradd.
 GROUPADD_PARAM:${PN} = "i2c; netdev; video; spi; render; gpio; moonraker-admin; printnanny-admin"

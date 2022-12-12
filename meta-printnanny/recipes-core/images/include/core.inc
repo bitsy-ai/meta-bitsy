@@ -20,7 +20,10 @@ SPLASH = "psplash-printnanny"
 
 # entire userland is installed here JUST for vcgencmd
 # there's almost certainly a better way to handle this: https://github.com/raspberrypi/userland/blob/master/host_applications/linux/apps/gencmd/CMakeLists.txt
-IMAGE_INSTALL:append = "\
+CORE_IMAGE_EXTRA_INSTALL:raspberrypi4-64 = "userland"
+
+IMAGE_INSTALL = "\
+  os-release \
   packagegroup-base-extended \
   packagegroup-core-base-utils \
   packagegroup-core-boot \
@@ -39,8 +42,6 @@ IMAGE_INSTALL:append = "\
   packagegroup-swupdate \
   ${CORE_IMAGE_EXTRA_INSTALL} \
 "
-
-IMAGE_INSTALL:raspberrypi4-64:append = "userland"
 
 # COMBINED_FEATURES is the set of features enabled in MACHINE_FEATURES and DISTRO_FEATURES
 # COMBINED_FEATURES referenced in packagegroup-base to install base system packages

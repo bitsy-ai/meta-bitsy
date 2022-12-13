@@ -1,13 +1,13 @@
 [Unit]
 Description=Create Moonraker virtualenv 
-ConditionPathExists=!/home/printnanny/klipper-venv
+ConditionPathExists=!/home/printnanny/moonraker-venv
 After=network.target home.mount
 Requires=home.mount
 
 [Service]
 Type=oneshot
 SyslogIdentifier=moonraker-venv
-Environment=MOONRAKER_VENV=/home/printnanny/klipper-venv
+Environment=MOONRAKER_VENV=/home/printnanny/moonraker-venv
 ExecStart=/usr/bin/python3 -m venv --system-site-packages "${MOONRAKER_VENV}"
 User=printnanny
 

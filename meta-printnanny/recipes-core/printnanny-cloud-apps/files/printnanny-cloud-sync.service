@@ -17,8 +17,6 @@ StateDirectory=printnanny
 LogsDirectory=printnanny
 
 SyslogIdentifier=printnanny-cloud-sync
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=boot-started'
-ExecStart=/bin/sh -c '/usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=sync-settings-started'
 ExecStart=/bin/sh -c '/usr/bin/printnanny -v config sync || /usr/bin/printnanny -v nats-cloud-publisher pi.{pi_id}.status.boot --event-type=sync-settings-error && /usr/bin/printnanny -v nats-publisher pi.{pi_id}.status.boot --event-type=sync-settings-success'
 Restart=on-failure
 RestartSec=60

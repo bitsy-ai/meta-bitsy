@@ -13,7 +13,7 @@ WantedBy=mainsail.target
 LogsDirectory=klipper
 RuntimeDirectory=klipper
 Environment=MOONRAKER_INSTALL=/home/printnanny/.moonraker
-Environment=MOONRAKER_VENV=/home/printnanny/klipper-venv
+Environment=MOONRAKER_VENV=/home/printnanny/moonraker-venv
 Environment=MOONRAKER_DATA_PATH=/home/printnanny/.local/share/moonraker/
 Environment=MOONRAKER_LOG=/var/log/klipper/moonraker.log
 Environment=MOONRAKER_CONFIG_FILE=/home/printnanny/.config/printnanny/settings/moonraker/moonraker.conf

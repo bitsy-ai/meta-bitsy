@@ -14,7 +14,7 @@ WantedBy=mainsail.target
 LogsDirectory=klipper
 RuntimeDirectory=klipper
 Environment=KLIPPER_VENV=/home/printnanny/klipper-venv
-Environment=KLIPPER_CONFIG=/home/printnanny/.config/printnanny/settings/klipper/klipper.cfg
+Environment=KLIPPER_CONFIG=/home/printnanny/.config/printnanny/vcs/klipper/printer.cfg
 Environment=KLIPPER_LOG=/var/log/klipper/klippy.log
 Environment=KLIPPER_SOCKET=/var/run/klipper/klippy.sock
 Type=simple

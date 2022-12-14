@@ -1,0 +1,15 @@
+[Unit]
+Description=Clone default PrintNanny Settings repo
+ConditionPathExists=!/home/printnanny/.config/vcs
+After=network.target home.mount
+Before=octoprint.service moonraker.service klipper.service
+Requires=home.mount
+
+[Service]
+Type=oneshot
+SyslogIdentifier=printnanny-settings
+ExecStart=/usr/bin/printnanny settings clone --dir=/home/printnanny/.config/vcs
+User=printnanny
+
+[Install]
+WantedBy=octoprint.service moonraker.service klipper.service

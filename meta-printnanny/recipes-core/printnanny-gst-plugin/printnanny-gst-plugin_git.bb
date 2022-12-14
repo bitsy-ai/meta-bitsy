@@ -268,7 +268,7 @@ SRC_URI += " \
     crate://crates.io/ppv-lite86/0.2.16 \
     crate://crates.io/pretty-hex/0.3.0 \
     crate://crates.io/printnanny-api-client/0.113.0 \
-    crate://crates.io/printnanny-asyncapi-models/0.1.32 \
+    crate://crates.io/printnanny-asyncapi-models/0.1.33 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
     crate://crates.io/proc-macro-error/1.0.4 \

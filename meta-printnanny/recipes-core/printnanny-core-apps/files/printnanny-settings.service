@@ -8,7 +8,7 @@ Requires=home.mount
 [Service]
 Type=oneshot
 SyslogIdentifier=printnanny-settings
-ExecStart=/usr/bin/printnanny --dir=/home/printnanny/.config/vcs
+ExecStart=/usr/bin/printnanny settings clone --dir=/home/printnanny/.config/vcs
 User=printnanny
 
 [Install]

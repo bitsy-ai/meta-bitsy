@@ -9,6 +9,7 @@ inherit systemd
 SRC_URI = " \
     file://printnanny-motd.service \
     file://printnanny-edge-nats.service \
+    file://printnanny-settings.service \
 "
 
 do_install() {

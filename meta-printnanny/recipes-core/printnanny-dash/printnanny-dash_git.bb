@@ -9,6 +9,7 @@ SRC_URI = "git://git@github.com/bitsy-ai/printnanny-os-dash.git;protocol=ssh;nob
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
+inherit npm
 PV = "0.4.0+git${SRCPV}"
 
 LIC_FILES_CHKSUM = " \

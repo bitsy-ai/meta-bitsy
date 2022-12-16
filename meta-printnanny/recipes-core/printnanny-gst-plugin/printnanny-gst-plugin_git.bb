@@ -517,12 +517,12 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://gst-plugin/LICENSE;md5=cb62de80c4980285b960fd1e14782242 \
+    file://LICENSE;md5=502f097d09aa7db676cbf9ab2d15d451 \
 "
 
 SUMMARY = "PrintNanny Gstreamer Plugins"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs/"
-LICENSE = "LICENSE"
+LICENSE = "AGPL-3.0-or-later"
 
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from

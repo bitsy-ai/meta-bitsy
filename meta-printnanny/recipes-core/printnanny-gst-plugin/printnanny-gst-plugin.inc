@@ -1,12 +1,4 @@
-inherit pkgconfig 
-
-SRC_URI += "\
-    git://github.com/bitsy-ai/printnanny-cli.git;protocol=https;name=printnanny-cli;destsuffix=printnanny-cli;branch=main \
-"
-SRCREV_FORMAT .= "_printnanny-cli"
-SRCREV_printnanny-cli = "${AUTOREV}"
-EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-cli/settings"
-EXTRA_OECARGO_PATHS += "${WORKDIR}/printnanny-cli/dbus"
+inherit pkgconfig
 
 # copy LICENSE_FLAGS_ACCEPTED to local.conf
 LICENSE_FLAGS_ACCEPTED += "\

@@ -8,7 +8,10 @@ Requires=home.mount
 Type=oneshot
 SyslogIdentifier=moonraker-venv
 Environment=MOONRAKER_VENV=/home/printnanny/moonraker-venv
+Environment=MOONRAKER_DATA_PATH=/home/printnanny/.local/share/moonraker/
 ExecStart=/usr/bin/python3 -m venv --system-site-packages "${MOONRAKER_VENV}"
+ExecStart=/bin/bash -c "mkdir -p ${MOONRAKER_DATA_PATH}"
+
 User=printnanny
 
 [Install]

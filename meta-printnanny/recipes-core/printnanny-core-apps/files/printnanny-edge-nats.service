@@ -13,7 +13,7 @@ Type=simple
 SyslogIdentifier=printnanny-nats
 LogsDirectory=printnanny
 RuntimeDirectory=printnanny-edge-nats
-Environment=PRINTNANNY_GST_CONFIG=/var/run/printnanny-edge-nats/printnanny-gst.toml
+Environment=RUST_LOG=info
 ExecStart=/bin/bash -c '/usr/bin/printnanny -v nats-edge-worker --subject="pi.$(hostname).>" --hostname $(hostname)'
 Restart=on-failure
 RestartSec=10

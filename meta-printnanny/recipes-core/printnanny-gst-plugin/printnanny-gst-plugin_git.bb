@@ -7,11 +7,11 @@ inherit cargo
 
 # how to get printnanny-gst-plugin could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-gst-plugin/0.4.0"
-SRC_URI += "git://git@github.com/bitsy-ai/printnanny-cli.git;protocol=ssh;nobranch=1;branch=rust-version-1-63-revert"
-SRCREV = "e01613e4cd8d23cfd6084eb6c88befebe759cc05"
+SRC_URI += "git://git@github.com/bitsy-ai/printnanny-rs.git;protocol=ssh;nobranch=1;branch=main"
+SRCREV = "af1ee788a9af969fbc28bffb8a8a98bab8d6c5b2"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "gst-plugin"
-PV:append = ".AUTOINC+e01613e4cd"
+PV:append = ".AUTOINC+af1ee788a9"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -312,7 +312,7 @@ SRC_URI += " \
     crate://crates.io/predicates/2.1.4 \
     crate://crates.io/pretty-hex/0.3.0 \
     crate://crates.io/printnanny-api-client/0.113.0 \
-    crate://crates.io/printnanny-asyncapi-models/0.1.42 \
+    crate://crates.io/printnanny-asyncapi-models/0.1.47 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
@@ -517,7 +517,7 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://LICENSE;md5=502f097d09aa7db676cbf9ab2d15d451 \
+    file://gst-plugin/LICENSE;md5=cb62de80c4980285b960fd1e14782242 \
 "
 
 SUMMARY = "PrintNanny Gstreamer Plugins"

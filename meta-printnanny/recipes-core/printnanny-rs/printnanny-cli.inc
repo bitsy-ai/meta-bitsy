@@ -4,5 +4,14 @@ do_install:append(){
     ln -s -r ${D}/${bindir}/printnanny-cli ${D}/${bindir}/pn
 }
 
-DEPENDS:append = " openssl"
+DEPENDS += "openssl \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-libav \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly \
+"
+
 FILES:${PN} += "${datadir} ${bindir}"

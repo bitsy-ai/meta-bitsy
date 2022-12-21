@@ -12,8 +12,8 @@ SRC_URI = " \
         git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
 "
 
-SRCREV = "e3b26b4c4eb2582ea778a38545a8ac7801384db2"
-PV = "20221209+git${SRCPV}"
+SRCREV = "3c3f20d05113f5f2abbad233e4c792f84328001a"
+PV = "20221221+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"

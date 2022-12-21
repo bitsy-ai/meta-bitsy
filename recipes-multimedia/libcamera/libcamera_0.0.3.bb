@@ -12,8 +12,8 @@ SRC_URI = " \
         git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
 "
 
-SRCREV = "e3b26b4c4eb2582ea778a38545a8ac7801384db2"
-PV = "20221209+git${SRCPV}"
+SRCREV = "3c3f20d05113f5f2abbad233e4c792f84328001a"
+PV = "20221221+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
@@ -36,16 +36,6 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-EXTRA_OEMESON:raspberrypi4-64 = " \
-    -Dpipelines=raspberrypi,uvcvideo \
-    -Dipas=raspberrypi,vimc \
-    -Dv4l2=true \
-    -Dcam=enabled \
-    -Dlc-compliance=disabled \
-    -Dtest=false \
-    -Ddocumentation=disabled \
-"
-
 RDEPENDS:${PN}-dev = "libyaml-dev"
 RDEPENDS:${PN} = "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)} \
@@ -58,8 +48,8 @@ do_configure:prepend() {
 }
 
 do_install:append() {
-    chrpath -d ${D}${libdir}/libcamera.so.0.0.2
-    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.2
+    chrpath -d ${D}${libdir}/libcamera.so.0.0.3
+    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.3
 }
 
 addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
@@ -78,10 +68,10 @@ do_recalculate_ipa_signatures_package() {
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
 FILES:${PN}-dev += " ${libdir}/libcamera.so"
 FILES:${PN} += " ${libdir}/libcamera.so.0"
-FILES:${PN} += " ${libdir}/libcamera.so.0.0.2"
+FILES:${PN} += " ${libdir}/libcamera.so.0.0.3"
 FILES:${PN}-dev += " ${libdir}/libcamera-base.so"
 FILES:${PN} += " ${libdir}/libcamera-base.so.0"
-FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.2"
+FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.3"
 FILES:${PN} += " ${libdir}/v4l2-compat.so"
 FILES:${PN}-gst = "${libdir}/gstreamer-1.0/libgstlibcamera.so"
 FILES:${PN} += " ${bindir}/cam"

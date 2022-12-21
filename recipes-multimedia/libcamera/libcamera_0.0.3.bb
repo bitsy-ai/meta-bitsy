@@ -36,16 +36,6 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-EXTRA_OEMESON:raspberrypi4-64 = " \
-    -Dpipelines=raspberrypi,uvcvideo \
-    -Dipas=raspberrypi,vimc \
-    -Dv4l2=true \
-    -Dcam=enabled \
-    -Dlc-compliance=disabled \
-    -Dtest=false \
-    -Ddocumentation=disabled \
-"
-
 RDEPENDS:${PN}-dev = "libyaml-dev"
 RDEPENDS:${PN} = "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)} \

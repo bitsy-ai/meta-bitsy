@@ -27,5 +27,7 @@ SYSTEMD_SERVICE:${PN} = "\
 
 SYSTEMD_AUTO_ENABLE = "enable"
 
+RDEPENDS:${PN} = "git"
+
 
 FILES:${PN} = "${systemd_system_unitdir}/*"

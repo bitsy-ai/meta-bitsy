@@ -59,7 +59,7 @@ do_compile() {
 # install moonraker source tree to /var/lib/klipper
 do_install() {
     install -d "${D}${INSTALL_DIR}"
-    install -d "${D}${MOONRAKER_DATA_PATH}"
+    install -o "${MOONRAKER_USER} -g "${MOONRAKER_USER}" -d "${D}${MOONRAKER_DATA_PATH}"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github

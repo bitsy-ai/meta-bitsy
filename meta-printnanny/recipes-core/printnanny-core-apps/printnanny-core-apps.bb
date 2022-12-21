@@ -22,7 +22,6 @@ do_install() {
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-motd.service \
   printnanny-edge-nats.service \
-  printnanny-settings.service \
 "
 
 SYSTEMD_AUTO_ENABLE = "enable"

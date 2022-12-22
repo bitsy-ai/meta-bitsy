@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     klipper \
+    klipper-docs \
     klipper-examples \
     klipper-klippy \
     klipper-scripts \

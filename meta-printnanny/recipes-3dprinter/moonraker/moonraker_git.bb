@@ -47,7 +47,7 @@ RDEPENDS:${PN} = "\
 "
 RDEPENDS:${PN} += "polkit"
 
-
+MOONRAKER_DATA_PATH = "/home/printnanny/.local/share/moonraker/"
 MOONRAKER_USER ?= "printnanny"
 INSTALL_DIR ?= "/home/${MOONRAKER_USER}/.moonraker"
 MOONRAKER_VENV ?= "/home/${MOONRAKER_USER}/moonraker-venv"
@@ -59,6 +59,7 @@ do_compile() {
 # install moonraker source tree to /var/lib/klipper
 do_install() {
     install -d "${D}${INSTALL_DIR}"
+    install -o "${MOONRAKER_USER} -g "${MOONRAKER_USER}" -d "${D}${MOONRAKER_DATA_PATH}"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
@@ -83,7 +84,7 @@ SYSTEMD_SERVICE:${PN}-venv = "moonraker-venv.service"
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
-FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/*"
+FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* ${MOONRAKER_DATA_PATH}"
 FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"

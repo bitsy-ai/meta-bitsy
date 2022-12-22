@@ -13,6 +13,7 @@ WantedBy=mainsail.target
 [Service]
 LogsDirectory=klipper
 RuntimeDirectory=klipper
+Environment=KLIPPER_INSTALL=/home/printnanny/.klipper
 Environment=KLIPPER_VENV=/home/printnanny/klipper-venv
 Environment=KLIPPER_CONFIG=/home/printnanny/.config/printnanny/vcs/klipper/printer.cfg
 Environment=KLIPPER_LOG=/var/log/klipper/klippy.log
@@ -21,6 +22,6 @@ Type=simple
 User=printnanny
 RemainAfterExit=yes
 StateDirectory=klipper
-ExecStart=/bin/bash -c "${KLIPPER_VENV}/bin/python3 /var/lib/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}"
+ExecStart=/bin/bash -c "${KLIPPER_VENV}/bin/python3 ${KLIPPER_INSTALL}/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}"
 Restart=always
 RestartSec=10

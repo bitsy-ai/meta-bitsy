@@ -275,7 +275,7 @@ printnanny-cam: {
         port = 20001
         pt = 96
         rtpmap = "H264/90000"
-        videobufferkf = true
+        videobufferkf = false
 
       },
       {
@@ -285,7 +285,7 @@ printnanny-cam: {
         port = 20002
         pt = 96
         rtpmap = "H264/90000"
-        videobufferkf = true
+        videobufferkf = false
       }
     )
 }

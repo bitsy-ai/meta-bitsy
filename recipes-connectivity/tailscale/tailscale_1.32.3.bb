@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-3-Clause;m
 
 SRC_URI:aarch64 = "\
     https://pkgs.tailscale.com/stable/tailscale_${PV}_arm64.tgz \
+    file://tailscaled.service \
 "
 SRC_URI[sha256sum] = "3992e7accfe797e03118a0d09a3d6b77dce9056b170860bc9ed20bc66178877c"
 
@@ -19,7 +20,7 @@ do_install(){
     install -m 0755 "${S}/tailscale" "${D}${bindir}/tailscale"
     install -m 0755 "${S}/tailscaled" "${D}${bindir}/tailscaled"
     install -m 0644 "${S}/systemd/tailscaled.defaults" "${D}${sysconfdir}/default/tailscaled"
-    install -m 0644 "${S}/systemd/tailscaled.service" "${D}${systemd_system_unitdir}/tailscaled.service"
+    install -m 0644 "${WORKDIR}/tailscaled.service" "${D}${systemd_system_unitdir}/tailscaled.service"
 }
 
 SYSTEMD_SERVICE:${PN} = "tailscaled.service"

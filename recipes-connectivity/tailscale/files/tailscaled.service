@@ -7,7 +7,7 @@ After=network-pre.target NetworkManager.service systemd-resolved.service
 [Service]
 EnvironmentFile=/etc/default/tailscaled
 ExecStartPre=/usr/bin/tailscaled --cleanup
-ExecStart=/usr/bin/tailscale --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=${PORT} $FLAGS
+ExecStart=/usr/bin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock --port=${PORT} $FLAGS
 ExecStopPost=/usr/bin/tailscale --cleanup
 
 Restart=on-failure

@@ -10,6 +10,12 @@ SRC_URI:aarch64 = "\
 SRC_URI[sha256sum] = "3992e7accfe797e03118a0d09a3d6b77dce9056b170860bc9ed20bc66178877c"
 
 inherit systemd
+inherit overlayfs
+
+# write tailscale state to overlayfs, which is preserved between system updates
+OVERLAYFS_MOUNT_POINT[tailscale] = "/data"
+OVERLAYFS_WRITABLE_PATHS[tailscale] = "/var/lib/tailscale"
+
 
 S = "${WORKDIR}/tailscale_${PV}_arm64"
 

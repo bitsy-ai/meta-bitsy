@@ -1,0 +1,21 @@
+DESCRIPTION = "Tailscale web server"
+HOMEPAGE = "https://tailscale.com/"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-3-Clause;md5=550794465ba0ec5312d6919e203a55f9"
+
+RDEPENDS:${PN} = "tailscale"
+
+SRI_URI = "\
+    file://tailscale-web.service
+"
+
+inherit systemd
+
+do_install(){
+    install -d "${D}${sysconfdir}/default"
+    install -m 0644 "${WORKDIR}/tailscale-web.defaults" "${D}${sysconfdir}/default/tailscale-web"
+    install -m 0644 "${WORKDIR}/tailscale-web.service" "${D}${sysconfdir}/tailscale-web.service"
+}
+
+SYSTEMD_SERVICE:${PN} = "tailscale-web.service"
+SYSTEMD_AUTO_ENABLE = "enable"

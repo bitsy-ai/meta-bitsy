@@ -7,4 +7,5 @@ inherit packagegroup
 
 RDEPENDS:${PN} = "\
     tailscale \
+    tailscale-web \
 "

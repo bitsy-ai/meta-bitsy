@@ -1,4 +1,5 @@
 # Settings for a webserver for controlling the Tailscale daemon.
 # For full usage, see:
 # $ tailscale web --help
-BIND_ADDRESS="localhost:8087"
+HOST="localhost"
+PORT="8087"

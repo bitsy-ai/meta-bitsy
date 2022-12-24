@@ -6,7 +6,7 @@ After=tailscaled.service
 
 [Service]
 EnvironmentFile=/etc/default/tailscale-web
-ExecStart=/usr/bin/tailscale web --listen="$BIND_ADDRESS"
+ExecStart=/usr/bin/tailscale web --listen="${HOST}:${PORT}"
 Restart=on-failure
 Type=notify
 

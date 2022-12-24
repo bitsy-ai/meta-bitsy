@@ -6,7 +6,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-3-Clause;m
 RDEPENDS:${PN} = "tailscale"
 
 SRI_URI = "\
-    file://tailscale-web.service
+    file://tailscale-web.service \
+    file://tailscale-web.defaults \
 "
 
 inherit systemd

@@ -1,0 +1,14 @@
+[Unit]
+Description=Tailscale web agent
+Documentation=https://tailscale.com/kb/
+Wants=tailscaled.service
+After=tailscaled.service
+
+[Service]
+EnvironmentFile=/etc/default/tailscale-web
+ExecStart=/usr/bin/tailscale web --listen="${HOST}:${PORT}"
+Restart=on-failure
+Type=notify
+
+[Install]
+WantedBy=multi-user.target

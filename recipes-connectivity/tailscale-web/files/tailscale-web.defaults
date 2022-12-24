@@ -1,0 +1,5 @@
+# Settings for a webserver for controlling the Tailscale daemon.
+# For full usage, see:
+# $ tailscale web --help
+HOST="localhost"
+PORT="8087"

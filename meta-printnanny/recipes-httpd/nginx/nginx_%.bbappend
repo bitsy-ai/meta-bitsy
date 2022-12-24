@@ -7,6 +7,7 @@ SRC_URI += "\
     file://octoprint.locations.template \
     file://swupdate.locations.template \
     file://mainsail.locations.template \
+    file://tailscale.locations.template \
 "
 
 do_install:append(){
@@ -18,7 +19,7 @@ do_install:append(){
   install -m 0644 "${WORKDIR}/sites/printnanny.conf" "${D}${sysconfdir}/nginx/sites-available/printnanny"
   ln -s -r "${D}${sysconfdir}/nginx/sites-available/printnanny" "${D}${sysconfdir}/nginx/sites-enabled/"
 
-
+  install -m 0644 "${WORKDIR}/tailscale.locations.template" "${D}${sysconfdir}/nginx/templates/tailscale.locations.template"
   install -m 0644 "${WORKDIR}/mainsail.locations.template" "${D}${sysconfdir}/nginx/templates/mainsail.locations.template"
   install -m 0644 "${WORKDIR}/dash.locations.template" "${D}${sysconfdir}/nginx/templates/dash.locations.template"
   install -m 0644 "${WORKDIR}/octoprint.locations.template" "${D}${sysconfdir}/nginx/templates/octoprint.locations.template"

@@ -5,10 +5,10 @@ Wants=tailscaled.service
 After=tailscaled.service
 
 [Service]
+Type=simple
 EnvironmentFile=/etc/default/tailscale-web
 ExecStart=/usr/bin/tailscale web --listen="${HOST}:${PORT}"
 Restart=on-failure
-Type=notify
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=tailscaled.service

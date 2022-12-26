@@ -1,7 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += "\
-    file://09-reboot-watchdog-sec.conf
+    file://09-reboot-watchdog-sec.conf \
 "
 
 do_install:append(){

@@ -3,7 +3,7 @@ Description=Synchronize PrintNanny Cloud settings
 After=printnanny-cloud-nats.service systemd-timesyncd.service home.mount
 Wants=printnanny-cloud-nats.service
 Requires=home.mount
-StartLimitIntervalSec=1d
+StartLimitIntervalSec=10m
 StartLimitBurst=5
 
 BindsTo=printnanny-cloud.target

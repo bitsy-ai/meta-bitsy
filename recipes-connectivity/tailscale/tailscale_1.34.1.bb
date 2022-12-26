@@ -7,7 +7,7 @@ SRC_URI:aarch64 = "\
     https://pkgs.tailscale.com/stable/tailscale_${PV}_arm64.tgz \
     file://tailscaled.service \
 "
-SRC_URI[sha256sum] = "3992e7accfe797e03118a0d09a3d6b77dce9056b170860bc9ed20bc66178877c"
+SRC_URI[sha256sum] = "e8523caeef182300c476c8f3ea12eedfdc08d01bfdeb78bdf864f2e7e9888bfd"
 
 inherit systemd
 inherit overlayfs

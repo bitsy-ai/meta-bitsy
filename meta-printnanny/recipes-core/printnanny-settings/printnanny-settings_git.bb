@@ -9,11 +9,13 @@ SRCREV = "c9ab22b48b7de712e170048a85afecab5c820f8d"
 S = "${WORKDIR}/git"
 
 PRINTNANNY_USER ?= "printnanny"
-INSTALL_DIR ?= "/home/${PRINTNANNY_USER}/.config/printnanny/settings"
+INSTALL_DIR ?= "/home/${PRINTNANNY_USER}/.config/printnanny/vcs"
+
+DEPENDS = "printnanny-user"
 
 do_install(){
-    install -d "${D}${INSTALL_DIR}"
-    cp -r "${S}" "${D}${INSTALL_DIR}"
+    install -d "${D}${INSTALL_DIR}" -g "${PRINTNANNY_USER}" -o "${PRINTNANNY_USER}"
+    cp --preserve=mode,timestamps -R "${S}" "${D}${INSTALL_DIR}"
 }
 INSANE_SKIP:${PN} = "file-rdeps"
 FILES:${PN} = "${INSTALL_DIR}"

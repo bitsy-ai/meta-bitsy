@@ -10,12 +10,12 @@ Requires=home.mount
 WantedBy=mainsail.target
 
 [Service]
-LogsDirectory=klipper
-RuntimeDirectory=klipper
+LogsDirectory=moonraker
+RuntimeDirectory=klipper moonraker
 Environment=MOONRAKER_INSTALL=/home/printnanny/.moonraker
 Environment=MOONRAKER_VENV=/home/printnanny/moonraker-venv
 Environment=MOONRAKER_DATA_PATH=/home/printnanny/.local/share/moonraker/
-Environment=MOONRAKER_LOG=/var/log/klipper/moonraker.log
+Environment=MOONRAKER_LOG=/var/log/moonraker/moonraker.log
 Environment=MOONRAKER_CONFIG_FILE=/home/printnanny/.config/printnanny/vcs/moonraker/moonraker.conf
 WorkingDirectory=/home/printnanny/.moonraker
 Type=simple

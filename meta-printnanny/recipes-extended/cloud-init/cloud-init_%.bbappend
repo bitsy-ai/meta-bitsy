@@ -11,6 +11,9 @@ SRC_URI:append = "\
     file://cloud-init.service \
     file://cloud-init.target \
     file://fix-rpi-userdata.sh \
+    file://scripts/per-boot/001-run-once-per-boot.sh \
+    file://scripts/per-instance/001-run-once-per-instance.sh \
+    file://scripts/per-once/001-run-once.sh \
 "
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
@@ -20,6 +23,12 @@ do_install:append(){
     install -d ${D}${systemd_system_unitdir}
     install -d ${D}${bindir}
     install -d ${D}/var/lib/cloud/scripts/per-boot/
+    install -d ${D}/var/lib/cloud/scripts/per-instance/
+    install -d ${D}/var/lib/cloud/scripts/per-once/
+
+    install -m 0755 ${WORKDIR}/scripts/per-boot/001-run-once-per-boot.sh ${D}/var/lib/cloud/scripts/per-boot/001-run-once-per-boot.sh
+    install -m 0755 ${WORKDIR}/scripts/per-instance/001-run-once-per-instance.sh ${D}/var/lib/cloud/scripts/per-instance/001-run-once-per-instance.sh
+    install -m 0755 ${WORKDIR}/scripts/per-once/001-run-once.sh ${D}/var/lib/cloud/scripts/per-once/001-run-once.sh
 
     install -m 0644 ${WORKDIR}/099-fake_cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/099-fake_cloud.cfg
     install -m 0644 ${WORKDIR}/099-fake_cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg.d/099-fake_cloud.cfg

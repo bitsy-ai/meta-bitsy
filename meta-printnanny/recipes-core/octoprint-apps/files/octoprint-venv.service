@@ -1,7 +1,7 @@
 [Unit]
 Description=Create OctoPrint virtualenv 
 ConditionPathExists=!/home/printnanny/octoprint-venv
-After=network.target home.mount
+After=network.target home.mount cloud-final.service
 Requires=home.mount
 
 [Service]
@@ -10,5 +10,6 @@ SyslogIdentifier=octoprint-venv
 Environment=OCTOPRINT_VENV=/home/printnanny/octoprint-venv
 ExecStart=/usr/bin/python3 -m venv --system-site-packages "${OCTOPRINT_VENV}"
 User=printnanny
+
 [Install]
 WantedBy=octoprint.service

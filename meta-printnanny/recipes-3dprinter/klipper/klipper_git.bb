@@ -26,7 +26,7 @@ do_compile() {
 
 # install klipper source tree to $INSTALL_DIR 
 do_install() {
-    install -d "${D}${INSTALL_DIR}"
+    install -o "${KLIPPER_USER}" -g "${KLIPPER_USER}" -d "${D}${INSTALL_DIR}"
     cp --preserve=mode,timestamps -R ${S}/* ${D}${INSTALL_DIR}
 
     # delete .git, .github
@@ -45,6 +45,8 @@ SYSTEMD_SERVICE:${PN} = "klipper.service"
 SYSTEMD_SERVICE:${PN}-venv =  "klipper-venv.service"
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
+
+DEPENDS = "printnanny-user"
 
 RDEPENDS:${PN} = "\
     python3 \

@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 
 
 SRC_URI = "git://github.com/bitsy-ai/printnanny-settings.git;branch=main;protocol=https"
-SRCREV = "c9ab22b48b7de712e170048a85afecab5c820f8d"
+SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
 PRINTNANNY_USER ?= "printnanny"

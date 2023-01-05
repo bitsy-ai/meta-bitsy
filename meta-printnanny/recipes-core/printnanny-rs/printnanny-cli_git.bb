@@ -11,8 +11,6 @@ SRC_URI += "git://git@github.com/bitsy-ai/printnanny-rs.git;protocol=ssh;nobranc
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "cli"
-PV:append = ".AUTOINC+fc8fbd3269"
-
 PV = "0.32.0+git${SRCPV}"
 
 # please note if you have entries that do not begin with crate://

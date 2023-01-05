@@ -12,6 +12,7 @@ software =
 						compressed = "zlib";
 						installed-directly = true;
 						device = "@@BITSY_ROOTFS_COPY1_DEVICE@@";
+						sha256 = "$swupdate_get_sha256(@@IMAGE_BASENAME@@-@@MACHINE@@.ext4.gz)";
 					}
 				);
 				uboot: (
@@ -30,6 +31,7 @@ software =
 						compressed = "zlib";
 						installed-directly = true;
 						device = "@@BITSY_ROOTFS_COPY2_DEVICE@@";
+						sha256 = "$swupdate_get_sha256(@@IMAGE_BASENAME@@-@@MACHINE@@.ext4.gz)";
 					}
 				);
 				uboot: (

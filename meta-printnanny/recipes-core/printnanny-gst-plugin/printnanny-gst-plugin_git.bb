@@ -12,8 +12,7 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "gst-plugin"
 
-PV = "0.4.0+git${SRCPV}"
-
+PV = "0.5.0+git${SRCPV}"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -201,6 +200,7 @@ SRC_URI += " \
     crate://crates.io/iana-time-zone/0.1.53 \
     crate://crates.io/idna/0.3.0 \
     crate://crates.io/indexmap/1.9.2 \
+    crate://crates.io/infer/0.3.7 \
     crate://crates.io/inlinable_string/0.1.15 \
     crate://crates.io/instant/0.1.12 \
     crate://crates.io/io-lifetimes/1.0.3 \
@@ -313,8 +313,8 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.4 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.117.2 \
-    crate://crates.io/printnanny-asyncapi-models/0.1.49 \
+    crate://crates.io/printnanny-api-client/0.119.3 \
+    crate://crates.io/printnanny-asyncapi-models/0.1.51 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \
@@ -435,7 +435,7 @@ SRC_URI += " \
     crate://crates.io/tokio-stream/0.1.11 \
     crate://crates.io/tokio-tungstenite/0.17.2 \
     crate://crates.io/tokio-util/0.7.4 \
-    crate://crates.io/tokio/1.22.0 \
+    crate://crates.io/tokio/1.23.0 \
     crate://crates.io/toml/0.5.9 \
     crate://crates.io/tower-service/0.3.2 \
     crate://crates.io/tracing-attributes/0.1.23 \
@@ -524,7 +524,7 @@ LIC_FILES_CHKSUM = " \
 
 SUMMARY = "PrintNanny Gstreamer Plugins"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-gst-plugin-rs/"
-LICENSE = "AGPL-3.0-or-later"
+LICENSE = "LICENSE"
 
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from

@@ -3,6 +3,7 @@ Description=PrintNanny Settings Repo
 Before=multi-user.target
 StartLimitInterval=60
 StartLimitBurst=3
+ConditionPathExists=!/home/printnanny/.config/printnanny/vcs
 
 [Service]
 Type=simple

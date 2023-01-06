@@ -5,11 +5,11 @@ AUTHOR = "Leigh Johnson <leigh@printnanny.ai>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=08657324f94cfae679f345f428c68f9b"
 
-SRC_URI = "https://files.pythonhosted.org/packages/ad/f5/9135defc046e114c1cf47e0c9909a1b4adf60a532f14e8616131edf259e9/OctoPrint-Nanny-0.15.1.tar.gz"
-SRC_URI[md5sum] = "d3cd1937d5c6ca10d4898da576c16b28"
-SRC_URI[sha256sum] = "ff2b592b90a94a6196cec41ed7d3f371524e4bebed085d15dac42d8f02e1ed5e"
+SRC_URI = "https://files.pythonhosted.org/packages/c0/35/14db3f2daf9a04030a9f485b8bd2fae722315c015ae6488cf871a032f2b4/OctoPrint-Nanny-0.15.2.tar.gz"
+SRC_URI[md5sum] = "53e96e4852abd3c3a5924642447502a9"
+SRC_URI[sha256sum] = "bc559711f70dafe31d06b1b8e9dea1c92bc9cb3ea9b2ae8abb19f5cd61ec54c6"
 
-S = "${WORKDIR}/OctoPrint-Nanny-0.15.1"
+S = "${WORKDIR}/OctoPrint-Nanny-0.15.2"
 
 RDEPENDS:${PN} = "python3-case-converter python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff python3-nats-py"
 

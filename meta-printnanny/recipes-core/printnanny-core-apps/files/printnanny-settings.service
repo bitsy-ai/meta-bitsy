@@ -1,0 +1,15 @@
+[Unit]
+Description=PrintNanny Settings Repo
+Before=multi-user.target
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+SyslogIdentifier=printnanny-settings
+ExecStart=/usr/bin/printnanny -vv settings clone
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

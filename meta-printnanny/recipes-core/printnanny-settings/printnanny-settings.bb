@@ -16,6 +16,7 @@ DEPENDS = "printnanny-user"
 do_install(){
     install -d "${D}${INSTALL_DIR}" -g "${PRINTNANNY_USER}" -o "${PRINTNANNY_USER}"
     cp --preserve=mode,timestamps -r "${S}/." "${D}${INSTALL_DIR}/"
+    rm -rf "${D}${INSTALL_DIR}/.git"
 }
 INSANE_SKIP:${PN} = "file-rdeps"
 FILES:${PN} = "${INSTALL_DIR}"

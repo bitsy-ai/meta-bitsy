@@ -18,7 +18,7 @@ location = /index.html {
 
 location /printnanny-hls/ {
     # Disable cache
-    add_header Cache-Control no-cache;
+    add_header Cache-Control "no-store, no-cache, must-revalidate";
 
     # CORS setup
     add_header 'Access-Control-Allow-Origin' '*' always;

@@ -17,7 +17,7 @@ Environment=OCTOPRINT_VENV=/home/printnanny/octoprint-venv
 Environment=OCTOPRINT_CONFIG=/home/printnanny/.config/printnanny/vcs/octoprint/octoprint.yaml
 Environment=OCTOPRINT_PORT=5001
 ExecStart=/bin/bash -c '"${OCTOPRINT_VENV}/bin/python" -m octoprint serve \
-    --host 127.0.0.1 \
+    --host 0.0.0.0 \
     --config "${OCTOPRINT_CONFIG}" \
     --port "${OCTOPRINT_PORT}"'
 Restart=on-failure

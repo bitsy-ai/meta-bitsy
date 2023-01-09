@@ -3,7 +3,7 @@ SUMMARY = "printnanny-api-client"
 HOMEPAGE = ""
 AUTHOR = "Leigh Johnson <leigh@printnanny.ai>"
 LICENSE = "AGPLv3"
-LIC_FILES_CHKSUM = "file://setup.py;md5=10b5ee2dc25f05e1f75ec860d777976e"
+LIC_FILES_CHKSUM = "file://setup.py;md5=d9e6a09edf4ce93eb11a8e7a35657c19"
 
 SRC_URI = "https://files.pythonhosted.org/packages/a0/96/35d0fd338a60af342cbf4946b3c5739d993c22b0b8ceffdb81ae7f9f396e/printnanny-api-client-0.121.0.tar.gz"
 SRC_URI[md5sum] = "368b651778769770212996d43914bdb0"

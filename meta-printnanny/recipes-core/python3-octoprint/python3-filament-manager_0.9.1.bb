@@ -12,7 +12,4 @@ S = "${WORKDIR}/bitsy-ai-OctoPrint-FilamentManager-a8f964a"
 DEPENDS = "python3-octoprint-native python3-pip-native"
 RDEPENDS:${PN} = "python3-pip python3-backports.csv python3-uritools python3-sqlalchemy python3-octoprint"
 
-# setuptools3_do_compile:prepend(){
-#      ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install octoprint
-# }
 inherit setuptools3

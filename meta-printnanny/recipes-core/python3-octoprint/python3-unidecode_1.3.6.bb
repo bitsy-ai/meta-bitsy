@@ -14,3 +14,5 @@ S = "${WORKDIR}/Unidecode-1.3.6"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+
+BBCLASSEXTEND = "native nativesdk"

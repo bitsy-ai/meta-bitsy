@@ -14,3 +14,4 @@ S = "${WORKDIR}/pathvalidate-2.5.2"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

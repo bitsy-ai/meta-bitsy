@@ -14,3 +14,4 @@ S = "${WORKDIR}/tornado-6.2"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

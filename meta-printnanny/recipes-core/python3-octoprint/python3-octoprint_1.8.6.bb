@@ -57,3 +57,5 @@ RDEPENDS:${PN} = "\
     python3-zipstream-ng"
 
 inherit setuptools3_legacy
+
+BBCLASSEXTEND = "native nativesdk"

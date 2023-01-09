@@ -14,3 +14,4 @@ S = "${WORKDIR}/zeroconf-0.39.4"
 RDEPENDS:${PN} = "python3-async-timeout python3-ifaddr"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

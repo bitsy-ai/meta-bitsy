@@ -14,3 +14,4 @@ S = "${WORKDIR}/OctoPrint-FileCheck-2021.2.23"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

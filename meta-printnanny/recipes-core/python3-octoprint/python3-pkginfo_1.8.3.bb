@@ -14,3 +14,4 @@ S = "${WORKDIR}/pkginfo-1.8.3"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

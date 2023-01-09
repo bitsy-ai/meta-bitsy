@@ -14,3 +14,4 @@ S = "${WORKDIR}/Flask-2.2.2"
 RDEPENDS:${PN} = "python3-werkzeug python3-jinja2 python3-itsdangerous python3-click"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

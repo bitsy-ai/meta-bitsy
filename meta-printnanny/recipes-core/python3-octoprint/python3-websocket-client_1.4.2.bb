@@ -14,3 +14,4 @@ S = "${WORKDIR}/websocket-client-1.4.2"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

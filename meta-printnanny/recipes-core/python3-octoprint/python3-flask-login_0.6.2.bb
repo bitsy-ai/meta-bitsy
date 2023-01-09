@@ -14,3 +14,5 @@ S = "${WORKDIR}/Flask-Login-0.6.2"
 RDEPENDS:${PN} = "python3-flask python3-werkzeug"
 
 inherit setuptools3
+
+BBCLASSEXTEND = "native nativesdk"

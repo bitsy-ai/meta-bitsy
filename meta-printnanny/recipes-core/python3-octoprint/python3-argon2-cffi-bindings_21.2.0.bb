@@ -22,3 +22,4 @@ inherit python_poetry_core
 do_compile:prepend(){
     export ARGON2_CFFI_USE_SSE2=0
 }
+BBCLASSEXTEND = "native nativesdk"

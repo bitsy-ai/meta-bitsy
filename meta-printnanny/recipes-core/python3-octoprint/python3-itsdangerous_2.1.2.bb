@@ -14,3 +14,4 @@ S = "${WORKDIR}/itsdangerous-2.1.2"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

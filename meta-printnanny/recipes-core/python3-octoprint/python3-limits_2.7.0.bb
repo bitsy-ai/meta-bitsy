@@ -14,3 +14,4 @@ S = "${WORKDIR}/limits-2.7.0"
 RDEPENDS:${PN} = "python3-deprecated python3-setuptools python3-packaging python3-typing-extensions"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

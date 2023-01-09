@@ -14,3 +14,4 @@ S = "${WORKDIR}/passlib-1.7.4"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

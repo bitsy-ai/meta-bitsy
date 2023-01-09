@@ -14,3 +14,4 @@ S = "${WORKDIR}/Deprecated-1.2.13"
 RDEPENDS:${PN} = "python3-wrapt"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

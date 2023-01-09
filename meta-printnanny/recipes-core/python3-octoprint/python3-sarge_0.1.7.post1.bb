@@ -14,3 +14,4 @@ S = "${WORKDIR}/sarge-0.1.7.post1"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3_legacy
+BBCLASSEXTEND = "native nativesdk"

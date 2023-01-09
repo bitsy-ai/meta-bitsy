@@ -14,3 +14,4 @@ S = "${WORKDIR}/Flask-Limiter-2.7.0"
 RDEPENDS:${PN} = "python3-limits python3-flask python3-rich python3-typing-extensions"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

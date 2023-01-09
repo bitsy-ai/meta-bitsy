@@ -14,3 +14,5 @@ S = "${WORKDIR}/Werkzeug-2.2.2"
 RDEPENDS:${PN} = "python3-markupsafe"
 
 inherit setuptools3
+
+BBCLASSEXTEND = "native nativesdk"

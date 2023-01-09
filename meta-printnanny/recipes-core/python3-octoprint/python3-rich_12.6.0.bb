@@ -14,3 +14,4 @@ S = "${WORKDIR}/rich-12.6.0"
 RDEPENDS:${PN} = "python3-pygments python3-commonmark"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

@@ -14,3 +14,4 @@ S = "${WORKDIR}/sentry-sdk-1.10.1"
 RDEPENDS:${PN} = "python3-certifi"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

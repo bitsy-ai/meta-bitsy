@@ -36,6 +36,7 @@ DEPENDS = "${OCTOPRINT_USER}-user"
 # install python3-octoprint-nanny to system site-packages
 RDEPENDS:${PN} = "\
     python3-octoprint-nanny \
+    python3-filament-manager \
     python3-pip \
     python3-wheel \
     ${OCTOPRINT_USER}-user \

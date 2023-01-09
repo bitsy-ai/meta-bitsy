@@ -256,6 +256,7 @@ SRC_URI += " \
     crate://crates.io/ndarray/0.15.6 \
     crate://crates.io/nix/0.24.3 \
     crate://crates.io/nix/0.25.1 \
+    crate://crates.io/nix/0.26.1 \
     crate://crates.io/nkeys/0.2.0 \
     crate://crates.io/nom/5.1.2 \
     crate://crates.io/normalize-line-endings/0.3.0 \
@@ -313,8 +314,8 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.4 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.119.5 \
-    crate://crates.io/printnanny-asyncapi-models/0.1.51 \
+    crate://crates.io/printnanny-api-client/0.121.0 \
+    crate://crates.io/printnanny-asyncapi-models/0.1.54 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \

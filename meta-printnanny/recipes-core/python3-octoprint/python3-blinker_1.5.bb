@@ -14,3 +14,4 @@ S = "${WORKDIR}/blinker-1.5"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

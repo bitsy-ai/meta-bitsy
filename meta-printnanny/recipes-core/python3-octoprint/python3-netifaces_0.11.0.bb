@@ -14,3 +14,4 @@ S = "${WORKDIR}/netifaces-0.11.0"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

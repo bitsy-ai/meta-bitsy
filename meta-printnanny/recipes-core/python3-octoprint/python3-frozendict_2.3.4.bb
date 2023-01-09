@@ -14,3 +14,4 @@ S = "${WORKDIR}/frozendict-2.3.4"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

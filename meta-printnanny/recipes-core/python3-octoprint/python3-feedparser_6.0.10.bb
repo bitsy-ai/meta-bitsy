@@ -14,3 +14,4 @@ S = "${WORKDIR}/feedparser-6.0.10"
 RDEPENDS:${PN} = "python3-sgmllib3k"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

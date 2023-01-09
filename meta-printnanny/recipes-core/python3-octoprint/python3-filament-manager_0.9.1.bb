@@ -4,11 +4,15 @@ AUTHOR = "Sven Lohrmann <malnvenshorn@gmail.com>, Olli <ollisgit@gmail.com>"
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=4940c38d79bc5dca0630466d7c54b004"
 
-SRC_URI = "https://github.com/bitsy-ai/OctoPrint-FilamentManager/zipball/fix-python-10-compat"
-SRC_URI[sha256sum] = "9e3e14f0e60be2c76360cc2488517c973bfb23f773e630095673274490648b49"
+SRC_URI = "https://github.com/bitsy-ai/OctoPrint-FilamentManager/zipball/fix-python-10-compat/bitsy-ai-OctoPrint-FilamentManager-a8f964a.zip"
+SRC_URI[sha256sum] = "4172af2873af1518b28d44adc9f0b9bccb4d9fcca435bc64b95cb68d1cc2f0b7"
 
-S = "${WORKDIR}/bitsy-ai-OctoPrint-FilamentManager"
+S = "${WORKDIR}/bitsy-ai-OctoPrint-FilamentManager-a8f964a"
 
-RDEPENDS:${PN} = "python3-backports.csv python3-uritools python3-sqlalchemy"
+DEPENDS = "python3-octoprint-native python3-pip-native"
+RDEPENDS:${PN} = "python3-pip python3-backports.csv python3-uritools python3-sqlalchemy python3-octoprint"
 
+# setuptools3_do_compile:prepend(){
+#      ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install octoprint
+# }
 inherit setuptools3

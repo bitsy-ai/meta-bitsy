@@ -14,3 +14,4 @@ S = "${WORKDIR}/Flask-Babel-2.0.0"
 RDEPENDS:${PN} = "python3-pytz python3-flask python3-babel python3-jinja2"
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

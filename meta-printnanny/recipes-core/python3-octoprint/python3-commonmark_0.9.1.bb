@@ -14,3 +14,4 @@ S = "${WORKDIR}/commonmark-0.9.1"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

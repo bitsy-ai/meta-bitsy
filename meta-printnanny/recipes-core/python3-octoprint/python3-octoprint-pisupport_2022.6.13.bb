@@ -14,3 +14,4 @@ S = "${WORKDIR}/OctoPrint-PiSupport-2022.6.13"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

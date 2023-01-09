@@ -14,3 +14,4 @@ S = "${WORKDIR}/OctoPrint-FirmwareCheck-2021.10.11"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
+BBCLASSEXTEND = "native nativesdk"

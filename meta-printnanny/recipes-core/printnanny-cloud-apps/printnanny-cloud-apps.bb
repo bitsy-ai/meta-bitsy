@@ -34,6 +34,6 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-cloud-nats.service \
   printnanny-cloud-sync.service \
 "
-SYSTEMD_AUTO_ENABLE = "disable"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 RDEPENDS:${PN}-nginx = "${PN} nginx"

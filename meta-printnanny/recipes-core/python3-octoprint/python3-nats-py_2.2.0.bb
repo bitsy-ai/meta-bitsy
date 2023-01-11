@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "e45a0bafde2d04fb2d2bd6b0527b95bc77f371beaf7b6237354be0234f
 
 S = "${WORKDIR}/nats-py-2.2.0"
 
-RDEPENDS:${PN} = "nkeys"
+RDEPENDS:${PN} = "python3-nkeys"
 
 inherit setuptools3

@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "93482ab08ff9625882b988c3ea58fd1a6ef0061b60f95946742cc13945
 
 S = "${WORKDIR}/nkeys-0.1.0"
 
-RDEPENDS:${PN} = "ed25519"
+RDEPENDS:${PN} = "python3-ed25519"
 
 inherit setuptools3

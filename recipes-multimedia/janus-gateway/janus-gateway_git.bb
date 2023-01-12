@@ -10,6 +10,7 @@ SRC_URI = "\
 	file://janus.plugin.streaming.jcfg \
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
+	file://janus.plugin.recordplay.jcfg \
 	file://janus-envsubst-on-templates.sh \
 "
 # v1.1.1 + a few patches
@@ -51,6 +52,7 @@ do_install:append() {
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
 	install -m 0644 ${WORKDIR}/janus.jcfg.template ${D}${sysconfdir}/janus/templates/janus.jcfg.template
 	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
+	install -m 0644 ${WORKDIR}/janus.plugin.recordplay.jcfg ${D}${sysconfdir}/janus/janus.plugin.recordplay.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.websockets.jcfg ${D}${sysconfdir}/janus/janus.transport.websockets.jcfg
 	install -m 0755 ${WORKDIR}/janus-envsubst-on-templates.sh ${D}${bindir}/janus-envsubst-on-templates

@@ -101,6 +101,7 @@ SRC_URI += " \
     crate://crates.io/data-encoding/2.3.2 \
     crate://crates.io/der/0.4.5 \
     crate://crates.io/derivative/2.2.0 \
+    crate://crates.io/derive_more/0.99.17 \
     crate://crates.io/dialoguer/0.8.0 \
     crate://crates.io/diesel/2.0.2 \
     crate://crates.io/diesel_derives/2.0.1 \
@@ -245,6 +246,7 @@ SRC_URI += " \
     crate://crates.io/memoffset/0.7.1 \
     crate://crates.io/mime/0.3.16 \
     crate://crates.io/mime_guess/2.0.4 \
+    crate://crates.io/mime_serde_shim/0.2.2 \
     crate://crates.io/miniz_oxide/0.5.4 \
     crate://crates.io/miniz_oxide/0.6.2 \
     crate://crates.io/mio/0.8.5 \
@@ -318,8 +320,8 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.4 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.124.0 \
-    crate://crates.io/printnanny-asyncapi-models/0.2.8 \
+    crate://crates.io/printnanny-api-client/0.124.1 \
+    crate://crates.io/printnanny-asyncapi-models/0.2.9 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.2.1 \
     crate://crates.io/proc-macro-error-attr/1.0.4 \

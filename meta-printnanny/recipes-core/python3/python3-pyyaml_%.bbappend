@@ -11,8 +11,7 @@ inherit pypi setuptools3
 
 SRC_URI[sha256sum] = "68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"
 
-DEPENDS = "libyaml"
-
+DEPENDS += "python3-setuptools-scm-native libyaml"
 RDEPENDS:${PN} += "\
     ${PYTHON_PN}-datetime \
     ${PYTHON_PN}-netclient \
@@ -20,3 +19,4 @@ RDEPENDS:${PN} += "\
 "
 
 BBCLASSEXTEND = "native nativesdk"
+INSANE_SKIP:${PN} += "dev-deps"

@@ -22,7 +22,6 @@ RDEPENDS:${PN} += "\
   printnanny-cli \
   printnanny-gst-plugin \
   printnanny-nn \
-  gst-interpipe \
   gstd \
 "
 

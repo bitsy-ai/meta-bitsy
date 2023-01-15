@@ -9,7 +9,6 @@ StartLimitBurst=3
 Type=oneshot
 SyslogIdentifier=printnanny-vision
 Environment=RUST_LOG=info
-Environment=GST_PLUGIN_PATH=/usr/lib/gstprintnanny:/usr/lib/gstinterpipe
 Environment=GST_DEBUG=2
 Environment=GST_DEBUG_DUMP_DOT_DIR=/var/log/printnanny-vision
 Environment=PRINTNANNY_SETTINGS=/home/printnanny/.config/printnanny/vcs/printnanny/printnanny.toml

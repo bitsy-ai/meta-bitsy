@@ -45,8 +45,6 @@ do_install() {
 }
 
 FILES:${PN} = "${bindir} ${libdir}/*.so* \ 
-               ${base_prefix}/run \
-               ${base_prefix}/var \
                /lib/systemd/system/gstd-check-user-xenv.sh \
                /lib/systemd/system/gstd.service \
               "

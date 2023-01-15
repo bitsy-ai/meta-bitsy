@@ -23,6 +23,7 @@ RDEPENDS:${PN} += "\
   printnanny-gst-plugin \
   printnanny-nn \
   gstd \
+  gst-interpipes \
 "
 
 SYSTEMD_AUTO_ENABLE = "enable"

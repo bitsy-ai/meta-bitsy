@@ -41,7 +41,8 @@ do_install() {
         #distutils3_do_install
         # install -d ${D}/run
         # install -d ${D}/var/log/
-        # rm -rf ${D}/var/run
+        rm -rf ${D}/var/
+        rm -rf ${D}/run/
 }
 
 FILES:${PN} = "${bindir} ${libdir}/*.so* \ 

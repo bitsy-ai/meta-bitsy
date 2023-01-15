@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3191ae9476980e87e3494d2d8ebe4584"
 DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base gtk-doc-native"
 
 SRCBRANCH ?= "master"
-SRCREV = "${PV}"
+SRCREV = "814982ecd735e42ff2d14ce7c43039c259ec928b"
 SRC_URI = "git://github.com/RidgeRun/gst-interpipe.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"

@@ -11,7 +11,7 @@ SRC_URI += "git://git@github.com/bitsy-ai/printnanny-rs.git;protocol=ssh;nobranc
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = "gst-plugin"
-PV:append = ".AUTOINC+afbd5c467d"
+PV:append = "0.5.0-git${SRCPV}"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -50,6 +50,7 @@ SRC_URI += " \
     crate://crates.io/base64/0.12.3 \
     crate://crates.io/base64/0.13.1 \
     crate://crates.io/base64ct/1.1.1 \
+    crate://crates.io/bigdecimal/0.3.0 \
     crate://crates.io/bitflags/1.3.2 \
     crate://crates.io/block-buffer/0.10.3 \
     crate://crates.io/block-buffer/0.9.0 \
@@ -101,6 +102,8 @@ SRC_URI += " \
     crate://crates.io/der/0.4.5 \
     crate://crates.io/derivative/2.2.0 \
     crate://crates.io/dialoguer/0.8.0 \
+    crate://crates.io/diesel/2.0.2 \
+    crate://crates.io/diesel_derives/2.0.1 \
     crate://crates.io/difference/2.0.0 \
     crate://crates.io/difflib/0.4.0 \
     crate://crates.io/digest/0.10.6 \
@@ -204,6 +207,7 @@ SRC_URI += " \
     crate://crates.io/instant/0.1.12 \
     crate://crates.io/io-lifetimes/1.0.3 \
     crate://crates.io/ipnet/2.5.1 \
+    crate://crates.io/ipnetwork/0.20.0 \
     crate://crates.io/itertools/0.10.5 \
     crate://crates.io/itoa/0.4.8 \
     crate://crates.io/itoa/1.0.4 \
@@ -224,6 +228,7 @@ SRC_URI += " \
     crate://crates.io/libc/0.2.138 \
     crate://crates.io/libgit2-sys/0.14.0+1.5.0 \
     crate://crates.io/libm/0.2.6 \
+    crate://crates.io/libsqlite3-sys/0.25.2 \
     crate://crates.io/libssh2-sys/0.2.23 \
     crate://crates.io/libz-sys/1.1.8 \
     crate://crates.io/link-cplusplus/1.0.7 \
@@ -325,6 +330,7 @@ SRC_URI += " \
     crate://crates.io/procfs/0.12.0 \
     crate://crates.io/quick-error/1.2.3 \
     crate://crates.io/quote/1.0.21 \
+    crate://crates.io/r2d2/0.8.10 \
     crate://crates.io/rand/0.4.6 \
     crate://crates.io/rand/0.8.5 \
     crate://crates.io/rand_chacha/0.3.1 \
@@ -360,6 +366,7 @@ SRC_URI += " \
     crate://crates.io/ryu/1.0.11 \
     crate://crates.io/safemem/0.3.3 \
     crate://crates.io/schannel/0.1.20 \
+    crate://crates.io/scheduled-thread-pool/0.2.6 \
     crate://crates.io/scoped-tls/1.0.1 \
     crate://crates.io/scopeguard/1.1.0 \
     crate://crates.io/scratch/1.0.2 \

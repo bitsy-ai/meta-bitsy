@@ -1,0 +1,97 @@
+Index: gstd-1.x/autogen.sh
+===================================================================
+--- gstd-1.x.orig/autogen.sh
++++ gstd-1.x/autogen.sh
+@@ -30,7 +30,11 @@
+ ## (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ ## OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+-gtkdocize || exit 1
++test -n "$srcdir" || srcdir=`dirname "$0"`
++test -n "$srcdir" || srcdir=.
++
++olddir=`pwd`
++cd "$srcdir"
+ 
+ autoreconf --verbose --force --install || {
+  echo 'autogen.sh failed';
+@@ -47,3 +51,5 @@ fi
+ echo
+ echo "Now run './configure' with your system settings followed by 'make' to compile this module."
+ echo
++
++cd "$olddir"
+Index: gstd-1.x/gst_client/Makefile.am
+===================================================================
+--- gstd-1.x.orig/gst_client/Makefile.am
++++ gstd-1.x/gst_client/Makefile.am
+@@ -20,9 +20,9 @@ gst_client_@GSTD_API_VERSION@_LDFLAGS =
+ 
+ install-exec-hook:
+ 	$(RM) $(DESTDIR)$(bindir)/gstd-client $(DESTDIR)$(bindir)/gst-client
+-	$(LN_S) $(DESTDIR)$(bindir)/gst-client-@GSTD_API_VERSION@ \
++	$(LN_S) $(bindir)/gst-client-@GSTD_API_VERSION@ \
+            $(DESTDIR)$(bindir)/gstd-client
+-	$(LN_S) $(DESTDIR)$(bindir)/gst-client-@GSTD_API_VERSION@ \
++	$(LN_S) $(bindir)/gst-client-@GSTD_API_VERSION@ \
+            $(DESTDIR)$(bindir)/gst-client
+ 
+ uninstall-hook:
+Index: gstd-1.x/gstd/Makefile.am
+===================================================================
+--- gstd-1.x.orig/gstd/Makefile.am
++++ gstd-1.x/gstd/Makefile.am
+@@ -14,8 +14,7 @@ gstd_CFLAGS =
+ gstd_LDFLAGS =                                  \
+                $(GSTD_LIBS)                     \
+                $(GST_LIBS)                      \
+-               $(LIBD_LIBS)                     \
+-	       -Wl,-rpath -Wl,$(libdir)
++               $(LIBD_LIBS)
+ 
+ gstd_LDADD = $(top_builddir)/libgstd/libgstd-1.0.la
+ 
+Index: gstd-1.x/libgstc/python/Makefile.am
+===================================================================
+--- gstd-1.x.orig/libgstc/python/Makefile.am
++++ gstd-1.x/libgstc/python/Makefile.am
+@@ -1,2 +0,0 @@
+-install-am:
+-	@sudo -H pip3 install .
+Index: gstd-1.x/configure.ac
+===================================================================
+--- gstd-1.x.orig/configure.ac
++++ gstd-1.x/configure.ac
+@@ -141,10 +141,6 @@ PKG_CHECK_MODULES(GJSON, [
+   ])
+ ])
+ 
+-
+-dnl check for gtk-doc
+-GTK_DOC_CHECK([1.14])
+-
+ PKG_CHECK_MODULES(LIBEDIT, [
+     libedit >= $LIBEDIT_REQUIRED
+   ], [
+@@ -316,9 +312,6 @@ tests/libgstc/Makefile
+ tests/libgstc/c/Makefile
+ tests/libgstc/python/Makefile
+ tests/libgstd/Makefile
+-docs/Makefile
+-docs/reference/Makefile
+-docs/reference/gstd/Makefile
+ init/Makefile
+ init/gstd
+ init/gstd.service
+Index: gstd-1.x/Makefile.am
+===================================================================
+--- gstd-1.x.orig/Makefile.am
++++ gstd-1.x/Makefile.am
+@@ -7,7 +7,6 @@ SUBDIRS=		\
+ 	gstd		\
+ 	tests		\
+ 	examples	\
+-	docs      	\
+ 	init
+ 
+ EXTRA_DIST=autogen.sh

@@ -34,14 +34,13 @@ RDEPENDS:${PN} += "\
     nnstreamer-tensorflow-lite \
     tensorflow-lite \
 "
-FILES:${PN} += "${datadir} ${bindir} ${libdir}/"
 
 oe_cargo_build:prepend() {
 	"${CARGO}" fetch --manifest-path="${MANIFEST_PATH}" 
 }
 
 do_install(){
-    install -d "${D}${bindir}"
+    install -d "${D}${libdir}/gstreamer-1.0/"
     install -m 0644 "${WORKDIR}/build/target/${CARGO_TARGET_SUBDIR}/libgstprintnanny.so" "${D}${libdir}/gstreamer-1.0/libgstprintnanny.so"
 }
 

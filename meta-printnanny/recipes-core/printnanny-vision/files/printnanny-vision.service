@@ -6,16 +6,16 @@ StartLimitInterval=60
 StartLimitBurst=3
 
 [Service]
-Type=simple
+Type=oneshot
 SyslogIdentifier=printnanny-vision
 Environment=RUST_LOG=info
-Environment=GST_PLUGIN_PATH=/usr/lib/gstprintnanny
+Environment=GST_PLUGIN_PATH=/usr/lib/gstprintnanny:/usr/lib/gstinterpipe
 Environment=GST_DEBUG=2
 Environment=GST_DEBUG_DUMP_DOT_DIR=/var/log/printnanny-vision
 Environment=PRINTNANNY_SETTINGS=/home/printnanny/.config/printnanny/vcs/printnanny/printnanny.toml
-RuntimeDirectory=printnanny-hls printnanny-vision
+RuntimeDirectory=printnanny-hls printnanny-snapshot printnanny-vision
 LogsDirectory=printnanny-vision
-ExecStart=/usr/bin/printnanny-gst-pipeline --config "${PRINTNANNY_SETTINGS}"
+ExecStart=/usr/bin/printnanny cam start-pipelines
 Restart=on-failure
 RestartSec=10
 User=printnanny

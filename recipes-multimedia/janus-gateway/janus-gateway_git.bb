@@ -50,7 +50,7 @@ do_install:append() {
 	install -d ${D}${libdir}/janus/events
 	install -d ${D}${libdir}/janus/loggers
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
-	install -m 0644 ${WORKDIR}/janus.jcfg ${D}${sysconfdir}/janus/templates/janus.jcfg
+	install -m 0644 ${WORKDIR}/janus.jcfg ${D}${sysconfdir}/janus/janus.jcfg
 	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
 	install -m 0644 ${WORKDIR}/janus.plugin.recordplay.jcfg ${D}${sysconfdir}/janus/janus.plugin.recordplay.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg

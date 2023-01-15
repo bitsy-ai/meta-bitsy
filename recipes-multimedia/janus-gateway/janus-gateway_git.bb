@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=c3707f19243459c077cf33ceb57e8c37"
 SRC_URI = "\
 	git://github.com/meetecho/janus-gateway.git;protocol=https;branch=master \
 	file://janus-gateway.service \
-	file://janus.jcfg.template \
+	file://janus.jcfg \
 	file://janus.plugin.streaming.jcfg \
 	file://janus.transport.http.jcfg \
 	file://janus.transport.websockets.jcfg \
@@ -50,7 +50,7 @@ do_install:append() {
 	install -d ${D}${libdir}/janus/events
 	install -d ${D}${libdir}/janus/loggers
 	install -m 0644 ${WORKDIR}/janus-gateway.service ${D}${systemd_unitdir}/system/
-	install -m 0644 ${WORKDIR}/janus.jcfg.template ${D}${sysconfdir}/janus/templates/janus.jcfg.template
+	install -m 0644 ${WORKDIR}/janus.jcfg ${D}${sysconfdir}/janus/janus.jcfg
 	install -m 0644 ${WORKDIR}/janus.plugin.streaming.jcfg ${D}${sysconfdir}/janus/janus.plugin.streaming.jcfg
 	install -m 0644 ${WORKDIR}/janus.plugin.recordplay.jcfg ${D}${sysconfdir}/janus/janus.plugin.recordplay.jcfg
 	install -m 0644 ${WORKDIR}/janus.transport.http.jcfg ${D}${sysconfdir}/janus/janus.transport.http.jcfg

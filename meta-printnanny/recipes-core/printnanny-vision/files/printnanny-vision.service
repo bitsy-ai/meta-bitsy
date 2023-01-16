@@ -15,7 +15,7 @@ Environment=GSTD_PORT=5002
 Environment=PRINTNANNY_SETTINGS=/home/printnanny/.config/printnanny/vcs/printnanny/printnanny.toml
 RuntimeDirectory=printnanny-hls printnanny-snapshot printnanny-vision
 LogsDirectory=printnanny-vision
-ExecStart=/usr/bin/printnanny cam start-pipelines --http-port="${GSTD_PORT}"
+ExecStart=/usr/bin/printnanny -v cam start-pipelines --http-port="${GSTD_PORT}"
 Restart=on-failure
 RestartSec=10
 User=printnanny

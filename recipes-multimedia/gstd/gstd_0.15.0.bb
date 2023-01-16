@@ -21,7 +21,7 @@ S = "${WORKDIR}/git"
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "gstd.service"
 
-inherit autotools pkgconfig gettext 
+inherit autotools pkgconfig gettext systemd
 # inherit setuptools3
 
 # Python API path
@@ -39,6 +39,8 @@ do_configure() {
 
 do_install() {
         autotools_do_install
+        rm ${D}/lib/systemd/system/gstd.service
+        rm ${D}/lib/systemd/system/gstd-check-user-xenv.sh
         install -m 0644 "${WORKDIR}/gstd.service" "${D}${systemd_system_unitdir}/gstd.service"
 
         rm -rf ${D}/var/

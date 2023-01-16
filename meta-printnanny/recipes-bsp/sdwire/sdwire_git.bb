@@ -15,6 +15,7 @@ LIC_FILES_CHKSUM = " \
 S = "${WORKDIR}/git/src"
 
 DEPENDS = "libftdi libusb1 popt"
+TARGET_CC_ARCH += "${LDFLAGS}"
 
 do_install(){
     install -d "${D}${bindir}"

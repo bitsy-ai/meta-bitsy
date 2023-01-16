@@ -36,6 +36,7 @@ IMAGE_INSTALL = "\
   packagegroup-printnanny-core \
   packagegroup-printnanny-cv \
   packagegroup-printnanny-utils \
+  packagegroup-printnanny-extras \
   packagegroup-printnanny-syncthing \
   packagegroup-printnanny-tailscale \
   packagegroup-printnanny-webrtc \

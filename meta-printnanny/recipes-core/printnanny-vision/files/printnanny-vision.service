@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny Cam Service
-After=network-online.target printnanny-cloud-sync.service
-Wants=network-online.target printnanny-cloud-sync.service 
+After=network-online.target printnanny-cloud-sync.service gstd.service
+Wants=network-online.target printnanny-cloud-sync.service gstd.service
 StartLimitInterval=60
 StartLimitBurst=3
 

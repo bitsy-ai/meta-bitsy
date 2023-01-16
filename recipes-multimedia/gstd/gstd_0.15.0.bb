@@ -10,9 +10,11 @@ DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad json-
 
 SRCBRANCH ?= "master"
 SRCREV = "a011affa67f240cbc7aaff5b00fdfd6124bdaece"
-SRC_URI = "git://github.com/RidgeRun/gstd-1.x.git;protocol=https;branch=${SRCBRANCH} \
-           file://gstd-yocto-disable-gtk-doc.patch \
-           "
+SRC_URI = "
+  git://github.com/RidgeRun/gstd-1.x.git;protocol=https;branch=${SRCBRANCH} \
+  file://gstd-yocto-disable-gtk-doc.patch \
+  file://gstd.service \
+  "
 
 S = "${WORKDIR}/git"
 
@@ -37,18 +39,13 @@ do_configure() {
 
 do_install() {
         autotools_do_install
-        # Install Python API
-        #distutils3_do_install
-        # install -d ${D}/run
-        # install -d ${D}/var/log/
+        install -m 0644 "${WORKDIR}/gstd.service" "${D}${systemd_system_unitdir}/gstd.service"
+
         rm -rf ${D}/var/
         rm -rf ${D}/run/
 }
 
-FILES:${PN} = "${bindir} ${libdir}/*.so* \ 
-               /lib/systemd/system/gstd-check-user-xenv.sh \
-               /lib/systemd/system/gstd.service \
-              "
+FILES:${PN} = "${bindir} ${libdir}/*.so*"
 
 # Split the Python API to a separate package
 # PACKAGES += "${PN}-python"

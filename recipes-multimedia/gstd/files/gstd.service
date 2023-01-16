@@ -1,0 +1,13 @@
+[Unit]
+Description=GStreamer Daemon
+StartLimitBurst=3
+StartLimitIntervalSec=30
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+Environment=GSTD_PORT=5002
+ExecStart=/usr/bin/gstd --enable-http-protocol --http-port="${GSTD_PORT}"
+
+[Install]
+WantedBy=default.target

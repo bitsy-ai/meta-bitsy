@@ -10,11 +10,11 @@ DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad json-
 
 SRCBRANCH ?= "master"
 SRCREV = "a011affa67f240cbc7aaff5b00fdfd6124bdaece"
-SRC_URI = "
+SRC_URI = "\
   git://github.com/RidgeRun/gstd-1.x.git;protocol=https;branch=${SRCBRANCH} \
   file://gstd-yocto-disable-gtk-doc.patch \
   file://gstd.service \
-  "
+"
 
 S = "${WORKDIR}/git"
 

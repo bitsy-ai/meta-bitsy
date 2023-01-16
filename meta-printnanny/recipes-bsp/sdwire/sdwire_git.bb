@@ -4,18 +4,21 @@ HOMEPAGE = "https://github.com/bitsy-ai/printnanny-sdwire"
 inherit pkgconfig
 
 SRC_URI = "\
-    https://github.com/bitsy-ai/printnanny-sdwire \
+    git://git@github.com/bitsy-ai/printnanny-sdwire.git;protocol=ssh;nobranch=1;branch=main \
 "
-SRC_URI[sha256sum] = "2c270f32a1dcca1be678068b76ff88f3bb0febcc26a381c0a8383a1480f4e0d7"
-SRCREV = "d1b25bec8f9f476fce1ec95a9edff8ed90015654"
+SRCREV = "cce4bc704d76d976533317c9449e0c3ba2f7f410"
 LICENSE = "Apache-2.0"
-S = "${WORKDIR}/git"
+LIC_FILES_CHKSUM = " \
+    file://${WORKDIR}/git/LICENSE;md5=82a03598249f1a848c93ed67816b30ca \
+"
 
-DEPENDS = "libftdi libusb1"
+S = "${WORKDIR}/git/src"
+
+DEPENDS = "libftdi libusb1 popt"
 
 do_install(){
     install -d "${D}${bindir}"
-    install -m 0755 "${WORKDIR}/sdwire" "${D}${bindir}/printnanny-sdwire"
+    install -m 0755 "${S}/sdwire" "${D}${bindir}/printnanny-sdwire"
 }
 
 FILES:${PN} = "${bindir}/printnanny-sdwire"

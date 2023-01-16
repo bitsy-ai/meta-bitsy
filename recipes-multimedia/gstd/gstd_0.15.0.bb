@@ -17,7 +17,7 @@ SRC_URI = "git://github.com/RidgeRun/gstd-1.x.git;protocol=https;branch=${SRCBRA
 S = "${WORKDIR}/git"
 
 SYSTEMD_AUTO_ENABLE = "enable"
-SYSTEMD_SERVICE_${PN} = "gstd.service"
+SYSTEMD_SERVICE:${PN} = "gstd.service"
 
 inherit autotools pkgconfig gettext 
 # inherit setuptools3

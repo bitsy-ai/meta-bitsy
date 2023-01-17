@@ -103,6 +103,7 @@ SRC_URI += " \
     crate://crates.io/derivative/2.2.0 \
     crate://crates.io/derive_more/0.99.17 \
     crate://crates.io/dialoguer/0.8.0 \
+    crate://crates.io/diesel-enum/0.1.0 \
     crate://crates.io/diesel/2.0.2 \
     crate://crates.io/diesel_derives/2.0.1 \
     crate://crates.io/difference/2.0.0 \

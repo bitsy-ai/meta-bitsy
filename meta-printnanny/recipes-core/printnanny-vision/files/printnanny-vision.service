@@ -19,6 +19,7 @@ ExecStart=/usr/bin/printnanny -v cam start-pipelines --http-port="${GSTD_PORT}"
 Restart=on-failure
 RestartSec=10
 User=printnanny
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target

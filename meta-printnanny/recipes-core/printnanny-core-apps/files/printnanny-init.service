@@ -1,0 +1,16 @@
+[Unit]
+Description=PrintNanny OS Initialization service
+Before=multi-user.target
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=printnanny-init
+ExecStart=/usr/bin/printnanny init
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

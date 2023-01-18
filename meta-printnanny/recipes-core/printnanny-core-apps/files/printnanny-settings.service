@@ -1,6 +1,8 @@
 [Unit]
 Description=PrintNanny Settings Repo
 Before=multi-user.target
+After=printnanny-init.service
+Wants=printnanny-init.service
 StartLimitInterval=60
 StartLimitBurst=3
 ConditionPathExists=!/home/printnanny/.config/printnanny/vcs

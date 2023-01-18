@@ -12,6 +12,9 @@ DEPENDS += "openssl \
     gstreamer1.0-plugins-good \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly \
+    sqlite3 \
 "
+
+REDPENDS:${PN} = "libsqlite3"
 
 FILES:${PN} += "${datadir} ${bindir}"

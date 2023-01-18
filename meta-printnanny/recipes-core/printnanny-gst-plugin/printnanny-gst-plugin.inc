@@ -18,6 +18,7 @@ DEPENDS += "openssl \
     gstreamer1.0-plugins-ugly \   
     nnstreamer \
     tensorflow-lite \
+    libsqlite3 \
 "
 RDEPENDS:${PN} += "\
     glib-2.0 \

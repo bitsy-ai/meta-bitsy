@@ -32,12 +32,15 @@ SRC_URI += " \
     crate://crates.io/assert_cmd/2.0.8 \
     crate://crates.io/async-broadcast/0.5.0 \
     crate://crates.io/async-channel/1.8.0 \
+    crate://crates.io/async-compression/0.3.15 \
     crate://crates.io/async-executor/1.5.0 \
     crate://crates.io/async-io/1.12.0 \
     crate://crates.io/async-lock/2.6.0 \
     crate://crates.io/async-nats/0.18.0 \
     crate://crates.io/async-process/1.6.0 \
     crate://crates.io/async-recursion/1.0.0 \
+    crate://crates.io/async-stream-impl/0.3.3 \
+    crate://crates.io/async-stream/0.3.3 \
     crate://crates.io/async-task/4.3.0 \
     crate://crates.io/async-trait/0.1.61 \
     crate://crates.io/atomic-waker/1.1.0 \
@@ -324,7 +327,7 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.5 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.124.5 \
+    crate://crates.io/printnanny-api-client/0.124.7 \
     crate://crates.io/printnanny-asyncapi-models/0.3.13 \
     crate://crates.io/proc-macro-crate/0.1.5 \
     crate://crates.io/proc-macro-crate/1.2.1 \

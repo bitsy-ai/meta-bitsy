@@ -40,3 +40,19 @@ location /printnanny-hls/ {
 
     alias /var/run/printnanny-hls/;
 }
+
+location /printnanny-snapshot/ {
+    # Disable cache
+    add_header Cache-Control "no-store, no-cache, must-revalidate";
+
+    # CORS setup
+    add_header 'Access-Control-Allow-Origin' '*' always;
+    add_header 'Access-Control-Expose-Headers' 'Content-Length';
+
+    types {
+        image/jpeg jpg;
+        image/jpeg jpeg
+    }
+
+    alias /var/run/printnanny-snapshot/;
+}

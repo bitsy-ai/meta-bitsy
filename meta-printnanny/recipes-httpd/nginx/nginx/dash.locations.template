@@ -51,7 +51,7 @@ location /printnanny-snapshot/ {
 
     types {
         image/jpeg jpg;
-        image/jpeg jpeg
+        image/jpeg jpeg;
     }
 
     alias /var/run/printnanny-snapshot/;

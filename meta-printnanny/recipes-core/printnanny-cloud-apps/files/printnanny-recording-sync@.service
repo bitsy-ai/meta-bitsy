@@ -8,7 +8,7 @@ Type=oneshot
 Restart=on-failure
 RestartSec=10
 User=printnanny
-ExecStart=/usr/bin/printnanny cloud sync-video-recordings --id=%i
+ExecStart=/usr/bin/printnanny -v cloud sync-video-recordings --id=%i
 
 [Install]
 WantedBy=multi-user.target

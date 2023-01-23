@@ -6,6 +6,7 @@ StartLimitIntervalSec=30
 [Service]
 Restart=on-failure
 RestartSec=5s
+User=printnanny
 Environment=GSTD_HTTP_PORT=5002
 Environment=GSTD_TCP_PORT=5003
 Environment=GSTD_DEBUG_LEVEL="4,task:2"

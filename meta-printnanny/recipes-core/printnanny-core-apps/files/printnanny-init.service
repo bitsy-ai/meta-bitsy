@@ -11,6 +11,7 @@ SyslogIdentifier=printnanny-init
 ExecStart=/usr/bin/printnanny init
 Restart=on-failure
 RestartSec=10
+User=printnanny
 
 [Install]
 WantedBy=multi-user.target

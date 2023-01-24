@@ -573,7 +573,7 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://AGPL-3.0-or-later;md5=generateme \
+    file://LICENSE;md5=26bc145b58bd4e5d617276478377373f \
 "
 
 SUMMARY = "Serve the latest JPEG snapshot from a directory"

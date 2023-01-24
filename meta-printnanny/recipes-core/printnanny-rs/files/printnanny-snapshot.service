@@ -1,0 +1,19 @@
+[Unit]
+Description=Serve latest jpeg snapshot
+After=printnanny-vision.service
+Wants=printnanny-vision.service
+Before=multi-user.target
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+Environment=ROCKET_PORT=5009
+SyslogIdentifier=printnanny-snapshot
+ExecStart=/usr/bin/printnanny-snapshot
+Restart=on-failure
+RestartSec=10
+User=printnanny
+
+[Install]
+WantedBy=multi-user.target

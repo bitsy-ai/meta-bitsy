@@ -5,13 +5,13 @@ inherit cargo
 # If this is git based prefer versioned ones if they exist
 # DEFAULT_PREFERENCE = "-1"
 
-# how to get printnanny-cli could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/printnanny-cli/0.33.0"
+# how to get printnanny-snapshot could be as easy as but default to a git checkout:
+# SRC_URI += "crate://crates.io/printnanny-snapshot/0.1.0"
 SRC_URI += "git://git@github.com/bitsy-ai/printnanny-rs.git;protocol=ssh;nobranch=1;branch=main"
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
-CARGO_SRC_DIR = "cli"
-PV:append = "0.33.0-git${SRCPV}"
+CARGO_SRC_DIR = "snapshot"
+PV:append = "0.1.0-git${SRCPV}"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
@@ -573,15 +573,15 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://cli/LICENSE;md5=26bc145b58bd4e5d617276478377373f \
+    file://LICENSE;md5=26bc145b58bd4e5d617276478377373f \
 "
 
-SUMMARY = "PrintNanny Command-line Interface"
+SUMMARY = "Serve the latest JPEG snapshot from a directory"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-rs.git"
 LICENSE = "AGPL-3.0-or-later"
 
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from
 # what cargo-bitbake generates.
-include printnanny-cli-${PV}.inc
-include printnanny-cli.inc
+include printnanny-snapshot-${PV}.inc
+include printnanny-snapshot.inc

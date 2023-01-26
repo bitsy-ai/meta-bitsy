@@ -33,7 +33,7 @@ SETUPTOOLS_INSTALL_ARGS:append = " --distro ${CLOUDINIT_DISTRO}"
 PV = "${@bb.parse.vars_from_file(d.getVar('FILE', False),d)[1] or '1.0'}-${SRC_BRANCH}+git${SRCPV}"
 
 inherit pkgconfig
-inherit setuptools3_legacy
+inherit setuptools3
 # inherit update-rc.d
 inherit systemd
 
@@ -43,7 +43,7 @@ inherit python3native
 
 PACKAGES += "${PN}-systemd"
 
-FILES:${PN} += "${datadir}/* ${sysconfdir}"
+FILES:${PN} += "${datadir}/* ${sysconfdir} "
 
 FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
@@ -75,41 +75,42 @@ RDEPENDS:${PN} = "\
 "
 # overrides setuptools3_legacy bbclass to remove:
 # build --build-base=${B} install --skip-build ${SETUPTOOLS_INSTALL_ARGS}
-setuptools3_legacy_do_install() {
-        cd ${SETUPTOOLS_SETUP_PATH}
-        install -d ${D}${PYTHON_SITEPACKAGES_DIR}
-        STAGING_INCDIR=${STAGING_INCDIR} \
-        STAGING_LIBDIR=${STAGING_LIBDIR} \
-        PYTHONPATH=${D}${PYTHON_SITEPACKAGES_DIR} \
-        ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py \
-        install ${SETUPTOOLS_INSTALL_ARGS} || \
-        bbfatal_log "'${PYTHON_PN} setup.py install ${SETUPTOOLS_INSTALL_ARGS}' execution failed."
+# setuptools3_legacy_do_install() {
+#         cd ${SETUPTOOLS_SETUP_PATH}
+#         install -d ${D}${PYTHON_SITEPACKAGES_DIR}
+#         STAGING_INCDIR=${STAGING_INCDIR} \
+#         STAGING_LIBDIR=${STAGING_LIBDIR} \
+#         PYTHONPATH=${D}${PYTHON_SITEPACKAGES_DIR} \
+#         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py \
+#         install ${SETUPTOOLS_INSTALL_ARGS} || \
+#         bbfatal_log "'${PYTHON_PN} setup.py install ${SETUPTOOLS_INSTALL_ARGS}' execution failed."
 
-        # support filenames with *spaces*
-        find ${D} -name "*.py" -exec grep -q ${D} {} \; \
-                               -exec sed -i -e s:${D}::g {} \;
+#         # support filenames with *spaces*
+#         find ${D} -name "*.py" -exec grep -q ${D} {} \; \
+#                                -exec sed -i -e s:${D}::g {} \;
 
-        for i in ${D}${bindir}/* ${D}${sbindir}/*; do
-            if [ -f "$i" ]; then
-                sed -i -e s:${PYTHON}:${USRBINPATH}/env\ ${SETUPTOOLS_PYTHON}:g $i
-                sed -i -e s:${STAGING_BINDIR_NATIVE}:${bindir}:g $i
-            fi
-        done
+#         for i in ${D}${bindir}/* ${D}${sbindir}/*; do
+#             if [ -f "$i" ]; then
+#                 sed -i -e s:${PYTHON}:${USRBINPATH}/env\ ${SETUPTOOLS_PYTHON}:g $i
+#                 sed -i -e s:${STAGING_BINDIR_NATIVE}:${bindir}:g $i
+#             fi
+#         done
 
-        rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/easy-install.pth
+#         rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/easy-install.pth
 
-        #
-        # FIXME: Bandaid against wrong datadir computation
-        #
-        if [ -e ${D}${datadir}/share ]; then
-            mv -f ${D}${datadir}/share/* ${D}${datadir}/
-            rmdir ${D}${datadir}/share
-        fi
-}
+#         #
+#         # FIXME: Bandaid against wrong datadir computation
+#         #
+#         if [ -e ${D}${datadir}/share ]; then
+#             mv -f ${D}${datadir}/share/* ${D}${datadir}/
+#             rmdir ${D}${datadir}/share
+#         fi
+# }
 
 # cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 # move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
-setuptools3_legacy_do_install:append(){
+do_install:append(){
     install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
-    install -m 0644 ${D}${sysconfdir}/systemd/system/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+    rm ${D}/usr/udevdir/rules.d/66-azure-ephemeral.rules
+    install -m 0644 ${S}/systemd/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 }

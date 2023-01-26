@@ -14,8 +14,8 @@ SRC_URI = "\
 	file://janus-envsubst-on-templates.sh \
 "
 # v1.1.1 + a few patches
-PV = "1.1.1+git${SRCPV}"
-SRCREV = "cc67cd9ac25eac46bd314548199dd8ea231e4ebe"
+PV = "1.1.3+git${SRCPV}"
+SRCREV = "963c4b6685ae3ab50265ee67167692986b3280ea"
 S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig systemd

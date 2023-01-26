@@ -5,8 +5,9 @@ AUTHOR = "Gina Häußge <gina@octoprint.org>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-SRCREV = "1d0a2287f82fd32b7ee3431c192c27cb20fe06f5"
-SRC_URI = "git://git@github.com/OctoPrint/OctoPrint.git;protocol=ssh;nobranch=1;branch=maintenance"
+PV = "1.8.6" 
+SRCREV = "ab3ebf101f499482e9531f2827d51300ae3aaf6b"
+SRC_URI = "git://git@github.com/OctoPrint/OctoPrint.git;protocol=ssh;nobranch=1;branch=master"
 
 # SRC_URI[md5sum] = "2045bf557130f10007564cc9b88e3e96"
 # SRC_URI[sha256sum] = "3a8cc0d3d68f76bda077619b76a6133673d21bebccae1cb8f55a7b8ae3f1632c"

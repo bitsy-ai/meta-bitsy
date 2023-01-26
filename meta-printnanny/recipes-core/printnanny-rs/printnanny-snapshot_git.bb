@@ -39,7 +39,7 @@ SRC_URI += " \
     crate://crates.io/async-executor/1.5.0 \
     crate://crates.io/async-io/1.12.0 \
     crate://crates.io/async-lock/2.6.0 \
-    crate://crates.io/async-nats/0.18.0 \
+    crate://crates.io/async-nats/0.26.0 \
     crate://crates.io/async-process/1.6.0 \
     crate://crates.io/async-recursion/1.0.0 \
     crate://crates.io/async-stream-impl/0.3.3 \
@@ -394,7 +394,6 @@ SRC_URI += " \
     crate://crates.io/rustls-native-certs/0.5.0 \
     crate://crates.io/rustls-native-certs/0.6.2 \
     crate://crates.io/rustls-pemfile/0.2.1 \
-    crate://crates.io/rustls-pemfile/0.3.0 \
     crate://crates.io/rustls-pemfile/1.0.2 \
     crate://crates.io/rustls/0.19.1 \
     crate://crates.io/rustls/0.20.8 \
@@ -478,6 +477,7 @@ SRC_URI += " \
     crate://crates.io/tinyvec_macros/0.1.0 \
     crate://crates.io/tokio-macros/1.8.2 \
     crate://crates.io/tokio-native-tls/0.3.0 \
+    crate://crates.io/tokio-retry/0.3.0 \
     crate://crates.io/tokio-rustls/0.22.0 \
     crate://crates.io/tokio-rustls/0.23.4 \
     crate://crates.io/tokio-serde/0.8.0 \

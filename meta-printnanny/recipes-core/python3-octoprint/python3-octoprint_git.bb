@@ -18,6 +18,7 @@ RDEPENDS:${PN} = "\
     python3-blinker \
     python3-cachelib \
     python3-cchardet \
+    python3-class-doc \
     python3-click \
     python3-colorlog \
     python3-emoji \

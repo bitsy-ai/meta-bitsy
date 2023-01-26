@@ -43,6 +43,7 @@ RDEPENDS:${PN} = "\
     python3-pylru \
     python3-pyserial \
     python3-pyyaml \
+    python3-pydantic \
     python3-regex \
     python3-requests \
     python3-sarge \

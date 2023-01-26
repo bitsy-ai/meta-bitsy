@@ -111,6 +111,6 @@ RDEPENDS:${PN} = "\
 # move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 do_install:append(){
     install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
-    rm ${D}/usr/udevdir/rules.d/66-azure-ephemeral.rules
+    rm -rf ${D}/usr/udevdir
     install -m 0644 ${S}/systemd/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 }

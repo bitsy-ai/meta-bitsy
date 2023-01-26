@@ -42,8 +42,9 @@ DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)
 inherit python3native
 
 PACKAGES += "${PN}-systemd"
+RPROVIDES:${PN} += "${PN}-systemd"
 
-FILES:${PN} += "${datadir}/* ${sysconfdir} "
+FILES:${PN} += "${datadir}/* ${sysconfdir}/*"
 
 FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"

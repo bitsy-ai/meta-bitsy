@@ -4,6 +4,7 @@ After=network-online.target printnanny-cloud-sync.service gstd.service
 Wants=network-online.target printnanny-cloud-sync.service gstd.service
 StartLimitInterval=60
 StartLimitBurst=3
+PartOf=printnanny-vision.target
 
 [Service]
 Type=oneshot

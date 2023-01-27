@@ -2,6 +2,7 @@
 Description=GStreamer Daemon
 StartLimitBurst=3
 StartLimitIntervalSec=30
+PartOf=printnanny-vision.target
 
 [Service]
 Restart=on-failure

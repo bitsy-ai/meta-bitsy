@@ -6,16 +6,19 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 
 SRC_URI = " \
   file://printnanny-vision.service \
+  file://printnanny-vision.target \
 "
 
 
 do_install() {
     install -d "${D}${systemd_system_unitdir}"
+    install -m 0644 "${WORKDIR}/printnanny-vision.target" "${D}${systemd_system_unitdir}/printnanny-vision.target"
     install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
 }
 
 SYSTEMD_SERVICE:${PN} = "\
   printnanny-vision.service \
+  printnanny-vision.target \
 "
 
 RDEPENDS:${PN} += "\

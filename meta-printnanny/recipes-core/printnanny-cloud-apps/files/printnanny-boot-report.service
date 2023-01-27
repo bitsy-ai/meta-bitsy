@@ -1,7 +1,7 @@
 [Unit]
 Description=Sent boot status report
-Wants=printnanny-init.service printnanny-online.target
-After=printnanny-init.service printnanny-online.target
+Wants=printnanny-init.service
+After=printnanny-init.service
 # When systemd stops or restarts the printnanny-cloud.service, the action is propagated to this unit
 PartOf=printnanny-cloud.service
 # Start this service unit after the printnanny-cloud.service start

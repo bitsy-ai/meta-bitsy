@@ -4,8 +4,8 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "6976fb474ddf5f630239c44f530af233b75b8cdc"
-SRC_BRANCH = "bitsy-distro-22-3"
+SRCREV = "61fb26c7035f192baa2770003ad9317f0746469a"
+SRC_BRANCH = "bitsy-distro-22-4"
 # SRC_TAG = "bitsy/22.3"
 SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
     file://0001-patch-read-udevdir-from-pkg_config.patch \
@@ -33,7 +33,7 @@ SETUPTOOLS_INSTALL_ARGS:append = " --distro ${CLOUDINIT_DISTRO}"
 PV = "${@bb.parse.vars_from_file(d.getVar('FILE', False),d)[1] or '1.0'}-${SRC_BRANCH}+git${SRCPV}"
 
 inherit pkgconfig
-inherit setuptools3
+inherit setuptools3_legacy
 # inherit update-rc.d
 inherit systemd
 
@@ -42,9 +42,8 @@ DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)
 inherit python3native
 
 PACKAGES += "${PN}-systemd"
-RPROVIDES:${PN} += "${PN}-systemd"
 
-FILES:${PN} += "${datadir}/* ${sysconfdir}/*"
+FILES:${PN} += "${datadir}/* ${sysconfdir}"
 
 FILES:${PN}-systemd += "${systemd_unitdir}/*"
 RDEPENDS:${PN}-systemd += " ${PN}"
@@ -110,8 +109,7 @@ RDEPENDS:${PN} = "\
 
 # cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 # move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
-do_install:append(){
+setuptools3_legacy_do_install:append(){
     install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
-    rm -rf ${D}/usr/udevdir
-    install -m 0644 ${S}/systemd/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+    install -m 0644 ${D}${sysconfdir}/systemd/system/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 }

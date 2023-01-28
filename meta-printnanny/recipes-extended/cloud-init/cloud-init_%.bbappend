@@ -10,7 +10,6 @@ SRC_URI:append = "\
     file://cloud-init-local.service \
     file://cloud-init.service \
     file://cloud-init.target \
-    file://cloud-final.service \
     file://fix-rpi-userdata.sh \
     file://scripts/per-boot/001-run-once-per-boot.sh \
     file://scripts/per-instance/001-run-once-per-instance.sh \

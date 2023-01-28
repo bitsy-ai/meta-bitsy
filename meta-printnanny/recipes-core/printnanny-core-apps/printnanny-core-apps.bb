@@ -11,6 +11,7 @@ SRC_URI = " \
     file://printnanny-edge-nats.service \
     file://printnanny-settings.service \
     file://printnanny-init.service \
+    file://printnanny-online.target \
 "
 
 do_install() {
@@ -19,6 +20,7 @@ do_install() {
   install -m 0644 "${WORKDIR}/printnanny-edge-nats.service" "${D}${systemd_system_unitdir}/printnanny-edge-nats.service"
   install -m 0644 "${WORKDIR}/printnanny-settings.service" "${D}${systemd_system_unitdir}/printnanny-settings.service"
   install -m 0644 "${WORKDIR}/printnanny-init.service" "${D}${systemd_system_unitdir}/printnanny-init.service"
+  install -m 0644 "${WORKDIR}/printnanny-online.target" "${D}${systemd_system_unitdir}/printnanny-online.target"
 }
 
 SYSTEMD_SERVICE:${PN} = "\
@@ -26,6 +28,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-edge-nats.service \
   printnanny-settings.service \
   printnanny-init.service \
+  printnanny-online.target \
 "
 
 SYSTEMD_AUTO_ENABLE = "enable"

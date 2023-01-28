@@ -11,7 +11,7 @@ User=printnanny
 Environment=GSTD_HTTP_PORT=5002
 Environment=GSTD_TCP_PORT=5003
 Environment=GSTD_DEBUG_LEVEL="3,GST_CAPS:4,GST_PROBE:4"
-ExecStart=/usr/bin/gstd --gst-debug-no-color --enable-http-protocol --http-port="${GSTD_HTTP_PORT}" --gst-debug-level="${GSTD_DEBUG_LEVEL}" --tcp-base-port="${GSTD_TCP_PORT}" --enable-tcp-protocol 
+ExecStart=/usr/bin/gstd --gst-debug-no-color --enable-http-protocol --http-port="${GSTD_HTTP_PORT}" --gst-debug="${GSTD_DEBUG_LEVEL}" --tcp-base-port="${GSTD_TCP_PORT}" --enable-tcp-protocol 
 
 [Install]
 WantedBy=default.target

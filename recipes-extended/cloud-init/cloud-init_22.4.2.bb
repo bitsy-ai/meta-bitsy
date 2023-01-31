@@ -75,37 +75,37 @@ RDEPENDS:${PN} = "\
 "
 # overrides setuptools3_legacy bbclass to remove:
 # build --build-base=${B} install --skip-build ${SETUPTOOLS_INSTALL_ARGS}
-# setuptools3_legacy_do_install() {
-#         cd ${SETUPTOOLS_SETUP_PATH}
-#         install -d ${D}${PYTHON_SITEPACKAGES_DIR}
-#         STAGING_INCDIR=${STAGING_INCDIR} \
-#         STAGING_LIBDIR=${STAGING_LIBDIR} \
-#         PYTHONPATH=${D}${PYTHON_SITEPACKAGES_DIR} \
-#         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py \
-#         install ${SETUPTOOLS_INSTALL_ARGS} || \
-#         bbfatal_log "'${PYTHON_PN} setup.py install ${SETUPTOOLS_INSTALL_ARGS}' execution failed."
+setuptools3_legacy_do_install() {
+        cd ${SETUPTOOLS_SETUP_PATH}
+        install -d ${D}${PYTHON_SITEPACKAGES_DIR}
+        STAGING_INCDIR=${STAGING_INCDIR} \
+        STAGING_LIBDIR=${STAGING_LIBDIR} \
+        PYTHONPATH=${D}${PYTHON_SITEPACKAGES_DIR} \
+        ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py \
+        install ${SETUPTOOLS_INSTALL_ARGS} || \
+        bbfatal_log "'${PYTHON_PN} setup.py install ${SETUPTOOLS_INSTALL_ARGS}' execution failed."
 
-#         # support filenames with *spaces*
-#         find ${D} -name "*.py" -exec grep -q ${D} {} \; \
-#                                -exec sed -i -e s:${D}::g {} \;
+        # support filenames with *spaces*
+        find ${D} -name "*.py" -exec grep -q ${D} {} \; \
+                               -exec sed -i -e s:${D}::g {} \;
 
-#         for i in ${D}${bindir}/* ${D}${sbindir}/*; do
-#             if [ -f "$i" ]; then
-#                 sed -i -e s:${PYTHON}:${USRBINPATH}/env\ ${SETUPTOOLS_PYTHON}:g $i
-#                 sed -i -e s:${STAGING_BINDIR_NATIVE}:${bindir}:g $i
-#             fi
-#         done
+        for i in ${D}${bindir}/* ${D}${sbindir}/*; do
+            if [ -f "$i" ]; then
+                sed -i -e s:${PYTHON}:${USRBINPATH}/env\ ${SETUPTOOLS_PYTHON}:g $i
+                sed -i -e s:${STAGING_BINDIR_NATIVE}:${bindir}:g $i
+            fi
+        done
 
-#         rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/easy-install.pth
+        rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/easy-install.pth
 
-#         #
-#         # FIXME: Bandaid against wrong datadir computation
-#         #
-#         if [ -e ${D}${datadir}/share ]; then
-#             mv -f ${D}${datadir}/share/* ${D}${datadir}/
-#             rmdir ${D}${datadir}/share
-#         fi
-# }
+        #
+        # FIXME: Bandaid against wrong datadir computation
+        #
+        if [ -e ${D}${datadir}/share ]; then
+            mv -f ${D}${datadir}/share/* ${D}${datadir}/
+            rmdir ${D}${datadir}/share
+        fi
+}
 
 # cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 # move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf

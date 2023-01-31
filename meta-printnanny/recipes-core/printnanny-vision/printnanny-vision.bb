@@ -7,11 +7,15 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-la
 SRC_URI = " \
   file://printnanny-vision.service \
   file://printnanny-vision.target \
+  file://gst-exec-stop.conf \
 "
 
+inherit systemd
 
 do_install() {
     install -d "${D}${systemd_system_unitdir}"
+    install -d "${D}${systemd_system_unitdir}/gstd.service.d"
+    install -m 0644 "${WORKDIR}/gst-exec-stop.conf" "${D}${systemd_system_unitdir}/gstd.service.d/gst-exec-stop.conf"
     install -m 0644 "${WORKDIR}/printnanny-vision.target" "${D}${systemd_system_unitdir}/printnanny-vision.target"
     install -m 0644 "${WORKDIR}/printnanny-vision.service" "${D}${systemd_system_unitdir}/printnanny-vision.service"
 }
@@ -31,4 +35,4 @@ RDEPENDS:${PN} += "\
 
 SYSTEMD_AUTO_ENABLE = "enable"
 
-inherit systemd
+FILES:${PN} += "${systemd_system_unitdir}/gstd.service.d/gst-exec-stop.conf"

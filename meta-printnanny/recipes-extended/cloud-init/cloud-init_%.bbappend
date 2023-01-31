@@ -37,7 +37,6 @@ do_install:append(){
     install -m 0644 ${WORKDIR}/cloud.cfg ${D}${sysconfdir}/cloud/cloud.cfg
     install -m 0644 ${WORKDIR}/cloud-init-local.service ${D}${systemd_system_unitdir}/cloud-init-local.service
     install -m 0644 ${WORKDIR}/cloud-init.service ${D}${systemd_system_unitdir}/cloud-init.service
-    install -m 0644 ${WORKDIR}/cloud-final.service ${D}${systemd_system_unitdir}/cloud-final.service
     install -m 0644 ${WORKDIR}/cloud-config.service ${D}${systemd_system_unitdir}/cloud-config.service
     install -m 0644 ${WORKDIR}/cloud-init.target ${D}${systemd_system_unitdir}/cloud-init.target
     install -m 0755 ${WORKDIR}/fix-rpi-userdata.sh ${D}${bindir}/cloud-init-fix-rpi-userdata

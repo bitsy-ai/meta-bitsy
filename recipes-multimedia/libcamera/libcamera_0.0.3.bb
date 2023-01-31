@@ -13,18 +13,20 @@ SRC_URI = " \
 "
 
 SRCREV = "3c3f20d05113f5f2abbad233e4c792f84328001a"
-PV = "20221221+git${SRCPV}"
+PV = "v0.3.0+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
 
-PACKAGES += "${PN}-gst"
+PACKAGES += "${PN}-gst ${PN}-rpi"
 
-PACKAGECONFIG ??= "gst"
+PACKAGECONFIG ??= "gst rpi"
 PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
 PACKAGECONFIG[tracing] = "-Dtracing=enabled,-Dtracing=disabled,libuv,libuv"
 PACKAGECONFIG[pycamera] = "-Dpycamera=enabled,-Dpycamera=disabled,pybind11"
+
+
 
 EXTRA_OEMESON = " \
     -Dpipelines=uvcvideo,simple,vimc \
@@ -35,6 +37,17 @@ EXTRA_OEMESON = " \
     -Dtest=false \
     -Ddocumentation=disabled \
 "
+
+EXTRA_OEMESON:raspberrypi4-64 = " \
+    -Dpipelines=raspberrypi,uvcvideo,simple,vimc \
+    -Dipas=raspberrypi,vimc \
+    -Dv4l2=true \
+    -Dcam=enabled \
+    -Dlc-compliance=disabled \
+    -Dtest=false \
+    -Ddocumentation=disabled \
+"
+
 
 RDEPENDS:${PN}-dev = "libyaml-dev"
 RDEPENDS:${PN} = "\

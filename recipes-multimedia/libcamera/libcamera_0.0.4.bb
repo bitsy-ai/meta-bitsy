@@ -39,7 +39,7 @@ EXTRA_OEMESON = " \
 "
 
 EXTRA_OEMESON:raspberrypi4-64 = "\
-    -Dpipelines=raspberrypi,uvcvideo,simple,vimc \
+    -Dpipelines=raspberrypi,uvcvideo \
     -Dipas=raspberrypi,vimc \
     -Dv4l2=true \
     -Dcam=enabled \

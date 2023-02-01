@@ -13,7 +13,6 @@ Environment=GSTD_HTTP_PORT=5002
 Environment=GSTD_TCP_PORT=5003
 Environment=GSTD_DEBUG_LEVEL="*:4,GST_CAPS:4,GST_PROBE:4,task:3"
 ExecStart=/usr/bin/gstd --gst-debug-no-color --enable-http-protocol --http-port="${GSTD_HTTP_PORT}" --gst-debug="${GSTD_DEBUG_LEVEL}" --tcp-base-port="${GSTD_TCP_PORT}" --enable-tcp-protocol
-ExecStop=ExecStart=/usr/bin/printnanny -v cam stop-pipelines --http-port="${GSTD_HTTP_PORT}"
 
 [Install]
 WantedBy=default.target

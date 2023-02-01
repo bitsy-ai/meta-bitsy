@@ -65,18 +65,18 @@ do_install:append() {
     chrpath -d ${D}${libdir}/libcamera-base.so.0.0.4
 }
 
-# addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
-# do_recalculate_ipa_signatures_package() {
-#     local modules
-#     for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); do
-#         module="${module%.sign}"
-#         if [ -f "${module}" ] ; then
-#             modules="${modules} ${module}"
-#         fi
-#     done
+addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
+do_recalculate_ipa_signatures_package() {
+    local modules
+    for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); do
+        module="${PKGD}/usr/lib/libcamera/${module%.sign}"
+        if [ -f "${module}" ] ; then
+            modules="${modules} ${module}"
+        fi
+    done
 
-#     ${S}/src/ipa/ipa-sign-install.sh ${B}/src/ipa-priv-key.pem "${modules}"
-# }
+    ${S}/src/ipa/ipa-sign-install.sh ${B}/src/ipa-priv-key.pem "${modules}"
+}
 
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
 FILES:${PN}-dev += " ${libdir}/libcamera.so"

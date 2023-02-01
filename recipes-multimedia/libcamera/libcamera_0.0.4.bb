@@ -9,11 +9,11 @@ LIC_FILES_CHKSUM = "\
 "
 
 SRC_URI = " \
-        git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
+    git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
 "
 
-SRCREV = "3c3f20d05113f5f2abbad233e4c792f84328001a"
-PV = "v0.3.0+git${SRCPV}"
+SRCREV = "6cf637eb253a68edebe59505bea55435fafb00cd"
+PV = "v0.4.0+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
@@ -38,7 +38,7 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-EXTRA_OEMESON:raspberrypi4-64 = " \
+EXTRA_OEMESON:raspberrypi4-64 = "\
     -Dpipelines=raspberrypi,uvcvideo,simple,vimc \
     -Dipas=raspberrypi,vimc \
     -Dv4l2=true \

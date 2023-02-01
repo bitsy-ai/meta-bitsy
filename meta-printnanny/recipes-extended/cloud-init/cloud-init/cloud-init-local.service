@@ -3,11 +3,10 @@ Description=Initial cloud-init job (pre-networking)
 
 DefaultDependencies=no
 Before=sysinit.target
-Wants=network-pre.target boot.mount
-After=systemd-remount-fs.service boot.mount
+Wants=network-pre.target boot.mount cloud-init.mount
+After=systemd-remount-fs.service boot.mount cloud-init.mount
 Before=network-pre.target systemd-networkd.service
 Before=shutdown.target
-RequiresMountsFor=/var/lib/cloud
 
 [Service]
 Type=oneshot

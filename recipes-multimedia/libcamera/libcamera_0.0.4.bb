@@ -21,12 +21,10 @@ DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native'
 
 PACKAGES += "${PN}-gst ${PN}-rpi"
 
-PACKAGECONFIG ??= "gst rpi"
+PACKAGECONFIG ??= "gst"
 PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
 PACKAGECONFIG[tracing] = "-Dtracing=enabled,-Dtracing=disabled,libuv,libuv"
 PACKAGECONFIG[pycamera] = "-Dpycamera=enabled,-Dpycamera=disabled,pybind11"
-
-
 
 EXTRA_OEMESON = " \
     -Dpipelines=uvcvideo,simple,vimc \
@@ -69,7 +67,7 @@ addtask do_recalculate_ipa_signatures_package after do_package before do_package
 do_recalculate_ipa_signatures_package() {
     local modules
     for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); do
-        module="${PKGD}/usr/lib/libcamera/${module%.sign}"
+        module="${module%.sign}"
         if [ -f "${module}" ] ; then
             modules="${modules} ${module}"
         fi

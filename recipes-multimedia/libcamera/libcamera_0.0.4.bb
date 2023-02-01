@@ -9,11 +9,11 @@ LIC_FILES_CHKSUM = "\
 "
 
 SRC_URI = " \
-        git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
+    git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
 "
 
-SRCREV = "3c3f20d05113f5f2abbad233e4c792f84328001a"
-PV = "v0.3.0+git${SRCPV}"
+SRCREV = "6cf637eb253a68edebe59505bea55435fafb00cd"
+PV = "v0.4.0+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
@@ -38,8 +38,8 @@ EXTRA_OEMESON = " \
     -Ddocumentation=disabled \
 "
 
-EXTRA_OEMESON:raspberrypi4-64 = " \
-    -Dpipelines=raspberrypi,uvcvideo,simple,vimc \
+EXTRA_OEMESON:raspberrypi4-64 = "\
+    -Dpipelines=raspberrypi,uvcvideo \
     -Dipas=raspberrypi,vimc \
     -Dv4l2=true \
     -Dcam=enabled \
@@ -61,30 +61,30 @@ do_configure:prepend() {
 }
 
 do_install:append() {
-    chrpath -d ${D}${libdir}/libcamera.so.0.0.3
-    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.3
+    chrpath -d ${D}${libdir}/libcamera.so.0.0.4
+    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.4
 }
 
-addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
-do_recalculate_ipa_signatures_package() {
-    local modules
-    for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); do
-        module="${module%.sign}"
-        if [ -f "${module}" ] ; then
-            modules="${modules} ${module}"
-        fi
-    done
+# addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
+# do_recalculate_ipa_signatures_package() {
+#     local modules
+#     for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); do
+#         module="${module%.sign}"
+#         if [ -f "${module}" ] ; then
+#             modules="${modules} ${module}"
+#         fi
+#     done
 
-    ${S}/src/ipa/ipa-sign-install.sh ${B}/src/ipa-priv-key.pem "${modules}"
-}
+#     ${S}/src/ipa/ipa-sign-install.sh ${B}/src/ipa-priv-key.pem "${modules}"
+# }
 
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
 FILES:${PN}-dev += " ${libdir}/libcamera.so"
 FILES:${PN} += " ${libdir}/libcamera.so.0"
-FILES:${PN} += " ${libdir}/libcamera.so.0.0.3"
+FILES:${PN} += " ${libdir}/libcamera.so.0.0.4"
 FILES:${PN}-dev += " ${libdir}/libcamera-base.so"
 FILES:${PN} += " ${libdir}/libcamera-base.so.0"
-FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.3"
+FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.4"
 FILES:${PN} += " ${libdir}/v4l2-compat.so"
 FILES:${PN}-gst = "${libdir}/gstreamer-1.0/libgstlibcamera.so"
 FILES:${PN} += " ${bindir}/cam"

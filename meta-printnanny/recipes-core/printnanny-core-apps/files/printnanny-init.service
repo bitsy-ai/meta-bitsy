@@ -3,6 +3,8 @@ Description=PrintNanny OS Initialization service
 Before=multi-user.target
 StartLimitInterval=60
 StartLimitBurst=3
+After=home.mount
+Wants=home.mount
 
 [Service]
 Type=oneshot

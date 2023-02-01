@@ -61,6 +61,7 @@ DEPENDS += "\
 "
 
 RDEPENDS:${PN} = "\
+    util-linux-blkid \
     python3 \
     python3-certifi \
     python3-jinja2 \

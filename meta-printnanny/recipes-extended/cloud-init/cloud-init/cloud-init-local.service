@@ -3,7 +3,8 @@ Description=Initial cloud-init job (pre-networking)
 
 DefaultDependencies=no
 Before=sysinit.target
-Wants=network-pre.target boot.mount var-lib-cloud.mount
+Requires=boot.mount var-lib-cloud.mount
+Wants=network-pre.target
 After=systemd-remount-fs.service boot.mount var-lib-cloud.mount
 Before=network-pre.target systemd-networkd.service
 Before=shutdown.target
@@ -15,7 +16,7 @@ ExecStart=/bin/sh -c '/usr/bin/cloud-init-fix-rpi-userdata'
 ExecStart=/usr/bin/cloud-init init --local
 RemainAfterExit=yes
 TimeoutSec=0
-StandardOutput=journal
+StandardOutput=journal+console
 
 [Install]
 WantedBy=cloud-init.target

@@ -14,7 +14,7 @@ ExecStart=/usr/bin/cloud-init init
 RemainAfterExit=yes
 TimeoutSec=0
 
-StandardOutput=journal
+StandardOutput=journal+console
 
 [Install]
 WantedBy=cloud-init.target

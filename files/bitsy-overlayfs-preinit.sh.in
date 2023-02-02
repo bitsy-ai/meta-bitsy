@@ -1,10 +1,19 @@
 #!/bin/sh
 
-echo "PREINIT: Start Growfs"
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+mount -o remount,rw /
 
-set -euxo pipefail
-# https://github.com/g0hl1n/psplash/blob/9426c25f86db8e61de25bc1843dc322c0f2f4488/psplash.c#L42
-# display message above psplash bar
+mkdir -p /proc
+mkdir -p /sys
+mkdir -p /run
+mkdir -p /var/run
+
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+
+[ -z "$CONSOLE" ] && CONSOLE="/dev/console"
+
+echo "PREINIT: Start Growfs"
 
 START_BLOCK=$(cat {START_BLOCK})
 END_BLOCK=$(($START_BLOCK+$(cat {SIZE_BLOCK})))
@@ -33,19 +42,6 @@ else
 fi
 
 echo "PREINIT: Start Overlayfs for /etc"
-
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-mount -o remount,rw /
-
-mkdir -p /proc
-mkdir -p /sys
-mkdir -p /run
-mkdir -p /var/run
-
-mount -t proc proc /proc
-mount -t sysfs sysfs /sys
-
-[ -z "$CONSOLE" ] && CONSOLE="/dev/console"
 
 BASE_OVERLAY_ETC_DIR={OVERLAYFS_ETC_MOUNT_POINT}/overlay-etc
 UPPER_DIR=$BASE_OVERLAY_ETC_DIR/upper

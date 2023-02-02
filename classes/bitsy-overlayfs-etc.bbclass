@@ -39,7 +39,7 @@ OVERLAYFS_ETC_FSTYPE ??= "ext4"
 OVERLAYFS_ETC_DEVICE ??= "${@bb.utils.contains('DISTRO_FEATURES', 'swupdate', '/dev/mmcblk0p4', '/dev/mmcblk0p3', d)}"
 OVERLAYFS_ETC_USE_ORIG_INIT_NAME ??= "1"
 OVERLAYFS_ETC_MOUNT_OPTIONS ??= "defaults"
-OVERLAYFS_ETC_INIT_TEMPLATE ??= "meta-bitsy/files/bitsy-overlayfs-preinit.sh.in"
+OVERLAYFS_ETC_INIT_TEMPLATE ??= "${COREBASE}/meta-bitsy/files/bitsy-overlayfs-preinit.sh.in"
 OVERLAYFS_ETC_EXPOSE_LOWER ??= "1"
 
 python create_overlayfs_etc_preinit() {

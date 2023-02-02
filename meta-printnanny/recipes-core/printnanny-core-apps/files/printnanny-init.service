@@ -1,10 +1,8 @@
 [Unit]
 Description=PrintNanny OS Initialization service
 Before=multi-user.target
-StartLimitInterval=60
-StartLimitBurst=3
-After=home.mount
-Wants=home.mount
+After=home.mount cloud-init.target
+Requires=home.mount
 
 [Service]
 Type=oneshot
@@ -12,7 +10,7 @@ RemainAfterExit=yes
 SyslogIdentifier=printnanny-init
 ExecStart=/usr/bin/printnanny -vv init
 Restart=on-failure
-RestartSec=10
+RestartSec=1
 User=printnanny
 
 [Install]

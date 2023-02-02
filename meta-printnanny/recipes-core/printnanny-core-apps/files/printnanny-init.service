@@ -1,6 +1,6 @@
 [Unit]
 Description=PrintNanny OS Initialization service
-After=home.mount cloud-init.target
+After=home.mount
 Requires=home.mount
 
 [Service]

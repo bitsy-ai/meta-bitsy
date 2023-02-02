@@ -1,7 +1,8 @@
 [Unit]
 Description=Apply the settings specified in cloud-config
-After=network-online.target cloud-config.target
+After=network-online.target cloud-config.target boot.mount var-lib-cloud.mount
 Wants=network-online.target cloud-config.target
+Requires=boot.mount var-lib-cloud.mount
 
 [Service]
 Type=oneshot

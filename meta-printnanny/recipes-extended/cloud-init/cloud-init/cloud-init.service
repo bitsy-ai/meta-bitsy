@@ -2,10 +2,9 @@
 Description=Initial cloud-init job (metadata service crawler)
 Wants=cloud-init-local.service
 Wants=sshd.socket
-After=cloud-init-local.service
-After=systemd-networkd-wait-online.service
-After=networking.service
+After=cloud-init-local.service systemd-networkd-wait-online.service networking.service boot.mount var-lib-cloud.mount
 Before=network-online.target
+Requires=boot.mount var-lib-cloud.mount
 
 [Service]
 Type=oneshot
@@ -14,7 +13,7 @@ ExecStart=/usr/bin/cloud-init init
 RemainAfterExit=yes
 TimeoutSec=0
 
-StandardOutput=journal
+StandardOutput=journal+console
 
 [Install]
 WantedBy=cloud-init.target

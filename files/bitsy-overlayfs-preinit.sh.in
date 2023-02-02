@@ -1,9 +1,40 @@
 #!/bin/sh
 
-echo "PREINIT: Start"
+echo "PREINIT: Start Growfs"
+
+set -euxo pipefail
+# https://github.com/g0hl1n/psplash/blob/9426c25f86db8e61de25bc1843dc322c0f2f4488/psplash.c#L42
+# display message above psplash bar
+
+START_BLOCK=$(cat {START_BLOCK})
+END_BLOCK=$(($START_BLOCK+$(cat {SIZE_BLOCK})))
+END_DISK=$(($(cat {END_BLOCK})-8))
+
+if [ "$END_DISK" -gt "$END_BLOCK" ]
+then
+    /usr/bin/psplash-write "MSG Expanding {START_BLOCK} to fill SD card" || echo "Expanding {START_BLOCK} to fill SD card"
+    START_TS=$(/bin/date +%s)
+    echo "Expanding  {OVERLAYFS_ETC_DEVICE} to fill disk $START_TS" > /dev/kmsg
+    umount {OVERLAYFS_ETC_DEVICE} || echo "umount failed $?"
+    echo "Running: parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%"
+    parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%
+    echo "Grew {OVERLAYFS_ETC_DEVICE} partition to 100%"
+    resize2fs -p {OVERLAYFS_ETC_DEVICE}
+    echo "Finished resizing filesystem {OVERLAYFS_ETC_DEVICE}"
+    STOP_TS=$(/bin/date +%s)
+    SECONDS="$(($STOP_TS-$START_TS))"
+    echo "Finished bitsy-growfs at $STOP_TS (ran $SECONDS seconds)" > /dev/kmsg
+
+    /usr/bin/psplash-write "MSG Finished bitsy-growpart {START_BLOCK} in $SECONDS" || echo "Finished bitsy-growpart {START_BLOCK} in $SECONDS" 
+
+else
+    echo "Skipping growfs, {OVERLAYFS_ETC_DEVICE} end block $END_BLOCK is within 8 sectors of $END_DISK" > /dev/kmsg
+    /usr/bin/psplash-write "MSG Skipping bitsy-growpart, nothing to do" || echo "Skipping bitsy-growpart, nothing to do"
+fi
+
+echo "PREINIT: Start Overlayfs for /etc"
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-
 mount -o remount,rw /
 
 mkdir -p /proc
@@ -14,57 +45,38 @@ mkdir -p /var/run
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 
-START_BLOCK=$(cat {START_BLOCK})
-END_BLOCK=$(($START_BLOCK+$(cat {SIZE_BLOCK})))
-END_DISK=$(($(cat {END_BLOCK})-8))
-
-if [ "$END_DISK" -gt "$END_BLOCK" ]
-then
-    START_TS=$(/bin/date +%s)
-    echo "Growing {BITSY_OVERLAYFS_DEVICE} to fill disk $START_TS" > /dev/kmsg
-    umount {BITSY_OVERLAYFS_DEVICE}
-    echo "Unmounted {BITSY_OVERLAYFS_DEVICE}"
-    echo "Running: parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%"
-    parted ---pretend-input-tty {PARTED_DEVICE} resizepart {PARTED_PART} 100%
-    echo "Grew {BITSY_OVERLAYFS_DEVICE} partition to 100%"
-    resize2fs -p {BITSY_OVERLAYFS_DEVICE}
-    echo "Finished resizing filesystem {BITSY_OVERLAYFS_DEVICE}"
-    STOP_TS=$(/bin/date +%s)
-    echo "Finished bitsy-growfs at $STOP_TS (ran $(($STOP_TS-$START_TS)) seconds)" > /dev/kmsg
-else
-    echo "Skipping growfs, {BITSY_OVERLAYFS_DEVICE} end block $END_BLOCK is within 8 sectors of $END_DISK" > /dev/kmsg
-fi
-
 [ -z "$CONSOLE" ] && CONSOLE="/dev/console"
 
-# mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}
-# if mount -n -t {BITSY_OVERLAYFS_FSTYPE} \
-#     -o {BITSY_OVERLAYFS_MOUNT_OPTIONS} \
-#     {BITSY_OVERLAYFS_DEVICE} {BITSY_OVERLAYFS_MOUNT_POINT}
-# then
-#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper
-#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/work
-#     mount -n -t overlay \
-#         -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper \
-#         -o lowerdir=/etc \
-#         -o workdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/work \
-#         -o index=off,xino=off,redirect_dir=off,metacopy=off \
-#         {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-etc/upper /etc || \
-#             echo "PREINIT: Mounting etc-overlay failed!"
+BASE_OVERLAY_ETC_DIR={OVERLAYFS_ETC_MOUNT_POINT}/overlay-etc
+UPPER_DIR=$BASE_OVERLAY_ETC_DIR/upper
+WORK_DIR=$BASE_OVERLAY_ETC_DIR/work
+LOWER_DIR=$BASE_OVERLAY_ETC_DIR/lower
 
-#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper
-#     mkdir -p {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work
-#     mount -n -t overlay \
-#         -o upperdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper \
-#         -o lowerdir=/home \
-#         -o workdir={BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/work \
-#         -o index=off,xino=off,redirect_dir=off,metacopy=off \
-#         {BITSY_OVERLAYFS_MOUNT_POINT}/overlay-home/upper /home || \
-#             echo "PREINIT: Mounting home-overlay failed!"
+mkdir -p {OVERLAYFS_ETC_MOUNT_POINT}
+if mount -n -t {OVERLAYFS_ETC_FSTYPE} \
+    -o {OVERLAYFS_ETC_MOUNT_OPTIONS} \
+    {OVERLAYFS_ETC_DEVICE} {OVERLAYFS_ETC_MOUNT_POINT}
+then
+    mkdir -p $UPPER_DIR
+    mkdir -p $WORK_DIR
 
-# else
-#     echo "PREINIT: Mounting </data> failed!"
-# fi
+    if {OVERLAYFS_ETC_EXPOSE_LOWER}; then
+        mkdir -p $LOWER_DIR
+
+        # provide read-only access to original /etc content
+        mount -o bind,ro /etc $LOWER_DIR
+    fi
+
+    mount -n -t overlay \
+        -o upperdir=$UPPER_DIR \
+        -o lowerdir=/etc \
+        -o workdir=$WORK_DIR \
+        -o index=off,xino=off,redirect_dir=off,metacopy=off \
+        $UPPER_DIR /etc || \
+            echo "PREINIT: Mounting etc-overlay failed!"
+else
+    echo "PREINIT: Mounting </data> failed!"
+fi
 
 echo "PREINIT: done; starting </sbin/init>"
 exec {SBIN_INIT_NAME}

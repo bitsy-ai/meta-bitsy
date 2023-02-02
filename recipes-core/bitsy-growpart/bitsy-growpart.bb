@@ -12,7 +12,6 @@ SRC_URI = "\
     file://bitsy-growpart.service \
 "
 
-
 REQUIRED_DISTRO_FEATURES += "bitsy-growpart"
 BITSY_OVERLAYFS_MOUNT_POINT ??= "/data"
 BITSY_OVERLAYFS_FSTYPE ??= "ext4"
@@ -60,6 +59,8 @@ python do_compile() {
         f.write(PreinitTemplate.format(**args))
     os.chmod(binFile, 0o755)
 }
+
+
 
 FILES:${PN} += "${bindir}/${BITSY_GROWPART_BIN}"
 

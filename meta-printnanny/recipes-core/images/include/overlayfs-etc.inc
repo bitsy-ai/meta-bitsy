@@ -1,6 +1,6 @@
 # see overlayfs-etc.bbclass for implementation
 
-inherit overlayfs-etc
+inherit bitsy-overlayfs-etc
 # /etc overlayfs is a special case, requiring a pre-init script that runs before systemd is initialized
 OVERLAYFS_ETC_MOUNT_POINT = "/data"
 OVERLAYFS_ETC_FSTYPE = "ext4"

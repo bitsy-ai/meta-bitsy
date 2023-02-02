@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "PREINIT: Start Growfs"
+echo "PREINIT: Start"
 
 set -euxo pipefail
 # https://github.com/g0hl1n/psplash/blob/9426c25f86db8e61de25bc1843dc322c0f2f4488/psplash.c#L42
@@ -31,52 +31,3 @@ else
     echo "Skipping growfs, {BITSY_OVERLAYFS_DEVICE} end block $END_BLOCK is within 8 sectors of $END_DISK" > /dev/kmsg
     /usr/bin/psplash-write "MSG Skipping bitsy-growpart, nothing to do" || echo "Skipping bitsy-growpart, nothing to do"
 fi
-
-echo "PREINIT: Start Overlayfs for /etc"
-
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-mount -o remount,rw /
-
-mkdir -p /proc
-mkdir -p /sys
-mkdir -p /run
-mkdir -p /var/run
-
-mount -t proc proc /proc
-mount -t sysfs sysfs /sys
-
-[ -z "$CONSOLE" ] && CONSOLE="/dev/console"
-
-BASE_OVERLAY_ETC_DIR={OVERLAYFS_ETC_MOUNT_POINT}/overlay-etc
-UPPER_DIR=$BASE_OVERLAY_ETC_DIR/upper
-WORK_DIR=$BASE_OVERLAY_ETC_DIR/work
-LOWER_DIR=$BASE_OVERLAY_ETC_DIR/lower
-
-mkdir -p {OVERLAYFS_ETC_MOUNT_POINT}
-if mount -n -t {OVERLAYFS_ETC_FSTYPE} \
-    -o {OVERLAYFS_ETC_MOUNT_OPTIONS} \
-    {OVERLAYFS_ETC_DEVICE} {OVERLAYFS_ETC_MOUNT_POINT}
-then
-    mkdir -p $UPPER_DIR
-    mkdir -p $WORK_DIR
-
-    if {OVERLAYFS_ETC_EXPOSE_LOWER}; then
-        mkdir -p $LOWER_DIR
-
-        # provide read-only access to original /etc content
-        mount -o bind,ro /etc $LOWER_DIR
-    fi
-
-    mount -n -t overlay \
-        -o upperdir=$UPPER_DIR \
-        -o lowerdir=/etc \
-        -o workdir=$WORK_DIR \
-        -o index=off,xino=off,redirect_dir=off,metacopy=off \
-        $UPPER_DIR /etc || \
-            echo "PREINIT: Mounting etc-overlay failed!"
-else
-    echo "PREINIT: Mounting </data> failed!"
-fi
-
-echo "PREINIT: done; starting </sbin/init>"
-exec {SBIN_INIT_NAME}

@@ -6,7 +6,7 @@ Requires=home.mount
 
 [Service]
 Type=simple
-SyslogIdentifier=printnanny-nats
+SyslogIdentifier=printnanny-edge-nats
 LogsDirectory=printnanny
 RuntimeDirectory=printnanny-edge-nats
 Environment=RUST_LOG=info

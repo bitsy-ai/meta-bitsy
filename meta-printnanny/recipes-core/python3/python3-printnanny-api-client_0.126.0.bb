@@ -5,10 +5,10 @@ AUTHOR = "Leigh Johnson <leigh@printnanny.ai>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://setup.py;md5=c4c7666365b99572e1d53d81fd679d2d"
 
-SRC_URI = "https://files.pythonhosted.org/packages/97/b3/f15bb1e63b69c2ccdea93821dcd2dd75c6fbf4e9742f861e1aaa699b42e7/printnanny-api-client-0.124.8.tar.gz"
-SRC_URI[sha256sum] = "fe33608c84b1137e6cd70967c51c0712975abbe0abe4f5f782902e2b3633c4f9"
+SRC_URI = "https://files.pythonhosted.org/packages/3c/94/ad3d6e8d1d7aa63f135d663441b986a45bff076df8addd1303f8b33cde5b/printnanny-api-client-0.126.0.tar.gz"
+SRC_URI[sha256sum] = "1b99a90dd88cd4916e4c66c956373c9f2b9d5f68bcf380ad0c78ab1fd148f863"
 
-S = "${WORKDIR}/printnanny-api-client-0.124.8"
+S = "${WORKDIR}/printnanny-api-client-0.126.0"
 
 RDEPENDS:${PN} = "python3-aiohttp python3-protobuf python3-python-dateutil python3-six python3-urllib3"
 

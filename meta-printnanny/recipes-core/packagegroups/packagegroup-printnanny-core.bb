@@ -14,6 +14,9 @@ RDEPENDS:${PN} = "\
     printnanny-snapshot \
     janus-gateway \
     nginx \
+    ntp \
+    ntp-utils \
+    ntp-systemd \
     swupdate \
     swupdate-progress \
     swupdate-www \

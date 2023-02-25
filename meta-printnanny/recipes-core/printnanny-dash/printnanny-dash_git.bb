@@ -11,6 +11,7 @@ S = "${WORKDIR}/git"
 
 inherit npm
 PV = "0.4.0+git${SRCPV}"
+NPM_INSTALL_DEV = "1"
 
 LIC_FILES_CHKSUM = " \
     file://LICENSE;md5=579cfef54f8a556e96900d454125e4d1 \

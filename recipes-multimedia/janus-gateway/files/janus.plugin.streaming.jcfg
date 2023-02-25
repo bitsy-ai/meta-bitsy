@@ -275,8 +275,8 @@ printnanny-cam: {
         port = 20001
         pt = 96
         rtpmap = "H264/90000"
-        videobufferkf = false
-
+        videobufferkf = true
+        videofmtp = "profile-level-id=42e01f;packetization-mode=1"
       },
       {
         type = "video"
@@ -285,7 +285,8 @@ printnanny-cam: {
         port = 20002
         pt = 96
         rtpmap = "H264/90000"
-        videobufferkf = false
+        videobufferkf = true
+        videofmtp = "profile-level-id=42e01f;packetization-mode=1"
       }
     )
 }

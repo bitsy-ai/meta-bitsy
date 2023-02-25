@@ -3,7 +3,7 @@ HOMEPAGE = "https://www.klipper3d.org/"
 LICENSE = "GPL-3.0-or-later"
 
 
-PV = "support-base-path-rc2"
+PV = "2.5.0-beta1-printnanny-support-base-path-2023-02-25"
 SRC_URI = "\
     https://github.com/bitsy-ai/mainsail/releases/download/${PV}/mainsail.zip;subdir=mainsail \
     file://mainsail.target \

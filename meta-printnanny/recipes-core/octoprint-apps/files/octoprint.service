@@ -1,7 +1,7 @@
 [Unit]
 Description=OctoPrint
-After=network-online.target octoprint-venv.service home.mount cloud-final.service printnanny-settings.service
-Wants=network-online.target octoprint-venv.service printnanny-settings.service
+After=network-online.target octoprint-venv.service home.mount printnanny-settings.service
+Wants=octoprint-venv.service printnanny-settings.service
 Requires=home.mount
 StartLimitInterval=60
 StartLimitBurst=3

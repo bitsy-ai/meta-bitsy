@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny NATS worker
 After=network-online.target printnanny-init.service printnanny-settings.service
-Wants=network-online.target printnanny-init.service printnanny-settings.service
+Wants=printnanny-init.service printnanny-settings.service
 Requires=home.mount
 
 [Service]

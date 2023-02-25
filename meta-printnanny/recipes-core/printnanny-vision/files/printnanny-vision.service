@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny Cam Service
 After=network-online.target janus-gateway.service gstd.service
-Wants=network-online.target janus-gateway.service gstd.service
+Wants=janus-gateway.service gstd.service
 StartLimitInterval=60
 StartLimitBurst=3
 PartOf=printnanny-vision.target

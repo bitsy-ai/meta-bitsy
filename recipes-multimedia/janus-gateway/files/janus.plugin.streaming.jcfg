@@ -270,23 +270,23 @@ printnanny-cam: {
     media = (
       {
         type = "video"
+        codec = "h264"
         mid = "v1"
         label = "H264-encoded camera stream"
         port = 20001
         pt = 96
         rtpmap = "H264/90000"
-        videobufferkf = true
-        videofmtp = "profile-level-id=42e01f;packetization-mode=1"
+        fmtp = "profile-level-id=42e01f;packetization-mode=1"
       },
       {
         type = "video"
+        codec = "h264"
         mid = "v2"
         label = "H264-encoded PrintNanny Vision stream"
         port = 20002
         pt = 96
         rtpmap = "H264/90000"
-        videobufferkf = true
-        videofmtp = "profile-level-id=42e01f;packetization-mode=1"
+        fmtp = "profile-level-id=42e01f;packetization-mode=1"
       }
     )
 }

@@ -1,0 +1,11 @@
+[Unit]
+Description=PrintNanny shutdown service hook
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStart=/usr/bin/printnanny -v os shutdown
+
+[Install]
+WantedBy=multi-user.target

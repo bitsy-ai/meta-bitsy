@@ -39,6 +39,10 @@ SYSTEMD_SERVICE:${PN} = "\
 
 SYSTEMD_AUTO_ENABLE = "enable"
 
-RDEPENDS:${PN} = "git"
+RDEPENDS:${PN} = "\
+  git \
+  printnanny-cli \
+  printnanny-nats-apps \
+"
 
 FILES:${PN} = "${systemd_system_unitdir}/*"

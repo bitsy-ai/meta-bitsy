@@ -573,9 +573,8 @@ SRC_URI += " \
 
 # FIXME: update generateme with the real MD5 of the license file
 LIC_FILES_CHKSUM = " \
-    file://AGPL-3.0-or-later;md5=generateme \
+    file://cli/LICENSE;md5=26bc145b58bd4e5d617276478377373f \
 "
-
 SUMMARY = "Edge NATS applications"
 HOMEPAGE = "https://github.com/bitsy-ai/printnanny-rs.git"
 LICENSE = "AGPL-3.0-or-later"

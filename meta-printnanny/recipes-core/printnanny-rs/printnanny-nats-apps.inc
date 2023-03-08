@@ -2,6 +2,8 @@ inherit pkgconfig
 do_install:append(){
     ln -s -r ${D}/${bindir}/nats-edge-worker ${D}/${bindir}/printnanny-nats-edge-worker
     ln -s -r ${D}/${bindir}/nats-edge-worker  ${D}/${bindir}/pn-nats-edge-worker
+    ln -s -r ${D}/${bindir}/nats-gstmultifile ${D}/${bindir}/printnanny-nats-gstmultifile
+    ln -s -r ${D}/${bindir}/nats-edge-worker  ${D}/${bindir}/pn-nats-gstmultifile
 }
 
 DEPENDS += "openssl \

@@ -7,7 +7,6 @@ SRC_URI = " \
     file://printnanny-cloud-sync.service \
     file://printnanny-cloud.target \
     file://printnanny-boot-report.sh \
-    file://printnanny-recording-sync@.service \
 "
 
 RDEPENDS:${PN} += "printnanny-cli"

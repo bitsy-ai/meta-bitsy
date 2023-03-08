@@ -1,16 +1,16 @@
 [Unit]
-Description=PrintNanny NATS worker
+Description=Publish GstMultiFileSink messages to NATS topic
 After=network-online.target printnanny-init.service printnanny-settings.service
 Wants=printnanny-init.service printnanny-settings.service
 Requires=home.mount
 
 [Service]
 Type=simple
-SyslogIdentifier=printnanny-edge-nats
+SyslogIdentifier=printnanny-gstmultifile
 LogsDirectory=printnanny
-RuntimeDirectory=printnanny-edge-nats
+RuntimeDirectory=printnanny-gstmultifile
 Environment=RUST_LOG=info
-ExecStart=/bin/bash -c '/usr/bin/printnanny-nats-edge-worker -v --subject="pi.$(hostname).>" --hostname $(hostname)'
+ExecStart=/bin/bash -c '/usr/bin/printnanny-gstmultifile -v --hostname $(hostname)'
 Restart=on-failure
 RestartSec=10
 User=printnanny

@@ -5,8 +5,8 @@ AUTHOR = "Gina Häußge <gina@octoprint.org>"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-SRC_URI = "https://files.pythonhosted.org/packages/fc/91/f0c0afa62c7b7ad8a0fb5345b177643086cff1e4d766c9fe7d2cc103f9d6/OctoPrint-${PV}.tar.gz"
-SRC_URI[sha256sum] = "3a8cc0d3d68f76bda077619b76a6133673d21bebccae1cb8f55a7b8ae3f1632c"
+SRC_URI = "https://files.pythonhosted.org/packages/df/96/f7f1adcb12a15eba2a4f81678a096cbcb8cc5f9ff5a5fd77a1c9cde9a146/OctoPrint-1.8.7.tar.gz"
+SRC_URI[sha256sum] = "e560d26f80c26589d84bc168a45ed5bb443b4a2b97aefcdfc2d65ecfe1b9f7e6"
 
 S = "${WORKDIR}/OctoPrint-${PV}"
 

@@ -9,7 +9,6 @@ RDEPENDS:${PN} = "\
     printnanny-core-apps \
     printnanny-cloud-apps \
     printnanny-dash \
-    printnanny-cli \
     printnanny-overlayfs \
     printnanny-snapshot \
     janus-gateway \

@@ -10,7 +10,7 @@ SyslogIdentifier=printnanny-gstmultifile
 LogsDirectory=printnanny
 RuntimeDirectory=printnanny-gstmultifile
 Environment=RUST_LOG=info
-ExecStart=/bin/bash -c '/usr/bin/printnanny-gstmultifile -v --hostname $(hostname)'
+ExecStart=/bin/bash -c '/usr/bin/printnanny-nats-gstmultifile -v --hostname $(hostname)'
 Restart=on-failure
 RestartSec=10
 User=printnanny

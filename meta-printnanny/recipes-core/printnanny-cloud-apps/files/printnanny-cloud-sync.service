@@ -1,6 +1,6 @@
 [Unit]
 Description=Synchronize PrintNanny Cloud settings
-After=printnanny-init.service systemd-timesyncd.service home.mount
+After=printnanny-init.service home.mount
 Wants=printnanny.init.service
 Requires=home.mount
 StartLimitIntervalSec=10m

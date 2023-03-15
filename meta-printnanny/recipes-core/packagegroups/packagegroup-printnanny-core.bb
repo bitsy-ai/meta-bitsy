@@ -14,7 +14,6 @@ RDEPENDS:${PN} = "\
     janus-gateway \
     nginx \
     ntpdate \
-    ntp-systemd \
     swupdate \
     swupdate-progress \
     swupdate-www \

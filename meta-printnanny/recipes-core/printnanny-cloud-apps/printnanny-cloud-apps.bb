@@ -19,7 +19,6 @@ do_install() {
   install -d "${D}${sysconfdir}/printnanny/conf.d"
   install -d "${D}${sysconfdir}/systemd/system/printnanny-nats.service.d"
   install -d "${D}${bindir}"
-  install -m 0644 "${WORKDIR}/printnanny-recording-sync@.service" "${D}${systemd_system_unitdir}/printnanny-recording-sync@.service"
   install -m 0644 "${WORKDIR}/printnanny-cloud-sync.service" "${D}${systemd_system_unitdir}/printnanny-cloud-sync.service"
   install -m 0644 "${WORKDIR}/printnanny-cloud.target" "${D}${systemd_system_unitdir}/printnanny-cloud.target"
   install -m 0755 "${WORKDIR}/printnanny-boot-report.sh" "${D}${bindir}/printnanny-boot-report"

@@ -22,7 +22,7 @@ inherit autotools pkgconfig systemd
 
 DEPENDS += "libsrtp jansson libconfig libnice glib-2.0 gengetopt-native openssl"
 
-PACKAGECONFIG ?= "ipv6 rest_api rest websockets plugin_videoroom plugin_streaming"
+PACKAGECONFIG ?= "rest_api rest websockets plugin_videoroom plugin_streaming"
 PACKAGECONFIG[datachannels] = "--enable-data-channels,--disable-data-channels,usrsctp"
 PACKAGECONFIG[mqtt] = "--enable-mqtt,--disable-mqtt,paho.mqtt.c"
 PACKAGECONFIG[nanomsg] = "--enable-nanomsg,--disable-nanomsg,libnanomsg"

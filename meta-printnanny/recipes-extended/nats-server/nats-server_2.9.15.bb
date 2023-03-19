@@ -9,10 +9,8 @@ SRC_URI = "\
 "
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
 
-# S = "${WORKDIR}/nats-server"
-
 inherit systemd
-SRC_URI[sha256sum] = "d28a65b0c19d100bbbca5dfd2dce6710175f9d45110e4edfc79f3d97c43d8b98"
+SRC_URI[sha256sum] = "e65c8ea61fa2e0c6396e63e84729fd147b83568d6054f4d5bfac67a09acad969"
 
 do_install(){
     install -d "${D}${bindir}"

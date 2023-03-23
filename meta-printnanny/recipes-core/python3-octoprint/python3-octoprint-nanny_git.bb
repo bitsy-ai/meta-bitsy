@@ -10,6 +10,6 @@ SRC_URI += "git://git@github.com/bitsy-ai/octoprint-nanny-plugin.git;protocol=ss
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
-RDEPENDS:${PN} = "python3-case-converter python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff python3-nats-py"
+RDEPENDS:${PN} = "python3-case-converter python3-octoprint python3-cryptography python3-pytz python3-aiohttp python3-printnanny-api-client python3-backoff python3-nats-py python3-printnanny-octoprint-models"
 
 inherit setuptools3

@@ -9,6 +9,7 @@ SRC_URI[sha256sum] = "aa1bff553fe412689d1e9940163094f58c29ba6078dbee8eefdea2665c
 
 S = "${WORKDIR}/printnanny-octoprint-models-${PV}"
 
+DEPENDS = "python3-wheel python3-setuptools"
 RDEPENDS:${PN} = ""
 
 inherit python_pep517

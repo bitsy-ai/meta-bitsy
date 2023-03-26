@@ -224,7 +224,7 @@ SRC_URI += " \
     crate://crates.io/iana-time-zone/0.1.53 \
     crate://crates.io/idna/0.3.0 \
     crate://crates.io/indexmap/1.9.2 \
-    crate://crates.io/infer/0.3.7 \
+    crate://crates.io/infer/0.13.0 \
     crate://crates.io/inlinable_string/0.1.15 \
     crate://crates.io/inout/0.1.3 \
     crate://crates.io/instant/0.1.12 \

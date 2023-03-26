@@ -12,7 +12,6 @@ RuntimeDirectory=printnanny-gstmultifile
 Environment=RUST_LOG=info
 ExecStart=/bin/bash -c '/usr/bin/printnanny-nats-gstmultifile -v --hostname $(hostname)'
 Restart=on-failure
-RestartSec=10
 User=printnanny
 SupplementaryGroups=printnanny-admin
 

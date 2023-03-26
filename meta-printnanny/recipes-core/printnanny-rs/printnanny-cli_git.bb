@@ -349,7 +349,7 @@ SRC_URI += " \
     crate://crates.io/predicates/1.0.8 \
     crate://crates.io/predicates/2.1.5 \
     crate://crates.io/pretty-hex/0.3.0 \
-    crate://crates.io/printnanny-api-client/0.129.3 \
+    crate://crates.io/printnanny-api-client/0.129.4 \
     crate://crates.io/printnanny-octoprint-models/0.1.3 \
     crate://crates.io/printnanny-os-models/0.1.0 \
     crate://crates.io/proc-macro-crate/0.1.5 \

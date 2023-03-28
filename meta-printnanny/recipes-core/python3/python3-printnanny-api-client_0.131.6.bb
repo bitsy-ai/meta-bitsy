@@ -3,7 +3,7 @@ SUMMARY = "printnanny-api-client"
 HOMEPAGE = ""
 AUTHOR = "Leigh Johnson <leigh@printnanny.ai>"
 LICENSE = "AGPLv3"
-LIC_FILES_CHKSUM = "file://setup.py;md5=573659899e2fdf2f6948fab4f0b5df24"
+LIC_FILES_CHKSUM = "file://setup.py;md5=ec70ca8686988eeea090102a5340c01e"
 
 PYPI_PACKAGE = "printnanny-api-client"
 

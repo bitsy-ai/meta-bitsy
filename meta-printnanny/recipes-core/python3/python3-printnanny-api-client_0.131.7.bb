@@ -7,8 +7,8 @@ LIC_FILES_CHKSUM = "file://setup.py;md5=ec70ca8686988eeea090102a5340c01e"
 
 PYPI_PACKAGE = "printnanny-api-client"
 
-SRC_URI[sha256sum] = "1a6060234b52160d21c9e27bbbcb74d3d48393e4062572954d76075981521110"
-S = "${WORKDIR}/printnanny-api-client-0.131.6"
+SRC_URI[sha256sum] = "fcc681a08a46a0afca347db5282f0b2f4a4c66cb6c6e6bc6911cd779511794cd"
+S = "${WORKDIR}/printnanny-api-client-0.131.7"
 
 RDEPENDS:${PN} = "python3-aiohttp python3-protobuf python3-python-dateutil python3-six python3-urllib3"
 

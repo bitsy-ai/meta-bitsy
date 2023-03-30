@@ -72,7 +72,7 @@ SRC_URI += " \
     crate://crates.io/bytemuck/1.12.3 \
     crate://crates.io/bytemuck_derive/1.3.0 \
     crate://crates.io/byteorder/1.4.3 \
-    crate://crates.io/bytes/1.3.0 \
+    crate://crates.io/bytes/1.4.0 \
     crate://crates.io/cc/1.0.78 \
     crate://crates.io/cfb/0.7.3 \
     crate://crates.io/cfg-expr/0.11.0 \

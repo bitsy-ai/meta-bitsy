@@ -45,6 +45,7 @@ SRC_URI += " \
     crate://crates.io/async-stream-impl/0.3.3 \
     crate://crates.io/async-stream/0.3.3 \
     crate://crates.io/async-task/4.3.0 \
+    crate://crates.io/async-tempfile/0.2.0 \
     crate://crates.io/async-trait/0.1.61 \
     crate://crates.io/atomic-waker/1.1.0 \
     crate://crates.io/atomic/0.5.1 \

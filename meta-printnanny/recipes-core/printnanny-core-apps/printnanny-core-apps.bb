@@ -15,7 +15,7 @@ SRC_URI = " \
     file://printnanny-shutdown.service \
 "
 
-#     file://printnanny-gstmultifile.service \
+#     file://printnanny-gstmultifile.service
 
 do_install() {
   install -d "${D}${systemd_system_unitdir}"
@@ -37,8 +37,7 @@ SYSTEMD_SERVICE:${PN} = "\
   printnanny-online.target \
   printnanny-shutdown.service \
 "
-
-# printnanny-gstmultifile.service \
+# printnanny-gstmultifile.service 
 
 
 SYSTEMD_AUTO_ENABLE = "enable"

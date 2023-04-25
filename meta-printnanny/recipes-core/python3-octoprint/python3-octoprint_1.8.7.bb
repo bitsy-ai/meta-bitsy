@@ -47,6 +47,7 @@ RDEPENDS:${PN} = "\
     python3-sarge \
     python3-semantic-version \
     python3-sentry-sdk \
+    python3-setuptools \
     python3-tornado \
     python3-unidecode \
     python3-watchdog \

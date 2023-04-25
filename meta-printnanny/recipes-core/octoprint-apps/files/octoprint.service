@@ -16,7 +16,7 @@ Environment=OCTOPRINT_BASEDIR=/home/printnanny/.octoprint
 Environment=OCTOPRINT_VENV=/home/printnanny/octoprint-venv
 Environment=OCTOPRINT_CONFIG=/home/printnanny/.config/printnanny/vcs/octoprint/octoprint.yaml
 Environment=OCTOPRINT_PORT=5001
-ExecStartPre=/bin/bash -c '"${OCTOPRINT_VENV}/bin/python" -m pip install --upgrade pip setuptools==67.6.2
+ExecStartPre=/bin/bash -c '"${OCTOPRINT_VENV}/bin/python" -m pip install --upgrade pip setuptools==67.6.2'
 ExecStart=/bin/bash -c '"${OCTOPRINT_VENV}/bin/python" -m octoprint serve \
     --host 127.0.0.1 \
     --config "${OCTOPRINT_CONFIG}" \

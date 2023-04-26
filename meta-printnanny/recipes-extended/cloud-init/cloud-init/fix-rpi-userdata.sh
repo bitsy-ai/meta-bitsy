@@ -13,7 +13,6 @@ set -xeu
 
 USER_DATA_FILE="/boot/user-data"
 
-
 if grep -q "runcmd:" "$USER_DATA_FILE"; then
     mv "$USER_DATA_FILE" "$USER_DATA_FILE.bak"
     head -n -6 "$USER_DATA_FILE.bak" > "$USER_DATA_FILE"

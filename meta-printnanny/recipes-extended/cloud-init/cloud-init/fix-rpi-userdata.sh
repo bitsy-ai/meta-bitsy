@@ -23,7 +23,7 @@ fi
 # https://github.com/bitsy-ai/printnanny-os/issues/301
 NETWORK_DATA_FILE="/boot/network-config"
 NETWORK_DATA_SHIM="/boot/network-.con"
-if [ ! -f "$NETWORK_DATA_FILE" && -f "$NETWORK_DATA_SHIM"]; then
+if [ ! -f "$NETWORK_DATA_FILE" ] && [ -f "$NETWORK_DATA_SHIM" ]; then
     cp "$NETWORK_DATA_SHIM" "$NETWORK_DATA_FILE"
     echo "Copied $NETWORK_DATA_SHIM to $NETWORK_DATA_FILE"
 fi

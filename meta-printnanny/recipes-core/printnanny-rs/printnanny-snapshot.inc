@@ -1,8 +1,6 @@
 inherit pkgconfig systemd
 
-SRC_URI += "\
-    file://printnanny-snapshot.service \
-"
+SRC_URI += "file://printnanny-snapshot.service"
 
 DEPENDS += "openssl \
     gstreamer1.0 \
@@ -15,18 +13,16 @@ DEPENDS += "openssl \
     sqlite3 \
 "
 
-do_install(){
+do_install:append(){
   install -d "${D}${systemd_system_unitdir}"
   install -d "${D}${bindir}"
   install -m 0755 "${WORKDIR}/build/target/${CARGO_TARGET_SUBDIR}/printnanny-snapshot" "${D}${bindir}/printnanny-snapshot"
   install -m 0644 "${WORKDIR}/printnanny-snapshot.service" "${D}${systemd_system_unitdir}/printnanny-snapshot.service"
 }
 
+FILES:${PN} += "${bindir}"
 
-SYSTEMD_SERVICE:${PN} = "\
-  printnanny-snapshot.service \
-"
+SYSTEMD_SERVICE:${PN} = "printnanny-snapshot.service"
 
 SYSTEMD_AUTO_ENABLE = "enable"
 
-FILES:${PN} += "${bindir}"

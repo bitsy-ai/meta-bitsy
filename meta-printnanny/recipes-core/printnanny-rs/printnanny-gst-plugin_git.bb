@@ -5,9 +5,9 @@ inherit cargo
 # includes this file if it exists but does not fail
 # this is useful for anything you may want to override from
 # what cargo-bitbake generates.
+include printnanny-rs.inc
 include printnanny-gst-plugin-${PV}.inc
 include printnanny-gst-plugin.inc
-include printnanny-rs.inc
 
 CARGO_SRC_DIR = "gst-plugin"
 PV:append = "0.6.1-git${SRCPV}"

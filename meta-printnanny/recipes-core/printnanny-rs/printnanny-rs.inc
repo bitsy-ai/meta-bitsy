@@ -3,7 +3,7 @@
 
 # how to get printnanny-nats-apps could be as easy as but default to a git checkout:
 # SRC_URI += "crate://crates.io/printnanny-nats-apps/0.33.1"
-SRC_URI = "git://git@github.com/bitsy-ai/printnanny-rs.git;protocol=ssh;nobranch=1;branch=main"
+SRC_URI += "git://git@github.com/bitsy-ai/printnanny-rs.git;protocol=ssh;nobranch=1;branch=main"
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 # FIXME: update generateme with the real MD5 of the license file

@@ -41,12 +41,12 @@ DEPENDS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd',
 
 inherit python3native
 
-# PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
-
 DEPENDS += "\
     python3-pyyaml-native \
     python3-requests-native \
     python3-jinja2-native \
+    python3-installer-native \
+    python3-build-native \
 "
 
 RDEPENDS:${PN} = "\
@@ -63,40 +63,6 @@ RDEPENDS:${PN} = "\
     python3-urllib3 \
     bash \
 "
-# overrides setuptools3_legacy bbclass to remove:
-# build --build-base=${B} install --skip-build ${SETUPTOOLS_INSTALL_ARGS}
-setuptools3_legacy_do_install() {
-        cd ${SETUPTOOLS_SETUP_PATH}
-        install -d ${D}${PYTHON_SITEPACKAGES_DIR}
-        STAGING_INCDIR=${STAGING_INCDIR} \
-        STAGING_LIBDIR=${STAGING_LIBDIR} \
-        PYTHONPATH=${D}${PYTHON_SITEPACKAGES_DIR} \
-        ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py \
-        install ${SETUPTOOLS_INSTALL_ARGS} || \
-        bbfatal_log "'${PYTHON_PN} setup.py install ${SETUPTOOLS_INSTALL_ARGS}' execution failed."
-
-        # support filenames with *spaces*
-        find ${D} -name "*.py" -exec grep -q ${D} {} \; \
-                               -exec sed -i -e s:${D}::g {} \;
-
-        for i in ${D}${bindir}/* ${D}${sbindir}/*; do
-            if [ -f "$i" ]; then
-                sed -i -e s:${PYTHON}:${USRBINPATH}/env\ ${SETUPTOOLS_PYTHON}:g $i
-                sed -i -e s:${STAGING_BINDIR_NATIVE}:${bindir}:g $i
-            fi
-        done
-
-        rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/easy-install.pth
-
-        #
-        # FIXME: Bandaid against wrong datadir computation
-        #
-        if [ -e ${D}${datadir}/share ]; then
-            mv -f ${D}${datadir}/share/* ${D}${datadir}/
-            rmdir ${D}${datadir}/share
-        fi
-}
-
 setuptools3_legacy_do_install:append(){
     make -C ${S} render-template PYTHON=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} CWD=${S} FILE=${S}/systemd/cloud-final.service.tmpl
     install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/

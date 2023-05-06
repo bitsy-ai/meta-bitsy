@@ -1,6 +1,7 @@
 [Unit]
 Description=Create klipper virtualenv 
-ConditionPathExists=!/home/printnanny/klipper-venv
+After=network.target home.mount
+Requires=home.mount
 
 [Service]
 Type=oneshot

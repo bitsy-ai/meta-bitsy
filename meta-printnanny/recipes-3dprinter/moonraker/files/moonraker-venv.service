@@ -1,6 +1,5 @@
 [Unit]
 Description=Create Moonraker virtualenv 
-ConditionPathExists=!/home/printnanny/moonraker-venv
 After=network.target home.mount
 Requires=home.mount
 

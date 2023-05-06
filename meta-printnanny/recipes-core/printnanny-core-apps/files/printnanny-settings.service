@@ -13,6 +13,6 @@ SyslogIdentifier=printnanny-settings
 ExecStart=/usr/bin/printnanny -vv settings clone
 Restart=on-failure
 RestartSec=10
-
+User=printnanny
 [Install]
 WantedBy=multi-user.target

@@ -8,7 +8,8 @@ Requires=home.mount
 Type=oneshot
 SyslogIdentifier=octoprint-venv
 Environment=OCTOPRINT_VENV=/home/printnanny/octoprint-venv
-ExecStart=/usr/bin/python3 -m venv --system-site-packages "${OCTOPRINT_VENV}"
+ExecStart=/bin/bash -c '/usr/bin/python3 -m venv --system-site-packages "${OCTOPRINT_VENV}" && echo "Created new virtual env: ${OCTOPRINT_VENV}" || "Skipping virtual env creation, ${OCTOPRINT_VENV} already exists"'
+ExecStart=/usr/bin/python3 -m venv --system-site-packages --upgrade "${OCTOPRINT_VENV}"
 User=printnanny
 
 [Install]

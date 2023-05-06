@@ -6,7 +6,9 @@ ConditionPathExists=!/home/printnanny/klipper-venv
 Type=oneshot
 SyslogIdentifier=klipper-venv
 Environment=KLIPPER_VENV=/home/printnanny/klipper-venv
-ExecStart=/usr/bin/python3 -m venv --system-site-packages "${KLIPPER_VENV}"
+ExecStart=/bin/bash -c '/usr/bin/python3 -m venv --system-site-packages "${KLIPPER_VENV}" && echo "Created new virtual env: ${KLIPPER_VENV}" || "Skipping virtual env creation, ${KLIPPER_VENV} already exists"'
+ExecStart=/usr/bin/python3 -m venv --system-site-packages --upgrade "${KLIPPER_VENV}"
 User=printnanny
+
 [Install]
 WantedBy=klipper.service

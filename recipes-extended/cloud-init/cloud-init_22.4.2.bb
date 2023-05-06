@@ -97,19 +97,15 @@ setuptools3_legacy_do_install() {
         fi
 }
 
-# # cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
-# # move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
-do_compile(){
+setuptools3_legacy_do_install:append(){
     make -C ${S} render-template PYTHON=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} CWD=${S} FILE=${S}/systemd/cloud-final.service.tmpl
-}
-do_install(){
     install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${S}/systemd/cloud-final.service ${D}${systemd_system_unitdir}/cloud-final.service
     install -m 0644 ${S}/systemd/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 }
 
-FILES:${PN} += "${datadir}/* ${sysconfdir} ${systemd_unitdir}/*"
+FILES:${PN} += "${bindir} ${datadir}/* ${sysconfdir} ${systemd_unitdir}/*"
 
 SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service cloud-init.target"
 SYSTEMD_AUTO_ENABLE = "enable"

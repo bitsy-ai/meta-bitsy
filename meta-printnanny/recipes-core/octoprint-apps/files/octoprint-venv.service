@@ -1,7 +1,7 @@
 [Unit]
 Description=Create OctoPrint virtualenv 
 ConditionPathExists=!/home/printnanny/octoprint-venv
-After=network.target home.mount cloud-final.service
+After=network.target home.mount
 Requires=home.mount
 
 [Service]

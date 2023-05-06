@@ -6,7 +6,6 @@ LICENSE = "GPL-3.0-or-later"
 SRC_URI = "\
     git://github.com/Arksine/moonraker/;protocol=ssh;nobranch=1;branch=master \
     file://moonraker.service \
-    file://moonraker-venv.service \
 "
 SRCREV = "779997c2b8aa1df2b484440ef1d3a6b09058fcff"
 
@@ -70,7 +69,6 @@ do_install() {
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
         install -m 0644 "${WORKDIR}/moonraker.service" "${D}${systemd_system_unitdir}/moonraker.service"
-        install -m 0644 "${WORKDIR}/moonraker-venv.service" "${D}${systemd_system_unitdir}/moonraker-venv.service"
     fi
 }
 
@@ -81,17 +79,14 @@ RDEPENDS:${PN}-scripts = "\
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
 SYSTEMD_SERVICE:${PN} = "moonraker.service"
-SYSTEMD_SERVICE:${PN}-venv = "moonraker-venv.service"
 
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
-SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 FILES:${PN} = "${INSTALL_DIR}/moonraker/* ${INSTALL_DIR}/default/* ${MOONRAKER_DATA_PATH}"
-FILES:${PN}-venv = "${systemd_system_unitdir}/moonraker-venv.service"
 FILES:${PN}-test = "${INSTALL_DIR}/tests/*"
 FILES:${PN}-scripts = "${INSTALL_DIR}/scripts/*"
 FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra= "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-venv ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-extra"
+PACKAGES = "${PN} ${PN}-scripts ${PN}-test ${PN}-docs ${PN}-extra"

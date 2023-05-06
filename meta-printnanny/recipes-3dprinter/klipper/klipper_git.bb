@@ -6,7 +6,6 @@ LICENSE = "GPL-3.0-or-later"
 SRC_URI = "\
     git://github.com/Klipper3d/klipper;protocol=ssh;nobranch=1;branch=master \
     file://klipper.service \
-    file://klipper-venv.service \
 "
 SRCREV = "d883c57d77f80ea7343e995084d54dacbbd16290"
 
@@ -35,16 +34,13 @@ do_install() {
 
     if [ "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}" ]; then
         install -d "${D}${systemd_system_unitdir}"
-        install -m 0644 "${WORKDIR}/klipper-venv.service" "${D}${systemd_system_unitdir}/klipper-venv.service"
         install -m 0644 "${WORKDIR}/klipper.service" "${D}${systemd_system_unitdir}/klipper.service"
     fi
 }
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
 SYSTEMD_SERVICE:${PN} = "klipper.service"
-SYSTEMD_SERVICE:${PN}-venv =  "klipper-venv.service"
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
-SYSTEMD_AUTO_ENABLE:${PN}-venv = "enable"
 
 DEPENDS = "printnanny-user"
 
@@ -86,7 +82,6 @@ FILES:${PN} = "\
     ${INSTALL_DIR}/Makefile \
 "
 
-FILES:${PN}-venv = "${systemd_system_unitdir}/klipper-venv.service"
 FILES:${PN}-examples = "${INSTALL_DIR}/config/*"
 FILES:${PN}-klippy = "${INSTALL_DIR}/klippy/*"
 FILES:${PN}-test = "${INSTALL_DIR}/test/*"
@@ -95,4 +90,4 @@ FILES:${PN}-docs = "${INSTALL_DIR}/docs/*"
 FILES:${PN}-extra = "${INSTALL_DIR}/*"
 
 # NOTE: package ordering is import here! Packages are processed in left -> right order
-PACKAGES = "${PN} ${PN}-venv ${PN}-klippy ${PN}-examples ${PN}-scripts ${PN}-tests ${PN}-docs ${PN}-extra"
+PACKAGES = "${PN} ${PN}-klippy ${PN}-examples ${PN}-scripts ${PN}-tests ${PN}-docs ${PN}-extra"

@@ -2,9 +2,9 @@
 Description=Starts Klipper and provides klippy Unix Domain Socket API
 Documentation=https://www.klipper3d.org/
 BindsTo=mainsail.target
-After=network.target klipper-venv.service printnanny-settings.service
+After=network.target printnanny-settings.service
 Before=moonraker.service
-Wants=udev.target klipper-venv.service printnanny-settings.service
+Wants=udev.target printnanny-settings.service
 
 [Install]
 Alias=klippy.service
@@ -20,8 +20,9 @@ Environment=KLIPPER_LOG=/var/log/klipper/klippy.log
 Environment=KLIPPER_SOCKET=/var/run/klipper/klippy.sock
 Type=simple
 User=printnanny
-RemainAfterExit=yes
 StateDirectory=klipper
+ExecStartPre=/bin/bash -c 'Init virtual env: ${KLIPPER_VENV}" && /usr/bin/python3 -m venv --system-site-packages "${KLIPPER_VENV}" && echo "Created new virtual env: ${KLIPPER_VENV}" || "Skipping virtual env creation, ${KLIPPER_VENV} already exists"'
+ExecStartPre=/usr/bin/python3 -m venv --system-site-packages --upgrade "${KLIPPER_VENV}"
 ExecStart=/bin/bash -c "${KLIPPER_VENV}/bin/python3 ${KLIPPER_INSTALL}/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}"
-Restart=always
+Restart=on-failure
 RestartSec=10

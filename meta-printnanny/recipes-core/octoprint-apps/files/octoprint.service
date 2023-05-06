@@ -1,7 +1,7 @@
 [Unit]
 Description=OctoPrint
-After=network-online.target octoprint-venv.service home.mount printnanny-settings.service
-Wants=octoprint-venv.service printnanny-settings.service
+After=network-online.target home.mount printnanny-settings.service
+Wants=printnanny-settings.service
 Requires=home.mount
 StartLimitInterval=60
 StartLimitBurst=3
@@ -16,6 +16,8 @@ Environment=OCTOPRINT_BASEDIR=/home/printnanny/.octoprint
 Environment=OCTOPRINT_VENV=/home/printnanny/octoprint-venv
 Environment=OCTOPRINT_CONFIG=/home/printnanny/.config/printnanny/vcs/octoprint/octoprint.yaml
 Environment=OCTOPRINT_PORT=5001
+ExecStartPre=/bin/bash -c 'echo "Init virtual env: ${OCTOPRINT_VENV}" && /usr/bin/python3 -m venv --system-site-packages "${OCTOPRINT_VENV}" && echo "Created new virtual env: ${OCTOPRINT_VENV}" || "Skipping virtual env creation, ${OCTOPRINT_VENV} already exists"'
+ExecStartPre=/usr/bin/python3 -m venv --system-site-packages --upgrade "${OCTOPRINT_VENV}"
 ExecStartPre=/bin/bash -c '"${OCTOPRINT_VENV}/bin/python" -m pip install --upgrade pip setuptools==67.7.2'
 ExecStart=/bin/bash -c '"${OCTOPRINT_VENV}/bin/python" -m octoprint serve \
     --host 127.0.0.1 \

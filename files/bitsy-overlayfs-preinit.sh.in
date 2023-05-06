@@ -74,17 +74,5 @@ else
     echo "PREINIT: Mounting </data> failed!"
 fi
 
-# fix permissions
-FIX_PRINTNANNY_USER_GROUP=(
-    "/home/printnanny"
-)
-
-for f in "$FIX_PRINTNANNY_USER_GROUP[@]"
-do
-    chmod -R u=rwx,g=rwx,o=rx "$f"
-    chown -R printnanny:printnanny "$f"
-done
-
-
 echo "PREINIT: done; starting </sbin/init>"
 exec {SBIN_INIT_NAME}

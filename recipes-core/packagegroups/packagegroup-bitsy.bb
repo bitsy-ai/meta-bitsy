@@ -23,6 +23,5 @@ RDEPENDS:${PN}-sys = "\
 RDEPENDS:${PN}-cloudinit = "\
     ${PN}-sys \
     cloud-init \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'cloud-init-systemd', '', d)} \
     netplan \
 "

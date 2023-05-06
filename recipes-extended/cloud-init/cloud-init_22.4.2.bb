@@ -37,20 +37,9 @@ inherit setuptools3_legacy
 # inherit update-rc.d
 inherit systemd
 
-DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
+DEPENDS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
 
 inherit python3native
-
-PACKAGES += "${PN}-systemd"
-
-FILES:${PN} += "${datadir}/* ${sysconfdir}"
-
-FILES:${PN}-systemd += "${systemd_unitdir}/*"
-RDEPENDS:${PN}-systemd += " ${PN}"
-
-
-SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service cloud-init.target"
-SYSTEMD_AUTO_ENABLE = "enable"
 
 # PREFERRED_VERSION_python3-pyyaml:forcevariable = "5.4.1"
 
@@ -108,9 +97,19 @@ setuptools3_legacy_do_install() {
         fi
 }
 
-# cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
-# move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
-setuptools3_legacy_do_install:append(){
-    install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
-    install -m 0644 ${D}${sysconfdir}/systemd/system/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+# # cloud-init produces a drop-in config: sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+# # move to sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+do_compile(){
+    make -C ${S} render-template PYTHON=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} CWD=${S} FILE=${S}/systemd/cloud-final.service.tmpl
 }
+do_install(){
+    install -d ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${S}/systemd/cloud-final.service ${D}${systemd_system_unitdir}/cloud-final.service
+    install -m 0644 ${S}/systemd/disable-sshd-keygen-if-cloud-init-active.conf ${D}${sysconfdir}/systemd/system/sshdgenkeys.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+}
+
+FILES:${PN} += "${datadir}/* ${sysconfdir} ${systemd_unitdir}/*"
+
+SYSTEMD_SERVICE:${PN} = "cloud-config.service cloud-final.service cloud-init.service cloud-init-local.service cloud-init.target"
+SYSTEMD_AUTO_ENABLE = "enable"

@@ -1,6 +1,6 @@
 [Unit]
 Description=OctoPrint
-After=network-online.target home.mount cloud-init.target printnanny-settings.service
+After=network-online.target home.mount printnanny-settings.service
 Wants=printnanny-settings.service
 Requires=home.mount
 StartLimitInterval=60

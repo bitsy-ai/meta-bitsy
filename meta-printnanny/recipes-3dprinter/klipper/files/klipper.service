@@ -2,7 +2,7 @@
 Description=Starts Klipper and provides klippy Unix Domain Socket API
 Documentation=https://www.klipper3d.org/
 BindsTo=mainsail.target
-After=network.target cloud-init.target printnanny-settings.service
+After=network.target printnanny-settings.service
 Before=moonraker.service
 Wants=udev.target printnanny-settings.service
 

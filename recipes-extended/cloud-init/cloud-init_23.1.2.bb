@@ -4,8 +4,8 @@ SECTION = "devel/python"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c6dd79b6ec2130a3364f6fa9d6380408"
 
-SRCREV = "61fb26c7035f192baa2770003ad9317f0746469a"
-SRC_BRANCH = "bitsy-distro-22-4"
+SRCREV = "93e85ad0d114b2aa7ff565a6132bd1323da3f868"
+SRC_BRANCH = "23.1.x-bitsy"
 # SRC_TAG = "bitsy/22.3"
 SRC_URI = "git://github.com/bitsy-ai/cloud-init;branch=${SRC_BRANCH};protocol=https \
     file://0001-patch-read-udevdir-from-pkg_config.patch \

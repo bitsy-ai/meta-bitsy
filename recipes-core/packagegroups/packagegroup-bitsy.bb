@@ -14,7 +14,6 @@ PACKAGES = "\
 
 RDEPENDS:${PN}-sys = "\
     e2fsprogs-resize2fs \
-    dhcpcd \
     os-release \
     rsync \
     tzdata \

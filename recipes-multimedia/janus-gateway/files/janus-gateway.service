@@ -10,6 +10,3 @@ ExecStart=/usr/bin/janus
 Restart=always
 RestartSec=60
 LimitNOFILE=65536
-
-[Install]
-WantedBy=multi-user.target

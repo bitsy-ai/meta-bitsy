@@ -15,7 +15,3 @@ Restart=on-failure
 RestartSec=10
 User=printnanny
 SupplementaryGroups=printnanny-admin
-
-
-[Install]
-WantedBy=multi-user.target

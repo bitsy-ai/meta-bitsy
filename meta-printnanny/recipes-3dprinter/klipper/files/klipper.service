@@ -4,7 +4,7 @@ Documentation=https://www.klipper3d.org/
 BindsTo=mainsail.target
 After=network.target cloud-init.target printnanny-settings.service
 Before=moonraker.service
-Wants=udev.target printnanny-settings.service
+Wants=udev.target cloud-init.target printnanny-settings.service
 
 [Install]
 Alias=klippy.service

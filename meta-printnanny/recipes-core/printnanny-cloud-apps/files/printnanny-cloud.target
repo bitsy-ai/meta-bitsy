@@ -3,5 +3,4 @@ Description=systemd unit to group all PrintNanny Cloud services
 Wants=printnanny-cloud-sync.service
 
 [Install]
-WantedBy=multi-user.target
 Also=printnanny-cloud-sync.service

@@ -1,7 +1,6 @@
 [Unit]
 Description=Initial cloud-init job (metadata service crawler)
 Wants=cloud-init-local.service
-Wants=sshd.socket
 After=cloud-init-local.service systemd-networkd-wait-online.service networking.service boot.mount var-lib-cloud.mount
 Before=network-online.target
 Requires=boot.mount var-lib-cloud.mount

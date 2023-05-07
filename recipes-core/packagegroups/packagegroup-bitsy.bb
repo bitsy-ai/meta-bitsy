@@ -23,5 +23,4 @@ RDEPENDS:${PN}-sys = "\
 RDEPENDS:${PN}-cloudinit = "\
     ${PN}-sys \
     cloud-init \
-    netplan \
 "

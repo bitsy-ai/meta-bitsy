@@ -2,8 +2,8 @@
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 BindsTo=mainsail.target
-After=network.target home.mount moonraker-venv.service klipper.service mainsail.target cloud-final.service printnanny-settings.service
-Wants=moonraker-venv.service printnanny-settings.service
+After=network.target home.mount cloud-init.target klipper.service mainsail.target printnanny-settings.service
+Wants=printnanny-settings.service
 Requires=home.mount
 
 [Install]
@@ -21,7 +21,9 @@ WorkingDirectory=/home/printnanny/.moonraker
 Type=simple
 SupplementaryGroups=moonraker-admin
 User=printnanny
-RemainAfterExit=yes
+ExecStartPre=/bin/bash -c 'Init virtual env: ${MOONRAKER_VENV}" && /usr/bin/python3 -m venv --system-site-packages "${MOONRAKER_VENV}" && echo "Created new virtual env: ${MOONRAKER_VENV}" || "Skipping virtual env creation, ${MOONRAKER_VENV} already exists"'
+ExecStartPre=/usr/bin/python3 -m venv --system-site-packages --upgrade "${MOONRAKER_VENV}"
 ExecStart=/bin/bash -c "${MOONRAKER_VENV}/bin/python3 /home/printnanny/.moonraker/moonraker/moonraker.py -d ${MOONRAKER_DATA_PATH} -l ${MOONRAKER_LOG} -c ${MOONRAKER_CONFIG_FILE}"
-Restart=always
+Restart=on-failure
 RestartSec=10
+IOSchedulingClass=realtime

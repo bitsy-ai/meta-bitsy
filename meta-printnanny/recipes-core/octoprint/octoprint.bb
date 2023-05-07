@@ -5,7 +5,6 @@ inherit systemd
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/AGPL-3.0-or-later;md5=a4af3f9f0c0fc9de318e4df46665906e"
 SRC_URI:append = "\
     file://octoprint.service \
-    file://octoprint-venv.service \
 "
 
 PV = "r1"
@@ -23,11 +22,10 @@ do_install:append() {
     install -d ${D}${systemd_system_unitdir}
     install -d "${D}${bindir}"
     install -m 0644 ${WORKDIR}/octoprint.service ${D}${systemd_system_unitdir}/octoprint.service
-    install -m 0644 ${WORKDIR}/octoprint-venv.service ${D}${systemd_system_unitdir}/octoprint-venv.service
 }
 
 
-SYSTEMD_SERVICE:${PN} = "octoprint.service octoprint-venv.service"
+SYSTEMD_SERVICE:${PN} = "octoprint.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 FILES:${PN} = "${systemd_system_unitdir} ${OCTOPRINT_BASEDIR}/* ${bindir}"
 

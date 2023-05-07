@@ -1,6 +1,3 @@
 [Unit]
 Description=PrintNanny OS is online & ready to use
 After=multi-user.target
-
-[Install]
-WantedBy=multi-user.target

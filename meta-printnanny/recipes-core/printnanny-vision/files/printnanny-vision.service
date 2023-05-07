@@ -22,6 +22,3 @@ Restart=on-failure
 RestartSec=10
 User=printnanny
 RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target

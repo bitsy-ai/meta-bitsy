@@ -6,6 +6,3 @@ Type=oneshot
 RemainAfterExit=true
 ExecStart=/bin/true
 ExecStop=/usr/bin/printnanny -v os shutdown
-
-[Install]
-WantedBy=multi-user.target

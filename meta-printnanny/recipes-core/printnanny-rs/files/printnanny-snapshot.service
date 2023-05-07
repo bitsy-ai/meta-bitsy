@@ -14,6 +14,3 @@ ExecStart=/usr/bin/printnanny-snapshot
 Restart=on-failure
 RestartSec=10
 User=printnanny
-
-[Install]
-WantedBy=multi-user.target

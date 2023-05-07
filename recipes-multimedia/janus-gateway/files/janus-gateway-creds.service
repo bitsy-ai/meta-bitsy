@@ -5,6 +5,3 @@ Description=Janus WebRTC Gateway
 Type=simple
 SyslogIdentifier=janus-gateway
 ExecStart=/usr/bin/janus-creds-generator
-
-[Install]
-WantedBy=multi-user.target

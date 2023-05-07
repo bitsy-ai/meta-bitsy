@@ -1,8 +1,8 @@
 [Unit]
 Description=PrintNanny Settings Repo
 Before=multi-user.target
-After=printnanny-init.service
-Wants=printnanny-init.service
+After=cloud-init.target printnanny-init.service
+Wants=cloud-init.target printnanny-init.service
 StartLimitInterval=60
 StartLimitBurst=3
 ConditionPathExists=!/home/printnanny/.config/printnanny/vcs
@@ -13,6 +13,4 @@ SyslogIdentifier=printnanny-settings
 ExecStart=/usr/bin/printnanny -vv settings clone
 Restart=on-failure
 RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
+User=printnanny

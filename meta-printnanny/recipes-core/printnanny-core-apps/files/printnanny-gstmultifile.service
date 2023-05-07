@@ -14,7 +14,3 @@ ExecStart=/bin/bash -c '/usr/bin/printnanny-nats-gstmultifile -v --hostname $(ho
 Restart=on-failure
 User=printnanny
 SupplementaryGroups=printnanny-admin
-
-
-[Install]
-WantedBy=multi-user.target

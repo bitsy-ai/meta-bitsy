@@ -25,7 +25,7 @@ CORE_IMAGE_EXTRA_INSTALL:raspberrypi4-64 = "userland"
 IMAGE_INSTALL = "\
   os-release \
   packagegroup-base-extended \
-  packagegroup-core-base-utils \
+  packagegroup-printnanny-core-base-utils \
   packagegroup-core-boot \
   kernel-devicetree \
   kernel-image \

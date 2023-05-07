@@ -1,6 +1,3 @@
 [Unit]
 Description=Systemd unit to group all PrintNanny Vision services
 Wants=gstd.service printnanny-vision.service
-
-[Install]
-WantedBy=multi-user.target

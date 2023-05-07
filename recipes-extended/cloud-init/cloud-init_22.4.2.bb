@@ -62,6 +62,7 @@ RDEPENDS:${PN} = "\
     python3-oauthlib \
     python3-urllib3 \
     bash \
+    netplan \
 "
 setuptools3_legacy_do_install:append(){
     make -C ${S} render-template PYTHON=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} CWD=${S} FILE=${S}/systemd/cloud-final.service.tmpl

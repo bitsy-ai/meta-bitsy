@@ -11,3 +11,6 @@ RemainAfterExit=yes
 ExecStart=/usr/bin/nats-server --config /etc/nats-server/nats-server.conf
 Restart=always
 RestartSec=10
+
+[Install]
+WantedBy=multi-user.target printnanny-online.target

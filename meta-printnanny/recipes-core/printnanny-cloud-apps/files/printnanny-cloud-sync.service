@@ -23,4 +23,4 @@ RestartSec=60
 User=printnanny
 
 [Install]
-WantedBy=printnanny-cloud.target
+WantedBy=printnanny-cloud.target printnanny-online.target

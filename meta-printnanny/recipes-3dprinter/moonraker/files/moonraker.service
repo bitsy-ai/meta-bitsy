@@ -2,7 +2,7 @@
 Description=Moonraker provides Web API for klipper
 Documentation=https://moonraker.readthedocs.io/en/latest/
 BindsTo=mainsail.target
-After=network.target home.mount cloud-init.target klipper.service mainsail.target printnanny-settings.service
+After=network-online.target home.mount klipper.service mainsail.target printnanny-settings.service
 Wants=printnanny-settings.service
 Requires=home.mount
 

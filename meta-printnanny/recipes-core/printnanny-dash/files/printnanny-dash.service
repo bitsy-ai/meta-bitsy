@@ -15,4 +15,4 @@ RestartSec=10
 User=printnanny
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target printnanny-online.target

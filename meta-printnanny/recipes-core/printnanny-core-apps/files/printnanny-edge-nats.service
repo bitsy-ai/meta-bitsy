@@ -17,4 +17,4 @@ User=printnanny
 SupplementaryGroups=printnanny-admin
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target printnanny-online.target

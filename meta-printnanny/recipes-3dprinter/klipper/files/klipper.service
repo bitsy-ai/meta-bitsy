@@ -21,7 +21,7 @@ Environment=KLIPPER_SOCKET=/var/run/klipper/klippy.sock
 Type=simple
 User=printnanny
 StateDirectory=klipper
-ExecStartPre=/bin/bash -c 'Init virtual env: ${KLIPPER_VENV}" && /usr/bin/python3 -m venv --system-site-packages "${KLIPPER_VENV}" && echo "Created new virtual env: ${KLIPPER_VENV}" || "Skipping virtual env creation, ${KLIPPER_VENV} already exists"'
+ExecStartPre=/bin/bash -c 'echo "Init virtual env: ${KLIPPER_VENV}" && /usr/bin/python3 -m venv --system-site-packages "${KLIPPER_VENV}" && echo "Created new virtual env: ${KLIPPER_VENV}" || "Skipping virtual env creation, ${KLIPPER_VENV} already exists"'
 ExecStartPre=/usr/bin/python3 -m venv --system-site-packages --upgrade "${KLIPPER_VENV}"
 ExecStart=/bin/bash -c "${KLIPPER_VENV}/bin/python3 ${KLIPPER_INSTALL}/klippy/klippy.py ${KLIPPER_CONFIG} -l ${KLIPPER_LOG} -a ${KLIPPER_SOCKET}"
 Restart=on-failure

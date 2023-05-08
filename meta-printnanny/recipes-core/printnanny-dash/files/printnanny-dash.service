@@ -13,3 +13,6 @@ ExecStart=/usr/bin/printnanny-dash
 Restart=on-failure
 RestartSec=10
 User=printnanny
+
+[Install]
+WantedBy=multi-user.target

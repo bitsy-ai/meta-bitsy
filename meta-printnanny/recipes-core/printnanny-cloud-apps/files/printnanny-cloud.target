@@ -4,3 +4,4 @@ Wants=printnanny-cloud-sync.service
 
 [Install]
 Also=printnanny-cloud-sync.service
+WantedBy=multi-user.target

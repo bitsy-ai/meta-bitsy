@@ -4,3 +4,4 @@ Wants=klipper.service moonraker.service
 
 [Install]
 Also=klipper.service moonraker.service
+WantedBy=multi-user.target

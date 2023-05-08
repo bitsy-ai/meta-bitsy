@@ -27,3 +27,6 @@ Restart=on-failure
 RestartSec=10
 IOSchedulingClass=realtime
 User=printnanny
+
+[Install]
+WantedBy=multi-user.target

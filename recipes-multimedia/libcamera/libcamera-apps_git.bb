@@ -8,10 +8,6 @@ S = "${WORKDIR}/git"
 
 inherit meson pkgconfig
 
-PACKAGECONFIG ??= "\
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'epoxy', '', d)} \
-"
-
 DEPENDS = "\
     libcamera \
     jpeg \
@@ -26,3 +22,4 @@ DEPENDS = "\
 "
 
 RDEPENDS:${PN} = "python3-core"
+

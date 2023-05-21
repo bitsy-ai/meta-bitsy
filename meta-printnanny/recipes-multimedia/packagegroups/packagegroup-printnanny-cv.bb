@@ -8,5 +8,4 @@ inherit packagegroup
 RDEPENDS:${PN} = "\
     printnanny-vision \
     printnanny-gst-plugin \
-    libcamera-apps \
 "

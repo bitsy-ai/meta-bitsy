@@ -22,6 +22,7 @@ RDEPENDS:${PN} = "\
     gawk \
     grep \
     gzip \
+    i2c-tools \
     inetutils \
     inetutils-ping \
     inetutils-telnet \

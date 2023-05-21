@@ -12,11 +12,26 @@ SRC_URI = " \
     git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
 "
 
-SRCREV = "6cf637eb253a68edebe59505bea55435fafb00cd"
-PV = "v0.4.0+git${SRCPV}"
+SRCREV = "fb44403f1c5571549ac128c21daee9761eb9249c"
+PV = "v0.5.0+git${SRCPV}"
 S = "${WORKDIR}/git"
 
-DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls boost chrpath-native libevent libyaml openssl libuv"
+DEPENDS = "\
+    python3-pyyaml-native \
+    python3-jinja2-native \
+    python3-ply-native \
+    udev \
+    gnutls \
+    boost \
+    chrpath-native \
+    libevent \
+    libdrm \
+    jpeg \
+    libsdl2 \
+    libyaml \
+    openssl \
+    libuv \
+"
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
 
 PACKAGES += "${PN}-gst ${PN}-rpi"
@@ -59,8 +74,8 @@ do_configure:prepend() {
 }
 
 do_install:append() {
-    chrpath -d ${D}${libdir}/libcamera.so.0.0.4
-    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.4
+    chrpath -d ${D}${libdir}/libcamera.so.0.0.5
+    chrpath -d ${D}${libdir}/libcamera-base.so.0.0.5
 }
 
 addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
@@ -79,10 +94,10 @@ do_recalculate_ipa_signatures_package() {
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
 FILES:${PN}-dev += " ${libdir}/libcamera.so"
 FILES:${PN} += " ${libdir}/libcamera.so.0"
-FILES:${PN} += " ${libdir}/libcamera.so.0.0.4"
+FILES:${PN} += " ${libdir}/libcamera.so.0.0.5"
 FILES:${PN}-dev += " ${libdir}/libcamera-base.so"
 FILES:${PN} += " ${libdir}/libcamera-base.so.0"
-FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.4"
+FILES:${PN} += " ${libdir}/libcamera-base.so.0.0.5"
 FILES:${PN} += " ${libdir}/v4l2-compat.so"
 FILES:${PN}-gst = "${libdir}/gstreamer-1.0/libgstlibcamera.so"
 FILES:${PN} += " ${bindir}/cam"

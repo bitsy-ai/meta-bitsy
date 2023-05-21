@@ -1,5 +1,5 @@
 # rely on camera_auto_detect=1 to load correct camera dtoverlay (imx219, imx477, imx708)
-do_deploy:append(){\
+do_deploy:append(){
     echo "arm_boost=1" >> $CONFIG
     echo "force_turbo=1" >> $CONFIG
     echo "arm_64bit=1" >> $CONFIG

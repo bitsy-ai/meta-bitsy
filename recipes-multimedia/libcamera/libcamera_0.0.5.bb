@@ -20,7 +20,6 @@ DEPENDS = "\
     python3-pyyaml-native \
     python3-jinja2-native \
     python3-ply-native \
-    python3-jinja2-native \
     udev \
     gnutls \
     boost \

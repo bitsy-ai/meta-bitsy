@@ -14,4 +14,3 @@ S = "${WORKDIR}/colorlog-6.7.0"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
-BBCLASSEXTEND = "native nativesdk"

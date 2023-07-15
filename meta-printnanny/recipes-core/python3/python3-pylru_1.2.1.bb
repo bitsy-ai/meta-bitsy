@@ -14,4 +14,3 @@ S = "${WORKDIR}/pylru-1.2.1"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
-BBCLASSEXTEND = "native nativesdk"

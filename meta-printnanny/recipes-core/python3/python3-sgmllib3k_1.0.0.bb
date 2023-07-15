@@ -14,4 +14,3 @@ S = "${WORKDIR}/sgmllib3k-1.0.0"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
-BBCLASSEXTEND = "native nativesdk"

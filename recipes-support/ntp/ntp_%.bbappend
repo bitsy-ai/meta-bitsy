@@ -25,5 +25,5 @@ FILES:${PN}-wait = "${systemd_unitdir}/system/ntp-wait.service ${sbindir}/ntp-wa
 SYSTEMD_PACKAGES += "ntp-wait"
 SYSTEMD_SERVICE:${PN}-wait = "ntp-wait.service"
 
-RDEPENDS:${PN}-wait += "perl"
+RDEPENDS:${PN}-wait += "perl ${PN}-utils"
 RPROVIDES:${PN}-wait += "ntp-wait"

@@ -1,7 +1,7 @@
 [Unit]
 Description=PrintNanny OS Initialization service
-After=home.mount
-Requires=home.mount
+After=home.mount network-online.target
+Requires=home.mount network-online.target
 
 [Service]
 Type=oneshot

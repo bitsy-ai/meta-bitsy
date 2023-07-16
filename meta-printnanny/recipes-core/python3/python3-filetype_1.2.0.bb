@@ -14,4 +14,3 @@ S = "${WORKDIR}/filetype-1.2.0"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
-BBCLASSEXTEND = "native nativesdk"

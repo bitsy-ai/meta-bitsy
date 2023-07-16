@@ -14,4 +14,3 @@ S = "${WORKDIR}/netaddr-0.8.0"
 RDEPENDS:${PN} = ""
 
 inherit setuptools3
-BBCLASSEXTEND = "native nativesdk"

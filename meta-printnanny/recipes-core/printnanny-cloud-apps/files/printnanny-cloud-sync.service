@@ -1,10 +1,8 @@
 [Unit]
 Description=Synchronize PrintNanny Cloud settings
-After=printnanny-init.service home.mount
-Wants=printnanny.init.service
+After=printnanny-init.service home.mount network-online.target
+Wants=printnanny.init.service network-online.target
 Requires=home.mount
-StartLimitIntervalSec=10m
-StartLimitBurst=5
 
 BindsTo=printnanny-cloud.target
 After=printnanny-cloud.target
@@ -19,8 +17,10 @@ LogsDirectory=printnanny
 SyslogIdentifier=printnanny-cloud-sync
 ExecStart=/usr/bin/printnanny -v cloud sync-models
 Restart=on-failure
-RestartSec=60
+RestartSec=10
 User=printnanny
+RestartSteps=10
+RestartMaxDelaySec=10m
 
 [Install]
 WantedBy=printnanny-cloud.target printnanny-online.target

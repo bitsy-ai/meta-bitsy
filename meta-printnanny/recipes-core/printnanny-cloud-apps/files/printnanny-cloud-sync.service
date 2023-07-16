@@ -1,6 +1,6 @@
 [Unit]
 Description=Synchronize PrintNanny Cloud settings
-After=printnanny-init.service home.mount network-online.target
+After=printnanny-init.service home.mount network-online.target ntp-wait.service
 Wants=printnanny.init.service network-online.target
 Requires=home.mount
 

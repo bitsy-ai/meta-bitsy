@@ -1,0 +1,10 @@
+[Unit]
+Description=Wait for Network Time Service Sync
+After=network.target ntpd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/ntp-wait -v
+
+[Install]
+WantedBy=multi-user.target
